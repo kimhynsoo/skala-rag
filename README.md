@@ -8,7 +8,7 @@
 
 ## Features
 - 다단 펼침면 PDF의 bbox 기반 컬럼 복원 → 기업당 1레코드 구조화 추출
-- bge-m3 dense + sparse 하이브리드 검색 (RRF) — 한국어 질의 ↔ 영문 문서 교차언어 + 수치·식별자 정확일치
+- bge-m3 dense + sparse 하이브리드 검색 (RRF) — 한국어 질의 ↔ 영문 문서 교차언어 + 수치·식별자 정확일치. 공유 토큰이 없는(sparse 점수 0) 문서는 sparse 순위에서 제외해 교차언어 질의의 잡음 차단
 - 자격 요건(G1~G4) → 체크리스트 11문항 → 스코어카드 100점, 총점·판정은 코드로 고정
 - 모든 수치에 근거 ID 연결, REFERENCE 자동 생성
 
@@ -16,7 +16,7 @@
 - Framework : LangGraph
 - LLM/Generator : TBD
 - LLM/Judge : TBD
-- Retrieval : FAISS + bge-m3 sparse (RRF) - Hit Rate@5 TBD, MRR@5 TBD
+- Retrieval : Chroma (bge-m3 dense) + bge-m3 sparse(lexical weight), RRF 융합 - Hit Rate@5 TBD, MRR@5 TBD
 - Embedding : BAAI/bge-m3
 
 ## Agents

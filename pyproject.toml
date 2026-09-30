@@ -11,10 +11,10 @@ dependencies = [
     "langchain-openai>=1.0.1",
     "langchain-tavily>=0.2.12",
     "langchain-text-splitters>=0.3",
-    "faiss-cpu>=1.12.0",
     "FlagEmbedding>=1.3",    # bge-m3 dense + sparse(lexical weight)
     "pymupdf>=1.24",         # 디렉토리북 bbox 기반 컬럼 복원
     "python-dotenv>=1.2.1",
+    "langchain-chroma>=0.2",
 ]
 
 [dependency-groups]
