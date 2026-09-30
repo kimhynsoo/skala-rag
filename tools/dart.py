@@ -55,7 +55,7 @@ def dart_listing_status(company_name: str) -> str:
     """DART 공시대상 회사 목록에서 기업명을 찾아 상장 여부(종목코드 유무)를 확인한다. G1(비상장) 판정에 사용한다."""
     hits = find_corps(company_name)
     if not hits:
-        return f"'{company_name}': DART 공시대상 목록에 없음 → 상장사가 아님(비상장으로 판단 가능)"
+        return f"'{company_name}': DART 공시대상 목록에 정확한 법인 일치 없음 → 상장 여부 확인불가"
     return "\n".join(
         f"{h['corp_name']} (corp_code {h['corp_code']}): "
         + (f"종목코드 {h['stock_code']} → 상장사" if h["stock_code"] else "종목코드 없음 → 비상장")

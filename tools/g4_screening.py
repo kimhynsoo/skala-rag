@@ -10,13 +10,14 @@ from pathlib import Path
 from typing import Literal
 
 from dotenv import load_dotenv
-from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, Field
+from llm import get_llm
+from tools.eligibility_cache import company_hash
 
 ROOT = Path(__file__).resolve().parents[1]
-COMPANIES_PATH = ROOT / "tools" / "system_semiconductor_companies.json"
+COMPANIES_PATH = ROOT / "data" / "processed" / "companies.json"
 PROMPT_PATH = ROOT / "prompts" / "eligibility.md"
-OUTPUT_PATH = ROOT / "tools" / "g4_screening_results.json"
+OUTPUT_PATH = ROOT / "data" / "processed" / "g4_screening_results.json"
 
 
 class G4Result(BaseModel):
@@ -75,7 +76,7 @@ def screen(companies_path: Path = COMPANIES_PATH, output_path: Path = OUTPUT_PAT
             if not os.getenv("OPENAI_API_KEY"):
                 raise RuntimeError("OPENAI_API_KEY가 없습니다. skala-rag/.env에 설정하세요.")
             if llm is None:
-                llm = ChatOpenAI(model=model_name, temperature=0).with_structured_output(G4Result)
+                llm = get_llm().with_structured_output(G4Result, method="json_schema", strict=True)
             response = llm.invoke([
                 ("system", prompt),
                 ("human", f"다음 기업을 G4 기준으로 판정하세요.\n\n{_company_input(company)}"),
@@ -94,6 +95,7 @@ def screen(companies_path: Path = COMPANIES_PATH, output_path: Path = OUTPUT_PAT
                 "model": model_name,
                 "results": list(cache.values()),
             })
+        result["company_hash"] = company_hash(company)
         results.append(result)
         print(f"[{i}/{len(companies)}] {company_id}: {result['판정']}")
 

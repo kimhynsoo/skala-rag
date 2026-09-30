@@ -5,10 +5,11 @@ from datetime import date
 from pathlib import Path
 
 from state import State
+from tools.eligibility_cache import cache_is_current, company_hash
 
 ROOT = Path(__file__).resolve().parents[1]
-G4_RESULTS_PATH = ROOT / "tools" / "g4_screening_results.json"
-EXTERNAL_RESULTS_PATH = ROOT / "tools" / "external_eligibility_results.json"
+G4_RESULTS_PATH = ROOT / "data" / "processed" / "g4_screening_results.json"
+EXTERNAL_RESULTS_PATH = ROOT / "data" / "processed" / "external_eligibility_results.json"
 SOURCE_TITLE = "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권"
 
 
@@ -60,7 +61,7 @@ def evaluate_company(
     evidence.extend(external_evidence)
     g1 = external_criteria.get("G1") or {
         "결과": "확인불가",
-        "사유": "DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음",
+        "사유": "기준일·기업 입력에 맞는 외부 검증 결과 없음: tools.run_tavily_eligibility 실행 필요",
         "근거ID": [],
     }
 
@@ -143,6 +144,14 @@ def run(state: State) -> dict:
     as_of_date = state.get("as_of_date") or date.today().isoformat()
     g4_result = _read_g4_result(_company_id(company))
     external_result = _read_external_result(_company_id(company))
+    fingerprint = company_hash(company)
+    if g4_result and g4_result.get("company_hash") != fingerprint:
+        g4_result = None
+    if external_result and (
+        external_result.get("company_hash") != fingerprint
+        or not cache_is_current(external_result.get("completed_at", ""), as_of_date)
+    ):
+        external_result = None
     eligibility, evidence = evaluate_company(company, as_of_date, g4_result, external_result)
     return {"eligibility": eligibility, "current_evidence": evidence}
 

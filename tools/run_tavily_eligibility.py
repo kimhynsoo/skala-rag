@@ -17,7 +17,6 @@ from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
 from dotenv import load_dotenv
-from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, Field
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -25,10 +24,12 @@ sys.path.insert(0, str(ROOT))
 
 from agents.competitor import _load_cache, _tavily_search  # noqa: E402
 from config import LLM_MODEL  # noqa: E402
+from llm import get_llm
+from tools.eligibility_cache import company_hash
 
-COMPANIES_PATH = ROOT / "tools" / "system_semiconductor_companies.json"
-G4_PATH = ROOT / "tools" / "g4_screening_results.json"
-OUTPUT_PATH = ROOT / "tools" / "external_eligibility_results.json"
+COMPANIES_PATH = ROOT / "data" / "processed" / "companies.json"
+G4_PATH = ROOT / "data" / "processed" / "g4_screening_results.json"
+OUTPUT_PATH = ROOT / "data" / "processed" / "external_eligibility_results.json"
 DART_CACHE_PATH = ROOT / ".cache" / "dart_corp_codes.json"
 DART_CORP_CODE_URL = "https://opendart.fss.or.kr/api/corpCode.xml"
 
@@ -187,6 +188,7 @@ def _dart_g1(company: dict, dart_companies: list[dict], evidence: list[dict]) ->
     corp = matches[0]
     listed = bool(corp["stock_code"])
     evidence_id = f"ELG-{company['company_id']}-DART"
+    evidence[:] = [item for item in evidence if item.get("근거ID") != evidence_id]
     evidence.append({
         "근거ID": evidence_id,
         "출처명": "금융감독원 OpenDART 고유번호 목록",
@@ -206,7 +208,8 @@ def _dart_g1(company: dict, dart_companies: list[dict], evidence: list[dict]) ->
 
 def _domain_g1(company: dict, evidence: list[dict]) -> dict | None:
     """Use a company's own website only when it explicitly says it is listed/unlisted."""
-    domain = urlparse("https://" + (company.get("홈페이지") or "").lstrip("/")).netloc.removeprefix("www.")
+    homepage = company.get("홈페이지") or ""
+    domain = urlparse(homepage if "://" in homepage else "https://" + homepage).netloc.removeprefix("www.")
     if not domain:
         return None
     matches = []
@@ -226,8 +229,11 @@ def _domain_g1(company: dict, evidence: list[dict]) -> dict | None:
         return None
     url, title, content, listed_terms, unlisted_terms = matches[0]
     lower = content.lower()
-    listed = any(term in lower for term in listed_terms)
     unlisted = any(term in lower for term in unlisted_terms)
+    listing_text = lower
+    for term in unlisted_terms:
+        listing_text = listing_text.replace(term, "")
+    listed = any(term in listing_text for term in listed_terms)
     if listed == unlisted:
         return None
     evidence_id = f"ELG-{company['company_id']}-WEB-G1"
@@ -321,7 +327,7 @@ def main() -> None:
     g4_pass = {row["company_id"] for row in g4_payload.get("results", []) if row.get("판정") == "통과"}
     targets = [company for company in companies if company.get("company_id") in g4_pass]
     old_results = _load_old_results()
-    llm = ChatOpenAI(model=LLM_MODEL, temperature=0).with_structured_output(ExternalResult)
+    llm = get_llm().with_structured_output(ExternalResult, method="json_schema", strict=True)
     results = []
     output_companies = {company["company_id"]: company for company in companies}
 
@@ -359,7 +365,7 @@ def main() -> None:
 
         search = _collect_sources(company, tavily_key)
         search_hash = _digest(search)
-        if previous and previous.get("search_hash") == search_hash and previous.get("review_hash") == review_hash:
+        if not args.refresh and still_fresh and previous and previous.get("search_hash") == search_hash and previous.get("review_hash") == review_hash:
             row = previous
         elif not search["sources"]:
             evidence = []
@@ -450,8 +456,10 @@ def main() -> None:
 
     for row in results:
         company = output_companies[row["company_id"]]
+        row["company_hash"] = company_hash(company)
         if dart_companies and row["criteria"]["G1"]["결과"] == "확인불가":
-            domain = urlparse("https://" + (company.get("홈페이지") or "").lstrip("/")).netloc.removeprefix("www.")
+            homepage = company.get("홈페이지") or ""
+            domain = urlparse(homepage if "://" in homepage else "https://" + homepage).netloc.removeprefix("www.")
             name = company.get("기업명", "")
             queries = [
                 f'"{name}" "{domain}" 상장 비상장 종목코드 DART' if domain else f'"{name}" 상장 비상장 종목코드 DART',

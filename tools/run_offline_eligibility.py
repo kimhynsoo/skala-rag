@@ -9,28 +9,22 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from agents.eligibility import evaluate_company, load_external_eligibility_results, load_g4_results
+from agents.eligibility import run
 
-COMPANIES_PATH = ROOT / "tools" / "system_semiconductor_companies.json"
-OUTPUT_PATH = ROOT / "tools" / "offline_eligibility_results.json"
+COMPANIES_PATH = ROOT / "data" / "processed" / "companies.json"
+OUTPUT_PATH = ROOT / "data" / "processed" / "offline_eligibility_results.json"
 
 
 def main() -> None:
     companies = json.loads(COMPANIES_PATH.read_text(encoding="utf-8"))
-    g4_results = load_g4_results()
-    external_results = load_external_eligibility_results()
     as_of_date = date.today().isoformat()
     results = []
     counts = Counter()
 
     for company in companies:
         cid = company["company_id"]
-        eligibility, evidence = evaluate_company(
-            company,
-            as_of_date,
-            g4_results.get(cid),
-            external_results.get(cid),
-        )
+        update = run({"current_company": company, "as_of_date": as_of_date})
+        eligibility, evidence = update["eligibility"], update["current_evidence"]
         counts[eligibility["판정"]] += 1
         results.append({
             "company_id": cid,

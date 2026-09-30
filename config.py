@@ -2,8 +2,10 @@
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 ROOT = Path(__file__).parent
+load_dotenv(ROOT / ".env")
 DATA_DIR = ROOT / "data"
 OUTPUT_DIR = ROOT / "outputs"
 CACHE_DIR = ROOT / ".cache"
