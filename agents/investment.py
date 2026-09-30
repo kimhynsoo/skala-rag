@@ -1,5 +1,9 @@
 """⑥ 투자 판단 에이전트 — LLM은 항목별 점수·근거만, 총점·판정은 코드(total_score, decide)."""
 
+import json
+
+from agents._report_llm import load_prompt, structured_call
+from agents._report_scoring import InvestmentOut, normalize
 from config import INVEST_THRESHOLD, ITEMS, TECH_MIN, UNKNOWN_SCORE, WEIGHTS
 from state import State
 
@@ -39,4 +43,33 @@ def run(state: State) -> dict:
     출력: {"checklist": ..., "scorecard": {items, averages, total, unknown_items: [확인 불가 항목 ID]},
           "decision": ..., "decision_details": {...}}
     """
-    raise NotImplementedError
+    company = state["current_company"]
+    evidence = state.get("current_evidence") or []
+    payload = {
+        "기업": company,
+        "적격성": state.get("eligibility"),
+        "기술분석": state.get("technology_analysis"),
+        "시장분석": state.get("market_analysis"),
+        "경쟁분석": state.get("competitor_analysis"),
+        "사용 가능한 근거ID": [
+            {"근거ID": e["근거ID"], "출처명": e.get("출처명"), "원문발췌": (e.get("원문발췌") or "")[:200]}
+            for e in evidence
+            if e.get("근거ID")
+        ],
+    }
+    out = structured_call(
+        InvestmentOut,
+        load_prompt("investment"),
+        json.dumps(payload, ensure_ascii=False, default=str),
+    )
+    checklist, items, unknown = normalize(out, state)
+
+    item_scores = {i: v["점수"] for i, v in items.items()}
+    averages, total = total_score(item_scores)
+    verdict = (state.get("eligibility") or {}).get("판정", "확인필요")
+    return {
+        "checklist": checklist,
+        "scorecard": {"items": items, "averages": averages, "total": total, "unknown_items": unknown},
+        "decision": decide(verdict, total, averages["제품/기술력"]),
+        "decision_details": out.decision_details.model_dump(),
+    }
