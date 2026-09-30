@@ -16,7 +16,7 @@
 - Framework : LangGraph
 - LLM/Generator : TBD
 - LLM/Judge : TBD
-- Retrieval : Chroma (bge-m3 dense) + bge-m3 sparse(lexical weight), RRF 융합 - Hit Rate@5 TBD, MRR@5 TBD
+- Retrieval : Chroma (bge-m3 dense) + bge-m3 sparse(lexical weight), RRF 융합 - Hit Rate@5 0.944, MRR@5 0.917 (골든셋 18문항, [비교 실험](eval/results.md))
 - Embedding : BAAI/bge-m3
 
 ## Agents

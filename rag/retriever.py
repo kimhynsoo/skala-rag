@@ -10,6 +10,7 @@ FAISS는 torch와 OpenMP 충돌로 쓰지 않는다 (docs/TROUBLESHOOTING.md).
 import hashlib
 import json
 from functools import lru_cache
+from pathlib import Path
 from typing import Literal
 
 import chromadb
@@ -81,8 +82,8 @@ def _match(meta: dict, doc_type: str, sub_domain: str | None) -> bool:
     return meta.get("doc_type") == doc_type and sub_domain in (None, meta.get("sub_domain"))
 
 
-def build_index(docs: list[Document]) -> None:
-    """dense는 Chroma에, sparse는 JSON에 저장(또는 캐시 로드)하고 모듈 전역 인덱스로 설정."""
+def build_index(docs: list[Document]) -> Path:
+    """dense는 Chroma에, sparse는 JSON에 저장(또는 캐시 로드)하고 모듈 전역 인덱스로 설정. → 색인 폴더 경로"""
     global _store, _docs, _sparse
     ids = [d.metadata["chunk_id"] for d in docs]
     payload = json.dumps([[d.page_content, d.metadata] for d in docs] + [EMBEDDING_MODEL],
@@ -105,6 +106,7 @@ def build_index(docs: list[Document]) -> None:
 
     _store = Chroma(client=client, collection_name=COLLECTION, embedding_function=BGEM3Embeddings())
     _docs, _sparse = dict(zip(ids, docs)), sparse
+    return path
 
 
 def hybrid_search(

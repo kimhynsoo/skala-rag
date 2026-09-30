@@ -14,7 +14,7 @@ from transformers import AutoTokenizer
 
 from config import CHUNK_SIZE, EMBEDDING_MODEL
 from rag import retriever
-from rag.parser import load_corpus
+from rag.parser import company_documents, load_corpus
 
 REQUIRED = ("chunk_id", "doc_id", "doc_type", "title", "publisher", "pub_year", "source_type", "source_page")
 
@@ -29,9 +29,33 @@ QUERIES = [
 ]
 
 
+def verify_chroma(path, docs):
+    """새 클라이언트로 DB 파일을 다시 열어 적재 결과를 원본 청크와 대조한다 (영속성 포함)."""
+    import json
+
+    import chromadb
+
+    col = chromadb.PersistentClient(path=str(path), settings=chromadb.Settings(anonymized_telemetry=False)) \
+        .get_collection(retriever.COLLECTION)
+    got = col.get(include=["documents", "metadatas", "embeddings"])
+    src = {d.metadata["chunk_id"]: d for d in docs}
+    meta_ok = all(m == {k: v for k, v in src[i].metadata.items() if v is not None} for i, m in zip(got["ids"], got["metadatas"]))
+    text_ok = all(t == src[i].page_content for i, t in zip(got["ids"], got["documents"]))
+    dims = {len(e) for e in got["embeddings"]}
+    norms = [float((e ** 2).sum() ** .5) for e in got["embeddings"][:50]]
+    sparse = json.loads((path / "sparse.json").read_text())
+    print(f"  [Chroma 적재] 건수 {col.count()} / 원본 {len(docs)} | ID 일치 {set(got['ids']) == set(src)} | "
+          f"본문 일치 {text_ok} | 메타데이터 일치 {meta_ok}")
+    print(f"  [Chroma 적재] 임베딩 차원 {dims} | L2 노름 {min(norms):.3f}~{max(norms):.3f} (정규화) | "
+          f"거리 {col.metadata.get('hnsw:space')} | sparse 가중치 {len(sparse)}건")
+
+
 def main():
     t0 = time.perf_counter()
-    docs = load_corpus()
+    import json
+    from pathlib import Path
+
+    docs = load_corpus() + company_documents(json.loads(Path("data/processed/companies.json").read_text()))
     print(f"[load] {len(docs)} chunks in {time.perf_counter() - t0:.1f}s")
 
     print("\n[1] 청크 품질")
@@ -52,8 +76,9 @@ def main():
 
     print("\n[2] 색인")
     t0 = time.perf_counter()
-    retriever.build_index(docs)
-    print(f"  최초(또는 캐시) 색인: {time.perf_counter() - t0:.1f}s")
+    path = retriever.build_index(docs)
+    print(f"  최초(또는 캐시) 색인: {time.perf_counter() - t0:.1f}s → {path}")
+    verify_chroma(path, docs)
     t0 = time.perf_counter()
     retriever.build_index(docs)
     print(f"  재호출(캐시): {(time.perf_counter() - t0) * 1000:.0f}ms")
