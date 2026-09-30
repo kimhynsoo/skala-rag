@@ -1,0 +1,813 @@
+[
+  {
+    "file": "01_기업정보.pdf",
+    "source": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권_시스템반도체 AI빅데이터 (1).pdf",
+    "pages": 47,
+    "agent": "기업분석 / 전체",
+    "note": "지정 PDF 6-52쪽 그대로. 원본은 한 PDF 페이지에 책 두 쪽이 배치된 펼침면 형식이며 그대로 보존.",
+    "page_mapping": [
+      {
+        "output_page": 1,
+        "source_pdf_page": 6
+      },
+      {
+        "output_page": 2,
+        "source_pdf_page": 7
+      },
+      {
+        "output_page": 3,
+        "source_pdf_page": 8
+      },
+      {
+        "output_page": 4,
+        "source_pdf_page": 9
+      },
+      {
+        "output_page": 5,
+        "source_pdf_page": 10
+      },
+      {
+        "output_page": 6,
+        "source_pdf_page": 11
+      },
+      {
+        "output_page": 7,
+        "source_pdf_page": 12
+      },
+      {
+        "output_page": 8,
+        "source_pdf_page": 13
+      },
+      {
+        "output_page": 9,
+        "source_pdf_page": 14
+      },
+      {
+        "output_page": 10,
+        "source_pdf_page": 15
+      },
+      {
+        "output_page": 11,
+        "source_pdf_page": 16
+      },
+      {
+        "output_page": 12,
+        "source_pdf_page": 17
+      },
+      {
+        "output_page": 13,
+        "source_pdf_page": 18
+      },
+      {
+        "output_page": 14,
+        "source_pdf_page": 19
+      },
+      {
+        "output_page": 15,
+        "source_pdf_page": 20
+      },
+      {
+        "output_page": 16,
+        "source_pdf_page": 21
+      },
+      {
+        "output_page": 17,
+        "source_pdf_page": 22
+      },
+      {
+        "output_page": 18,
+        "source_pdf_page": 23
+      },
+      {
+        "output_page": 19,
+        "source_pdf_page": 24
+      },
+      {
+        "output_page": 20,
+        "source_pdf_page": 25
+      },
+      {
+        "output_page": 21,
+        "source_pdf_page": 26
+      },
+      {
+        "output_page": 22,
+        "source_pdf_page": 27
+      },
+      {
+        "output_page": 23,
+        "source_pdf_page": 28
+      },
+      {
+        "output_page": 24,
+        "source_pdf_page": 29
+      },
+      {
+        "output_page": 25,
+        "source_pdf_page": 30
+      },
+      {
+        "output_page": 26,
+        "source_pdf_page": 31
+      },
+      {
+        "output_page": 27,
+        "source_pdf_page": 32
+      },
+      {
+        "output_page": 28,
+        "source_pdf_page": 33
+      },
+      {
+        "output_page": 29,
+        "source_pdf_page": 34
+      },
+      {
+        "output_page": 30,
+        "source_pdf_page": 35
+      },
+      {
+        "output_page": 31,
+        "source_pdf_page": 36
+      },
+      {
+        "output_page": 32,
+        "source_pdf_page": 37
+      },
+      {
+        "output_page": 33,
+        "source_pdf_page": 38
+      },
+      {
+        "output_page": 34,
+        "source_pdf_page": 39
+      },
+      {
+        "output_page": 35,
+        "source_pdf_page": 40
+      },
+      {
+        "output_page": 36,
+        "source_pdf_page": 41
+      },
+      {
+        "output_page": 37,
+        "source_pdf_page": 42
+      },
+      {
+        "output_page": 38,
+        "source_pdf_page": 43
+      },
+      {
+        "output_page": 39,
+        "source_pdf_page": 44
+      },
+      {
+        "output_page": 40,
+        "source_pdf_page": 45
+      },
+      {
+        "output_page": 41,
+        "source_pdf_page": 46
+      },
+      {
+        "output_page": 42,
+        "source_pdf_page": 47
+      },
+      {
+        "output_page": 43,
+        "source_pdf_page": 48
+      },
+      {
+        "output_page": 44,
+        "source_pdf_page": 49
+      },
+      {
+        "output_page": 45,
+        "source_pdf_page": 50
+      },
+      {
+        "output_page": 46,
+        "source_pdf_page": 51
+      },
+      {
+        "output_page": 47,
+        "source_pdf_page": 52
+      }
+    ]
+  },
+  {
+    "file": "02_AI_컴퓨팅.pdf",
+    "source": "2024IRDS_MM.pdf",
+    "pages": 11,
+    "agent": "Technology Expert",
+    "note": "지정 범위 그대로. PDF 5쪽은 감사의 글이며 요청 범위 보존을 위해 포함.",
+    "page_mapping": [
+      {
+        "output_page": 1,
+        "source_pdf_page": 5
+      },
+      {
+        "output_page": 2,
+        "source_pdf_page": 6
+      },
+      {
+        "output_page": 3,
+        "source_pdf_page": 7
+      },
+      {
+        "output_page": 4,
+        "source_pdf_page": 15
+      },
+      {
+        "output_page": 5,
+        "source_pdf_page": 16
+      },
+      {
+        "output_page": 6,
+        "source_pdf_page": 17
+      },
+      {
+        "output_page": 7,
+        "source_pdf_page": 18
+      },
+      {
+        "output_page": 8,
+        "source_pdf_page": 19
+      },
+      {
+        "output_page": 9,
+        "source_pdf_page": 20
+      },
+      {
+        "output_page": 10,
+        "source_pdf_page": 21
+      },
+      {
+        "output_page": 11,
+        "source_pdf_page": 22
+      }
+    ]
+  },
+  {
+    "file": "03_패키징.pdf",
+    "source": "2024IRDS_EPT-Part2.pdf",
+    "pages": 6,
+    "agent": "Technology Expert",
+    "note": "약 8-13쪽 대신 Key Trends 시작부터 HPC 및 실리콘 기판 응용 절 끝까지 PDF 9-14쪽 선정.",
+    "page_mapping": [
+      {
+        "output_page": 1,
+        "source_pdf_page": 9
+      },
+      {
+        "output_page": 2,
+        "source_pdf_page": 10
+      },
+      {
+        "output_page": 3,
+        "source_pdf_page": 11
+      },
+      {
+        "output_page": 4,
+        "source_pdf_page": 12
+      },
+      {
+        "output_page": 5,
+        "source_pdf_page": 13
+      },
+      {
+        "output_page": 6,
+        "source_pdf_page": 14
+      }
+    ]
+  },
+  {
+    "file": "04_전력전자.pdf",
+    "source": "Technology-Roadmap-2024-Power-Electronics-v15-FINAL-24-9-24.pdf",
+    "pages": 8,
+    "agent": "Technology Expert",
+    "note": "기술테마 개요 및 Semiconductor/Component/Subsystem 4-7쪽, 차량 전력·전압·효율·냉각 지표 9-12쪽.",
+    "page_mapping": [
+      {
+        "output_page": 1,
+        "source_pdf_page": 4
+      },
+      {
+        "output_page": 2,
+        "source_pdf_page": 5
+      },
+      {
+        "output_page": 3,
+        "source_pdf_page": 6
+      },
+      {
+        "output_page": 4,
+        "source_pdf_page": 7
+      },
+      {
+        "output_page": 5,
+        "source_pdf_page": 9
+      },
+      {
+        "output_page": 6,
+        "source_pdf_page": 10
+      },
+      {
+        "output_page": 7,
+        "source_pdf_page": 11
+      },
+      {
+        "output_page": 8,
+        "source_pdf_page": 12
+      }
+    ]
+  },
+  {
+    "file": "05_RF_센서.pdf",
+    "source": "2024IRDS_OSC.pdf",
+    "pages": 12,
+    "agent": "Technology Expert",
+    "note": "RF 과제, 무선·자동차, ADC/RF CMOS 개요, III-V/고주파 전력증폭·MIMO 핵심 페이지. 페이지 단위 발췌이므로 이웃 주제 일부 포함; RF 절 전체는 아님.",
+    "page_mapping": [
+      {
+        "output_page": 1,
+        "source_pdf_page": 12
+      },
+      {
+        "output_page": 2,
+        "source_pdf_page": 13
+      },
+      {
+        "output_page": 3,
+        "source_pdf_page": 23
+      },
+      {
+        "output_page": 4,
+        "source_pdf_page": 24
+      },
+      {
+        "output_page": 5,
+        "source_pdf_page": 25
+      },
+      {
+        "output_page": 6,
+        "source_pdf_page": 26
+      },
+      {
+        "output_page": 7,
+        "source_pdf_page": 27
+      },
+      {
+        "output_page": 8,
+        "source_pdf_page": 28
+      },
+      {
+        "output_page": 9,
+        "source_pdf_page": 31
+      },
+      {
+        "output_page": 10,
+        "source_pdf_page": 32
+      },
+      {
+        "output_page": 11,
+        "source_pdf_page": 39
+      },
+      {
+        "output_page": 12,
+        "source_pdf_page": 40
+      }
+    ]
+  },
+  {
+    "file": "06_메모리.pdf",
+    "source": "2024IRDS_MM.pdf",
+    "pages": 6,
+    "agent": "Technology Expert",
+    "note": "약 26-31쪽을 실제 Memory Technologies 절 전체인 27-32쪽으로 조정.",
+    "page_mapping": [
+      {
+        "output_page": 1,
+        "source_pdf_page": 27
+      },
+      {
+        "output_page": 2,
+        "source_pdf_page": 28
+      },
+      {
+        "output_page": 3,
+        "source_pdf_page": 29
+      },
+      {
+        "output_page": 4,
+        "source_pdf_page": 30
+      },
+      {
+        "output_page": 5,
+        "source_pdf_page": 31
+      },
+      {
+        "output_page": 6,
+        "source_pdf_page": 32
+      }
+    ]
+  },
+  {
+    "file": "07_UCIe_3.0.pdf",
+    "source": "8dc731_ceb350467e6d426d92169b69abdf2fbb.pdf",
+    "pages": 6,
+    "agent": "Technology Expert",
+    "note": "총 6쪽. 마지막 페이지의 Fast Throttle/Emergency Shutdown 및 결론을 누락하지 않도록 전체 포함.",
+    "page_mapping": [
+      {
+        "output_page": 1,
+        "source_pdf_page": 1
+      },
+      {
+        "output_page": 2,
+        "source_pdf_page": 2
+      },
+      {
+        "output_page": 3,
+        "source_pdf_page": 3
+      },
+      {
+        "output_page": 4,
+        "source_pdf_page": 4
+      },
+      {
+        "output_page": 5,
+        "source_pdf_page": 5
+      },
+      {
+        "output_page": 6,
+        "source_pdf_page": 6
+      }
+    ]
+  },
+  {
+    "file": "08_CXL_4.0.pdf",
+    "source": "CXL_4.0-White-Paper_FINAL.pdf",
+    "pages": 3,
+    "agent": "Technology Expert",
+    "note": "전체 3쪽.",
+    "page_mapping": [
+      {
+        "output_page": 1,
+        "source_pdf_page": 1
+      },
+      {
+        "output_page": 2,
+        "source_pdf_page": 2
+      },
+      {
+        "output_page": 3,
+        "source_pdf_page": 3
+      }
+    ]
+  },
+  {
+    "file": "09_소재_소자.pdf",
+    "source": "2024IRDS_BC.pdf",
+    "pages": 9,
+    "agent": "Technology Expert",
+    "note": "지정 80-85쪽 및 Assessment/benchmark 도입부 88-90쪽 선정. 평가 절 전체는 아님.",
+    "page_mapping": [
+      {
+        "output_page": 1,
+        "source_pdf_page": 80
+      },
+      {
+        "output_page": 2,
+        "source_pdf_page": 81
+      },
+      {
+        "output_page": 3,
+        "source_pdf_page": 82
+      },
+      {
+        "output_page": 4,
+        "source_pdf_page": 83
+      },
+      {
+        "output_page": 5,
+        "source_pdf_page": 84
+      },
+      {
+        "output_page": 6,
+        "source_pdf_page": 85
+      },
+      {
+        "output_page": 7,
+        "source_pdf_page": 88
+      },
+      {
+        "output_page": 8,
+        "source_pdf_page": 89
+      },
+      {
+        "output_page": 9,
+        "source_pdf_page": 90
+      }
+    ]
+  },
+  {
+    "file": "10_계측.pdf",
+    "source": "2024IRDS_MET.pdf",
+    "pages": 11,
+    "agent": "Technology Expert",
+    "note": "지정 43-49쪽 및 Challenges 절의 시작과 장·단기 과제 표를 포함하는 10-13쪽. 원문 3D Nanometrology의 후속 내용은 50쪽 이후에도 이어짐.",
+    "page_mapping": [
+      {
+        "output_page": 1,
+        "source_pdf_page": 10
+      },
+      {
+        "output_page": 2,
+        "source_pdf_page": 11
+      },
+      {
+        "output_page": 3,
+        "source_pdf_page": 12
+      },
+      {
+        "output_page": 4,
+        "source_pdf_page": 13
+      },
+      {
+        "output_page": 5,
+        "source_pdf_page": 43
+      },
+      {
+        "output_page": 6,
+        "source_pdf_page": 44
+      },
+      {
+        "output_page": 7,
+        "source_pdf_page": 45
+      },
+      {
+        "output_page": 8,
+        "source_pdf_page": 46
+      },
+      {
+        "output_page": 9,
+        "source_pdf_page": 47
+      },
+      {
+        "output_page": 10,
+        "source_pdf_page": 48
+      },
+      {
+        "output_page": 11,
+        "source_pdf_page": 49
+      }
+    ]
+  },
+  {
+    "file": "11_수율_검사.pdf",
+    "source": "2024IRDS_YE.pdf",
+    "pages": 4,
+    "agent": "Technology Expert",
+    "note": "지정 27-30쪽 그대로.",
+    "page_mapping": [
+      {
+        "output_page": 1,
+        "source_pdf_page": 27
+      },
+      {
+        "output_page": 2,
+        "source_pdf_page": 28
+      },
+      {
+        "output_page": 3,
+        "source_pdf_page": 29
+      },
+      {
+        "output_page": 4,
+        "source_pdf_page": 30
+      }
+    ]
+  },
+  {
+    "file": "12_글로벌시장.pdf",
+    "source": "SIA_2026_State-of-the-Semiconductor-Industry.pdf",
+    "pages": 19,
+    "agent": "Market Agent",
+    "note": "서론, Market/Ecosystem/Supply Chain, 정책 및 방법론을 포함. 표지·목차·빈 뒤표지를 제외해 19쪽.",
+    "page_mapping": [
+      {
+        "output_page": 1,
+        "source_pdf_page": 4
+      },
+      {
+        "output_page": 2,
+        "source_pdf_page": 5
+      },
+      {
+        "output_page": 3,
+        "source_pdf_page": 6
+      },
+      {
+        "output_page": 4,
+        "source_pdf_page": 7
+      },
+      {
+        "output_page": 5,
+        "source_pdf_page": 8
+      },
+      {
+        "output_page": 6,
+        "source_pdf_page": 9
+      },
+      {
+        "output_page": 7,
+        "source_pdf_page": 10
+      },
+      {
+        "output_page": 8,
+        "source_pdf_page": 11
+      },
+      {
+        "output_page": 9,
+        "source_pdf_page": 12
+      },
+      {
+        "output_page": 10,
+        "source_pdf_page": 13
+      },
+      {
+        "output_page": 11,
+        "source_pdf_page": 14
+      },
+      {
+        "output_page": 12,
+        "source_pdf_page": 15
+      },
+      {
+        "output_page": 13,
+        "source_pdf_page": 16
+      },
+      {
+        "output_page": 14,
+        "source_pdf_page": 17
+      },
+      {
+        "output_page": 15,
+        "source_pdf_page": 18
+      },
+      {
+        "output_page": 16,
+        "source_pdf_page": 19
+      },
+      {
+        "output_page": 17,
+        "source_pdf_page": 20
+      },
+      {
+        "output_page": 18,
+        "source_pdf_page": 21
+      },
+      {
+        "output_page": 19,
+        "source_pdf_page": 22
+      }
+    ]
+  },
+  {
+    "file": "13_WSTS_시장전망.pdf",
+    "source": "ppdfFePVX7.pdf",
+    "pages": 2,
+    "agent": "Market Agent",
+    "note": "공개 전망 전체. ppdfSK8tLY.pdf와 생성 시각만 다르고 본문이 동일하여 중복 제외.",
+    "page_mapping": [
+      {
+        "output_page": 1,
+        "source_pdf_page": 1
+      },
+      {
+        "output_page": 2,
+        "source_pdf_page": 2
+      }
+    ]
+  },
+  {
+    "file": "14_한국_반도체시장.pdf",
+    "source": "KIET_경제·산업_전망_2026-01(2)_2026년_하반기_경제산업_전망-13대_주력산업편.pdf",
+    "pages": 12,
+    "agent": "Market Agent",
+    "note": "제10장 반도체산업 전체. 실제 PDF 134-145쪽, 인쇄면 133-144쪽으로 총 12쪽.",
+    "page_mapping": [
+      {
+        "output_page": 1,
+        "source_pdf_page": 134
+      },
+      {
+        "output_page": 2,
+        "source_pdf_page": 135
+      },
+      {
+        "output_page": 3,
+        "source_pdf_page": 136
+      },
+      {
+        "output_page": 4,
+        "source_pdf_page": 137
+      },
+      {
+        "output_page": 5,
+        "source_pdf_page": 138
+      },
+      {
+        "output_page": 6,
+        "source_pdf_page": 139
+      },
+      {
+        "output_page": 7,
+        "source_pdf_page": 140
+      },
+      {
+        "output_page": 8,
+        "source_pdf_page": 141
+      },
+      {
+        "output_page": 9,
+        "source_pdf_page": 142
+      },
+      {
+        "output_page": 10,
+        "source_pdf_page": 143
+      },
+      {
+        "output_page": 11,
+        "source_pdf_page": 144
+      },
+      {
+        "output_page": 12,
+        "source_pdf_page": 145
+      }
+    ]
+  },
+  {
+    "file": "15_산업구조_경쟁.pdf",
+    "source": "4154cdbf-en.pdf",
+    "pages": 13,
+    "agent": "Market / Competitor Agent",
+    "note": "지정 6-18쪽 그대로. 6쪽은 그림·표 목차 일부로 요청 범위 보존을 위해 포함.",
+    "page_mapping": [
+      {
+        "output_page": 1,
+        "source_pdf_page": 6
+      },
+      {
+        "output_page": 2,
+        "source_pdf_page": 7
+      },
+      {
+        "output_page": 3,
+        "source_pdf_page": 8
+      },
+      {
+        "output_page": 4,
+        "source_pdf_page": 9
+      },
+      {
+        "output_page": 5,
+        "source_pdf_page": 10
+      },
+      {
+        "output_page": 6,
+        "source_pdf_page": 11
+      },
+      {
+        "output_page": 7,
+        "source_pdf_page": 12
+      },
+      {
+        "output_page": 8,
+        "source_pdf_page": 13
+      },
+      {
+        "output_page": 9,
+        "source_pdf_page": 14
+      },
+      {
+        "output_page": 10,
+        "source_pdf_page": 15
+      },
+      {
+        "output_page": 11,
+        "source_pdf_page": 16
+      },
+      {
+        "output_page": 12,
+        "source_pdf_page": 17
+      },
+      {
+        "output_page": 13,
+        "source_pdf_page": 18
+      }
+    ]
+  }
+]
