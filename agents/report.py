@@ -160,7 +160,14 @@ def _no_selection_report(state: State, records: list[dict], by_id: dict[str, dic
     payload = _nomatch_payload(records, top)
     user = json.dumps({"mode": "no_selection", **payload,
                        "사용 가능한 근거ID": [e["근거ID"] for e in evidence if e.get("근거ID")]}, ensure_ascii=False, default=str)
-    prose = structured_call(NoMatchProse, load_prompt("report"), user)
+    if not any(r.get("scorecard") for r in records):
+        prose = NoMatchProse(summary=(
+            "투자 점수가 산출된 기업이 없어 투자 대상을 선정하지 못했다. "
+            "자격 요건 확인 또는 분석 오류로 평가가 중단되었으며, 점수 미달이나 기업의 경쟁력 부족을 뜻하지 않는다. "
+            "미확인 자격과 분석 오류를 보완한 뒤 투자 평가를 다시 진행해야 한다."
+        ))
+    else:
+        prose = structured_call(NoMatchProse, load_prompt("report"), user)
     valid = {e["근거ID"] for e in evidence if e.get("근거ID")}
     clean = lambda t: strip_invalid_ids(t, valid)[0]  # noqa: E731
     comments = {c.company_id: clean(c.text) for c in prose.commentary}

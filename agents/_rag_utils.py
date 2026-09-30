@@ -11,8 +11,11 @@ from decimal import Decimal
 from pathlib import Path
 from typing import Literal
 
+from langchain_core.callbacks import BaseCallbackHandler
+from langchain_core.runnables import RunnableLambda
+from langchain_core.runnables.config import ensure_config, merge_configs
 from langchain_core.tools import tool
-from pydantic import BaseModel, ConfigDict, Field, StrictBool
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, model_validator
 
 import llm
 import schemas
@@ -89,16 +92,49 @@ class MarketAudit(OutputModel):
     성장유형: Literal["전년대비", "CAGR", "해당없음", "확인불가"]
 
 
-class GroundedTechnology(OutputModel):
-    분석: TechnologyAnalysis
-    수치근거: list[QuoteSupport]
-    기술비교: list[ComparisonAudit]
+class GroundedOutput(OutputModel):
+    @model_validator(mode="before")
+    @classmethod
+    def move_evidence_flag(cls, value):
+        # 의미를 바꾸지 않는 중첩 위치 보정만 한다. 실제 근거 검증은 후처리에서 수행한다.
+        if isinstance(value, dict) and isinstance(value.get("분석"), dict) and "근거충분" in value:
+            value = dict(value)
+            analysis = dict(value["분석"])
+            flag = value.pop("근거충분")
+            if "근거충분" in analysis and analysis["근거충분"] != flag:
+                raise ValueError("근거충분 값이 분석 내부와 외부에서 충돌함")
+            analysis.setdefault("근거충분", flag)
+            value["분석"] = analysis
+        return value
 
 
-class GroundedMarket(OutputModel):
-    분석: MarketAnalysis
-    수치근거: list[QuoteSupport]
-    시장검증: list[MarketAudit]
+class GroundedTechnology(GroundedOutput):
+    분석: TechnologyAnalysis = Field(description="모든 기술 분석 필드와 근거충분을 넣는 객체. 근거충분을 이 객체 밖에 쓰지 않는다.")
+    수치근거: list[QuoteSupport] = Field(default_factory=list, description="수치의 실제 원문 인용. 수치가 없어도 이 필드는 빈 배열 []로 반드시 포함한다.")
+    기술비교: list[ComparisonAudit] = Field(default_factory=list, description="지표별 측정조건 대조. 비교 가능한 지표가 없어도 빈 배열 []로 반드시 포함한다.")
+
+
+class GroundedMarket(GroundedOutput):
+    분석: MarketAnalysis = Field(description="모든 시장 분석 필드와 근거충분을 넣는 객체. 근거충분을 이 객체 밖에 쓰지 않는다.")
+    수치근거: list[QuoteSupport] = Field(default_factory=list, description="수치의 실제 원문 인용. 수치가 없어도 이 필드는 빈 배열 []로 반드시 포함한다.")
+    시장검증: list[MarketAudit] = Field(default_factory=list, description="시장 수치의 세그먼트·지역·성장 유형 검증. 수치가 없어도 빈 배열 []로 반드시 포함한다.")
+
+
+# 정상 분석·추가 검색·형식 보정은 허용하되 같은 잘못된 출력을 계속 반복하지 않는다.
+# create_agent가 자체 recursion_limit을 설정하므로 실제 모델 호출 수로 제한한다.
+D_AGENT_MAX_MODEL_CALLS = 6
+
+
+class _AnalysisCallLimit(BaseCallbackHandler):
+    raise_error = True
+
+    def __init__(self):
+        self.calls = 0
+
+    def on_chat_model_start(self, serialized, messages, **kwargs):
+        if self.calls >= D_AGENT_MAX_MODEL_CALLS:
+            raise RuntimeError("D 분석 LLM 호출 6회 제한 초과: 출력 형식·도구 반복 확인 필요")
+        self.calls += 1
 
 
 # CONTRACTS 3-9: A가 정한 sub_domain을 그대로 사용하며 임의 추론하지 않는다.
@@ -270,7 +306,11 @@ def generate_analysis(stage: str, payload: dict) -> dict:
         text = "\n\n".join(f"[{retrieval_tools.evidence_id(d)}] {d.metadata.get('title', '')}\n{d.page_content}" for d in docs)
         return text or "조사기준일에 사용할 검색 근거 없음", docs
 
-    result, docs = llm.run_agent(llm.load_prompt(stage), json.dumps(payload, ensure_ascii=False), schema, tools=[search])
+    def analyze(_):
+        return llm.run_agent(llm.load_prompt(stage), json.dumps(payload, ensure_ascii=False), schema, tools=[search])
+
+    config = merge_configs(ensure_config(), {"callbacks": [_AnalysisCallLimit()]})
+    result, docs = RunnableLambda(analyze).invoke(None, config=config)
     envelope = result.model_dump()
     out = {**envelope.pop("분석"), "_검증": envelope}
     if docs:

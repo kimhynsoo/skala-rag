@@ -156,3 +156,101 @@ def test_current_e_judgement_accepts_d_outputs_and_shared_rag_ids(monkeypatch):
     out = investment.run(state)
     assert out["decision"] == "투자 적격"
     assert {"TEC-02-0001", "MKT-13-0001"} <= set(out["scorecard"]["items"]["C3"]["근거ID"])
+
+
+@pytest.mark.parametrize("stage,schema", [
+    ("technology", rag.GroundedTechnology), ("market", rag.GroundedMarket),
+])
+def test_prompt_json_example_satisfies_the_actual_output_tool(stage, schema):
+    import re
+
+    prompt = rag.llm.load_prompt(stage)
+    example = json.loads(re.search(r"```json\s*(.*?)\s*```", prompt, re.S).group(1))
+    output = schema.model_validate(example)
+    assert output.분석.근거충분 is False
+    assert "근거충분" not in example
+
+
+def _structured_model(stage, repair):
+    """실제 ToolStrategy에 사용자가 관측한 잘못된 도구 인자를 반환한다."""
+    from langchain_core.language_models.fake_chat_models import FakeMessagesListChatModel
+    from langchain_core.messages import AIMessage
+
+    class ToolCallingModel(FakeMessagesListChatModel):
+        calls: int = 0
+
+        def bind_tools(self, tools, **kwargs):
+            return self
+
+        def _generate(self, messages, stop=None, run_manager=None, **kwargs):
+            self.calls += 1
+            result = super()._generate(messages, stop=stop, run_manager=run_manager, **kwargs)
+            for generation in result.generations:
+                generation.message = generation.message.model_copy(update={"id": f"test-llm-{self.calls}"})
+            return result
+
+    expected = tech_output() if stage == "technology" else market_output()
+    audit = expected.pop("_검증")
+    enough = expected["근거충분"]
+    bad = {"분석": {k: v for k, v in expected.items() if k != "근거충분"}, "근거충분": "잘못된 불리언"}
+    schema = rag.GroundedTechnology if stage == "technology" else rag.GroundedMarket
+
+    def message(args):
+        return AIMessage(content="", tool_calls=[{"name": schema.__name__, "args": args, "id": "grounded-output"}])
+
+    responses = [message(bad)]
+    if repair:
+        responses.append(message({"분석": expected, **audit}))
+    return ToolCallingModel(responses=responses)
+
+
+@pytest.mark.parametrize("stage", ["technology", "market"])
+def test_real_tool_strategy_can_correct_one_malformed_response(monkeypatch, stage):
+    from langchain_core.callbacks import BaseCallbackHandler
+    from langchain_core.runnables import RunnableLambda
+
+    class Observer(BaseCallbackHandler):
+        def __init__(self):
+            self.calls = 0
+
+        def on_chat_model_start(self, serialized, messages, **kwargs):
+            self.calls += 1
+
+    model = _structured_model(stage, repair=True)
+    monkeypatch.setattr(rag.llm, "get_llm", lambda: model)
+    observer = Observer()
+    result = RunnableLambda(lambda _: rag.generate_analysis(stage, {})).invoke(None, config={"callbacks": [observer]})
+    assert model.calls == 2
+    assert observer.calls == 2  # 노트북의 진행 로그도 내부 호출에 계속 전달된다.
+    assert result == (tech_output() if stage == "technology" else market_output())
+
+
+@pytest.mark.parametrize("stage", ["technology", "market"])
+def test_malformed_output_loop_is_bounded_even_under_the_full_pipeline_limit(monkeypatch, stage):
+    from langchain_core.runnables import RunnableLambda
+
+    model = _structured_model(stage, repair=False)
+    monkeypatch.setattr(rag.llm, "get_llm", lambda: model)
+    outer = RunnableLambda(lambda _: rag.generate_analysis(stage, {}))
+    with pytest.raises(RuntimeError, match="LLM 호출 6회 제한 초과"):
+        outer.invoke(None, config={"recursion_limit": 1000})
+    assert model.calls == 6
+
+
+@pytest.mark.parametrize("stage", ["technology", "market"])
+def test_misplaced_flag_and_missing_audits_are_conservative(stage):
+    data = tech_output() if stage == "technology" else market_output()
+    data.pop("_검증")
+    flag = data.pop("근거충분")
+    schema = rag.GroundedTechnology if stage == "technology" else rag.GroundedMarket
+    result = schema.model_validate({"분석": data, "근거충분": flag})
+    assert result.분석.근거충분 is flag
+    assert result.수치근거 == []
+    assert (result.기술비교 if stage == "technology" else result.시장검증) == []
+
+
+def test_competitor_table_preserves_list_and_numeric_contents():
+    from agents.competitor import CompetitorComparison
+    result = CompetitorComparison.model_validate({"비교표": [{"기업": "실제 기업", "특징": ["특징 A", "특징 B"], "수치": 12}]})
+    assert json.loads(result.비교표[0]["특징"]) == ["특징 A", "특징 B"]
+    assert result.비교표[0]["수치"] == "12"

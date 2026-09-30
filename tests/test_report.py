@@ -404,3 +404,16 @@ def test_recheck_hint_matches_scenario_kind():
     assert "실제 개선이 확인되면" in candidate_block(low, 1) or "재검토할 여지" in candidate_block(low, 1)
     assert "자료가 확인되면" in candidate_block(info, 1)
     assert "실제 개선" not in candidate_block(info, 1)  # 자료 없음 때문인데 '개선'이라고 말하지 않는다
+
+
+def test_unscored_report_does_not_invent_scores(monkeypatch):
+    state = _state(selected_company_id=None, ranking=[])
+    for r in state["evaluation_results"]:
+        r["scorecard"] = None
+        r["decision"] = "보류"
+    def forbidden(*args, **kwargs):
+        raise AssertionError("점수가 없는 요약은 LLM으로 생성하지 않는다")
+    monkeypatch.setattr(report, "structured_call", forbidden)
+    text = report.run(state)["final_report"]
+    assert "투자 점수가 산출된 기업이 없어" in text
+    assert "최고 점수" not in text

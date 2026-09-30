@@ -12,7 +12,7 @@ from urllib.request import Request, urlopen
 
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 from config import LLM_MODEL
 from state import State
@@ -37,6 +37,15 @@ class CompetitorComparison(BaseModel):
     열위: list[str] = Field(default_factory=list)
     비교조건: str = "공개 자료 기준이며 측정 조건이 다를 수 있음"
     비교한계: str = ""
+
+    @field_validator("비교표", mode="before")
+    @classmethod
+    def normalize_table_cells(cls, rows):
+        # 표 셀의 목록·수치를 표시용 문자열로만 변환한다. 내용은 추가하지 않는다.
+        if not isinstance(rows, list):
+            return rows
+        return [{key: (value if isinstance(value, str) else json.dumps(value, ensure_ascii=False))
+                 for key, value in row.items()} if isinstance(row, dict) else row for row in rows]
 
 
 def _empty(reason: str) -> dict:
@@ -213,7 +222,9 @@ def run(state: State) -> dict:
         }
 
     prompt = PROMPT_PATH.read_text(encoding="utf-8")
-    llm = ChatOpenAI(model=LLM_MODEL, temperature=0).with_structured_output(CompetitorComparison)
+    llm = ChatOpenAI(model=LLM_MODEL, temperature=0, timeout=60, max_retries=2).with_structured_output(
+        CompetitorComparison, method="function_calling"
+    )
     input_payload = {
         "기업": {
             "기업명": company.get("기업명"),

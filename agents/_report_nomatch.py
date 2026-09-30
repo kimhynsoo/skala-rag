@@ -129,7 +129,7 @@ def overview_section(state: dict, records: list[dict]) -> str:
         parts.append("### 1.2 점수 산출 후보 (정렬 기준: 종합 점수 → 기술력 → 자료 없는 항목 수 → 실적)\n\n<!--chart:candidates-->\n\n<!--chart:skip_table-->\n\n" +
                      md_table(["#", "기업", "종합 점수", "기준 미달분", "기술력", "기술력 미달분", "자료 없음", "미충족 유형"], rows) + more)
     else:
-        parts.append("### 1.2 점수 산출 후보\n\n점수가 산출된 후보가 없다. 모든 후보가 투자 요건 단계에서 제외되었거나 추가 확인이 필요한 것으로 분류되었다.")
+        parts.append("### 1.2 점수 산출 후보\n\n점수가 산출된 후보가 없다. 투자 요건 미충족·확인 필요 또는 분석 오류로 투자 채점까지 완료한 후보가 없다.")
     return "\n\n".join(parts)
 
 
