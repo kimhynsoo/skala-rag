@@ -71,6 +71,35 @@ def score_e2(company: dict) -> tuple[int, bool, str]:
     return 1, False, f"{year}년 매출 없음"
 
 
+def _eok_text(thousand: float) -> str:
+    v = thousand / 100_000
+    return f"{v:,.0f}억 원" if v >= 10 else f"{v:,.1f}억 원"
+
+
+def judge_q7(company: dict) -> tuple[str, str]:
+    """체크리스트 Q7 '매출이 발생하는가?' — 숫자만으로 정해지므로 코드로 판정한다(LLM이 천원 단위를 잘못 환산한 적이 있다).
+    YES: 최근 연도 매출 1억 원 이상 / PARTIAL: 1억 원 미만이나 발생 / NO: 매출 없음 / 확인불가: 비공개·기재 없음.
+    달러 해외 매출은 E2와 같은 정책으로 원화와 합산하지 않는다: 국내 매출만으로 1억 원 이상이면 YES, 아니면 확인불가."""
+    s = company.get("매출액") or {}
+    status, year = s.get("상태"), s.get("연도")
+    if status in ("비공개", "확인불가") or (status is None and not s):
+        return "확인불가", "매출 비공개 또는 기재 없음"
+    if status == "N/A":
+        return "NO", f"{year}년 매출 없음(N/A)"
+    domestic, overseas = s.get("국내"), s.get("해외")
+    if domestic is None and overseas is None:
+        return "확인불가", "매출 금액 기재 없음"
+    if overseas and s.get("해외단위") not in (None, "천원", "KRW_THOUSAND"):
+        if (domestic or 0) >= SALES_MID:
+            return "YES", f"{year}년 국내 매출 약 {_eok_text(domestic)}({domestic:,}천원)으로 1억 원 이상 (해외 매출은 환산하지 않음)"
+        return "확인불가", f"{year}년 해외 매출({s['해외단위']})이 있으나 환산 근거가 없어 1억 원 이상 여부를 확인할 수 없음"
+    total = (domestic or 0) + (overseas or 0)
+    if total <= 0:
+        return "NO", f"{year}년 매출 없음"
+    note = f"{year}년 매출 약 {_eok_text(total)}({int(total):,}천원)"
+    return ("YES", f"{note}, 1억 원 이상") if total >= SALES_MID else ("PARTIAL", f"{note}, 1억 원 미만")
+
+
 def score_e3(company: dict) -> tuple[int, bool, str]:
     """E3 투자 유치 — 확정 투자만 합산(협의 중 제외). 100억↑이며 투자자 2곳↑이면 5점."""
     history = company.get("투자유치이력")
@@ -128,6 +157,10 @@ def normalize(out: InvestmentOut, state: dict) -> tuple[dict, dict, list[str]]:
     }
     for q in Q_IDS:
         checklist.setdefault(q, {"판정": "확인불가", "근거": "LLM 출력 누락", "근거ID": []})
+
+    dir_ids0 = sorted(i for i in allowed if i.startswith("DIR-"))
+    verdict7, reason7 = judge_q7(company)
+    checklist["Q7"] = {"판정": verdict7, "근거": f"{reason7} (코드 산출)", "근거ID": dir_ids0}
 
     items: dict[str, dict] = {}
     unknown: list[str] = []
