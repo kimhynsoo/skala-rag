@@ -24,6 +24,16 @@ def test_e2_sales_rules():
     assert (s, unk) == (2, True)  # 비공개 = 확인 불가
 
 
+def test_e2_converts_usd_overseas_sales():
+    """해외 매출은 달러 단위 — 그대로 더하면 안 된다. $100,000 = 140,000천원."""
+    usd = {"연도": 2024, "국내": None, "해외": 100_000, "해외단위": "USD", "상태": "공개"}
+    score, unk, reason = score_e2(company("C1", "a", usd))
+    assert (score, unk) == (3, False) and "140,000천원" in reason
+    # 국내 30,000천원 + $50,000(70,000천원) = 100,000천원 → 1억 경계에서 3점
+    mixed = {"연도": 2024, "국내": 30_000, "해외": 50_000, "해외단위": "USD", "상태": "공개"}
+    assert score_e2(company("C1", "a", mixed))[0] == 3
+
+
 def test_e3_investment_rules():
     big = [{"금액": 10_000_000, "투자자": ["A", "B"], "확정": True}]
     assert score_e3(company("C1", "a", history=big))[0] == 5
@@ -86,3 +96,85 @@ def test_ineligible_or_pending_never_invests(monkeypatch):
 
 def test_prompt_file_exists():
     assert "Q11" in _report_llm.load_prompt("investment")
+
+
+# ── 반복 채점(중앙값) ────────────────────────────────────────────────────────
+
+def _sequence(monkeypatch, outs):
+    """structured_call이 호출될 때마다 outs를 차례로 돌려주게 한다(스레드 안전)."""
+    import threading
+    lock, calls = threading.Lock(), []
+
+    def fake(*a, **k):
+        with lock:
+            calls.append(1)
+            o = outs[(len(calls) - 1) % len(outs)]
+        return o
+
+    monkeypatch.setattr(investment, "structured_call", fake)
+    monkeypatch.setattr(investment, "load_prompt", lambda n: "p")
+    return calls
+
+
+def test_runs_scoring_multiple_times_and_takes_item_median(monkeypatch):
+    from agents._report_scoring import CODE_SCORED, SCORING_RUNS
+    calls = _sequence(monkeypatch, [_llm_out(3), _llm_out(4), _llm_out(5)])
+    out = investment.run(_state())
+    assert len(calls) == SCORING_RUNS == 3
+    llm_items = [i for i in ITEM_IDS if i not in CODE_SCORED]
+    assert all(out["scorecard"]["items"][i]["점수"] == 4 for i in llm_items)  # 3·4·5의 중앙값
+    assert out["scorecard"]["repeat"] == {"runs": 3, "total_min": out["scorecard"]["repeat"]["total_min"],
+                                          "total_max": out["scorecard"]["repeat"]["total_max"]}
+    assert out["scorecard"]["repeat"]["total_min"] < out["scorecard"]["repeat"]["total_max"]
+
+
+def test_median_stabilises_decision_across_noisy_runs(monkeypatch):
+    """한 회차가 튀어도(예: 매우 낮게 채점) 판정이 뒤집히지 않는다."""
+    _sequence(monkeypatch, [_llm_out(4), _llm_out(4), _llm_out(1)])
+    assert investment.run(_state())["decision"] == "투자 적격"
+    _sequence(monkeypatch, [_llm_out(2), _llm_out(2), _llm_out(5)])
+    assert investment.run(_state())["decision"] == "보류"
+
+
+def test_unknown_needs_majority(monkeypatch):
+    _sequence(monkeypatch, [_llm_out(4, unknown={"B1"}), _llm_out(4, unknown={"B1"}), _llm_out(5)])
+    sc = investment.run(_state())["scorecard"]
+    assert "B1" in sc["unknown_items"] and sc["items"]["B1"]["점수"] == 2  # 2/3가 자료 없음 → 자료 없음
+    _sequence(monkeypatch, [_llm_out(3, unknown={"B1"}), _llm_out(4), _llm_out(4)])
+    sc = investment.run(_state())["scorecard"]
+    assert "B1" not in sc["unknown_items"] and sc["items"]["B1"]["점수"] == 4  # 1/3만 자료 없음 → 무시
+
+
+def test_checklist_median_by_judgement_order(monkeypatch):
+    def with_q1(judge):
+        o = _llm_out(4)
+        o.checklist[0] = ChecklistOut(id="Q1", 판정=judge, 근거="x", 근거ID=[])
+        return o
+    _sequence(monkeypatch, [with_q1("YES"), with_q1("NO"), with_q1("NO")])
+    assert investment.run(_state())["checklist"]["Q1"]["판정"] == "NO"
+    _sequence(monkeypatch, [with_q1("YES"), with_q1("YES"), with_q1("NO")])
+    assert investment.run(_state())["checklist"]["Q1"]["판정"] == "YES"
+
+
+def test_partial_failure_is_tolerated_but_total_failure_raises(monkeypatch):
+    import threading
+    lock, n = threading.Lock(), []
+
+    def flaky(*a, **k):
+        with lock:
+            n.append(1)
+            k_ = len(n)
+        if k_ == 1:
+            raise RuntimeError("timeout")
+        return _llm_out(4)
+
+    monkeypatch.setattr(investment, "structured_call", flaky)
+    monkeypatch.setattr(investment, "load_prompt", lambda x: "p")
+    assert investment.run(_state())["scorecard"]["repeat"]["runs"] == 2  # 1회 실패해도 남은 2회로 진행
+
+    def always(*a, **k):
+        raise RuntimeError("down")
+
+    monkeypatch.setattr(investment, "structured_call", always)
+    with pytest.raises(RuntimeError):
+        investment.run(_state())
