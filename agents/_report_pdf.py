@@ -1,20 +1,30 @@
 """보고서 markdown → 증권사 리서치 스타일 PDF (HTML+CSS → Chrome headless). 추가 패키지 없이 동작한다."""
 
 import html
+import os
 import re
 import shutil
 import subprocess
 import tempfile
+import warnings
 from pathlib import Path
 
 from agents import _report_charts as charts
 from agents._report_render import ID_RE, REQUIREMENTS, latest_round
-from config import WEIGHTS
+from config import INVEST_THRESHOLD, TECH_MIN, WEIGHTS
 
+# 브라우저 후보: 환경변수 CHROME_PATH가 있으면 그것을 먼저 쓰고, 없으면 macOS·Windows·Linux의 Chrome/Edge/Chromium을 차례로 찾는다.
 CHROME_CANDIDATES = [
     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-    "google-chrome", "chromium", "chrome",
+    "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
+    r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+    r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+    r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+    r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
+    "google-chrome", "google-chrome-stable", "chromium", "chromium-browser", "microsoft-edge", "chrome",
 ]
+# 한글 글꼴 후보(macOS → Windows → Linux 순). 없는 글꼴은 브라우저가 다음 후보로 넘어간다.
+FONT_STACK = "'Apple SD Gothic Neo','Malgun Gothic','맑은 고딕','Noto Sans CJK KR','Noto Sans KR','NanumGothic','나눔고딕','AppleGothic',sans-serif"
 DISCLAIMER = "본 보고서는 공개 자료와 AI 분석에 기반해 자동 생성되었으며 투자 권유가 아닙니다. 최종 투자 판단과 책임은 투자자에게 있습니다."
 
 # ── markdown → HTML (이 보고서가 쓰는 문법만: 제목·표·불릿·번호·굵게·코드·주석) ──────────
@@ -119,7 +129,15 @@ def md_to_html(md: str, chart_fn=None) -> str:
             para = [ln]; i += 1
             while i < len(lines) and lines[i].strip() and not re.match(r"^(#|\||\s*[-*] |\d+\. )", lines[i]):
                 para.append(lines[i].rstrip()); i += 1
-            out.append(f"<p>{_inline(' '.join(para))}</p>")
+            text = " ".join(para)
+            if text.startswith("출처:"):
+                # 그래프 상자 바로 뒤라면 상자 안쪽 맨 아래에 넣어 그래프와 출처가 갈라지지 않게 한다
+                if out and out[-1].startswith(('<div class="chartbox"', '<div class="chartrow"')) and out[-1].endswith("</div>"):
+                    out[-1] = out[-1][:-6] + f'<div class="srcin">{_inline(text)}</div></div>'
+                else:
+                    out.append(f'<p class="src">{_inline(text)}</p>')
+            else:
+                out.append(f"<p>{_inline(text)}</p>")
     return "\n".join(out)
 
 
@@ -200,7 +218,8 @@ def _sidebar(meta: dict) -> str:
     return f"""<aside>
   <div class="box"><div class="label">투자의견</div><div class="rating {cls}">{s['rating']}</div>
     <div class="score"><b>{s['total']}</b><span> / 100점</span></div>
-    <div class="sub">투자 적격 순위 {s['rank']} · 확인 불가 {s['unknown']}개 항목</div></div>
+    <div class="sub">투자 적격 순위 {s['rank']} · 자료 없는 항목 {s['unknown']}개</div>
+    <div class="sub">투자 적격 기준: 종합 {INVEST_THRESHOLD:.0f}점 이상 · 기술력 {TECH_MIN} 이상</div></div>
   <div class="box"><div class="label">대분류 점수 (1~5)</div>{bars}</div>
   <div class="box"><div class="label">투자 요건 (4개)</div>{reqs}</div>
   {checks}
@@ -209,11 +228,11 @@ def _sidebar(meta: dict) -> str:
 
 
 CSS = """
-@page { size: A4; margin: 14mm 14mm 16mm; @bottom-left { content: "%DISCLAIMER%"; font: 6.5pt 'Apple SD Gothic Neo'; color:#8a94a6; width: 150mm; }
-  @bottom-right { content: counter(page) " / " counter(pages); font: 7.5pt 'Apple SD Gothic Neo'; color:#5b6577; } }
+@page { size: A4; margin: 14mm 14mm 16mm; @bottom-left { content: "%DISCLAIMER%"; font: 6.5pt %FONT%; color:#8a94a6; width: 150mm; }
+  @bottom-right { content: counter(page) " / " counter(pages); font: 7.5pt %FONT%; color:#5b6577; } }
 :root { --navy:#12284c; --accent:#1f5fbf; --line:#d5dae3; --mute:#5b6577; --bg:#f3f5f9; }
 * { box-sizing: border-box; }
-body { font-family: 'Apple SD Gothic Neo','AppleGothic',sans-serif; font-size: 8.6pt; line-height: 1.55; color:#1b2230; margin:0; }
+body { font-family: %FONT%; font-size: 8.6pt; line-height: 1.55; color:#1b2230; margin:0; }
 .band { background: var(--navy); color:#fff; padding: 6mm 7mm 5mm; margin: 0 0 6mm; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 .band .kicker { font-size: 7.5pt; letter-spacing: .12em; opacity:.75; }
 .band h1 { font-size: 19pt; margin: 2mm 0 1mm; font-weight: 800; }
@@ -251,7 +270,7 @@ tbody tr:nth-child(even) td { background: #f8f9fc; -webkit-print-color-adjust: e
 .bv { font-weight:700; text-align:right; } .bw { color: var(--mute); font-size: 6.5pt; }
 .kd { font-size: 7.4pt; margin:0; } .kd th { background: none; color: var(--mute); font-weight:600; padding: .8mm 1mm .8mm 0; width: 15mm; } .fn th { width: 33mm; }
 .kd td { padding: .8mm 0; border: 0; background:none !important; }
-svg.chart text { font-family: 'Apple SD Gothic Neo','AppleGothic',sans-serif; }
+svg.chart text { font-family: %FONT%; }
 .chartbox { margin: 1.5mm 0 3mm; padding: 1.5mm 2mm; border: .6px solid var(--line); border-radius: 1.5mm; background:#fbfcfe; break-inside: avoid; }
 .chartrow { display:flex; gap: 3mm; align-items:center; margin: 1.5mm 0 3mm; padding: 1.5mm 2mm; border: .6px solid var(--line); border-radius: 1.5mm; background:#fbfcfe; break-inside: avoid; }
 .cr-a { width: 43%; flex:none; } .cr-b { flex:1; min-width:0; }
@@ -287,12 +306,20 @@ sup.ref { font-size: 6.4pt; color: var(--accent); font-weight: 800; margin-left:
 .mtag { display:inline-block; font-size: 6.6pt; background: var(--bg); border-radius: 1mm; padding: .2mm 1.2mm; margin: 0 .8mm .6mm 0; color:#333; }
 .cnote { font-size: 6.9pt; color: var(--mute); margin: .5mm 0 2.5mm; }
 .compview { margin: 1mm 0 2mm; }
+.compact { font-size: 8pt; line-height: 1.42; } .compact p { margin: .8mm 0 1.4mm; } .compact h2 { margin: 3.6mm 0 2mm; } .compact h3 { margin: 2.6mm 0 1mm; }
+.compact table { margin: 1mm 0 2mm; } .compact td { padding: .8mm 1.4mm; } .compact .chartbox, .compact .chartrow { margin: 1mm 0 2mm; }
+.chartbox:has(+ .src), .chartrow:has(+ .src), .tiles:has(+ .src), .scards:has(+ .src), .callouts:has(+ .src), .compview:has(+ .src) { break-after: avoid; }
+.srcin { font-size: 6.6pt; color: var(--mute); margin-top: 1mm; text-align: right; }
+.tiles, .scards, .callouts { break-inside: avoid; }
+.src { font-size: 6.8pt; color: var(--mute); margin: -1.6mm 0 2.6mm; }
 ol.ref { padding-left: 5mm; font-size: 7.2pt; color:#333; } ol.ref li { margin-bottom: .6mm; }
 """
 
 
 def build_chart(name: str, arg: str, meta: dict) -> str:
     """마크다운의 <!--chart:이름[:인자]--> 지시문을 SVG로 바꾼다. 데이터가 없으면 빈 문자열."""
+    if name in (meta.get("_skip") or ()):
+        return ""
     recs = meta.get("_records") or {}
     rec = recs.get(arg) if arg in recs else recs.get(meta.get("selected_id"))
     box = lambda inner: f'<div class="chartbox">{inner}</div>' if inner else ""  # noqa: E731
@@ -351,7 +378,7 @@ def _render_html(md: str, meta: dict) -> str:
     s = meta["selected"]
     sub = f'{s["rating"]} · 총점 {s["total"]}점' if s else "투자 대상 없음"
     return f"""<!doctype html><html lang="ko"><head><meta charset="utf-8"><title>{html.escape(title)}</title>
-<style>{CSS.replace('%DISCLAIMER%', DISCLAIMER)}</style></head><body class="{'nomatch' if not s else ''}">
+<style>{CSS.replace('%DISCLAIMER%', DISCLAIMER).replace('%FONT%', FONT_STACK)}</style></head><body class="{'nomatch' if not s else ''} {'compact' if meta.get('_compact') else ''}">
 <div class="band"><div class="kicker">AI SEMICONDUCTOR STARTUP · INVESTMENT RESEARCH</div>
 <h1>{html.escape(title.replace('투자 평가 보고서:', '').strip() or title)}</h1>
 <div class="meta">투자 평가 보고서 · {sub} · 조사 기준일 {html.escape(meta['as_of'])}</div></div>
@@ -360,22 +387,66 @@ def _render_html(md: str, meta: dict) -> str:
 
 
 def _find_chrome() -> str:
+    env = os.environ.get("CHROME_PATH")
+    if env:
+        if Path(env).exists() or shutil.which(env):
+            return env
+        raise RuntimeError(f"CHROME_PATH={env} 를 찾을 수 없다.")
     for c in CHROME_CANDIDATES:
         if Path(c).exists() or shutil.which(c):
             return c
-    raise RuntimeError("Chrome을 찾을 수 없다. CHROME_CANDIDATES에 경로를 추가하거나 Chrome을 설치할 것.")
+    raise RuntimeError("Chrome/Edge를 찾을 수 없다. 설치하거나 환경변수 CHROME_PATH에 실행 파일 경로를 지정할 것 (docs/TROUBLESHOOTING.md 참고).")
 
 
-def export_pdf(md: str, meta: dict, out_path: str | Path) -> Path:
-    """markdown 보고서 → PDF. 반환: 저장 경로."""
-    out = Path(out_path).resolve()
-    out.parent.mkdir(parents=True, exist_ok=True)
+MAX_PAGES = 5  # 과제 요건: SUMMARY·REFERENCE 포함 5장 이내
+
+# 5장을 넘으면 아래 순서로 줄인다: 글자 간격 → 우선순위가 낮은 그래프부터 제거.
+# (선정 핵심 근거 카드, 투자 유치 이력, 점수 그래프, 체크리스트 배지는 끝까지 유지)
+DROP_ORDER = ["market", "revenue", "competitor", "ip", "tech"]
+
+
+def _print_pdf(html_text: str, out: Path) -> None:
     with tempfile.TemporaryDirectory() as tmp:
         src = Path(tmp) / "report.html"
-        src.write_text(render_html(md, meta), encoding="utf-8")
+        src.write_text(html_text, encoding="utf-8")
         subprocess.run(
             [_find_chrome(), "--headless=new", "--disable-gpu", "--no-pdf-header-footer",
              f"--print-to-pdf={out}", src.as_uri()],
             check=True, capture_output=True, timeout=120,
         )
-    return out
+
+
+def _count_pages(pdf: Path) -> int:
+    import pymupdf
+    with pymupdf.open(pdf) as doc:
+        return doc.page_count
+
+
+def export_pdf_fit(md: str, meta: dict, out_path: str | Path, max_pages: int = MAX_PAGES) -> tuple[Path, int, list[str]]:
+    """PDF를 만들고 max_pages를 넘으면 단계적으로 줄여 다시 만든다. 반환: (경로, 최종 쪽수, 줄이기 위해 쓴 조치)."""
+    out = Path(out_path).resolve()
+    out.parent.mkdir(parents=True, exist_ok=True)
+    steps: list[str] = []
+    skip: set[str] = set()
+    compact = False
+    while True:
+        m = {**meta, "_skip": set(skip), "_compact": compact}
+        _print_pdf(render_html(md, m), out)
+        pages = _count_pages(out)
+        if pages <= max_pages:
+            return out, pages, steps
+        if not compact:
+            compact = True
+            steps.append("글자 간격 축소")
+        elif len(skip) < len(DROP_ORDER):
+            nxt = DROP_ORDER[len(skip)]
+            skip.add(nxt)
+            steps.append(f"그래프 제거: {nxt}")
+        else:
+            warnings.warn(f"보고서가 {pages}쪽이다(제한 {max_pages}쪽). 서술 분량을 줄여야 한다.", stacklevel=2)
+            return out, pages, steps
+
+
+def export_pdf(md: str, meta: dict, out_path: str | Path) -> Path:
+    """markdown 보고서 → PDF(5장 이내로 자동 맞춤). 반환: 저장 경로."""
+    return export_pdf_fit(md, meta, out_path)[0]

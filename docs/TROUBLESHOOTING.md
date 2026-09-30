@@ -36,3 +36,13 @@
 - **원인**: `init_chat_model`에 타임아웃을 지정하지 않으면 OpenAI 클라이언트 기본값 **600초**를 기다린다. 응답이 멈춘 요청 하나가 45개사 루프 전체를 10분씩 붙잡는다.
 - **해결**: `llm.get_llm()`에 `timeout=60, max_retries=2` 설정. 정상 요청은 단계당 15~35초라 60초면 충분하다.
 - **진단법**: `ps -o %cpu -p <pid>`가 0%이고 `lsof -a -p <pid> -i TCP`에 OpenAI(Cloudflare) 연결만 있으면 응답 대기 중이다.
+
+### 보고서 PDF가 안 만들어지거나 한글이 깨짐 (`Chrome/Edge를 찾을 수 없다`)
+
+- **원인**: 보고서 PDF는 Chrome(또는 Edge·Chromium)의 headless 인쇄 기능으로 만든다. 브라우저가 없으면 `outputs/report.md`만 저장되고 경고가 난다.
+- **해결**: Chrome을 설치하거나, 설치 위치가 특이하면 환경변수로 지정한다.
+  - macOS/Linux: `export CHROME_PATH="/path/to/chrome"`
+  - Windows(PowerShell): `$env:CHROME_PATH="C:\Program Files\Google\Chrome\Application\chrome.exe"`
+- 한글 글꼴은 `Apple SD Gothic Neo → 맑은 고딕 → Noto Sans CJK KR → 나눔고딕` 순으로 찾는다. Linux에서 한글이 네모로 보이면 `sudo apt install fonts-noto-cjk`.
+- 보고서가 5쪽을 넘으면 글자 간격을 줄이고, 그래도 넘으면 우선순위가 낮은 그래프부터 자동으로 뺀다(`_report_pdf.export_pdf_fit`).
+

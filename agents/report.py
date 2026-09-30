@@ -9,16 +9,19 @@ from agents._report_llm import load_prompt, structured_call
 from agents._report_render import (
     MAX_REPORT_CHARS,
     build_reference,
+    cite,
     candidate_status,
     checklist_table,
     company_info_table,
     decision_sentence,
     eligibility_table,
     limitations,
+    lint_text,
+    uncited_lines,
     scope_sentence,
     strip_invalid_ids,
 )
-from agents._report_highlights import patents, pick_strengths, revenue_eok
+from agents._report_highlights import patents, pick_strengths, revenue_eok, strong_items, weak_items
 from agents._report_nomatch import (
     LOW_ITEM_SHOW,
     candidate_block,
@@ -30,7 +33,7 @@ from agents._report_pdf import export_pdf, report_meta
 from config import INVEST_THRESHOLD, OUTPUT_DIR, TECH_MIN
 from state import State
 
-PDF_NAME = "report.pdf"  # 제출용 파일명(RAG-Output_울산-4반_{이름}.pdf)으로 바꿔 복사한다
+PDF_NAME = "RAG-Output_울산캠퍼스-4반_성재원+김현수+박세웅+김세령+박인우.pdf"  # 과제 제출 파일명 규칙
 
 
 class ReportProse(BaseModel):
@@ -65,19 +68,49 @@ def _all_evidence(records: list[dict]) -> list[dict]:
     return list(seen.values())
 
 
+def _warn_terms(terms: list[str]) -> None:
+    if terms:
+        warnings.warn(f"서술의 내부 용어를 일반 표현으로 바꿨다: {sorted(set(terms))} (프롬프트 점검 필요)", stacklevel=3)
+
+
+def _clean_prose(prose: ReportProse, valid: set[str]) -> tuple[ReportProse, list[str], list[str]]:
+    """유효하지 않은 근거 ID 제거 + 내부 용어 정리. 반환: (서술, 제거된 ID, 바꾼 용어)."""
+    removed: list[str] = []
+    cleaned, terms = {}, []
+    for k, v in prose.model_dump().items():
+        cleaned[k], r = strip_invalid_ids(v, valid)
+        cleaned[k], t = lint_text(cleaned[k])
+        removed += r
+        terms += t
+    return ReportProse(**cleaned), removed, terms
+
+
+def _uncited(prose: ReportProse) -> list[str]:
+    return [f"[{k}] {line[:60]}" for k, v in prose.model_dump().items() for line in uncited_lines(v)]
+
+
 def _prose(mode: str, payload: dict, evidence: list[dict]) -> tuple[ReportProse, list[str]]:
-    """LLM 서술 생성 후 유효하지 않은 근거 ID를 제거한다. 반환: (서술, 제거된 ID)."""
+    """LLM 서술 생성 → 무효 근거 ID 제거·내부 용어 정리. 출처 없는 수치 문장이 있으면 한 번 다시 쓰게 한다.
+    반환: (서술, 제거된 ID)."""
     user = json.dumps({"mode": mode, **payload,
                        "사용 가능한 근거ID": [e["근거ID"] for e in evidence if e.get("근거ID")]},
                       ensure_ascii=False, default=str)
-    prose = structured_call(ReportProse, load_prompt("report"), user)
     valid = {e["근거ID"] for e in evidence if e.get("근거ID")}
-    removed: list[str] = []
-    cleaned = {}
-    for k, v in prose.model_dump().items():
-        cleaned[k], r = strip_invalid_ids(v, valid)
-        removed += r
-    return ReportProse(**cleaned), removed
+    system = load_prompt("report")
+    prose, removed, terms = _clean_prose(structured_call(ReportProse, system, user), valid)
+    missing = _uncited(prose)
+    if missing:  # 설계서 요건: 모든 수치에 근거 연결 → 출처 없는 문장만 짚어 한 번 재작성
+        retry = user + ("\n\n[수정 요청] 아래 문장에는 숫자가 있는데 출처가 없다. 사용 가능한 근거ID 중 그 사실을 뒷받침하는 것을 "
+                        "문장 끝에 [근거ID]로 붙이고, 뒷받침할 근거가 없으면 그 수치를 빼서 전체를 다시 작성하라.\n"
+                        + "\n".join(f"- {m}" for m in missing))
+        prose2, removed2, terms2 = _clean_prose(structured_call(ReportProse, system, retry), valid)
+        missing2 = _uncited(prose2)
+        if len(missing2) < len(missing):
+            prose, removed, terms, missing = prose2, removed2, terms2, missing2
+    _warn_terms(terms)
+    if missing:
+        warnings.warn(f"출처 없는 수치 문장 {len(missing)}건이 남았다: {missing[:3]}", stacklevel=2)
+    return prose, removed
 
 
 def _or_unknown(text: str) -> str:
@@ -102,20 +135,33 @@ def _selected_report(state: State, records: list[dict], by_id: dict[str, dict]) 
     prose, _ = _prose("selected", payload, _evidence_of(rec))
     cl_table, cl_warn = checklist_table(rec.get("checklist") or {})
     n_ok = len(state.get("ranking") or [])
-    head = (f"**투자 추천: {company['기업명']}** (투자 적격 {n_ok}곳 중 1위, 종합 점수 {sc['total']}점). "
-            f"{scope_sentence(state, records)}")
+    head = (f"{scope_sentence(state, records)}\n\n"
+            f"**투자 추천: {company['기업명']}** (투자 적격 {n_ok}곳 중 1위, 종합 점수 {sc['total']}점).")
     mkt = rec.get("market_analysis") or {}
+    ev_ids = {e["근거ID"] for e in _evidence_of(rec)}
+    tech_ids = (rec.get("technology_analysis") or {}).get("근거ID") or []
+    mkt_ids = mkt.get("근거ID") or []
+    cmp_ids = (rec.get("competitor_analysis") or {}).get("근거ID") or []
+
+    def src(*id_lists) -> str:
+        """그래프·카드 아래 출처 줄. 이 기업의 근거 레코드에 있는 ID만 쓴다 → REFERENCE에 그대로 연결된다."""
+        ids = [i for i in dict.fromkeys(i for lst in id_lists for i in lst) if i in ev_ids]
+        return f"\n\n출처: {cite(ids)}" if ids else ""
+
+    by_kind = {"tech": tech_ids, "market": mkt_ids}
+    strength_ids = [by_kind.get(st.kind, dir_ids) for st in strengths]
+    shown = [i for _, v in strong_items(rec) for i in v.get("근거ID", [])] + [i for _, v, _ in weak_items(rec) for i in v.get("근거ID", [])]
     blocks = {  # 강점 영역일 때만 해당 그래프를 넣는다 (5장 이내). 투자 유치 이력은 이력이 있으면 항상 넣는다.
-        "funding": "\n\n<!--chart:funding-->" if company.get("투자유치이력") else "",
-        "revenue": "\n\n<!--chart:revenue-->" if "revenue" in kinds and revenue_eok(company.get("매출액") or {}) else "",
-        "tech": "\n\n<!--chart:tech-->" if "tech" in kinds and rec.get("technology_analysis") else "",
-        "ip": "\n\n<!--chart:ip-->" if "ip" in kinds and sum(patents(company)) else "",
-        "competitor": "\n\n<!--chart:competitor-->" if any((rec.get("competitor_analysis") or {}).get(k) for k in ("경쟁제품", "우위", "열위", "비교표")) else "",
-        "market": "\n\n<!--chart:market-->" if (mkt.get("시장규모") or {}).get("값") or (mkt.get("성장률") or {}).get("값") else "",
+        "funding": "\n\n<!--chart:funding-->" + src(dir_ids) if company.get("투자유치이력") else "",
+        "revenue": "\n\n<!--chart:revenue-->" + src(dir_ids) if "revenue" in kinds and revenue_eok(company.get("매출액") or {}) else "",
+        "tech": "\n\n<!--chart:tech-->" + src(tech_ids) if "tech" in kinds and rec.get("technology_analysis") else "",
+        "ip": "\n\n<!--chart:ip-->" + src(dir_ids) if "ip" in kinds and sum(patents(company)) else "",
+        "competitor": "\n\n<!--chart:competitor-->" + src(cmp_ids) if any((rec.get("competitor_analysis") or {}).get(k) for k in ("경쟁제품", "우위", "열위", "비교표")) else "",
+        "market": "\n\n<!--chart:market-->" + src(mkt_ids) if (mkt.get("시장규모") or {}).get("값") or (mkt.get("성장률") or {}).get("값") else "",
     }
     sections = [
         f"# 투자 평가 보고서: {company['기업명']}",
-        f"## SUMMARY\n\n{head}\n\n{_or_unknown(prose.summary)}\n\n<!--chart:strengths-->",
+        f"## SUMMARY\n\n{head}\n\n{_or_unknown(prose.summary)}\n\n<!--chart:strengths-->{src(*strength_ids)}",
         "## 1. 기업 개요",
         f"### 1.1 기업 정보\n\n{company_info_table(company, dir_ids)}{blocks['funding']}{blocks['revenue']}",
         f"### 1.2 사업 아이디어\n\n{_or_unknown(prose.idea)}",
@@ -127,7 +173,7 @@ def _selected_report(state: State, records: list[dict], by_id: dict[str, dict]) 
         "## 3. 투자 판단",
         f"### 3.1 평가 범위 및 후보 현황\n\n{candidate_status(state, records, by_id)}",
         f"### 3.2 종합 평가\n\n**투자 요건**\n\n{eligibility_table(rec['eligibility'])}\n\n"
-        f"**종합 점수 {sc['total']}점** (5개 분야 평균과 15개 세부 항목, 5점 만점)\n\n<!--chart:radar_items-->\n\n<!--chart:callouts-->\n\n"
+        f"**종합 점수 {sc['total']}점** (5개 분야 평균과 15개 세부 항목, 5점 만점)\n\n<!--chart:radar_items-->\n\n<!--chart:callouts-->{src(shown)}\n\n"
         f"**핵심 점검 11문항**\n\n{cl_table}\n\n{decision_sentence(rec)}",
         f"### 3.3 사업 리스크\n\n{_or_unknown(prose.risks)}",
         f"### 3.4 한계점\n\n{limitations(state, rec, cl_warn)}",
@@ -162,14 +208,21 @@ def _no_selection_report(state: State, records: list[dict], by_id: dict[str, dic
                        "사용 가능한 근거ID": [e["근거ID"] for e in evidence if e.get("근거ID")]}, ensure_ascii=False, default=str)
     prose = structured_call(NoMatchProse, load_prompt("report"), user)
     valid = {e["근거ID"] for e in evidence if e.get("근거ID")}
-    clean = lambda t: strip_invalid_ids(t, valid)[0]  # noqa: E731
+    terms: list[str] = []
+
+    def clean(t: str) -> str:
+        t, terms_ = lint_text(strip_invalid_ids(t, valid)[0])
+        terms.extend(terms_)
+        return t
+
     comments = {c.company_id: clean(c.text) for c in prose.commentary}
 
+    _warn_terms(terms)
     blocks = "\n\n".join(candidate_block(r, n, comments.get(r["company_id"], "")) for n, r in enumerate(top, 1))
     intro = (f"점수가 산출된 보류 기업 중 종합 점수가 높은 {len(top)}곳이 왜 투자 적격이 되지 못했는지 정리한다. "
              f"투자 적격 기준은 종합 점수 {INVEST_THRESHOLD}점 이상이면서 기술력 평균 {TECH_MIN} 이상이다.") if top else \
             "점수가 산출된 보류 기업이 없어 항목별 미충족 사유를 분석할 수 없다."
-    head = f"**투자 대상 없음.** {scope_sentence(state, records)}"
+    head = f"{scope_sentence(state, records)}\n\n**투자 대상 없음.**"
     sections = [
         "# 투자 평가 보고서: 투자 대상 없음",
         f"## SUMMARY\n\n{head}\n\n{_or_unknown(clean(prose.summary))}",

@@ -1,3 +1,5 @@
+import re
+
 import pytest
 
 from agents import report
@@ -154,7 +156,7 @@ def test_run_saves_markdown_and_calls_pdf_export(monkeypatch, tmp_path):
     monkeypatch.setattr(report, "export_pdf", lambda md, meta, path: calls.append((md, meta, path)))
     text = report.run(_state())["final_report"]
     assert (tmp_path / "report.md").read_text(encoding="utf-8") == text
-    assert calls and calls[0][2] == tmp_path / "report.pdf" and calls[0][1]["selected"]["name"] == "베타실리콘"
+    assert calls and calls[0][2] == tmp_path / report.PDF_NAME and calls[0][1]["selected"]["name"] == "베타실리콘"
 
 
 def test_pdf_failure_keeps_markdown_and_warns(monkeypatch, tmp_path):
@@ -404,3 +406,166 @@ def test_recheck_hint_matches_scenario_kind():
     assert "실제 개선이 확인되면" in candidate_block(low, 1) or "재검토할 여지" in candidate_block(low, 1)
     assert "자료가 확인되면" in candidate_block(info, 1)
     assert "실제 개선" not in candidate_block(info, 1)  # 자료 없음 때문인데 '개선'이라고 말하지 않는다
+
+
+# ── 마무리: 5장 자동 맞춤 · 다른 OS 대응 · 내부 용어 점검 ────────────────────────
+
+def test_lint_replaces_internal_terms_but_keeps_ordinary_text():
+    from agents._report_render import lint_text
+    text, hits = lint_text("스코어카드와 체크리스트 G4 근거ID는 에이전트가 만든다. 확인 불가(2점 처리)")
+    for internal in ("스코어카드", "체크리스트", "G4", "근거ID", "에이전트", "2점 처리"):
+        assert internal not in text
+    assert "종합 평가" in text and "AI 관련 사업 요건" in text and "자료 없음(2점 부여)" in text and len(hits) >= 6
+    ordinary = "LLM 추론용 데이터센터 가속기는 State of the U.S. 보고서가 언급한다."
+    assert lint_text(ordinary) == (ordinary, [])  # 기업 데이터·출처의 LLM/State는 건드리지 않는다
+
+
+def test_report_prose_is_linted_but_reference_titles_are_not(monkeypatch):
+    _fake_llm(monkeypatch, summary="스코어카드 결과 기술이 우수하다 [TEC-C07-01]. 체크리스트에서 G4를 충족했다.")
+    with pytest.warns(UserWarning, match="내부 용어"):
+        text = report.run(_state())["final_report"]
+    body = text.split("## REFERENCE")[0]
+    for internal in ("스코어카드", "체크리스트", "G4"):
+        assert internal not in body.split("### 1.1")[0]  # SUMMARY 서술에서 제거
+
+
+def test_find_chrome_respects_env_and_reports_clearly(monkeypatch, tmp_path):
+    from agents import _report_pdf as pdf
+    fake = tmp_path / "chrome.exe"
+    fake.write_text("x")
+    monkeypatch.setenv("CHROME_PATH", str(fake))
+    assert pdf._find_chrome() == str(fake)
+    monkeypatch.setenv("CHROME_PATH", str(tmp_path / "missing"))
+    with pytest.raises(RuntimeError, match="CHROME_PATH"):
+        pdf._find_chrome()
+    monkeypatch.delenv("CHROME_PATH")
+    monkeypatch.setattr(pdf, "CHROME_CANDIDATES", ["/no/such/browser"])
+    with pytest.raises(RuntimeError, match="CHROME_PATH에"):
+        pdf._find_chrome()
+
+
+def test_font_stack_has_korean_fonts_for_every_os():
+    from agents._report_pdf import CHROME_CANDIDATES, FONT_STACK
+    for font in ("Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans CJK KR", "NanumGothic"):
+        assert font in FONT_STACK
+    assert any("msedge.exe" in c or "chrome.exe" in c for c in CHROME_CANDIDATES)  # Windows 경로
+
+
+def test_skipped_charts_are_not_rendered():
+    from agents._report_pdf import build_chart
+    rec = fake_results()[1]
+    meta = {"_records": {rec["company_id"]: rec}, "selected_id": rec["company_id"]}
+    assert build_chart("tech", "", meta) != ""
+    assert build_chart("tech", "", {**meta, "_skip": {"tech"}}) == ""
+
+
+def test_pdf_fit_within_limit_needs_no_reduction_and_exhausts_steps_when_impossible(monkeypatch, tmp_path):
+    from agents import _report_pdf as pdf
+    try:
+        pdf._find_chrome()
+    except RuntimeError:
+        pytest.skip("Chrome 없음")
+    _fake_llm(monkeypatch)
+    st = _state()
+    md = report.run(st)["final_report"]
+    meta = pdf.report_meta(st)
+    out, pages, steps = pdf.export_pdf_fit(md, meta, tmp_path / "a.pdf", max_pages=5)
+    assert pages <= 5 and steps == []  # 이미 5장 이내면 아무것도 줄이지 않는다
+    with pytest.warns(UserWarning, match="쪽이다"):
+        _, pages1, steps1 = pdf.export_pdf_fit(md, meta, tmp_path / "b.pdf", max_pages=1)  # 불가능한 제한
+    assert steps1[0] == "글자 간격 축소" and steps1[1:] == [f"그래프 제거: {n}" for n in pdf.DROP_ORDER]
+    assert pages1 > 1
+
+
+def test_lint_handles_korean_particles_attached_to_terms():
+    from agents._report_render import lint_text
+    text, _ = lint_text("G4를 충족했고 G2는 확인되었다. RAG로 검색했다.")
+    assert "G4" not in text and "G2" not in text and "RAG" not in text  # 조사가 붙어도 치환된다
+    assert lint_text("GPU4 모델과 AG4는 그대로")[0] == "GPU4 모델과 AG4는 그대로"  # 다른 영문·숫자 단어는 건드리지 않는다
+
+
+def test_submission_filename_and_summary_starts_with_scope(monkeypatch):
+    assert report.PDF_NAME == "RAG-Output_울산캠퍼스-4반_성재원+김현수+박세웅+김세령+박인우.pdf"
+    _fake_llm(monkeypatch)
+    text = report.run(_state())["final_report"]
+    summary = text.split("## SUMMARY")[1].split("\n\n")[1]
+    assert summary.startswith("평가 범위:")  # 설계서: 평가 범위를 1문장으로 먼저 밝힌다
+    assert text.index("평가 범위:") < text.index("투자 추천:")
+
+
+def test_pdf_shows_threshold_but_no_team_label():
+    from agents._report_pdf import render_html, report_meta
+    st = _state()
+    html = render_html("# 투자 평가 보고서: 베타실리콘\n\n## SUMMARY\n\n본문", report_meta(st))
+    assert "울산캠퍼스" not in html and "투자 적격 기준: 종합 70점 이상" in html
+
+
+# ── 출처 표기: 그래프·카드 캡션, 출처 없는 수치 재작성 ────────────────────────────
+
+def test_uncited_lines_detects_numbers_without_source():
+    from agents._report_render import uncited_lines
+    text = ("전력 효율은 12 TOPS/W다 [TEC-02-0001].\n"
+            "- 매출은 9억 원이다\n"            # 숫자 있고 출처 없음 → 걸린다
+            "- 팀은 관련 경력이 있다\n"         # 숫자 없음 → 통과
+            "- TRL 6 단계다 [DIR-C01-01]")
+    assert uncited_lines(text) == ["- 매출은 9억 원이다"]
+    assert uncited_lines("") == [] and uncited_lines("근거 [DIR-C01-01] 12") == []
+
+
+def test_prose_is_rewritten_once_when_numbers_lack_sources(monkeypatch):
+    calls = []
+    bad = dict(summary="매출은 9억 원이다.", idea="설명 [DIR-C07-01]", team="t", tech="t", market="t", competition="t", risks="- r")
+    good = dict(bad, summary="매출은 9억 원이다 [DIR-C07-01].")
+    monkeypatch.setattr(report, "load_prompt", lambda n: "p")
+
+    def fake(schema, system, user):
+        calls.append(user)
+        return ReportProse(**(good if "[수정 요청]" in user else bad))
+
+    monkeypatch.setattr(report, "structured_call", fake)
+    rec = fake_results()[1]
+    prose, _ = report._prose("selected", {}, rec["current_evidence"])
+    assert len(calls) == 2 and "매출은 9억 원이다" in calls[1] and "[DIR-C07-01]" in prose.summary  # 재작성본 채택
+
+
+def test_no_retry_when_all_numbers_are_sourced(monkeypatch):
+    calls = []
+    ok = dict(summary="매출은 9억 원이다 [DIR-C07-01].", idea="i", team="t", tech="t", market="t", competition="t", risks="- r")
+    monkeypatch.setattr(report, "load_prompt", lambda n: "p")
+    monkeypatch.setattr(report, "structured_call", lambda *a, **k: (calls.append(1), ReportProse(**ok))[1])
+    report._prose("selected", {}, fake_results()[1]["current_evidence"])
+    assert len(calls) == 1
+
+
+def test_still_uncited_after_retry_warns_and_keeps_better_version(monkeypatch):
+    bad = dict(summary="매출은 9억 원이다.", idea="i", team="t", tech="t", market="t", competition="t", risks="- r")
+    monkeypatch.setattr(report, "load_prompt", lambda n: "p")
+    monkeypatch.setattr(report, "structured_call", lambda *a, **k: ReportProse(**bad))
+    with pytest.warns(UserWarning, match="출처 없는 수치"):
+        report._prose("selected", {}, fake_results()[1]["current_evidence"])
+
+
+def test_charts_and_cards_have_source_lines_linked_to_reference(monkeypatch):
+    _fake_llm(monkeypatch)
+    text = report.run(_state())["final_report"]
+    body, ref = text.split("## REFERENCE")
+    for directive in ("<!--chart:strengths-->", "<!--chart:funding-->", "<!--chart:callouts-->"):
+        after = body.split(directive)[1].split("\n\n")[1]
+        assert after.startswith("출처: ["), directive  # 그래프·카드 바로 아래에 출처 줄
+    cited = set(re.findall(r"(?:DIR|ELG|TEC|MKT|CMP)-[A-Za-z0-9]+-\d{2,4}", body))
+    assert "DIR-C07-01" in cited and "DIR-C07-01" in ref  # REFERENCE에도 연결
+
+
+def test_pdf_source_line_uses_reference_numbers():
+    from agents._report_pdf import md_to_html
+    html = md_to_html("출처: [TEC-02-0001]")
+    assert 'class="src"' in html
+
+
+def test_source_line_moves_inside_chart_box_and_stays_after_cards():
+    from agents._report_pdf import md_to_html
+    chart = lambda n, a: '<div class="chartbox"><svg></svg></div>' if n == "funding" else '<div class="scards"><div>c</div></div>'  # noqa: E731
+    inside = md_to_html("<!--chart:funding-->\n\n출처: [TEC-02-0001]", chart)
+    assert inside.count('class="chartbox"') == 1 and '<div class="srcin">' in inside and inside.endswith("</div></div>")
+    apart = md_to_html("<!--chart:strengths-->\n\n출처: [TEC-02-0001]", chart)
+    assert '<p class="src">' in apart and "srcin" not in apart  # 카드류는 아래 별도 줄

@@ -27,6 +27,25 @@ ID_RE = re.compile(r"\b(?:DIR|ELG|TEC|MKT|CMP)-[A-Za-z0-9]+-\d{2,4}\b")
 
 # ── 인용 검증 ──────────────────────────────────────────────────────────────
 
+# 독자(제3자)가 모르는 내부 용어 → 일반 표현. LLM이 쓴 서술에만 적용한다(기업 데이터·출처 제목은 원문 그대로 둔다).
+INTERNAL_TERMS = [
+    (r"스코어\s*카드", "종합 평가"), (r"체크\s*리스트", "핵심 점검 항목"), (r"근거\s?ID", "출처"),
+    (r"(?<![A-Za-z0-9])G1(?![A-Za-z0-9])", "비상장 요건"), (r"(?<![A-Za-z0-9])G2(?![A-Za-z0-9])", "투자 단계 요건"), (r"(?<![A-Za-z0-9])G3(?![A-Za-z0-9])", "M&A(Exit) 요건"), (r"(?<![A-Za-z0-9])G4(?![A-Za-z0-9])", "AI 관련 사업 요건"),
+    (r"에이전트", "분석"), (r"프롬프트", "분석 지침"), (r"Tavily", "웹 검색"), (r"(?<![A-Za-z])RAG(?![A-Za-z])", "문서 검색"),
+    (r"확인\s?불가\s?\(2점 처리\)", "자료 없음(2점 부여)"), (r"2점 처리", "2점 부여"),
+]
+
+
+def lint_text(text: str) -> tuple[str, list[str]]:
+    """서술에서 내부 용어를 찾아 일반 표현으로 바꾼다. 반환: (정리된 글, 바꾼 용어 목록)."""
+    hits: list[str] = []
+    for pat, repl in INTERNAL_TERMS:
+        for m in re.finditer(pat, text):
+            hits.append(m.group(0))
+        text = re.sub(pat, repl, text)
+    return text, hits
+
+
 def strip_invalid_ids(text: str, valid: set[str]) -> tuple[str, list[str]]:
     """본문에서 유효하지 않은 근거 ID를 제거한다. 반환: (정리된 본문, 제거된 ID 목록)."""
     removed: list[str] = []
@@ -42,6 +61,16 @@ def strip_invalid_ids(text: str, valid: set[str]) -> tuple[str, list[str]]:
     out = re.sub(r"\[\s*,\s*", "[", out)
     out = re.sub(r"\s*,\s*\]", "]", out)
     return out, removed
+
+
+def uncited_lines(text: str) -> list[str]:
+    """숫자가 들어 있는데 근거 ID 인용이 없는 문단·불릿(줄 단위). 설계서: 본문의 모든 수치에 근거를 연결한다."""
+    out = []
+    for line in re.split(r"\n+", text or ""):
+        body = ID_RE.sub("", line)
+        if line.strip() and re.search(r"\d", body) and not ID_RE.search(line):
+            out.append(line.strip())
+    return out
 
 
 def cited_ids(body: str) -> list[str]:
