@@ -5,7 +5,7 @@ from collections import Counter
 from urllib.parse import urlparse
 
 from agents.investment import rank_key
-from config import INVEST_THRESHOLD, TECH_MIN, WEIGHTS
+from config import INVEST_THRESHOLD, TECH_MIN
 
 QUESTIONS = {
     "Q1": "목표 시장이 구체적인가?", "Q2": "구체적인 문제를 해결하는가?", "Q3": "고객이 구매할 이유가 있는가?",
@@ -21,7 +21,8 @@ ITEM_NAMES = {
 
 MAX_REPORT_CHARS = 12_000  # 5장(SUMMARY·REFERENCE 포함) 추정 상한. 최종 PDF에서 페이지 수로 재확인한다.
 
-ID_RE = re.compile(r"\b(?:DIR|ELG|TEC|MKT|CMP)-[A-Za-z0-9]+-\d{2}\b")
+# DIR·ELG·CMP-{company_id}-NN(2자리), TEC·MKT-{chunk_id}(예: TEC-02-0007, 4자리) — CONTRACTS.md 3-4
+ID_RE = re.compile(r"\b(?:DIR|ELG|TEC|MKT|CMP)-[A-Za-z0-9]+-\d{2,4}\b")
 
 
 # ── 인용 검증 ──────────────────────────────────────────────────────────────
@@ -125,12 +126,12 @@ def not_selected_reason(top: dict, other: dict) -> str:
     a, b = rank_key(top), rank_key(other)
     ta, tb = top["scorecard"], other["scorecard"]
     if a[0] != b[0]:
-        return f"총점 {tb['total']}점으로 1위({ta['total']}점)보다 {ta['total'] - tb['total']:.1f}점 낮음"
+        return f"종합 점수 {tb['total']}점으로 1위({ta['total']}점)보다 {ta['total'] - tb['total']:.1f}점 낮음"
     if a[1] != b[1]:
-        return f"총점 동점, 제품/기술력 {tb['averages']['제품/기술력']:.2f} < 1위 {ta['averages']['제품/기술력']:.2f}"
+        return f"종합 점수 동점, 기술력 평균 {tb['averages']['제품/기술력']:.2f}이 1위({ta['averages']['제품/기술력']:.2f})보다 낮음"
     if a[2] != b[2]:
-        return f"총점·기술력 동점, 확인 불가 항목 {len(tb.get('unknown_items', []))}건 > 1위 {len(ta.get('unknown_items', []))}건"
-    return f"앞선 기준 동점, 실적 {tb['averages']['실적']:.2f} < 1위 {ta['averages']['실적']:.2f}"
+        return f"종합 점수·기술력 동점, 자료 없는 항목이 {len(tb.get('unknown_items', []))}개로 1위({len(ta.get('unknown_items', []))}개)보다 많음"
+    return f"앞선 기준 동점, 실적 평균 {tb['averages']['실적']:.2f}이 1위({ta['averages']['실적']:.2f})보다 낮음"
 
 
 def _exclusion_reason(r: dict) -> str:
@@ -141,11 +142,34 @@ def _exclusion_reason(r: dict) -> str:
             or (r.get("decision_details") or {}).get("판단사유") or "사유 미기재")
 
 
+SOURCE_LABEL = "창업진흥원 「2025 초격차 스타트업 1000+ 프로젝트 디렉토리북」 시스템반도체 분야 수록 기업"
+
+
+def source_label(state: dict) -> str:
+    """파일 경로처럼 보이는 값은 독자가 알아볼 수 있는 자료 이름으로 바꾼다."""
+    src = str(state.get("source_document") or "")
+    return SOURCE_LABEL if (not src or "/" in src or src.lower().endswith(".pdf")) else src
+
+
+def friendly_reason(text: str) -> str:
+    """내부 처리 사유(G1~G4, 단계 이름 등)를 제3자가 읽을 수 있는 말로 바꾼다."""
+    t = text
+    for a, b in (("자격 요건 미충족", "투자 요건 미충족"), ("자격 요건 확인 필요", "투자 요건 확인 필요"),
+                 ("G1", "비상장 요건"), ("G2", "투자 단계 요건"), ("G3", "M&A(Exit) 요건"), ("G4", "AI 관련 사업 요건"),
+                 ("Tavily 검색", "최신 웹 검색"), ("Tavily", "웹 검색"), ("사전 스크리닝", "사전 검토"),
+                 ("확인 불가", "확인되지 않음")):
+        t = t.replace(a, b)
+    for stage, label in (("technology", "기술 분석"), ("market", "시장 분석"), ("competitor", "경쟁사 분석"),
+                         ("eligibility", "투자 요건 확인"), ("investment", "종합 평가")):
+        t = t.replace(f"오류: {stage}", f"분석 오류({label} 단계)").replace(f"{stage} 단계 오류", f"분석 오류({label} 단계)")
+    return t
+
+
 def scope_sentence(state: dict, records: list[dict]) -> str:
     c = Counter(r.get("decision") for r in records)
     return (
-        f"평가 범위: {state.get('source_document', '디렉토리북')} 수록 후보 {len(records)}개사(조사 기준일 {state.get('as_of_date', '확인 불가')})를 "
-        f"평가하여 투자 적격 {c['투자 적격']}곳, 보류 {c['보류']}곳, 제외 {c['제외']}곳으로 판정했다."
+        f"평가 범위: {source_label(state)} {len(records)}개사를 조사 기준일 {state.get('as_of_date', '확인 불가')}에 평가한 결과, "
+        f"투자 적격 {c['투자 적격']}곳, 보류 {c['보류']}곳(기준 미달 또는 추가 확인 필요), 제외 {c['제외']}곳(투자 요건 미충족)으로 분류했다."
     )
 
 
@@ -161,35 +185,25 @@ def candidate_status(state: dict, records: list[dict], by_id: dict[str, dict]) -
             rows.append([n, r["current_company"]["기업명"], r["scorecard"]["total"],
                          f"{r['scorecard']['averages']['제품/기술력']:.2f}", len(r["scorecard"].get("unknown_items", [])), note])
         rows = rows[:3]  # 2·3위까지 (보고서 분량)
-        parts.append(md_table(["순위", "기업", "총점", "기술력", "확인불가", "비고 / 미선정 사유"], rows))
+        parts.append(md_table(["순위", "기업", "종합 점수", "기술력 평균", "자료 없는 항목", "비고 / 미선정 사유"], rows))
         if len(ranking) > 3:
             parts.append(f"그 외 투자 적격 {len(ranking) - 3}곳은 분량상 생략했다.")
     others = [r for r in records if r.get("decision") in ("제외", "보류")]
-    reasons = Counter(_clip(_exclusion_reason(r), 40) for r in others)
+    reasons = Counter(_clip(friendly_reason(_exclusion_reason(r)), 40) for r in others)
     if reasons:
         parts.append("제외·보류 주요 사유: " + "; ".join(f"{k} ({v}곳)" for k, v in reasons.most_common(5)))
     return "\n\n".join(parts)
 
 
-def candidate_summary_table(records: list[dict], limit: int = 10) -> str:
-    """투자 대상이 없을 때 1~2장을 대체하는 후보별 평가 요약."""
-    scored = sorted([r for r in records if r.get("scorecard")], key=lambda r: -r["scorecard"]["total"])[:limit]
-    rows = []
-    for r in scored:
-        sc = r["scorecard"]
-        reason = _clip((r.get("decision_details") or {}).get("판단사유") or r.get("route_reason") or "", 50)
-        rows.append([r["current_company"]["기업명"], r["decision"], sc["total"], f"{sc['averages']['제품/기술력']:.2f}", reason])
-    unscored = len(records) - len(scored)
-    tail = f"\n\n점수가 산출된 기업 상위 {len(scored)}곳만 표시했다. 그 외 {unscored}곳은 자격 요건 단계에서 제외되었거나 오류로 채점되지 않았다." if unscored > 0 else ""
-    return md_table(["기업", "판정", "총점", "기술력", "핵심 사유"], rows) + tail
-
-
 # ── 3.2 평가 결과 ──────────────────────────────────────────────────────────
 
+REQUIREMENTS = {"G1": "비상장 기업", "G2": "투자 단계 Series C 이하", "G3": "M&A 등 Exit 미완료", "G4": "AI 관련 사업"}
+
+
 def eligibility_table(elig: dict) -> str:
-    rows = [[g, elig.get(g, {}).get("결과", "확인불가"), _clip(elig.get(g, {}).get("사유", ""), 60), cite(elig.get(g, {}).get("근거ID", []))]
-            for g in ("G1", "G2", "G3", "G4")]
-    return md_table(["요건", "결과", "사유", "근거"], rows)
+    rows = [[name, elig.get(g, {}).get("결과", "확인불가"), _clip(friendly_reason(elig.get(g, {}).get("사유", "")), 56), cite(elig.get(g, {}).get("근거ID", []))]
+            for g, name in REQUIREMENTS.items()]
+    return md_table(["투자 요건", "결과", "확인 내용", "출처"], rows)
 
 
 def checklist_table(checklist: dict) -> tuple[str, list[str]]:
@@ -198,50 +212,49 @@ def checklist_table(checklist: dict) -> tuple[str, list[str]]:
         c = checklist.get(q, {"판정": "확인불가", "근거": "", "근거ID": []})
         mark = " ⚠주의" if c["판정"] in ("NO", "확인불가") else ""
         if mark:
-            warn.append(f"{q} {text} ({c['판정']})")
-        rows.append([q, text, c["판정"] + mark, _clip(c.get("근거", ""), 40), cite(c.get("근거ID", []))])
-    return md_table(["#", "질문", "판정", "근거", "근거ID"], rows), warn
-
-
-def scorecard_tables(sc: dict) -> str:
-    cat_rows = [[cat, WEIGHTS[cat], f"{avg:.2f}", f"{avg / 5 * WEIGHTS[cat]:.1f}"] for cat, avg in sc["averages"].items()]
-    cat_rows.append(["합계", 100, "-", f"{sc['total']}"])
-    unknown = set(sc.get("unknown_items", []))
-    item_rows = []
-    for i, name in ITEM_NAMES.items():
-        it = sc["items"][i]
-        item_rows.append([i, name, f"{it['점수']}{'*' if i in unknown else ''}", _clip(it.get("채점이유", ""), 50), cite(it.get("근거ID", []))])
-    return (md_table(["대분류", "가중치", "평균(1~5)", "환산 점수"], cat_rows) + "\n\n"
-            + md_table(["항목", "명칭", "점수", "채점 이유", "근거ID"], item_rows)
-            + "\n\n`*` 확인 불가로 2점 처리한 항목.")
+            warn.append(f"{text} ({c['판정']})")
+        rows.append([q.replace("Q", ""), text, c["판정"] + mark, (_clip(c.get("근거", ""), 40) + " " + cite(c.get("근거ID", []))).strip()])
+    return md_table(["#", "점검 질문", "판정", "확인 내용"], rows), warn
 
 
 def decision_sentence(rec: dict) -> str:
     sc = rec["scorecard"]
     tech = sc["averages"]["제품/기술력"]
-    return (f"**최종 판정: {rec['decision']}.** 총점 {sc['total']}점(기준 {INVEST_THRESHOLD}점 이상), "
-            f"제품/기술력 {tech:.2f}(기준 {TECH_MIN} 이상), 자격 요건 {rec['eligibility'].get('판정')}.")
+    met = all(rec["eligibility"].get(g, {}).get("결과") == "충족" for g in REQUIREMENTS)
+    return (f"**종합 판단: {rec['decision']}.** 종합 점수 {sc['total']}점(투자 적격 기준 {INVEST_THRESHOLD}점 이상), "
+            f"기술력 평균 {tech:.2f}(기준 {TECH_MIN} 이상), 4대 투자 요건 {'모두 충족' if met else '중 일부 미충족'}.")
 
 
 # ── 3.4 한계점 ─────────────────────────────────────────────────────────────
 
+def _repeat_note(rec: dict | None) -> str:
+    rp = ((rec or {}).get("scorecard") or {}).get("repeat")
+    if not rp or rp.get("runs", 1) < 2:
+        return "채점에는 다소 편차가 있을 수 있다. "
+    return (f"채점 편차를 줄이려고 같은 자료를 {rp['runs']}회 반복 채점해 항목별 중앙값을 썼다"
+            f"(회차별 종합 점수 {rp['total_min']}~{rp['total_max']}점). ")
+
+
 def limitations(state: dict, rec: dict | None, checklist_warn: list[str]) -> str:
     items = [
-        "자료 시점: 후보 정보의 원천은 2025년 디렉토리북(홍보용 자료)이며, 상장·투자 단계·Exit는 조사 기준일 "
-        f"{state.get('as_of_date', '확인 불가')}의 외부 자료로 별도 확인했다.",
-        "차트 중심 문서(WSTS·KIET 등 시장 자료)는 텍스트 레이어만 사용해 그래프 내부 수치가 누락되었을 수 있다. 이미지 전용 2쪽은 분석에서 제외했다.",
-        "평가 방법: 항목 채점은 LLM이 수행하고 총점·판정·순위는 코드로 고정했으나, 채점 자체의 편차는 남는다. 투자 적격 임계값 70점은 전 항목 평균 3.5점에 해당하는 설계 기준이다.",
+        f"자료 시점: 기업 정보는 2025년 디렉토리북(기업이 제출한 홍보성 자료)에 기반하며, 상장·투자 단계·M&A 여부는 조사 기준일 "
+        f"{state.get('as_of_date', '확인 불가')}의 외부 자료로 따로 확인했다.",
+        "시장 통계 자료의 그래프 속 수치와 이미지로만 된 일부 페이지는 분석에 반영되지 않았을 수 있다.",
+        f"평가 방법: 항목별 점수는 AI가 공개 자료를 읽고 채점했고, 종합 점수와 최종 판단은 정해진 공식으로 계산했다. "
+        f"{_repeat_note(rec)}투자 적격 기준 {INVEST_THRESHOLD}점은 전 항목 평균 3.5점(5점 만점)에 해당한다.",
     ]
     if rec:
         sc = rec["scorecard"]
         unk = sc.get("unknown_items", [])
-        items.append("확인 불가 항목(2점 처리): " + (", ".join(f"{i} {ITEM_NAMES[i]}" for i in unk) if unk else "없음"))
+        items.append("공개 자료에서 확인되지 않아 2점(낮은 점수)을 준 항목: " + (", ".join(ITEM_NAMES[i] for i in unk) if unk else "없음"))
         if checklist_warn:
-            items.append("체크리스트 주의 문항: " + "; ".join(checklist_warn))
+            items.append("핵심 점검 문항 중 주의가 필요한 항목: " + "; ".join(checklist_warn))
         for label, key in (("기술", "technology_analysis"), ("시장", "market_analysis")):
             for u in (rec.get(key) or {}).get("미확인정보") or []:
-                items.append(f"{label} 미확인 정보: {u}")
+                items.append(f"{label} 분야에서 확인하지 못한 정보: {u}")
     errs = state.get("errors") or []
     if errs:
-        items.append(f"평가 중 오류 {len(errs)}건(기업 {', '.join(sorted({e.get('company_id', '?') for e in errs}))})으로 해당 기업은 보류 처리되었다.")
+        names = {r["company_id"]: r["current_company"]["기업명"] for r in state.get("evaluation_results") or [] if r.get("current_company")}
+        who = ", ".join(sorted({names.get(e.get("company_id"), e.get("company_id", "?")) for e in errs}))
+        items.append(f"{who}은(는) 분석 도중 기술적 오류로 평가를 마치지 못해 보류로 분류했다.")
     return "\n".join(f"- {t}" for t in items)

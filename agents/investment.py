@@ -1,9 +1,10 @@
 """⑥ 투자 판단 에이전트 — LLM은 항목별 점수·근거만, 총점·판정은 코드(total_score, decide)."""
 
 import json
+from concurrent.futures import ThreadPoolExecutor
 
 from agents._report_llm import load_prompt, structured_call
-from agents._report_scoring import InvestmentOut, normalize
+from agents._report_scoring import SCORING_RUNS, InvestmentOut, aggregate, normalize
 from config import INVEST_THRESHOLD, ITEMS, TECH_MIN, UNKNOWN_SCORE, WEIGHTS
 from state import State
 
@@ -57,19 +58,31 @@ def run(state: State) -> dict:
             if e.get("근거ID")
         ],
     }
-    out = structured_call(
-        InvestmentOut,
-        load_prompt("investment"),
-        json.dumps(payload, ensure_ascii=False, default=str),
-    )
-    checklist, items, unknown = normalize(out, state)
+    system, user = load_prompt("investment"), json.dumps(payload, ensure_ascii=False, default=str)
+
+    def one_run(_: int):
+        return structured_call(InvestmentOut, system, user)
+
+    # 같은 입력도 LLM 채점은 실행마다 흔들리므로 SCORING_RUNS번 동시에 채점해 중앙값을 쓴다.
+    with ThreadPoolExecutor(max_workers=SCORING_RUNS) as pool:
+        futures = [pool.submit(one_run, k) for k in range(SCORING_RUNS)]
+        outs, errors = [], []
+        for f in futures:
+            try:
+                outs.append(f.result())
+            except Exception as e:  # 일부 회차 실패는 허용, 전부 실패하면 그대로 실패
+                errors.append(e)
+    if not outs:
+        raise errors[0]
+    runs = [normalize(o, state) for o in outs]
+    checklist, items, unknown, details, repeat = aggregate(runs, [o.decision_details.model_dump() for o in outs], total_score)
 
     item_scores = {i: v["점수"] for i, v in items.items()}
     averages, total = total_score(item_scores)
     verdict = (state.get("eligibility") or {}).get("판정", "확인필요")
     return {
         "checklist": checklist,
-        "scorecard": {"items": items, "averages": averages, "total": total, "unknown_items": unknown},
+        "scorecard": {"items": items, "averages": averages, "total": total, "unknown_items": unknown, "repeat": repeat},
         "decision": decide(verdict, total, averages["제품/기술력"]),
-        "decision_details": out.decision_details.model_dump(),
+        "decision_details": details,
     }

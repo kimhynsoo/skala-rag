@@ -1,5 +1,6 @@
 """⑥ 투자 판단 보조: LLM 출력 스키마, 코드 산출 항목(E2·E3), 근거 ID 검증, 정규화."""
 
+import statistics
 from typing import Literal
 
 from pydantic import BaseModel, Field
@@ -8,6 +9,10 @@ from config import ITEMS, UNKNOWN_SCORE
 
 Q_IDS = [f"Q{i}" for i in range(1, 12)]
 ITEM_IDS = [i for items in ITEMS.values() for i in items]
+
+# 해외 매출은 디렉토리북에서 달러($) 단위로 기재된다(국내는 천원). 천원으로 환산할 고정 환율 가정:
+# 1달러 = 1,400원 = 1.4천원. 설계서에 환율 규정이 없어 E가 둔 가정이며 REFERENCE·한계점에 밝힐 것.
+USD_TO_KRW_THOUSAND = 1.4
 
 # E2 매출 (천원 단위): 10억 / 1억
 SALES_HIGH = 1_000_000
@@ -55,7 +60,10 @@ def score_e2(company: dict) -> tuple[int, bool, str]:
         return UNKNOWN_SCORE, True, "매출 비공개 또는 기재 없음 → 확인 불가"
     if status == "N/A":
         return 1, False, "매출 N/A → 매출 없음"
-    total = (s.get("국내") or 0) + (s.get("해외") or 0)
+    overseas = s.get("해외") or 0
+    if s.get("해외단위") == "USD":
+        overseas *= USD_TO_KRW_THOUSAND
+    total = int((s.get("국내") or 0) + overseas)
     year = s.get("연도")
     if total >= SALES_HIGH:
         return 5, False, f"{year}년 매출 {total:,}천원 (10억 원 이상)"
@@ -145,3 +153,46 @@ def normalize(out: InvestmentOut, state: dict) -> tuple[dict, dict, list[str]]:
             unknown.append(item_id)
 
     return checklist, items, [i for i in ITEM_IDS if i in unknown]
+
+
+# ── 반복 채점 → 중앙값 ─────────────────────────────────────────────────────
+
+SCORING_RUNS = 3  # LLM 채점 반복 횟수. 같은 기업이 실행마다 다른 판정을 받지 않도록 중앙값을 쓴다.
+JUDGE_ORDER = ["YES", "PARTIAL", "NO", "확인불가"]
+
+
+def aggregate(runs: list[tuple[dict, dict, list[str]]], details: list[dict], total_fn) -> tuple[dict, dict, list[str], dict, dict]:
+    """정규화된 채점 결과 여러 개를 하나로 합친다.
+
+    runs = [(checklist, items, unknown_items), ...], details = 각 회차의 decision_details,
+    total_fn(item_scores) → (대분류 평균, 총점).
+    - 세부 항목: 자료 없음 표시가 과반이면 자료 없음(2점), 아니면 자료 없음이 아닌 회차 점수의 중앙값.
+    - 체크리스트: 판정을 YES<PARTIAL<NO<확인불가 순서로 놓고 중앙값.
+    - 채점 이유·근거 ID는 선택된 값과 같은 결과를 낸 첫 회차의 것을 쓰고, decision_details는 총점이 중앙값인 회차의 것을 쓴다.
+    반환: (checklist, items, unknown_items, decision_details, 반복 채점 요약)
+    """
+    n = len(runs)
+    items: dict[str, dict] = {}
+    unknown: list[str] = []
+    for i in ITEM_IDS:
+        flagged = [i in r[2] for r in runs]
+        if sum(flagged) * 2 > n:
+            src = next(r for r, f in zip(runs, flagged) if f)
+            items[i] = dict(src[1][i])
+            unknown.append(i)
+            continue
+        cands = [r for r, f in zip(runs, flagged) if not f]
+        med = statistics.median_low(r[1][i]["점수"] for r in cands)
+        items[i] = dict(next(r[1][i] for r in cands if r[1][i]["점수"] == med))
+
+    checklist: dict[str, dict] = {}
+    for q in Q_IDS:
+        order = sorted(JUDGE_ORDER.index(r[0][q]["판정"]) for r in runs)
+        med = JUDGE_ORDER[statistics.median_low(order)]
+        checklist[q] = dict(next(r[0][q] for r in runs if r[0][q]["판정"] == med))
+
+    totals = [total_fn({i: r[1][i]["점수"] for i in ITEM_IDS})[1] for r in runs]
+    med_total = statistics.median_low(totals)
+    chosen = details[totals.index(med_total)]
+    summary = {"runs": n, "total_min": min(totals), "total_max": max(totals)}
+    return checklist, items, [i for i in ITEM_IDS if i in unknown], chosen, summary
