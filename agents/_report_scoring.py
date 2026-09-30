@@ -10,10 +10,6 @@ from config import ITEMS, UNKNOWN_SCORE
 Q_IDS = [f"Q{i}" for i in range(1, 12)]
 ITEM_IDS = [i for items in ITEMS.values() for i in items]
 
-# 해외 매출은 디렉토리북에서 달러($) 단위로 기재된다(국내는 천원). 천원으로 환산할 고정 환율 가정:
-# 1달러 = 1,400원 = 1.4천원. 설계서에 환율 규정이 없어 E가 둔 가정이며 REFERENCE·한계점에 밝힐 것.
-USD_TO_KRW_THOUSAND = 1.4
-
 # E2 매출 (천원 단위): 10억 / 1억
 SALES_HIGH = 1_000_000
 SALES_MID = 100_000
@@ -56,14 +52,15 @@ def score_e2(company: dict) -> tuple[int, bool, str]:
     """E2 매출 — 최근 연도 매출(국내+해외, 천원). N/A는 1점, 비공개는 확인 불가 2점."""
     s = company.get("매출액") or {}
     status = s.get("상태")
-    if status == "비공개" or (status is None and not s):
+    if status in ("비공개", "확인불가") or (status is None and not s):
         return UNKNOWN_SCORE, True, "매출 비공개 또는 기재 없음 → 확인 불가"
     if status == "N/A":
         return 1, False, "매출 N/A → 매출 없음"
-    overseas = s.get("해외") or 0
-    if s.get("해외단위") == "USD":
-        overseas *= USD_TO_KRW_THOUSAND
-    total = int((s.get("국내") or 0) + overseas)
+    if s.get("해외") and s.get("해외단위") not in (None, "천원", "KRW_THOUSAND"):
+        return UNKNOWN_SCORE, True, f"해외 매출 단위 {s['해외단위']}: 검증된 환산 근거가 없어 합산 불가"
+    if s.get("국내") is None and s.get("해외") is None:
+        return UNKNOWN_SCORE, True, "매출 금액 기재 없음 → 확인 불가"
+    total = (s.get("국내") or 0) + (s.get("해외") or 0)
     year = s.get("연도")
     if total >= SALES_HIGH:
         return 5, False, f"{year}년 매출 {total:,}천원 (10억 원 이상)"
@@ -80,6 +77,8 @@ def score_e3(company: dict) -> tuple[int, bool, str]:
     if history is None:
         return UNKNOWN_SCORE, True, "투자 유치 이력 기재 없음 → 확인 불가"
     confirmed = [h for h in history if h.get("확정", True)]
+    if any(h.get("금액") is None for h in confirmed):
+        return UNKNOWN_SCORE, True, "확정 투자 중 비공개 또는 미확인 금액이 있어 누적 금액 확인 불가"
     total = sum(h.get("금액") or 0 for h in confirmed)
     investors = {i for h in confirmed for i in (h.get("투자자") or [])}
     text = f"확정 투자 누적 {total:,}천원, 투자자 {len(investors)}곳 (협의 중 제외)"

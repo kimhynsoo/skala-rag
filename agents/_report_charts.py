@@ -5,7 +5,6 @@ import math
 import re
 
 from agents._report_highlights import first_number, plain
-from agents._report_scoring import USD_TO_KRW_THOUSAND
 from config import INVEST_THRESHOLD
 
 # 색: 의미별 고정 (좋음=초록, 보통=주황, 나쁨=빨강, 확인불가=회색, 기준선=남색)
@@ -294,11 +293,12 @@ def revenue_chart(company: dict) -> str:
     s = company.get("매출액") or {}
     if s.get("상태") != "공개":
         return ""
-    fx = USD_TO_KRW_THOUSAND if s.get("해외단위") == "USD" else 1
     hist = [e for e in (s.get("이력") or []) if e.get("연도")] or [s]
+    if any(e.get("해외") and e.get("해외단위", s.get("해외단위")) not in (None, "천원", "KRW_THOUSAND") for e in hist):
+        return _svg(520, 34, _t(0, 20, "해외 매출 통화가 달라 검증된 환산 근거 확인 필요", 10, "start", UNK))
     rows = []
     for e in sorted(hist, key=lambda e: e.get("연도") or 0):
-        dom, ovs = (e.get("국내") or 0) / 100_000, (e.get("해외") or 0) * fx / 100_000
+        dom, ovs = (e.get("국내") or 0) / 100_000, (e.get("해외") or 0) / 100_000
         rows.append((str(e.get("연도")), dom, ovs))
     if not any(d + o > 0 for _, d, o in rows):
         return ""
@@ -321,7 +321,7 @@ def revenue_chart(company: dict) -> str:
             body += f'<rect x="{cx - bw / 2:.1f}" y="{yo:.1f}" width="{bw:.1f}" height="{yd - yo:.1f}" fill="{TEAL}"/>'
         body += _t(cx, yo - 4, _fmt_eok(dom + ovs), 8.5, "middle", NAVY, "800") + _t(cx, base + 12, f"{yr}년", 8.5, "middle", INK, "700")
     body += f'<rect x="{left}" y="{h - 10}" width="8" height="8" fill="{ACCENT}"/>' + _t(left + 11, h - 3, "국내", 7.5, "start", "#5b6577")
-    body += f'<rect x="{left + 40}" y="{h - 10}" width="8" height="8" fill="{TEAL}"/>' + _t(left + 51, h - 3, "해외" + ("(달러 매출을 1달러=1,400원으로 환산)" if fx != 1 else ""), 7.5, "start", "#5b6577")
+    body += f'<rect x="{left + 40}" y="{h - 10}" width="8" height="8" fill="{TEAL}"/>' + _t(left + 51, h - 3, "해외", 7.5, "start", "#5b6577")
     return _svg(w, h, body)
 
 

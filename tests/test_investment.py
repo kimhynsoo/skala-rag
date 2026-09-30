@@ -24,14 +24,13 @@ def test_e2_sales_rules():
     assert (s, unk) == (2, True)  # 비공개 = 확인 불가
 
 
-def test_e2_converts_usd_overseas_sales():
-    """해외 매출은 달러 단위 — 그대로 더하면 안 된다. $100,000 = 140,000천원."""
+def test_e2_requires_verified_currency_conversion():
+    """다른 통화를 환산 근거 없이 합산하지 않는다."""
     usd = {"연도": 2024, "국내": None, "해외": 100_000, "해외단위": "USD", "상태": "공개"}
     score, unk, reason = score_e2(company("C1", "a", usd))
-    assert (score, unk) == (3, False) and "140,000천원" in reason
-    # 국내 30,000천원 + $50,000(70,000천원) = 100,000천원 → 1억 경계에서 3점
+    assert (score, unk) == (2, True) and "합산 불가" in reason
     mixed = {"연도": 2024, "국내": 30_000, "해외": 50_000, "해외단위": "USD", "상태": "공개"}
-    assert score_e2(company("C1", "a", mixed))[0] == 3
+    assert score_e2(company("C1", "a", mixed))[:2] == (2, True)
 
 
 def test_e3_investment_rules():

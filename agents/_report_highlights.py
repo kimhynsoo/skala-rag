@@ -4,8 +4,6 @@
 import re
 from dataclasses import dataclass
 
-from agents._report_scoring import USD_TO_KRW_THOUSAND
-
 # (영역 이름, 채점 항목, 시각화 종류) — 순서는 동점일 때의 우선순위
 AREAS = [
     ("기술력", ["C1", "C2", "C3"], "tech"),
@@ -45,7 +43,9 @@ def revenue_eok(sales: dict) -> float | None:
     """최근 연도 매출(국내+해외 환산)을 억 원으로. 공개되지 않았거나 없으면 None."""
     if not sales or sales.get("상태") != "공개":
         return None
-    overseas = (sales.get("해외") or 0) * (USD_TO_KRW_THOUSAND if sales.get("해외단위") == "USD" else 1)
+    if sales.get("해외") and sales.get("해외단위") not in (None, "천원", "KRW_THOUSAND"):
+        return None
+    overseas = sales.get("해외") or 0
     total = (sales.get("국내") or 0) + overseas
     return total / 100_000 if total > 0 else None
 
