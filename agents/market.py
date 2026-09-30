@@ -1,6 +1,7 @@
 """④ 시장성 평가 에이전트 [RAG] — doc_type="market" (12~15) 하이브리드 검색, 재검색 최대 1회."""
 
-from state import State, next_attempt
+from agents._rag_utils import run_analysis
+from state import State
 
 
 def run(state: State) -> dict:
@@ -13,4 +14,4 @@ def run(state: State) -> dict:
         "retrieve_count": next_attempt(state, "market_analysis"),
     }
     """
-    raise NotImplementedError
+    return run_analysis(state, "market")
