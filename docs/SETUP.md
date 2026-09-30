@@ -49,6 +49,10 @@ uv run python app.py --graph             # 그래프 mermaid 출력
 | PR에서 `uv.lock` 충돌 | 손으로 고치지 말고 `git checkout --theirs uv.lock && uv lock` 후 커밋 |
 | 커밋 전 | `uv run pytest -q` 통과 확인 |
 
-## 5. 커밋하지 않는 것
+## 5. 트러블슈팅
 
-`.env`(API 키), `.venv/`, `.cache/`(임베딩·FAISS 캐시, 재생성 가능), `.python-version` — `.gitignore`에 등록되어 있다.
+실행 중 오류는 [TROUBLESHOOTING.md](TROUBLESHOOTING.md)를 먼저 확인한다.
+
+## 6. 커밋하지 않는 것
+
+`.env`(API 키), `.venv/`, `.cache/`(임베딩 캐시, 재생성 가능), `.python-version` — `.gitignore`에 등록되어 있다.

@@ -18,6 +18,8 @@
 | `graph.py` | 흐름 제어(리셋·재검색·오류·루프·순위)가 테스트로 고정됨 | 설계 문서(Notion) 먼저 수정 → PR |
 | `config.py` | 설계에서 확정한 상수 (청크, top-k, 가중치, 임계값) | 설계 문서 변경 근거와 함께 PR |
 | `app.py` | 실행 진입점 | PR |
+| `schemas.py` | 3장 데이터 구조의 Pydantic 모델. LLM 출력 형식과 판정 규칙(적격성·확인 불가 2점)을 강제 | 이 문서 + `schemas.py` 동시 PR, 전원 리뷰 |
+| `llm.py` | LLM 호출 공통 (`get_llm`, `run_agent`, `load_prompt`) | PR |
 | `tests/test_skeleton.py` | 흐름 계약 테스트. **통과 못 하면 merge 금지** | 흐름 변경 PR에서만 |
 | `pyproject.toml`, `uv.lock` | 공용 환경 | **`uv add`/`uv remove`로만** 변경, 손 편집 금지 |
 | `.gitignore`, `.env.example` | 공용 설정 | PR |
@@ -28,8 +30,8 @@
 | 레인 | 소유 (자유 수정) | 새 파일 추가 가능 위치 |
 |---|---|---|
 | **A 데이터·파싱** | `rag/parser.py`, `agents/loader.py`, `data/raw/*`, `data/manifest.json`, `data/processed/*` | `data/`, `rag/parse_*.py` |
-| **B 검색·임베딩** | `rag/retriever.py`, `eval/*` | `rag/index_*.py`, `eval/` |
-| **C 외부 검증** | `agents/eligibility.py`, `agents/competitor.py`, `prompts/eligibility.md`, `prompts/competitor.md` | `tools/` (웹서치·DART 래퍼) |
+| **B 검색·임베딩** | `rag/retriever.py`, `tools/retrieval.py`, `eval/*` | `rag/index_*.py`, `eval/` |
+| **C 외부 검증** | `agents/eligibility.py`, `agents/competitor.py`, `tools/web.py`, `tools/dart.py`, `prompts/eligibility.md`, `prompts/competitor.md` | `tools/` (웹서치·DART 등 외부 도구) |
 | **D RAG 분석** | `agents/technology.py`, `agents/market.py`, `prompts/technology.md`, `prompts/market.md` | `agents/_rag_utils.py` |
 | **E 판단·보고서** | `agents/investment.py`의 `run()`, `agents/report.py`, `prompts/investment.md`, `prompts/report.md`, `outputs/*`, `README.md` | `agents/_report_*.py` |
 
@@ -138,7 +140,7 @@ Document(
 
 ```jsonc
 {
-  "근거ID": "TEC-C03-01",               // {출처레인}-{company_id}-{2자리}
+  "근거ID": "TEC-02-0007",              // RAG: {TEC|MKT}-{chunk_id} / 그 외: {접두어}-{company_id}-{2자리}
   "출처명": "IRDS 2024 More Moore",
   "publisher": "IEEE",
   "pub_year": 2024,                     // 웹페이지는 "2026-09-30"처럼 날짜 문자열
@@ -155,9 +157,11 @@ Document(
 |---|---|---|
 | `DIR` | A | 디렉토리북 기업 페이지 |
 | `ELG` | C | DART·웹 (적격성) |
-| `TEC` | D | 기술 문서 RAG |
-| `MKT` | D | 시장 문서 RAG |
-| `CMP` | C | 경쟁사 (RAG 재조회 + 웹) |
+| `TEC` | B 도구 (`search_tech_docs`) | 기술 문서 RAG — `TEC-{chunk_id}` |
+| `MKT` | B 도구 (`search_market_docs`) | 시장 문서 RAG — `MKT-{chunk_id}` |
+| `CMP` | C | 경쟁사 웹검색 (RAG 재조회분은 TEC/MKT 그대로) |
+
+RAG 근거ID는 검색 도구가 결과에 `[TEC-02-0007]`처럼 붙여 LLM에 보여주고, `tools.retrieval.to_evidence()`가 같은 규칙으로 근거 레코드를 만든다. 같은 청크는 몇 번 검색돼도 같은 ID라 재매핑이 필요 없다.
 
 분석 결과 dict의 `근거ID` 리스트에는 **이 ID만** 넣는다. 보고서는 이 ID로 REFERENCE를 만든다.
 
@@ -204,8 +208,8 @@ Document(
 
 ```jsonc
 {
-  "경쟁제품": [{"기업명": "", "제품": "", "핵심지표값": {"TOPS/W": "20"}, "근거ID": ["CMP-C03-01"]}],
-  "비교표": [{"지표": "TOPS/W", "대상기업": "12", "경쟁사A": "20", "경쟁사B": "8"}],
+  "경쟁제품": [{"기업명": "", "제품": "", "핵심지표값": [{"이름": "TOPS/W", "값": "20"}], "근거ID": ["CMP-C03-01"]}],
+  "비교표": [{"지표": "TOPS/W", "대상기업": "12", "경쟁사": [{"이름": "경쟁사A", "값": "20"}, {"이름": "경쟁사B", "값": "8"}]}],   // 임의 키 dict 금지 → list
   "우위": ["..."], "열위": ["..."],
   "비교조건": "공개 스펙 기준, 측정 조건 상이",
   "비교한계": "...",
@@ -221,7 +225,7 @@ Document(
 
 // scorecard — total/averages/unknown_items는 total_score()로 계산, LLM이 직접 쓰지 않음
 {
-  "items": {"A1": {"점수": 4, "채점이유": "...", "근거ID": ["..."]}},   // A1~E3 15개, 점수 1~5
+  "items": {"A1": {"점수": 4, "채점이유": "...", "근거ID": ["..."], "확인불가": false}},   // A1~E3 15개, 점수 1~5. 확인불가=true면 점수 자동 2
   "averages": {"창업자": 3.7, "시장성": 3.0, "제품/기술력": 3.3, "경쟁 우위": 2.7, "실적": 2.0},
   "total": 63.5,
   "unknown_items": ["B1", "E3"]          // 확인 불가(2점) 처리 항목 ← 순위 3순위 기준
@@ -268,7 +272,39 @@ Document(
 
 ---
 
-## 4. 가짜 데이터로 먼저 개발하기
+## 4. LLM·도구 사용 패턴 (교재 10-Agent 방식)
+
+모든 LLM 에이전트는 `llm.run_agent()` 하나로 호출한다. `create_agent` + `ToolStrategy(Pydantic 모델)` 조합이라 **LLM이 도구를 스스로 골라 쓰고, 마지막 출력은 스키마 형식으로 강제**된다.
+
+```python
+from llm import load_prompt, run_agent
+from schemas import TechnologyAnalysis
+from state import next_attempt
+from tools.retrieval import search_tech_docs, to_evidence
+
+def run(state):
+    c = state["current_company"]
+    result, artifacts = run_agent(load_prompt("technology"), f"기업: {c['기업명']} / 메인아이템: {c['메인아이템']} ...",
+                                  TechnologyAnalysis, tools=[search_tech_docs])
+    return {"technology_analysis": result.model_dump(),
+            "current_evidence": to_evidence(artifacts),
+            "retrieve_count": next_attempt(state, "technology_analysis")}
+```
+
+| 에이전트 | 출력 스키마 | 도구 |
+|---|---|---|
+| ① 후보 적재 (A) | `CompanyRecord` | 없음 (페이지 텍스트를 직접 입력) |
+| ② 적격성 (C) | `Eligibility` — `판정`은 자동 계산 | `dart_listing_status`, `web_search()` |
+| ③ 기술 요약 (D) | `TechnologyAnalysis` | `search_tech_docs` |
+| ④ 시장성 (D) | `MarketAnalysis` | `search_market_docs` |
+| ⑤ 경쟁사 (C) | `CompetitorAnalysis` | `search_tech_docs`, `search_market_docs`, `web_search()` |
+| ⑥ 투자 판단 (E) | `InvestmentJudgement` → `scorecard.scores()`를 `total_score()`에 | 없음 |
+
+- **클래스명은 영문**(OpenAI 함수명 규칙), **필드명은 한글 계약 키**. 새 모델을 추가해도 `tests/test_tools.py`가 규칙 위반을 잡는다.
+- `web_search()`는 함수 호출로 도구를 만든다 (TAVILY_API_KEY가 없어도 import는 되도록).
+- 실측 교훈: 도구 설명(docstring)이 곧 LLM의 사용 설명서다. `sub_domain` 의미를 적기 전에는 LLM이 필터를 잘못 골라 정답 문서를 놓쳤다.
+
+## 5. 가짜 데이터로 먼저 개발하기
 
 선행 레인을 기다리지 않도록 각 레인은 위 스키마대로 **가짜 입력 fixture**를 만들어 개발한다.
 - D: 가짜 `hybrid_search` 결과(`Document` 5개)로 프롬프트를 먼저 다듬는다
