@@ -202,3 +202,23 @@ flowchart LR
 영향: 45개사 전부 평가하므로 실행 시간·API 비용이 늘어난다. 적격성 검증에서 탈락하는 기업은 RAG·LLM 채점 전에 빠지므로 **C4 G4 사전 스크리닝 결과**로 실제 비용을 먼저 추정할 것.
 
 스코어카드 출력에 `unknown_items`(확인 불가 항목 ID 목록)가 필요하다 — 순위 3순위 기준.
+
+### 검색 저장소 Chroma 교체 · 도구(Tool) · Pydantic 스키마 도입 (B, `feat/retrieval`)
+
+**전원이 알아야 할 것**
+
+| 변경 | 내용 | 영향 |
+|---|---|---|
+| 벡터 저장소 | FAISS → **Chroma** (`langchain-chroma`). torch와 faiss의 OpenMP 충돌로 macOS에서 프로세스가 죽는 문제 ([TROUBLESHOOTING.md](TROUBLESHOOTING.md)) | `faiss`·`langchain_community.vectorstores.FAISS`를 다시 쓰지 말 것 |
+| 도구 정의 | `tools/retrieval.py`(B): `search_tech_docs`, `search_market_docs` / `tools/web.py`·`tools/dart.py`(C 초안): `web_search()`, `dart_listing_status` | 과제 실습 목표 "목적에 맞는 도구 정의" 충족. LLM이 도구를 스스로 호출 |
+| 출력 스키마 | `schemas.py` — CONTRACTS 3장 전체를 Pydantic 모델로. **클래스명 영문, 필드명 한글** | 에이전트 출력은 `result.model_dump()`로 State에 넣는다 |
+| LLM 호출 | `llm.run_agent(프롬프트, 입력, 스키마, 도구)` 하나로 통일 (교재 10-Agent의 `create_agent` + `ToolStrategy`) | 호출 예시는 [CONTRACTS.md › 4](CONTRACTS.md#4-llm도구-사용-패턴-교재-10-agent-방식) |
+| RAG 근거ID | `{TEC|MKT}-{chunk_id}` (예: `TEC-08-0001`). 검색 도구가 결과에 붙여 LLM이 그대로 인용 | `to_evidence(artifacts)`로 근거 레코드 생성 |
+| 판정 규칙 | 적격성 `판정`과 "확인 불가=2점"은 스키마 검증기가 강제 (LLM 값 무시) | E는 `scorecard.scores()`를 `total_score()`에 넣으면 됨 |
+
+**레인별 전달 사항**
+
+- **A**: `load_corpus()` 반환 청크의 `metadata`에 `chunk_id`(필수, 고유), `doc_type`, `sub_domain`, `title`, `publisher`, `pub_year`, `source_type`, `url`, `source_page`가 있어야 검색 도구·근거 레코드가 완성된다. 값이 없으면 `None`으로 둬도 된다 (Chroma 저장 시 자동 제외). 기업 레코드 추출은 `run_agent(..., CompanyRecord)`로 가능.
+- **C**: `web_search()`는 함수 호출로 도구 생성 (`tools=[web_search(), dart_listing_status]`). DART는 첫 호출 때 회사 목록(약 10만 건)을 내려받아 `.cache/dart/`에 둔다. `.env`에 `TAVILY_API_KEY`, `DART_API_KEY` 필요.
+- **D**: 실측 결과 검색은 맞게 되지만 **어느 표준과 비교할지**에 따라 판정이 갈린다 (64 GT/s는 UCIe 대비 "동등", CXL 대비 "하회"). 프롬프트에 "기업 제품 유형에 맞는 기준 표준을 명시하고 비교하라"는 규칙을 넣을 것. 질의는 한국어+영문 병기.
+- **E**: 투자 판단은 도구 없이 `run_agent(..., InvestmentJudgement)` → `total_score(j.scorecard.scores())` → `decide(...)`. `scorecard.unknown_items()`로 순위 3순위 기준값을 얻는다.
