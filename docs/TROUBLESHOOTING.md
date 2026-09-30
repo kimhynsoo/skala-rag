@@ -30,3 +30,9 @@
 
 - **증상**: "메모리 확장 컨트롤러" 기업 분석에서 LLM이 `sub_domain="memory"`로 검색 → CXL 문서(`interface`)를 못 찾고 엉뚱한 근거로 판정.
 - **해결**: `search_tech_docs` docstring에 분야별 포함 문서와 "애매하면 필터 없이 재검색" 지침을 추가 → 재실행 2회 모두 CXL·UCIe 문서를 찾음.
+
+### 에이전트 실행이 10분 넘게 멈춤 (CPU 0%, OpenAI 연결 하나만 열려 있음)
+
+- **원인**: `init_chat_model`에 타임아웃을 지정하지 않으면 OpenAI 클라이언트 기본값 **600초**를 기다린다. 응답이 멈춘 요청 하나가 45개사 루프 전체를 10분씩 붙잡는다.
+- **해결**: `llm.get_llm()`에 `timeout=60, max_retries=2` 설정. 정상 요청은 단계당 15~35초라 60초면 충분하다.
+- **진단법**: `ps -o %cpu -p <pid>`가 0%이고 `lsof -a -p <pid> -i TCP`에 OpenAI(Cloudflare) 연결만 있으면 응답 대기 중이다.

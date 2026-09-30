@@ -21,7 +21,8 @@ from config import LLM_MODEL, ROOT
 
 @lru_cache(maxsize=1)
 def get_llm():
-    return init_chat_model(LLM_MODEL, model_provider="openai", temperature=0)
+    # 기본 타임아웃 600초 → 멈춘 요청 하나가 45개사 루프 전체를 10분씩 붙잡는다 (docs/TROUBLESHOOTING.md)
+    return init_chat_model(LLM_MODEL, model_provider="openai", temperature=0, timeout=60, max_retries=2)
 
 
 def load_prompt(name: str) -> str:
