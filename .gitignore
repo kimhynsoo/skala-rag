@@ -1,0 +1,21 @@
+# Python
+.python-version
+__pycache__/
+.venv/
+venv/
+.pytest_cache/
+
+# Env & secrets
+.env
+.env.*
+!.env.example
+
+# OS / Editor
+.DS_Store
+.vscode/
+
+# 임베딩·FAISS 캐시 (재생성 가능)
+.cache/
+
+# 로컬 에이전트 도구 상태
+.omc/
