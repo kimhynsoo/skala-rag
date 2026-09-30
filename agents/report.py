@@ -150,7 +150,7 @@ def _nomatch_payload(records: list[dict], top: list[dict]) -> dict:
         })
     return {"근접후보(코드 계산, 그대로 인용)": cands,
             "전체현황": {"평가": len(records), "후보별 판정": [{"기업": r["current_company"]["기업명"], "판정": r["decision"]}
-                                                   for r in records if r.get("current_company")][:20]}}
+                                                   for r in records if r.get("current_company")]}}
 
 
 def _no_selection_report(state: State, records: list[dict], by_id: dict[str, dict]) -> tuple[str, list[dict]]:

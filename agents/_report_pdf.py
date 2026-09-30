@@ -7,6 +7,8 @@ import subprocess
 import tempfile
 from pathlib import Path
 
+import pymupdf
+
 from agents import _report_charts as charts
 from agents._report_render import ID_RE, REQUIREMENTS, latest_round
 from config import WEIGHTS
@@ -42,7 +44,7 @@ def _inline(text: str) -> str:
             nums = sorted({_REFS[i] for i in ids if i in _REFS})
             return f'<sup class="ref">{",".join(map(str, nums))}</sup>' if nums else ""
         return "".join(f'<span class="cite">{i}</span>' for i in ids)
-    return re.sub(r"\[((?:(?:DIR|ELG|TEC|MKT|CMP)-[A-Za-z0-9]+-\d{2,4}(?:,\s*)?)+)\]", cites, t)
+    return re.sub(r"\[((?:(?:DIR|ELG|TEC|MKT|CMP)-[A-Za-z0-9]+(?:-[A-Za-z0-9]+)+(?:,\s*)?)+)\]", cites, t)
 
 
 JUDGE = {"YES": "yes", "PARTIAL": "partial", "NO": "no", "확인불가": "unk", "충족": "yes"}
@@ -372,10 +374,15 @@ def export_pdf(md: str, meta: dict, out_path: str | Path) -> Path:
     out.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory() as tmp:
         src = Path(tmp) / "report.html"
+        draft = Path(tmp) / "report.pdf"
         src.write_text(render_html(md, meta), encoding="utf-8")
         subprocess.run(
             [_find_chrome(), "--headless=new", "--disable-gpu", "--no-pdf-header-footer",
-             f"--print-to-pdf={out}", src.as_uri()],
+             f"--print-to-pdf={draft}", src.as_uri()],
             check=True, capture_output=True, timeout=120,
         )
+        with pymupdf.open(draft) as document:
+            if not 1 <= len(document) <= 5:
+                raise ValueError(f"PDF가 {len(document)}쪽입니다. 보고서를 5쪽 이내로 줄여야 합니다.")
+        shutil.copyfile(draft, out)
     return out

@@ -21,8 +21,7 @@ ITEM_NAMES = {
 
 MAX_REPORT_CHARS = 12_000  # 5장(SUMMARY·REFERENCE 포함) 추정 상한. 최종 PDF에서 페이지 수로 재확인한다.
 
-# DIR·ELG·CMP-{company_id}-NN(2자리), TEC·MKT-{chunk_id}(예: TEC-02-0007, 4자리) — CONTRACTS.md 3-4
-ID_RE = re.compile(r"\b(?:DIR|ELG|TEC|MKT|CMP)-[A-Za-z0-9]+-\d{2,4}\b")
+ID_RE = re.compile(r"\b(?:DIR|ELG|TEC|MKT|CMP)-[A-Za-z0-9]+(?:-[A-Za-z0-9]+)+\b")
 
 
 # ── 인용 검증 ──────────────────────────────────────────────────────────────
@@ -249,9 +248,14 @@ def limitations(state: dict, rec: dict | None, checklist_warn: list[str]) -> str
         items.append("공개 자료에서 확인되지 않아 2점(낮은 점수)을 준 항목: " + (", ".join(ITEM_NAMES[i] for i in unk) if unk else "없음"))
         if checklist_warn:
             items.append("핵심 점검 문항 중 주의가 필요한 항목: " + "; ".join(checklist_warn))
-        for label, key in (("기술", "technology_analysis"), ("시장", "market_analysis")):
-            for u in (rec.get(key) or {}).get("미확인정보") or []:
-                items.append(f"{label} 분야에서 확인하지 못한 정보: {u}")
+        topics = {
+            "technology_analysis": "기술: 제품 성숙도·실측 성능·측정조건·동일 조건의 업계 기준 대조를 추가 확인해야 한다.",
+            "market_analysis": "시장: 직접 목표 시장의 규모·성장률·기준연도·산정 기간을 추가 확인해야 한다.",
+        }
+        for key, summary in topics.items():
+            gaps = (rec.get(key) or {}).get("미확인정보") or []
+            if gaps:
+                items.append(f"{summary} 미확인·검증 미완료 항목 {len(gaps)}건이며, 세부 내역은 별첨 평가 기록에 보존했다.")
     errs = state.get("errors") or []
     if errs:
         names = {r["company_id"]: r["current_company"]["기업명"] for r in state.get("evaluation_results") or [] if r.get("current_company")}
