@@ -1,0 +1,3233 @@
+{
+  "as_of_date": "2026-09-30",
+  "scope": "시스템반도체 섹터 45개사",
+  "external_api_checks": "G1은 OpenDART 기업코드, G2·G3는 Tavily 외부 결과를 반영; 정확한 법인 매칭이 안 되면 확인불가",
+  "counts": {
+    "확인필요": 17,
+    "부적격": 24,
+    "적격": 4
+  },
+  "results": [
+    {
+      "company_id": "C01",
+      "기업명": "디에스 주식회사",
+      "eligibility": {
+        "판정": "확인필요",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "충족",
+          "사유": "디에스 주식회사는 2024년 Seed 투자와 2025년 Pre-A 투자 유치 이력이 있으며, 최신 투자 단계가 Pre-A로 Series C 이전 단계에 해당함.",
+          "근거ID": [
+            "ELG-C01-01",
+            "ELG-C01-02"
+          ]
+        },
+        "G3": {
+          "결과": "충족",
+          "사유": "검색 결과에 IPO나 인수합병 등 Exit 관련 공식 근거가 없으며, 독립적으로 운영 중이라는 신뢰할 만한 최신 근거가 있음.",
+          "근거ID": [
+            "ELG-C01-03",
+            "ELG-C01-04"
+          ]
+        },
+        "G4": {
+          "결과": "충족",
+          "사유": "AI 기반 검사 기술과 딥러닝 적용 기술이 제품의 핵심 기능임이 명확함",
+          "근거ID": [
+            "ELG-C01-06"
+          ]
+        },
+        "사유": "G1: OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함 / G2: 디에스 주식회사는 2024년 Seed 투자와 2025년 Pre-A 투자 유치 이력이 있으며, 최신 투자 단계가 Pre-A로 Series C 이전 단계에 해당함. / G3: 검색 결과에 IPO나 인수합병 등 Exit 관련 공식 근거가 없으며, 독립적으로 운영 중이라는 신뢰할 만한 최신 근거가 있음. / G4: AI 기반 검사 기술과 딥러닝 적용 기술이 제품의 핵심 기능임이 명확함",
+        "근거ID": [
+          "ELG-C01-01",
+          "ELG-C01-02",
+          "ELG-C01-03",
+          "ELG-C01-04",
+          "ELG-C01-06"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C01-01",
+          "출처명": "디에스, AI 기반 반도체 검사 솔루션으로 프리A 투자 유치 - 플래텀",
+          "publisher": "platum.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://platum.kr/archives/274898",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[컨텐츠로 건너뛰기](#content \"컨텐츠로 건너뛰기\") [![플래텀](https://cdn.platum.kr/wp-content/uploads/2024/11/Platum-logo.svg)](https://platum.kr/) # 디에스, AI 기반 반도체 검사 솔루션으로 프리A 투자 유치 ・ [![](https://cdn.platum.kr/wp-content/plugins/pavo-social-sharing/components/social-sharing/assets/icons/set1/facebook.svg)](https://",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C01-02",
+          "출처명": "반도체 검출 솔루션 딥시어스 개발 ‘디에스’, 프리A 투자 유치 - beSUCCESS",
+          "publisher": "besuccess.com",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://besuccess.com?p=177743",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[![](https://besuccess.com/wp-content/themes/beSUCCESS/images/footer/logo_white.png)](https://besuccess.com) [![](https://besuccess.com/wp-content/uploads/2024/08/img-2020-12-31-img-2020-12-31-Blue-Piano-Keys-Music-YouTube-Channel-Art-1-cut.png)](https://www.koreatechdesk.com/?utm_campaign=ad&utm_me",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C01-03",
+          "출처명": "1년 만에 매출 200% 상승, 글로벌 반도체 기업 Top3가 선택한 인공지능 스타트업 디에스",
+          "publisher": "dcamp.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://dcamp.kr/news/story/7316",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[![Logo](/images/logo.svg)![Logo](/images/m-logo.svg)](/) * [KR](/) * [EN](/en) * [JP](/jp) * [KR](/) * [EN](/en) * About * Program * [Startup](/startups) * News --- * [Who we are 스타트업 성장 파트너, 디캠프](/about/who-we-are) * [What we do 스타트업의 성장을 이끄는 통합 솔루션](/about/what-we-do) --- * [dcamp batch모집중 스타트업을 ",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C01-04",
+          "출처명": "“세계 반도체 업계 골칫거리 해결했다” 한국 스타트업의 혁신 기술",
+          "publisher": "www.chosun.com",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.chosun.com/economy/startup_story/2026/02/13/4XN6H2SGNJDEVARTXE2YISWV7U",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[조선경제](/economy/) [스타트업 취중잡담](/economy/startup_story/) # \"세계 반도체 업계 골칫거리 해결했다\" 한국 스타트업의 혁신 기술 [스타트업 취중잡담] AI 기반 HBM 불량검출 설루션 개발기 진은혜 더비비드 기자 [박유연 기자](https://www.chosun.com/people/park-yuyeon/) 입력 2026.02.12. 06:21 업데이트 2026.02.16. 14:29 0 ![디에스의 한기준 대표. /더비비드](https://www.chosun.com/resizer/v2/LLJJ",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C01-05",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 6,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: 2024 인천창경-씨엔티테크 Seed 100,000천원 | 2025 복수 VC (NDA) Pre A 3,000,000천원(협의 중)",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C01-06",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 6,
+          "확인일": "2026-09-30",
+          "원문발췌": "어드밴스드 반도체 후공정 불량 검출 디에스 주식회사 www.deepseers.com 초격차 AI 검사 기술로 HBM 패키지 불량 검사의 한계를 뛰어넘다. - HBM 시대, 기존 검사 방식의 한계를 극복하다 - AI와 2D/3D 비전의 융합으로 완성한 차세대 검사 솔루션 - 작업자 중심의 직관적 인터페이스로 도입 장벽 최소화 - 산학연 협력을 통한 독보적 기술력과 산업 파급력 확보 인공지능 시대의 핵심 부품으로 주목받는 HBM 반도체 수요의 폭발적 증가와 함께 고도화된 어드밴스드 패키징 기술이 빠르게 진화하고 있으나, 기존의 룰 기…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C02",
+      "기업명": "라텔세미컨덕터",
+      "eligibility": {
+        "판정": "부적격",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요",
+          "근거ID": [
+            "ELG-C02-01"
+          ]
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "미충족",
+          "사유": "메인아이템과 기술분야가 전력관리 반도체(PMIC) 및 시스템반도체로 AI 자체를 개발하거나 제공하는 사업이 아님. AI 관련 기술이나 제품이 명확히 언급되지 않음.",
+          "근거ID": [
+            "ELG-C02-02"
+          ]
+        },
+        "사유": "G1: DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음 / G2: 디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요 / G3: Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음 / G4: 메인아이템과 기술분야가 전력관리 반도체(PMIC) 및 시스템반도체로 AI 자체를 개발하거나 제공하는 사업이 아님. AI 관련 기술이나 제품이 명확히 언급되지 않음.",
+        "근거ID": [
+          "ELG-C02-01",
+          "ELG-C02-02"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C02-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 7,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: 2024.08 밸류투자조합 Seed 540,000천원 | 2024.11 울산창조경제혁신센터 Seed 300,000천원 | 2025.01 인사이트 반도체투자조합 Seed 200,000천원 | 2025.03 주식회사 텔레칩스 Pre-series A 1,000,000천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C02-02",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 7,
+          "확인일": "2026-09-30",
+          "원문발췌": "PMIC(Power Management IC) 라텔세미컨덕터 www.ratelsemicon.com 대한민국 전력관리 반도체의 최강자 당사는 RICHTEK(대만)사에서 한국지사장 및 본사 사업부장을 역임한 박순구대표 가 창업한 기업으로서 삼성, Fairchild, 실리콘마이터스, LX 세미콘 및 RICHTEK등 국내외 유수의 회사에서 근무한 풍부한 경험을 가진 엔지니어들을 보유한 회사입 니다. 주력 제품으로는 디스플레이 및 차량에 사용되는 PMIC(Power Managment IC)이며 현재 국내 대기업, 대만 및 중국고객과 다양한…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C03",
+      "기업명": "망고부스트코리아 주식회사",
+      "eligibility": {
+        "판정": "적격",
+        "G1": {
+          "결과": "충족",
+          "사유": "OpenDART 고유번호 목록에서 법인은 일치하고 종목코드는 공란으로 확인되어 비상장으로 판정",
+          "근거ID": [
+            "ELG-C03-DART"
+          ]
+        },
+        "G2": {
+          "결과": "충족",
+          "사유": "2023년 9월에 Series A 투자 라운드가 완료되었으며, 최신 투자 단계가 Series A임이 공식 뉴스룸과 다수 기사에서 확인됨.",
+          "근거ID": [
+            "ELG-C03-01",
+            "ELG-C03-02",
+            "ELG-C03-03"
+          ]
+        },
+        "G3": {
+          "결과": "충족",
+          "사유": "망고부스트코리아는 현재 독립적으로 운영 중이며, 인수합병이나 IPO(상장) 사실이 공식적으로 확인되지 않음. 다수 공식 및 뉴스 출처에서 비상장 상태와 독립 운영을 확인할 수 있음.",
+          "근거ID": [
+            "ELG-C03-04",
+            "ELG-C03-03",
+            "ELG-C03-01"
+          ]
+        },
+        "G4": {
+          "결과": "충족",
+          "사유": "DPU(Data Processing Unit) 개발 및 판매, 시스템 반도체 기술 분야, 데이터센터 성능 개선을 위한 AI 관련 반도체 제품임이 명확함",
+          "근거ID": [
+            "ELG-C03-10"
+          ]
+        },
+        "사유": "G1: OpenDART 고유번호 목록에서 법인은 일치하고 종목코드는 공란으로 확인되어 비상장으로 판정 / G2: 2023년 9월에 Series A 투자 라운드가 완료되었으며, 최신 투자 단계가 Series A임이 공식 뉴스룸과 다수 기사에서 확인됨. / G3: 망고부스트코리아는 현재 독립적으로 운영 중이며, 인수합병이나 IPO(상장) 사실이 공식적으로 확인되지 않음. 다수 공식 및 뉴스 출처에서 비상장 상태와 독립 운영을 확인할 수 있음. / G4: DPU(Data Processing Unit) 개발 및 판매, 시스템 반도체 기술 분야, 데이터센터 성능 개선을 위한 AI 관련 반도체 제품임이 명확함",
+        "근거ID": [
+          "ELG-C03-DART",
+          "ELG-C03-01",
+          "ELG-C03-02",
+          "ELG-C03-03",
+          "ELG-C03-04",
+          "ELG-C03-03",
+          "ELG-C03-01",
+          "ELG-C03-10"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C03-01",
+          "출처명": "Announcing our closing of Series A funding round and way forward | MangoBoost Newsroom",
+          "publisher": "www.mangoboost.io",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.mangoboost.io/company/newsroom/announcing-our-closing-of-series-a-funding-round-and-way-forward",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[Skip to content](#main-content) [![MangoBoost](https://cdn.sanity.io/images/ys7u7pog/production/098f10436ce72577b06ac290533c69081d8336e2-480x100.svg)](/) [Contact us](/contact) # Announcing our closing of Series A funding round and way forward ![Announcing our closing of Series A funding round and ",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C03-02",
+          "출처명": "MangoBoost Raises $55 Million in Series A",
+          "publisher": "www.thesaasnews.com",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.thesaasnews.com/news/mangoboost-raises-55-million-in-series-a",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[# The SaaS News](https://www.thesaasnews.com) [Sign in](https://www.thesaasnews.com/signin) [Subscribe](https://www.thesaasnews.com/subscribe) [Sign in](https://www.thesaasnews.com/signin) * [Sign up](#/portal/) * [Privacy Policy](https://www.thesaasnews.com/privacy-policy/) * [Terms & Conditions](",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C03-03",
+          "출처명": "망고부스트(MangoBoost) 사업 및 기술 전략 : 네이버 블로그",
+          "publisher": "m.blog.naver.com",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://m.blog.naver.com/simula/224234558509",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[본문 바로가기](#ct) # [블로그](/Recommendation.naver) ## [카테고리 이동](#) [제이슨 인사이트](/PostList.naver?blogId=simula) [검색](/PostSearchList.naver?blogId=simula) [투자/경제/기업](/PostList.naver?blogId=simula&categoryNo=125&logCode=0&categoryName=%ED%88%AC%EC%9E%90%2F%EA%B2%BD%EC%A0%9C%2F%EA%B8%B0%EC%97%85#postlist_block",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C03-04",
+          "출처명": "망고부스트코리아(MBDPU-1) | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest)",
+          "publisher": "www.innoforest.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.innoforest.co.kr/company/CP00012995/%EB%A7%9D%EA%B3%A0%EB%B6%80%EC%8A%A4%ED%8A%B8%EC%BD%94%EB%A6%AC%EC%95%84",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "망고부스트코리아(MBDPU-1) | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest) 항목 바로가기![arrow](/images/icons/accordion_arrow.png) AI 기본정보 및 요약 데이터 AI 사업개요 기업 추천글 [![혁신의숲 제휴 혜택 - 스타트업 필수 솔루션 무료 혜택 받기](/_next/static/media/benefit-wing-banner.0dd~l2vpej8cz.png)](/benefit) 혁신의숲 기업 데이터를 SNS에 공유해보세요 URL이 클립보드에 복사되었습니다 ! AI ## 기본정",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C03-DART",
+          "출처명": "금융감독원 OpenDART 고유번호 목록",
+          "publisher": "opendart.fss.or.kr",
+          "pub_year": 2026,
+          "source_type": "공공데이터 API",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "corp_name=망고부스트코리아; stock_code=(공란); corp_code=01994016; modify_date=20260423",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C03-DART",
+          "출처명": "금융감독원 OpenDART 고유번호 목록",
+          "publisher": "opendart.fss.or.kr",
+          "pub_year": 2026,
+          "source_type": "공공데이터 API",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "corp_name=망고부스트코리아; stock_code=(공란); corp_code=01994016; modify_date=20260423",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C03-DART",
+          "출처명": "금융감독원 OpenDART 고유번호 목록",
+          "publisher": "opendart.fss.or.kr",
+          "pub_year": 2026,
+          "source_type": "공공데이터 API",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "corp_name=망고부스트코리아; stock_code=(공란); corp_code=01994016; modify_date=20260423",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C03-DART",
+          "출처명": "금융감독원 OpenDART 고유번호 목록",
+          "publisher": "opendart.fss.or.kr",
+          "pub_year": 2026,
+          "source_type": "공공데이터 API",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "corp_name=망고부스트코리아; stock_code=(공란); corp_code=01994016; modify_date=20260423",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C03-09",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 8,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: 스톤브릿지벤처스, 머스트벤처스, IM캐피탈파트너스, CMU | Series A 71,239,350천원 | 2022.05 스톤브릿지벤처스, DSC인베스트먼트, 머스트벤처스, | IM캐피탈파트너스 Seed 13,000,000천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C03-10",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 8,
+          "확인일": "2026-09-30",
+          "원문발췌": "Data Processing Unit 망고부스트코리아 주식회사 https://www.mangoboost.io/ 서버 구조의 한계를 넘어, 효율적 데이터센터의 새 기준을 만듭니다. - 서버의 숨은 두뇌인 DPU (Data Processing Unit)를 개발 및 판매하는 스타트업 - 보안, 네트워크, 스토리지, 가상화 등 실제 데이터센터 환경에 적용될 수 있는 원천 IP 보유 - DPU 카드, 서버 등 다양한 폼팩터의 제품을 개발 및 생산 망고부스트는 국내에서 유일하게 DPU를 개발하며, 스토리지·보안·네트워크 등 다 양한 분야의…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C04",
+      "기업명": "블루닷 주식회사",
+      "eligibility": {
+        "판정": "확인필요",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "충족",
+          "사유": "2024년 투자 라운드가 Pre-B 단계이며, 이전 라운드로 Series A가 확인되어 최신 투자 단계가 Series C 이전임이 확인됨.",
+          "근거ID": [
+            "ELG-C04-01"
+          ]
+        },
+        "G3": {
+          "결과": "충족",
+          "사유": "공식 출처에서 블루닷 주식회사가 독립적으로 운영 중임이 확인되며, IPO나 인수합병에 의한 Exit 사실이 없음.",
+          "근거ID": [
+            "ELG-C04-01"
+          ]
+        },
+        "G4": {
+          "결과": "충족",
+          "사유": "AI가 동영상 화질개선, 영상압축 최적화 등 핵심 기술에 적용되어 반도체 IP와 소프트웨어 솔루션으로 제공됨이 명확함",
+          "근거ID": [
+            "ELG-C04-03"
+          ]
+        },
+        "사유": "G1: OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함 / G2: 2024년 투자 라운드가 Pre-B 단계이며, 이전 라운드로 Series A가 확인되어 최신 투자 단계가 Series C 이전임이 확인됨. / G3: 공식 출처에서 블루닷 주식회사가 독립적으로 운영 중임이 확인되며, IPO나 인수합병에 의한 Exit 사실이 없음. / G4: AI가 동영상 화질개선, 영상압축 최적화 등 핵심 기술에 적용되어 반도체 IP와 소프트웨어 솔루션으로 제공됨이 명확함",
+        "근거ID": [
+          "ELG-C04-01",
+          "ELG-C04-01",
+          "ELG-C04-03"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C04-01",
+          "출처명": "블루닷 | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest)",
+          "publisher": "www.innoforest.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.innoforest.co.kr/company/CP00000127/%EB%B8%94%EB%A3%A8%EB%8B%B7",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "블루닷 | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest) 항목 바로가기![arrow](/images/icons/accordion_arrow.png) AI 기본정보 및 요약 데이터 AI 사업개요 기업 추천글 [![혁신의숲 제휴 혜택 - 스타트업 필수 솔루션 무료 혜택 받기](/_next/static/media/benefit-wing-banner.0dd~l2vpej8cz.png)](/benefit) 혁신의숲 기업 데이터를 SNS에 공유해보세요 URL이 클립보드에 복사되었습니다 ! AI ## 기본정보 및 요약 데이터 기업소",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C04-02",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 9,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: 블루포인트파트너스, 포스텍홀딩스 Series A 6,000,000천원 | 2020 스퀘어벤처스, 블루포인트파트너스, 포스텍홀딩스 Seed 1,410,000천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C04-03",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 9,
+          "확인일": "2026-09-30",
+          "원문발췌": "동영상 처리 반도체IP와 소프트웨어 블루닷 주식회사 www.blue-dot.io AI와 반도체 설계 기술로 빠르고 지능적인 영상처리 솔루션을 제공합니다. - 2 0년 이상의 동영상처리 반도체 개발 및 애플리케이션 개발 전문가 집단이 창업한 스타트업 - 글로벌 경연을 통해 입증된 세계 최고 수준의 영상처리.압축 알고리즘 개발과 반도체 IP 설계 역량 - 반도체 IP와 더불어 소프트웨어 솔루션(웹 API, SDK) 사업으로 사업 다각화 및 기술적 시너지 창출 블루닷은 전통적인 방법으로 해결하지 못했던 영상 분야의 문제들을 AI와 반도…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C05",
+      "기업명": "(주)사이언스프로버",
+      "eligibility": {
+        "판정": "부적격",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요",
+          "근거ID": [
+            "ELG-C05-01"
+          ]
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "미충족",
+          "사유": "입력 내용에서 AI가 제품·서비스의 핵심 기능이거나 주된 기술·사업으로 확인되지 않음. 반도체 공정용 게이트밸브 등 반도체 부품 제조에 집중하고 있으며 AI 관련 기술이나 사업 내용이 없음.",
+          "근거ID": [
+            "ELG-C05-02"
+          ]
+        },
+        "사유": "G1: DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음 / G2: 디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요 / G3: Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음 / G4: 입력 내용에서 AI가 제품·서비스의 핵심 기능이거나 주된 기술·사업으로 확인되지 않음. 반도체 공정용 게이트밸브 등 반도체 부품 제조에 집중하고 있으며 AI 관련 기술이나 사업 내용이 없음.",
+        "근거ID": [
+          "ELG-C05-01",
+          "ELG-C05-02"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C05-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 11,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: 2024 스마일게이트인베스트먼트 Series A 2,000,000천원 | 2024 화인칩스 주식회사 Series A 1,000,000천원 | 2024 미래에셋벤처투자 Series A 2,000,000천원 | 2024 원익투자파트너스 Series A 1,000,000천원 | 2024 제이비인베스트먼트 Series A 1,000,000천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C05-02",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 10,
+          "확인일": "2026-09-30",
+          "원문발췌": "반도체 공정용 게이트밸브, 슬릿밸브 등 (주)사이언스프로버 www.scprobe.com All The Gate Valves You Want. - 최고의 품질과 기술력으로 반도체 장비용 게이트 밸브 Triple prevention 생산 전문기업 - 세계 최고 수준의 내구성(30만회)을 갖춘 반도체 공정용 게이트 밸브 - 입자가속기 분야 고성능의 All Metal 밸브 개발 - 수출비중이 80% 이상인 수출전문 중소기업 (글로벌 강소기업, 수출유망 중소기업 인정) 진공밸브는 다양한 반도체 공정에 적용되고 있으며, 각 공정에서 요구하는…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C06",
+      "기업명": "(주)아나배틱세미",
+      "eligibility": {
+        "판정": "확인필요",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "충족",
+          "사유": "2026년 3월 25일 시리즈B 투자 유치가 공식 보도되었으며, 시리즈B는 Series C 이전 단계에 해당함.",
+          "근거ID": [
+            "ELG-C06-01",
+            "ELG-C06-02",
+            "ELG-C06-03"
+          ]
+        },
+        "G3": {
+          "결과": "충족",
+          "사유": "검색 결과에 IPO, 상장, 인수합병 등 Exit 관련 내용이 없고, 2026년 기준 독립적으로 운영 중임이 확인됨.",
+          "근거ID": [
+            "ELG-C06-04",
+            "ELG-C06-01"
+          ]
+        },
+        "G4": {
+          "결과": "충족",
+          "사유": "BMS AP 제품에 AI 기능이 내장되어 있으며, AI Processor 및 NPU 설계기술 개발을 명확히 기술함. AI가 핵심 기술 및 제품에 포함되어 있음.",
+          "근거ID": [
+            "ELG-C06-05"
+          ]
+        },
+        "사유": "G1: OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함 / G2: 2026년 3월 25일 시리즈B 투자 유치가 공식 보도되었으며, 시리즈B는 Series C 이전 단계에 해당함. / G3: 검색 결과에 IPO, 상장, 인수합병 등 Exit 관련 내용이 없고, 2026년 기준 독립적으로 운영 중임이 확인됨. / G4: BMS AP 제품에 AI 기능이 내장되어 있으며, AI Processor 및 NPU 설계기술 개발을 명확히 기술함. AI가 핵심 기술 및 제품에 포함되어 있음.",
+        "근거ID": [
+          "ELG-C06-01",
+          "ELG-C06-02",
+          "ELG-C06-03",
+          "ELG-C06-04",
+          "ELG-C06-01",
+          "ELG-C06-05"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C06-01",
+          "출처명": "\"양팔로봇·BMS 반도체까지\"…모험자본, 딥테크 투자 이어간다 - 머니투데이",
+          "publisher": "www.mt.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.mt.co.kr/future/2026/03/29/2026032915321551114",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "## [머니투데이 머니투데이 로고](/) * [MT리포트](https://www.mt.co.kr/mtreport) * [증권](https://www.mt.co.kr/stock) * [the300](https://www.mt.co.kr/politics) * [theL](https://www.mt.co.kr/law) * [the바이오](https://www.mt.co.kr/thebio) * [유니콘팩토리](https://www.unicornfactory.co.kr) ![globe_icon](https://menu.mt.co.kr/mt2",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C06-02",
+          "출처명": "'배터리 관리 반도체' 아나배틱세미, 150억 시리즈B 투자유치 - 유니콘팩토리",
+          "publisher": "www.unicornfactory.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.unicornfactory.co.kr/article/2026032511244565572",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[본문영역 바로가기](#container) [![머니투데이](https://menu.mt.co.kr/ucfactory/images/logo_mt2.png?20260914-1)](https://www.mt.co.kr) # [유니콘팩토리](https://www.unicornfactory.co.kr) [DATA LAB](https://www.unicornfactory.co.kr/datalab) 기업 정보 검색은 **데이터랩**에서! [로그인](https://www.unicornfactory.co.kr/login \"로그인\") 하고 기업 정",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C06-03",
+          "출처명": "아나배틱세미 150억 시리즈B 분석: 삼성 엑시노스 개발자가 만든 전기차 배터리 관리 반도체 | 데모데이",
+          "publisher": "demoday.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://demoday.co.kr/funding/insights/84",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "![Demoday Logo](/_next/image?url=%2Fimages%2Fdemoday-logo1.png&w=256&q=75) ![Demoday Logo](/_next/image?url=%2Fimages%2Fdemoday-logo1.png&w=256&q=75) 페이지를 불러오는 중... ![Demoday](/images/demoday-logo1.png) Copyright ©2012 Demoday Inc. All rights reserved. # 아나배틱세미 150억 시리즈B 분석: 삼성 엑시노스 개발자가 만든 전기차 배터리 ",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C06-04",
+          "출처명": "아나배틱세미 | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest)",
+          "publisher": "www.innoforest.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.innoforest.co.kr/company/CP00007387/%EC%95%84%EB%82%98%EB%B0%B0%ED%8B%B1%EC%84%B8%EB%AF%B8",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "아나배틱세미 | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest) 항목 바로가기![arrow](/images/icons/accordion_arrow.png) AI 기본정보 및 요약 데이터 AI 사업개요 기업 추천글 [![혁신의숲 제휴 혜택 - 스타트업 필수 솔루션 무료 혜택 받기](/_next/static/media/benefit-wing-banner.0dd~l2vpej8cz.png)](/benefit) 혁신의숲 기업 데이터를 SNS에 공유해보세요 URL이 클립보드에 복사되었습니다 ! AI ## 기본정보 및 요약 데이터 ",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C06-05",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 11,
+          "확인일": "2026-09-30",
+          "원문발췌": "BMS용 반도체칩 개발 및 솔루션 제공 (주)아나배틱세미 www.anabatic-semi.com 경쟁력있는 무선 BMS(Battery Management System)용 반도체 칩 국산화 및 솔루션 제공을 통해 국내 배터리 업계의 경쟁력 향상 및 Global Fabless 반도체 회사로 성장 - 반도체와 배터리 분야 전문가 집단으로 구성 - 배터리 관리 및 진단 시스템에대한 경험과 노하우 그리고 무선 통신 및 반도체 설계 기술 보유 - 선도 배터리 제조사와의 협업을 통한 구체적 사업 전략 추진 아나배틱세미는 다수의 반도체/배터리…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C07",
+      "기업명": "아이디어스투실리콘 주식회사",
+      "eligibility": {
+        "판정": "적격",
+        "G1": {
+          "결과": "충족",
+          "사유": "OpenDART 고유번호 목록에서 법인은 일치하고 종목코드는 공란으로 확인되어 비상장으로 판정",
+          "근거ID": [
+            "ELG-C07-DART"
+          ]
+        },
+        "G2": {
+          "결과": "충족",
+          "사유": "최신 투자 라운드가 2025년 말 시리즈A 투자 유치로 확인되며, 브릿지 라운드도 2024년에 있었으나 시리즈D 이상 투자 라운드는 없음.",
+          "근거ID": [
+            "ELG-C07-01",
+            "ELG-C07-02"
+          ]
+        },
+        "G3": {
+          "결과": "충족",
+          "사유": "아이디어스투실리콘은 독립적으로 운영 중이며, IPO나 M&A로 인한 지배권 이전 사실이 공식적으로 확인되지 않음.",
+          "근거ID": [
+            "ELG-C07-03",
+            "ELG-C07-01"
+          ]
+        },
+        "G4": {
+          "결과": "충족",
+          "사유": "AI 온디바이스 프로세서 개발, AI Processor 개발 및 상용화 목표, AI 기반 데이터 분석 분야 혁신 등 AI가 핵심 기술 및 사업임이 명확함",
+          "근거ID": [
+            "ELG-C07-09"
+          ]
+        },
+        "사유": "G1: OpenDART 고유번호 목록에서 법인은 일치하고 종목코드는 공란으로 확인되어 비상장으로 판정 / G2: 최신 투자 라운드가 2025년 말 시리즈A 투자 유치로 확인되며, 브릿지 라운드도 2024년에 있었으나 시리즈D 이상 투자 라운드는 없음. / G3: 아이디어스투실리콘은 독립적으로 운영 중이며, IPO나 M&A로 인한 지배권 이전 사실이 공식적으로 확인되지 않음. / G4: AI 온디바이스 프로세서 개발, AI Processor 개발 및 상용화 목표, AI 기반 데이터 분석 분야 혁신 등 AI가 핵심 기술 및 사업임이 명확함",
+        "근거ID": [
+          "ELG-C07-DART",
+          "ELG-C07-01",
+          "ELG-C07-02",
+          "ELG-C07-03",
+          "ELG-C07-01",
+          "ELG-C07-09"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C07-01",
+          "출처명": "아이디어스투실리콘, 상반기 매출 263억원 기록 - 조선비즈",
+          "publisher": "biz.chosun.com",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://biz.chosun.com/industry/business_info/2026/07/03/ZX75E54YZJA2FAIUX7ZXVCR6HA",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[산업](/industry/)[업계 소식](/industry/business_info/) [산업](/industry/)[업계 소식](/industry/business_info/) [산업](/industry/)[업계 소식](/industry/business_info/) # 아이디어스투실리콘, 상반기 매출 263억원 기록 2025년 연간 매출 두 배 수준… 글로벌 수주 확대 영향 입력 2026.07.03. 11:05 [조선비즈 구글 검색 먼저 보기](https://www.google.com/preferences/source?q=biz.",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C07-02",
+          "출처명": "StartUp_아이디어스투실리콘 주식회사",
+          "publisher": "www.nextround.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.nextround.kr/startup/detail/3562",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[전체 메뉴 바로가기](#gnb) [본문 바로가기](#content) # [KDB NextRound](/main) [Contact Us](/main/contact-us) [Sign in](/auth/signin) # SoC/IP Engineering [홈으로 이동](/main) 아이디어스투실리콘 주식회사 메인 이미지 * [메인](/main) * Startup * [SoC/IP Engineering](/startup/detail/3562) ## 200회 이상의 Tape-out경험으로 축적된 압도적인 시스템반도체 설계 기술력 글로벌 1",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C07-03",
+          "출처명": "아이디어스투실리콘 | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest)",
+          "publisher": "www.innoforest.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.innoforest.co.kr/company/CP00021828/%EC%95%84%EC%9D%B4%EB%94%94%EC%96%B4%EC%8A%A4%ED%88%AC%EC%8B%A4%EB%A6%AC%EC%BD%98",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "아이디어스투실리콘 | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest) 항목 바로가기![arrow](/images/icons/accordion_arrow.png) AI 기본정보 및 요약 데이터 AI 사업개요 기업 추천글 [![혁신의숲 제휴 혜택 - 스타트업 필수 솔루션 무료 혜택 받기](/_next/static/media/benefit-wing-banner.0dd~l2vpej8cz.png)](/benefit) 혁신의숲 기업 데이터를 SNS에 공유해보세요 URL이 클립보드에 복사되었습니다 ! AI ## 기본정보 및 요약 데",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C07-DART",
+          "출처명": "금융감독원 OpenDART 고유번호 목록",
+          "publisher": "opendart.fss.or.kr",
+          "pub_year": 2026,
+          "source_type": "공공데이터 API",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "corp_name=아이디어스투실리콘; stock_code=(공란); corp_code=01947009; modify_date=20250825",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C07-DART",
+          "출처명": "금융감독원 OpenDART 고유번호 목록",
+          "publisher": "opendart.fss.or.kr",
+          "pub_year": 2026,
+          "source_type": "공공데이터 API",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "corp_name=아이디어스투실리콘; stock_code=(공란); corp_code=01947009; modify_date=20250825",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C07-DART",
+          "출처명": "금융감독원 OpenDART 고유번호 목록",
+          "publisher": "opendart.fss.or.kr",
+          "pub_year": 2026,
+          "source_type": "공공데이터 API",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "corp_name=아이디어스투실리콘; stock_code=(공란); corp_code=01947009; modify_date=20250825",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C07-DART",
+          "출처명": "금융감독원 OpenDART 고유번호 목록",
+          "publisher": "opendart.fss.or.kr",
+          "pub_year": 2026,
+          "source_type": "공공데이터 API",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "corp_name=아이디어스투실리콘; stock_code=(공란); corp_code=01947009; modify_date=20250825",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C07-08",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 12,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: 2024 대구-*** **** ***** 브릿지 라운드투자 399,996천원 | 2024 기****** 브릿지 라운드투자 999,997천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C07-09",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 12,
+          "확인일": "2026-09-30",
+          "원문발췌": "아이디어스투실리콘 주식회사 https://ideas2silicon.com/ 반도체 설계와 AI 기술을 바탕으로 상상을 현실로 바꾸는 혁신과 도전의 IDEAS2SILICON - AI 온디바이스 프로세서 개발 스타트업 - SoC /IP Engineering & Turnkey, IP Licensing, SoC Engineering Platform 제공하는 스타트업 - E dge Device에서 클라우드 기술을 활용하여 디지털 콘텐츠를 지능적으로 처리하고 보강하는 AI Processor 개발 및 상용화 목표 아이디어스투실리콘(I2S)은…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C08",
+      "기업명": "(주)알에프온",
+      "eligibility": {
+        "판정": "부적격",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요",
+          "근거ID": [
+            "ELG-C08-01"
+          ]
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "미충족",
+          "사유": "입력 내용에서 AI가 제품, 기술, 사업의 핵심으로 확인되지 않음. 주된 기술은 GaN MMIC 및 RF 재밍 장비 개발로 AI 관련 기술 언급 없음.",
+          "근거ID": [
+            "ELG-C08-02"
+          ]
+        },
+        "사유": "G1: DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음 / G2: 디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요 / G3: Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음 / G4: 입력 내용에서 AI가 제품, 기술, 사업의 핵심으로 확인되지 않음. 주된 기술은 GaN MMIC 및 RF 재밍 장비 개발로 AI 관련 기술 언급 없음.",
+        "근거ID": [
+          "ELG-C08-01",
+          "ELG-C08-02"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C08-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 13,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: 2024 인포뱅크-대구창조경제혁신센터 Seed 200,000천원 | 2024 펜 마이 지스타 투자조합 1호 Seed 100,000천원 | 2024 중소벤처기업진흥공단 Seed 200,000천원 | 2025 인라이트 넥스트 슈퍼스타 벤처펀드 Pre A 1,000,195천원 | 2025 신용보증기금 Pre A 500,200천원 | 2025 와이앤아처 로컬펌프업 투자조합 1호 Pre A 200,080천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C08-02",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 13,
+          "확인일": "2026-09-30",
+          "원문발췌": "GaN MMIC (주)알에프온 www.rf-on.com 전자방해전술분야 선도기업 알에프온 - Jamming Module, 거치용 시스템, 반도체 분야를 연구개발하는 스타트업 - 세계최초 6-Band MIMO HPA 개발 - 크기·무게·발열을 50% 이상 줄인 초소형, 고집적 RF Jamming Module 개발 ㈜알에프온은 적 드론 위협에 대응하기 위한 고출력 전자 재밍 장비를 개발·수출 하는 방산 전문 기업입니다. 다양한 주파수 대역을 동시에 무력화할 수 있는 다중 대역 RF 재머 기술과 고출력 GaN 기반 증폭기를 바탕으로,…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C09",
+      "기업명": "주식회사 에티포스",
+      "eligibility": {
+        "판정": "부적격",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요",
+          "근거ID": [
+            "ELG-C09-01",
+            "ELG-C09-02"
+          ]
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "미충족",
+          "사유": "입력 내용에서 AI가 제품이나 기술의 핵심이거나 주된 사업으로 명확히 언급되지 않음. 주된 기술은 V2X 통신모뎀 반도체 및 통신 장비 개발이며 AI 관련 기술이나 AI 모델, AI 소프트웨어 개발에 대한 언급이 없음.",
+          "근거ID": [
+            "ELG-C09-03"
+          ]
+        },
+        "사유": "G1: DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음 / G2: 디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요 / G3: Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음 / G4: 입력 내용에서 AI가 제품이나 기술의 핵심이거나 주된 사업으로 명확히 언급되지 않음. 주된 기술은 V2X 통신모뎀 반도체 및 통신 장비 개발이며 AI 관련 기술이나 AI 모델, AI 소프트웨어 개발에 대한 언급이 없음.",
+        "근거ID": [
+          "ELG-C09-01",
+          "ELG-C09-02",
+          "ELG-C09-03"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C09-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 14,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: 2022 아우토크립트(주) Seed 4,000,000천원 | 2024 LBI인베스트먼트 Series A 3,500,000천원 | 2024 산업은행 Series A 3,000,000천원 | 2024 BNK벤처투자 Series A 1,000,000천원 | 2024 L&S벤처캐피탈 Series A 1,000,000천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C09-02",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 15,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: 2024.10 카카오벤처스 Safe 1,000,000천원 | 2024.01 FoundersX Ventures Seed Round 2,800,000천원 | 2024.01 DSC Investment Seed Round 1,000,000천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C09-03",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 14,
+          "확인일": "2026-09-30",
+          "원문발췌": "V2X 통신모뎀 반도체용 IP/ 주식회사 에티포스 www.ettifos.com 차세대 지능형 교통체계(C-ITS) 및 협력자율주행을 위한 V2X 통신모뎀 반도체 및 V2X 통신 장비 개발 기업 - 세계 최초, 세계 유일 5G-V2X 통신 반도체 설계 기술 보유 기업 - 세계 최고 수준 초소형 / 스마트폰 연동형 V2X 단말 기술 보유 - 매몰비용 “Zero화” 및 구축비용 최소화하는 소프트웨어 업그레이드형 노변 기지국 기술 보유 에티포스는 2018년에 설립된 5G 기반 V2X(Vehicle-to-Everything) 통신 솔루션…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C10",
+      "기업명": "주식회사 에프에스2",
+      "eligibility": {
+        "판정": "확인필요",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "검색 결과에 주식회사 에프에스2의 투자 라운드 정보가 없으며, 최신 투자 단계에 대한 신뢰할 만한 출처가 없음.",
+          "근거ID": []
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "검색 결과에 주식회사 에프에스2의 IPO, 인수합병, 또는 지배권 이전 관련 정보가 없어 Exit 여부를 판단할 수 없음.",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "충족",
+          "사유": "초고속·저전력 3D AI 칩 개발 및 독자적 M3D 집적 기술 보유, AI 반도체 칩 개발이 핵심 사업임이 명확함",
+          "근거ID": [
+            "ELG-C10-01"
+          ]
+        },
+        "사유": "G1: OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함 / G2: 검색 결과에 주식회사 에프에스2의 투자 라운드 정보가 없으며, 최신 투자 단계에 대한 신뢰할 만한 출처가 없음. / G3: 검색 결과에 주식회사 에프에스2의 IPO, 인수합병, 또는 지배권 이전 관련 정보가 없어 Exit 여부를 판단할 수 없음. / G4: 초고속·저전력 3D AI 칩 개발 및 독자적 M3D 집적 기술 보유, AI 반도체 칩 개발이 핵심 사업임이 명확함",
+        "근거ID": [
+          "ELG-C10-01"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C10-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 15,
+          "확인일": "2026-09-30",
+          "원문발췌": "2차원소재 기반 3차원 반도체 주식회사 에프에스2 차세대 반도체 2D 기반 3D 칩 혁신을 선도합니다. - 세계 최초 단결정 2D 반도체 기술 보유 - 초고속·저전력 3D AI 칩 구현을 위한 독자적 M3D 집적 기술 - 글로벌 반도체 생태계를 선도할 IP·소재·칩 삼각 밸류체인 구축 FS2는 세계 최초로 단결정 2차원 반도체 웨이퍼 기술을 확보하고, 이를 기반으로 초고속·초저전력 3D AI 반도체 칩을 개발하는 딥테크 스타트업입니다. 당사는 실리콘 공정 호환이 가능한 저온 성장 기반의 독자적 증착기술을 통해, 그 동안 기술적으로…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C11",
+      "기업명": "엘스페스 주식회사",
+      "eligibility": {
+        "판정": "확인필요",
+        "G1": {
+          "결과": "충족",
+          "사유": "OpenDART 고유번호 목록에서 법인은 일치하고 종목코드는 공란으로 확인되어 비상장으로 판정",
+          "근거ID": [
+            "ELG-C11-DART"
+          ]
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "엘스페스는 2023년 5월부터 2024년 12월까지 Series A, Bridge, Series B 투자 라운드를 진행하였으며, 최신 투자 라운드는 Series B로 Series C 이전 단계임이 확인됨.",
+          "근거ID": []
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "엘스페스 주식회사는 독립적으로 운영 중이며, IPO나 인수합병에 의한 Exit 사실이 공식적으로 확인되지 않음.",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "충족",
+          "사유": "AI 반도체 성능 향상 솔루션 공급 및 AI 반도체 핵심소자인 실리콘 커패시터 설계·공급하는 팹리스 기업임이 명확함",
+          "근거ID": [
+            "ELG-C11-06"
+          ]
+        },
+        "사유": "G1: OpenDART 고유번호 목록에서 법인은 일치하고 종목코드는 공란으로 확인되어 비상장으로 판정 / G2: 엘스페스는 2023년 5월부터 2024년 12월까지 Series A, Bridge, Series B 투자 라운드를 진행하였으며, 최신 투자 라운드는 Series B로 Series C 이전 단계임이 확인됨. / G3: 엘스페스 주식회사는 독립적으로 운영 중이며, IPO나 인수합병에 의한 Exit 사실이 공식적으로 확인되지 않음. / G4: AI 반도체 성능 향상 솔루션 공급 및 AI 반도체 핵심소자인 실리콘 커패시터 설계·공급하는 팹리스 기업임이 명확함",
+        "근거ID": [
+          "ELG-C11-DART",
+          "ELG-C11-06"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C11-DART",
+          "출처명": "금융감독원 OpenDART 고유번호 목록",
+          "publisher": "opendart.fss.or.kr",
+          "pub_year": 2026,
+          "source_type": "공공데이터 API",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "corp_name=엘스페스; stock_code=(공란); corp_code=01905793; modify_date=20250424",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C11-DART",
+          "출처명": "금융감독원 OpenDART 고유번호 목록",
+          "publisher": "opendart.fss.or.kr",
+          "pub_year": 2026,
+          "source_type": "공공데이터 API",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "corp_name=엘스페스; stock_code=(공란); corp_code=01905793; modify_date=20250424",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C11-DART",
+          "출처명": "금융감독원 OpenDART 고유번호 목록",
+          "publisher": "opendart.fss.or.kr",
+          "pub_year": 2026,
+          "source_type": "공공데이터 API",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "corp_name=엘스페스; stock_code=(공란); corp_code=01905793; modify_date=20250424",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C11-DART",
+          "출처명": "금융감독원 OpenDART 고유번호 목록",
+          "publisher": "opendart.fss.or.kr",
+          "pub_year": 2026,
+          "source_type": "공공데이터 API",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "corp_name=엘스페스; stock_code=(공란); corp_code=01905793; modify_date=20250424",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C11-05",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 16,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: 2023.05 ~ 2 023.09 아이엠투자파트너스 등 6개 투자사 Series A 7,500,101천원 | 2024.03 대덕 등 2개 투자사 Series A - Bridge 1,499,833천원 | 2024.10 ~ 2 024.12 티에스인베스트먼트 등 9개 투자사 Series B 24,089,924천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C11-06",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 16,
+          "확인일": "2026-09-30",
+          "원문발췌": "Silicon Capacitor 엘스페스 주식회사 http://www.elspes.com 고성능 반도체 프로세서의 핵심 수동소자 실리콘 커패시터 기술로 글로벌 AI 반도체 성능 향상 솔루션 공급 - 실리콘 커패시터를 설계, 공급하는 Fabless 벤처기업 - 고성능 반도체에 안정적인 전력을 공급하는 DC Decoupling 실리콘 커패시터 부품 개발 - 데이터센터 초고속 데이터 전송을 위한 A C Coupling 실리콘 커패시터 부품 개발 엘스페스(주) (ELSPES Inc.)는 AI 반도체의 핵심소자로 자리매김한 실리콘 커패시…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C12",
+      "기업명": "엘앤디전자 주식회사",
+      "eligibility": {
+        "판정": "부적격",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "디렉토리북에 투자 이력이 없고 Tavily 최신 검색도 수행하지 않음",
+          "근거ID": []
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "미충족",
+          "사유": "입력 내용은 AlN 기반 GaN 에피웨이퍼 및 관련 반도체 제조 기술에 관한 것으로 AI 기술 개발이나 AI 제품·서비스 제공과 관련된 내용이 없음",
+          "근거ID": [
+            "ELG-C12-01"
+          ]
+        },
+        "사유": "G1: DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음 / G2: 디렉토리북에 투자 이력이 없고 Tavily 최신 검색도 수행하지 않음 / G3: Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음 / G4: 입력 내용은 AlN 기반 GaN 에피웨이퍼 및 관련 반도체 제조 기술에 관한 것으로 AI 기술 개발이나 AI 제품·서비스 제공과 관련된 내용이 없음",
+        "근거ID": [
+          "ELG-C12-01"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C12-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 17,
+          "확인일": "2026-09-30",
+          "원문발췌": "전력소자용 AlN 기반의 GaN 에피웨이퍼 엘앤디전자 주식회사 www.lnd35.com AlN 기반 화합물 반도체 에피웨이퍼 성장 기술을 바탕으로, 전력 반도체 및 광소자 분야에서의 기술 선도와 글로벌 시장 진출이 목표입니다. 1. AlN 기반 에피웨이퍼 제조 엘앤디전자는 AlN(질화알루미늄) 기반의 화합물 반도체 에피웨이퍼를 제조합니다. AlN은 GaN(질화갈륨)과 비교하여 열전도율이 높고 열팽창 계수가 낮아 고방열 및 고전압 특성이 우수합니다. 이러한 특성은 전력 반도체 및 UVC LED와 같은 고성능 소자에 적합합니다. 2.…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C13",
+      "기업명": "(주)칩스케이",
+      "eligibility": {
+        "판정": "부적격",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요",
+          "근거ID": [
+            "ELG-C13-01"
+          ]
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "미충족",
+          "사유": "입력 내용에서 AI가 제품·서비스의 핵심 기능이거나 기업의 주된 기술·사업으로 확인되지 않음. GaN 전력반도체 소자 개발 및 제조에 집중하고 있으며 AI 관련 기술이나 AI를 활용한 제품·서비스에 대한 언급이 없음.",
+          "근거ID": [
+            "ELG-C13-02"
+          ]
+        },
+        "사유": "G1: DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음 / G2: 디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요 / G3: Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음 / G4: 입력 내용에서 AI가 제품·서비스의 핵심 기능이거나 기업의 주된 기술·사업으로 확인되지 않음. GaN 전력반도체 소자 개발 및 제조에 집중하고 있으며 AI 관련 기술이나 AI를 활용한 제품·서비스에 대한 언급이 없음.",
+        "근거ID": [
+          "ELG-C13-01",
+          "ELG-C13-02"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C13-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 18,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: 2017.10 신용보증기금 Seed 1,000,000천원 | 2021.10 개인 Seed 2,000,000천원 | 2022.07 미래에셋위반도체 제1호창업벤처전문 사모투자합자회사 Series A 3,000,000천원 | 2023.12 2023에스초격차 지역균형발전투자조합 외 Series B 3,500,000천원 | 2024.01 SLi Next 이노베이션 펀드 ㈜에스엘인베스트먼트 Series B 1,000,000천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C13-02",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 18,
+          "확인일": "2026-09-30",
+          "원문발췌": "GaN 전력반도체 소자 (주)칩스케이 https://www.chipsk.com 전력반도체 혁신으로 더 강한 산업, 더 효율적인 미래를 만듭니다. - 고속·고효율 GaN 전력소자 기술 보유 - 극한 환경에서도 안정적인 전력 동작 실현 - 소자 설계, 신뢰성 평가, 패키지 설계까지 전주기 역량 확보 - 항공우주, 국방, 데이터센터 등 고신뢰 산업에 적용 확대 (주)칩스케이는 GaN 기반 전력소자 기술을 통해 고속 스위칭과 낮은 손실 특성을 구현하며, 기존 실리콘 소자의 한계를 뛰어넘는 고전력 밀도와 효율을 실현하고 있습니다. 고온·고…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C14",
+      "기업명": "주식회사 터넬",
+      "eligibility": {
+        "판정": "확인필요",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "2024년 7월 12일 한국기술보증기금으로부터 Series A 투자 유치 이력이 확인됨.",
+          "근거ID": []
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "주식회사 터넬은 독립적으로 운영 중이며 IPO나 M&A에 의한 Exit 사실이 공식적으로 확인되지 않음.",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "충족",
+          "사유": "AI 반도체용 고성능 메모리 IP와 AI SoC를 개발하며, AI 반도체 핵심 구성 요소인 cache 메모리 솔루션을 제공하는 점에서 AI 기술이 주된 사업임이 명확함",
+          "근거ID": [
+            "ELG-C14-02"
+          ]
+        },
+        "사유": "G1: OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함 / G2: 2024년 7월 12일 한국기술보증기금으로부터 Series A 투자 유치 이력이 확인됨. / G3: 주식회사 터넬은 독립적으로 운영 중이며 IPO나 M&A에 의한 Exit 사실이 공식적으로 확인되지 않음. / G4: AI 반도체용 고성능 메모리 IP와 AI SoC를 개발하며, AI 반도체 핵심 구성 요소인 cache 메모리 솔루션을 제공하는 점에서 AI 기술이 주된 사업임이 명확함",
+        "근거ID": [
+          "ELG-C14-02"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C14-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 19,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: 2023.02.28 에이티피벤처스-유니스트기술지주(주) Pre A 200,000천원 | 2023.02.28 하나증권(주) Pre A 500,000천원 | 2023.07.20 블루포인트파트너스 Pre A 400,000천원 | 2023.07.14 골든오크벤처스 Pre A 400,000천원 | 2024.07.12 한국기술보증기금 Series A(SAFE) 500,000천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C14-02",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 19,
+          "확인일": "2026-09-30",
+          "원문발췌": "T-SRAM TritCellTM, AI SoC UniBrainTM 주식회사 터넬 ternellism.com AI 반도체 성능의 숨겨진 조력자 On-chip SRAM의 혁신적인 솔루션 제공 - 3진법 반도체 기술을 기반으로 SoC향 온칩 메모리와 연산형 메모리 IP를 보유한 반도체 스타트업 - 3진법 반도체와 양자 터널링 제어 기술을 바탕으로, 기존 SRAM 대비 저전력/고집적 솔루션 개발 - 체계적인 IP 포트폴리오 구축을 통해 Business 가능한 반도체 제조 및 디자인 IP 확보 AI 반도체와 같은 고성능 processor의…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C15",
+      "기업명": "(주)투인테크",
+      "eligibility": {
+        "판정": "부적격",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요",
+          "근거ID": [
+            "ELG-C15-01"
+          ]
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "미충족",
+          "사유": "입력 내용에서 AI가 제품이나 기술의 핵심이거나 AI를 개발·제공하는 사업임이 명확하지 않음. 주된 기술은 펄스 에어 건식 세정 기술로, AI 관련 언급이 없음.",
+          "근거ID": [
+            "ELG-C15-02"
+          ]
+        },
+        "사유": "G1: DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음 / G2: 디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요 / G3: Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음 / G4: 입력 내용에서 AI가 제품이나 기술의 핵심이거나 AI를 개발·제공하는 사업임이 명확하지 않음. 주된 기술은 펄스 에어 건식 세정 기술로, AI 관련 언급이 없음.",
+        "근거ID": [
+          "ELG-C15-01",
+          "ELG-C15-02"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C15-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 20,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: 2024.09.26 충남혁신그래비티창업초기투자조합 Seed 200,000천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C15-02",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 20,
+          "확인일": "2026-09-30",
+          "원문발췌": "펄스 에어 이물제거 시스템 (주)투인테크 www.to-intech.com 현장의 니즈를 바탕으로 기술을 함께 만들어가는 융복합 청정기술 전문기업입니다. - 청정기술의 다양한 솔루션을 개발하는 기업 - 반도체, 디스플레이 장비 부품을 개발하는 소부장 기업 - 기업의 이물제어 솔루션을 제공하는 청정기술 전문 기업 당사는 펄스에어 건식 세정 기술을 기반으로, 이물제어 분야의 지속적인 연구 개발과 기술혁신, 철저한 품질관리 체계를 통해 청정기술 분야의 선도기업으로 도약하고 있습니다. 또한 현장 근로자의 근로환경 개선과 품질 경쟁력 향상을…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C16",
+      "기업명": "네메시스 주식회사",
+      "eligibility": {
+        "판정": "부적격",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요",
+          "근거ID": [
+            "ELG-C16-01"
+          ]
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "미충족",
+          "사유": "입력 내용에 AI가 제품이나 기술의 핵심으로 명시되어 있지 않고, 생체 신호처리 반도체 설계 기술 중심임",
+          "근거ID": [
+            "ELG-C16-02"
+          ]
+        },
+        "사유": "G1: DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음 / G2: 디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요 / G3: Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음 / G4: 입력 내용에 AI가 제품이나 기술의 핵심으로 명시되어 있지 않고, 생체 신호처리 반도체 설계 기술 중심임",
+        "근거ID": [
+          "ELG-C16-01",
+          "ELG-C16-02"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C16-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 22,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: 2024 신용보증기금 Series A 1,000,000천원 | 2024 KAIST 청년창업지주 Series A 600,000천원 | 2024 대덕벤처 투자 Series A 500,000천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C16-02",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 22,
+          "확인일": "2026-09-30",
+          "원문발췌": "생체 신호처리 반도체 네메시스 주식회사 www.nemesis.kr 디지털 헬스케어의 핵심 기술인 바이오 신호처리 반도체 설계기술을 기반으로 디지털 헬스케어 기기용 저전력, 고성능 반도체 공급을 합니다. - 바이탈 사인 모니터링용 패치를 위한 신호처리 반도체 - 디지털 헬스케어용 웨어러블 기기용 반도체 - 바이러스 진단 및 세균 모니터링용 신호처리 반도체 디지털 헬스케어는 가장 중요한 주제로 떠오르고 있으며 여기서의 핵심 요소는 신체의 바이탈 사인 및 바이오 마커를 모니터링 하는 것입니다. 그러나 바이오 신호는 노이즈 성분이 많고…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C17",
+      "기업명": "(주)넥스젠파워",
+      "eligibility": {
+        "판정": "부적격",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "디렉토리북에 투자 이력이 없고 Tavily 최신 검색도 수행하지 않음",
+          "근거ID": []
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "미충족",
+          "사유": "입력 내용은 전력반도체 설계 및 생산에 관한 것으로 AI 기술 개발이나 AI가 핵심 기능임을 나타내지 않음",
+          "근거ID": [
+            "ELG-C17-01"
+          ]
+        },
+        "사유": "G1: DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음 / G2: 디렉토리북에 투자 이력이 없고 Tavily 최신 검색도 수행하지 않음 / G3: Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음 / G4: 입력 내용은 전력반도체 설계 및 생산에 관한 것으로 AI 기술 개발이나 AI가 핵심 기능임을 나타내지 않음",
+        "근거ID": [
+          "ELG-C17-01"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C17-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 23,
+          "확인일": "2026-09-30",
+          "원문발췌": "전력반도체 (주)넥스젠파워 www.nexgenpwr.com “전력반도체의 미래를 설계한다” - 전력반도체를 연구 개발하는 팹리스 스타트업 기업 - 전력반도체 실리콘 SuperJunc tion MOSFET, IGBT 설계 및 양산과 화합물 반도체 설계 - 전력반도체 파워모듈 패키지 공장을 신축하여 국내 파워모듈 국산화 생산 (주)넥스젠 파워는 전력반도체 설계 전문 팹리스 기업으로 Superjunction MOSFET, IGBT 등의 가정용부터 산업용 전자기기의 전력변환 시스템에 적용될 수 있는 반도체 소자를 개발 및 판매하고 있습니…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C18",
+      "기업명": "엑시나 주식회사",
+      "eligibility": {
+        "판정": "적격",
+        "G1": {
+          "결과": "충족",
+          "사유": "OpenDART 고유번호 목록에서 법인은 일치하고 종목코드는 공란으로 확인되어 비상장으로 판정",
+          "근거ID": [
+            "ELG-C18-DART"
+          ]
+        },
+        "G2": {
+          "결과": "충족",
+          "사유": "엑시나는 2026년 4월에 시리즈B 투자 라운드를 완료하였으며, 최신 투자 단계가 시리즈B임이 신뢰할 만한 출처에서 확인됨. (기준 정정: Series C 또는 이전 단계는 충족)",
+          "근거ID": [
+            "ELG-C18-01",
+            "ELG-C18-02",
+            "ELG-C18-03"
+          ]
+        },
+        "G3": {
+          "결과": "충족",
+          "사유": "검색 결과에 IPO, 상장, 인수합병 등 Exit 관련 소식이 없으며, 2024~2026년 최신 기사에서 독립적으로 운영 중임이 확인됨.",
+          "근거ID": [
+            "ELG-C18-04",
+            "ELG-C18-01",
+            "ELG-C18-03"
+          ]
+        },
+        "G4": {
+          "결과": "충족",
+          "사유": "AI 시대의 컴퓨팅 기술 선도, AI 데이터 처리 가속기 개발, AI 응용 혁신을 위한 아키텍처 및 솔루션 개발이 명확히 기술됨",
+          "근거ID": [
+            "ELG-C18-09"
+          ]
+        },
+        "사유": "G1: OpenDART 고유번호 목록에서 법인은 일치하고 종목코드는 공란으로 확인되어 비상장으로 판정 / G2: 엑시나는 2026년 4월에 시리즈B 투자 라운드를 완료하였으며, 최신 투자 단계가 시리즈B임이 신뢰할 만한 출처에서 확인됨. (기준 정정: Series C 또는 이전 단계는 충족) / G3: 검색 결과에 IPO, 상장, 인수합병 등 Exit 관련 소식이 없으며, 2024~2026년 최신 기사에서 독립적으로 운영 중임이 확인됨. / G4: AI 시대의 컴퓨팅 기술 선도, AI 데이터 처리 가속기 개발, AI 응용 혁신을 위한 아키텍처 및 솔루션 개발이 명확히 기술됨",
+        "근거ID": [
+          "ELG-C18-DART",
+          "ELG-C18-01",
+          "ELG-C18-02",
+          "ELG-C18-03",
+          "ELG-C18-04",
+          "ELG-C18-01",
+          "ELG-C18-03",
+          "ELG-C18-09"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C18-01",
+          "출처명": "엑시나 1500억 시리즈B 분석: SK하이닉스 최연소 임원이 만든 CXL 메모리 반도체 | 데모데이",
+          "publisher": "demoday.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://demoday.co.kr/funding/insights/95",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "![Demoday Logo](/_next/image?url=%2Fimages%2Fdemoday-logo1.png&w=256&q=75) ![Demoday Logo](/_next/image?url=%2Fimages%2Fdemoday-logo1.png&w=256&q=75) 페이지를 불러오는 중... ![Demoday](/images/demoday-logo1.png) Copyright ©2012 Demoday Inc. All rights reserved. # 엑시나 1500억 시리즈B 분석: SK하이닉스 최연소 임원이 만든 CXL 메모리 ",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C18-02",
+          "출처명": "차세대 메모리 솔루션 선두주자 '엑시나', 2,000억 원 규모 시리즈 B 투자 유치 - 전자신문",
+          "publisher": "www.etnews.com",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.etnews.com/20260601000245",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[신문보기](https://info.etnews.com/epaper.html) [구독신청](https://info.etnews.com/sub_2_1.html) [로그인](https://member.etnews.com/member/login.html?return_url=https://www.etnews.com)[회원가입](https://member.etnews.com/member/join_index.html) [반도체](/news/section.html?id1=10) [소부장](/news/section.html?id1=10&id2=0",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C18-03",
+          "출처명": "엑시나, 2020억 원 시리즈B 유치… 메모리 중심 컴퓨팅으로 AI 데이터센터 병목 푼다 - 와우테일",
+          "publisher": "wowtale.net",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://wowtale.net/2026/05/30/259381",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[컨텐츠로 넘어가기](#main) [![](https://cdn.wowtale.net/wp-content/uploads/2024/04/wowtale.danbilabs.com-taegeuk.svg.png)한국어](https://wowtale.net)[![](https://cdn.wowtale.net/wp-content/uploads/2024/04/wowtale.danbilabs.com-usa-icon-language.png)English](https://en.wowtale.net) [로그인](/login) [![와우테일](https:",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C18-04",
+          "출처명": "[Y인사이트] 700억 투자로 주목받는 엑시나, 메모리 가치를 새롭게 정의하는 방법 < 반도체 < 기사본문 - 디일렉(THE ELEC)",
+          "publisher": "www.thelec.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.thelec.kr/news/articleView.html?idxno=31722",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "UPDATE: 2026-09-29 20:06 (화) [ENGLISH](https://www.thelec.net/) [![디일렉(THE ELEC)](https://cdn.thelec.kr/image/logo/printlogo_20251110103032.png)](https://www.thelec.kr) [Y인사이트] 700억 투자로 주목받는 엑시나, 메모리 가치를 새롭게 정의하는 방법 글자크기 설정 가 기사의 본문 내용은 이 글자크기로 변경됩니다. 스크롤 이동 상태바 # [Y인사이트] 700억 투자로 주목받는 엑시나, 메모리 가치를 ",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C18-DART",
+          "출처명": "금융감독원 OpenDART 고유번호 목록",
+          "publisher": "opendart.fss.or.kr",
+          "pub_year": 2026,
+          "source_type": "공공데이터 API",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "corp_name=엑시나(XCENAInc.); stock_code=(공란); corp_code=01907834; modify_date=20260225",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C18-DART",
+          "출처명": "금융감독원 OpenDART 고유번호 목록",
+          "publisher": "opendart.fss.or.kr",
+          "pub_year": 2026,
+          "source_type": "공공데이터 API",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "corp_name=엑시나(XCENAInc.); stock_code=(공란); corp_code=01907834; modify_date=20260225",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C18-DART",
+          "출처명": "금융감독원 OpenDART 고유번호 목록",
+          "publisher": "opendart.fss.or.kr",
+          "pub_year": 2026,
+          "source_type": "공공데이터 API",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "corp_name=엑시나(XCENAInc.); stock_code=(공란); corp_code=01907834; modify_date=20260225",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C18-08",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 24,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: Series A 60,000,000천원 | 토니 인베스트먼트, 원익 투자파트너스, SBI인베스트먼트 Seed 8,500,000천원 | 2022.03 전문엔젤투자자 Angel 1,000,000천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C18-09",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 24,
+          "확인일": "2026-09-30",
+          "원문발췌": "CXL기반 Large Scale Data 가속기 개발 엑시나 주식회사 https://xcena.com 엑시나의 혁신적인 아키텍처는 보다 효율적인 데이 터 처리와 성능 향상으로 AI 시대의 컴퓨팅 기술을 선도합니다. - AI 시대 대용량 데이터 처리를 위한 주요 응용 혁신 - 메모리 병목 해소를 위한 Near Data Processing 중심의 핵심 IP 자체 확보 - CXL 인터페이스를 사용한 메모리 확장 기술을 갖춘 기업 엑시나는 Data 폭증 및 Memory Wall 한계를 극복하기 위해 대용량 Data 처리에 특화된 CXL…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C19",
+      "기업명": "가산기술",
+      "eligibility": {
+        "판정": "확인필요",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "가산기술의 최신 투자 라운드 및 투자 단계에 관한 신뢰할 만한 출처가 검색 결과에 없음.",
+          "근거ID": []
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "가산기술에 대한 인수합병 또는 IPO 등 Exit 관련 정보가 검색 결과에 없고, 독립적으로 운영 중임을 유추할 수 있음.",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "충족",
+          "사유": "입력 내용에서 이미지 인식용 On 센서 AI 칩을 개발하는 시스템반도체 팹리스 기업이며, AI 모델과 NPU 설계 등 AI 기능이 핵심 기술임이 명확함",
+          "근거ID": [
+            "ELG-C19-01"
+          ]
+        },
+        "사유": "G1: OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함 / G2: 가산기술의 최신 투자 라운드 및 투자 단계에 관한 신뢰할 만한 출처가 검색 결과에 없음. / G3: 가산기술에 대한 인수합병 또는 IPO 등 Exit 관련 정보가 검색 결과에 없고, 독립적으로 운영 중임을 유추할 수 있음. / G4: 입력 내용에서 이미지 인식용 On 센서 AI 칩을 개발하는 시스템반도체 팹리스 기업이며, AI 모델과 NPU 설계 등 AI 기능이 핵심 기술임이 명확함",
+        "근거ID": [
+          "ELG-C19-01"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C19-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 26,
+          "확인일": "2026-09-30",
+          "원문발췌": "이미지 인식용, On 센서 AI Chip 가산기술 http://kasantech.com AI의 효과를 현실 세계에서 체감케 하는 기술, 이미지 인식용, On 센서 커스텀 AI 칩 - AI 시스템반도체를 개발하는 기업 - 경량화 AI 모델을 Low Cost의 커스텀 AI 칩으로 개발 - 화합물 센서, 반도체 센서에서는 할 수 없는 스마트한 AI 이미지 센싱 - AI 학습에 의해서 설계자의 알고리즘 개발이 불필요. 광범위한 활용 범위 당사는 시스템반도체를 설계하는 팹리스 기업이며, 영상처리에 대한 경험을 바탕 으로 이미지에 대한 딥…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C20",
+      "기업명": "관악아날로그(주)",
+      "eligibility": {
+        "판정": "확인필요",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "충족",
+          "사유": "투자 유치 이력에 따르면 2024년 Series B 투자 유치가 최신이며, Series C 이상 투자 라운드 정보는 없음.",
+          "근거ID": [
+            "ELG-C20-01",
+            "ELG-C20-02"
+          ]
+        },
+        "G3": {
+          "결과": "충족",
+          "사유": "관악아날로그(주)는 비상장 상태이며, 인수합병 또는 IPO 관련 공식 Exit 정보가 없고, 독립적으로 운영 중임이 확인됨.",
+          "근거ID": [
+            "ELG-C20-03",
+            "ELG-C20-01"
+          ]
+        },
+        "G4": {
+          "결과": "충족",
+          "사유": "AI MCU 제품 양산 및 AI 반도체 설계 스타트업임이 명확하며, AI/아날로그/전력 반도체 기술 분야에 집중하고 있음",
+          "근거ID": [
+            "ELG-C20-05"
+          ]
+        },
+        "사유": "G1: OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함 / G2: 투자 유치 이력에 따르면 2024년 Series B 투자 유치가 최신이며, Series C 이상 투자 라운드 정보는 없음. / G3: 관악아날로그(주)는 비상장 상태이며, 인수합병 또는 IPO 관련 공식 Exit 정보가 없고, 독립적으로 운영 중임이 확인됨. / G4: AI MCU 제품 양산 및 AI 반도체 설계 스타트업임이 명확하며, AI/아날로그/전력 반도체 기술 분야에 집중하고 있음",
+        "근거ID": [
+          "ELG-C20-01",
+          "ELG-C20-02",
+          "ELG-C20-03",
+          "ELG-C20-01",
+          "ELG-C20-05"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C20-01",
+          "출처명": "서울대 팹리스 관악아날로그, 3000억 가치에 투자유치 - 딜사이트",
+          "publisher": "dealsite.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://dealsite.co.kr/articles/167282",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[산업](/categories/068000)[대체투자](/categories/075000)[인수합병](/categories/080000)[금융](/categories/083000)[증권](/categories/089000)[블록체인](/categories/094000)[오피니언](/categories/098000) [포럼영상](/forums/) [머니네버슬립![](/images/contents/s_icon_black.png)](https://www.moneyneversleeps.co.kr/) [딜사이트경제TV](https://dea",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C20-02",
+          "출처명": "관악아날로그, 70억 규모 시리즈A 투자 유치 - 전자신문",
+          "publisher": "www.etnews.com",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.etnews.com/20230306000169",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[신문보기](https://info.etnews.com/epaper.html) [구독신청](https://info.etnews.com/sub_2_1.html) [로그인](https://member.etnews.com/member/login.html?return_url=https://www.etnews.com)[회원가입](https://member.etnews.com/member/join_index.html) [반도체](/news/section.html?id1=10) [소부장](/news/section.html?id1=10&id2=0",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C20-03",
+          "출처명": "관악아날로그 | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest)",
+          "publisher": "www.innoforest.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.innoforest.co.kr/company/CP00013529/%EA%B4%80%EC%95%85%EC%95%84%EB%82%A0%EB%A1%9C%EA%B7%B8",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "관악아날로그 | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest) 항목 바로가기![arrow](/images/icons/accordion_arrow.png) AI 기본정보 및 요약 데이터 AI 사업개요 기업 추천글 [![혁신의숲 제휴 혜택 - 스타트업 필수 솔루션 무료 혜택 받기](/_next/static/media/benefit-wing-banner.0dd~l2vpej8cz.png)](/benefit) 혁신의숲 기업 데이터를 SNS에 공유해보세요 URL이 클립보드에 복사되었습니다 ! AI ## 기본정보 및 요약 데이터 ",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C20-04",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 27,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: 2024 삼호그린인베스트먼트 Series B 6,500,000천원 | 2024 산업은행 Series B 5,000,000천원 | 2024, 2023 미래에셋벤처투자 Series A,B 4,000,000천원 | 2024, 2023 지유투자 Series A,B 2,000,000천원 | 2024, 2023 산은캐피탈 Series A,B 2,000,000천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C20-05",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 27,
+          "확인일": "2026-09-30",
+          "원문발췌": "비메모리 반도체 관악아날로그(주) www.gwanakanalog.com ‘아날로그의 철학‘을 기본 바탕으로 국내 AI, 디지털, 전력, 아날로그 반도체의 새 시대를 열다. - 국내 유일 스마트 지능형 전력/아날로그 SoC 비메모리 반도체 설계 스타트업 - 400여 종의 자체 보유 IP 및 고정밀 아날로그 회로 설계 기술력 보유 - 아날로그를 넘어 AI, 디지털, 전력 전반에 걸친 제품 포트폴리오 구축 관악아날로그는 국내 팹리스 반도체 스타트업으로 자체 구축한 IP(설계 자산)을 기 반으로 비메모리용 고정밀 고효율 아날로그, 전력,…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C21",
+      "기업명": "그릿씨아이씨(주)",
+      "eligibility": {
+        "판정": "부적격",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요",
+          "근거ID": [
+            "ELG-C21-01"
+          ]
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "미충족",
+          "사유": "입력 내용에서 AI가 제품이나 기술의 핵심이거나 주된 사업으로 명확히 나타나지 않음. 주로 UWB 센서, 레이더, 시스템반도체 기술에 집중되어 있으며 AI 관련 언급이 없음.",
+          "근거ID": [
+            "ELG-C21-02"
+          ]
+        },
+        "사유": "G1: DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음 / G2: 디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요 / G3: Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음 / G4: 입력 내용에서 AI가 제품이나 기술의 핵심이거나 주된 사업으로 명확히 나타나지 않음. 주로 UWB 센서, 레이더, 시스템반도체 기술에 집중되어 있으며 AI 관련 언급이 없음.",
+        "근거ID": [
+          "ELG-C21-01",
+          "ELG-C21-02"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C21-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 28,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: 2021 ㈜유텔 Pre A 500,000천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C21-02",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 28,
+          "확인일": "2026-09-30",
+          "원문발췌": "비접촉 생체신호 탐지용 UWB 센서 그릿씨아이씨(주) www.gritcic.com 사람과 세상을 이어주는 통신·센싱, 시스템반도체 기술로 초연결 미래를 완성하겠습니다. - UWB/FMCW Radar, 위성통신 Beamformer chip-set을 개발하는 시스템 반도체 기업 - mm 수준의 거리해상도 성능을 활용한 비접촉 생체신호(호흡, 심박) 탐지용 UWB 센서 - 5G, 6G및 저궤도 위성통신용 multi-channel Beamformer chip-set IP 보유 그릿씨아이씨는 시스템반도체 기술을 기반으로 UWB/FMCW 레…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C22",
+      "기업명": "뉴로리얼리티비전",
+      "eligibility": {
+        "판정": "확인필요",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "뉴로리얼리티비전의 최신 투자 라운드 정보가 검색 결과에 존재하지 않아 투자 단계 판단 불가.",
+          "근거ID": []
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "뉴로리얼리티비전의 IPO, 인수합병 등 Exit 관련 정보가 검색 결과에 존재하지 않아 Exit 여부 판단 불가.",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "충족",
+          "사유": "AI용 영상 처리 센서 및 응용 시스템 개발, Embedded NPU 지원 고속 인식 솔루션, 20가지 객체 및 동작 인식 지원 등 AI가 핵심 기술임이 명확함",
+          "근거ID": [
+            "ELG-C22-01"
+          ]
+        },
+        "사유": "G1: OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함 / G2: 뉴로리얼리티비전의 최신 투자 라운드 정보가 검색 결과에 존재하지 않아 투자 단계 판단 불가. / G3: 뉴로리얼리티비전의 IPO, 인수합병 등 Exit 관련 정보가 검색 결과에 존재하지 않아 Exit 여부 판단 불가. / G4: AI용 영상 처리 센서 및 응용 시스템 개발, Embedded NPU 지원 고속 인식 솔루션, 20가지 객체 및 동작 인식 지원 등 AI가 핵심 기술임이 명확함",
+        "근거ID": [
+          "ELG-C22-01"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C22-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 29,
+          "확인일": "2026-09-30",
+          "원문발췌": "이벤트 카메라, 뉴로리얼리티비전 www.nrv.kr Get it in the blinking - 초고속 이벤트 카메라 센서를 기반으로 초고속, 고화질, 저전력 응용 시스템 을 개발하는 스타트업 - 이벤트 카메라 센서 인터페이스 보드 및 여러 응용 관련 소프트웨어 개발 - 복수의 카메라의 동시 촬영을 위한 인터페이스 보드 및 소프트웨어 개발 ㈜뉴로리얼리티비전은 초고속 이벤트 카메라 센서를 기반으로 초고속, 고화질, 저전력 응용 시스템을 개발하고 있습니다. 초고속 이벤트 카메라 센서는 600,000 화소로 초당 수천 장의 움직임 발생…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C23",
+      "기업명": "(주)다모아텍",
+      "eligibility": {
+        "판정": "확인필요",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요",
+          "근거ID": [
+            "ELG-C23-01"
+          ]
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "확인불가",
+          "사유": "입력 내용에 AI가 핵심 기술이나 주된 사업으로 명확히 언급되었으나, AI가 제품·서비스의 핵심 기능인지 또는 단순 연계인지 명확하지 않음. AI 기반 이상 감지 및 제어 알고리즘 연계 가능하다는 표현은 있으나 AI 자체 개발·제공 여부 불분명.",
+          "근거ID": [
+            "ELG-C23-02"
+          ]
+        },
+        "사유": "G1: DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음 / G2: 디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요 / G3: Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음 / G4: 입력 내용에 AI가 핵심 기술이나 주된 사업으로 명확히 언급되었으나, AI가 제품·서비스의 핵심 기능인지 또는 단순 연계인지 명확하지 않음. AI 기반 이상 감지 및 제어 알고리즘 연계 가능하다는 표현은 있으나 AI 자체 개발·제공 여부 불분명.",
+        "근거ID": [
+          "ELG-C23-01",
+          "ELG-C23-02"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C23-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 30,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: 2016 블루포인트파트너스 트루윈 Seed 100,000천원 | 2021 오픈워터 인베스트먼트 Seed 500,000천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C23-02",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 30,
+          "확인일": "2026-09-30",
+          "원문발췌": "임피던스 ROIC, 스마트센서, 시스템 및 (주)다모아텍 www.damoatech.com 지속가능한 센서 기술, 더 안전한 세상 초격차 임피던스 센서 기술로 다양한 산업을 연결합니다. - 임피던스 기반 비접촉 감지 및 생체 신호 분석 원천 기술 보유 - AFE IC 칩 기반 차량용 안전센서, 스마트 농업 및 가축 헬스케어 센서 개발 - MP W·Pilot Run 등 글로벌 파운드리 연계를 통한 반도체 직접 생산 및 상용화 진행 - 다품종 스마트 센서 제품군 보유 - 차량용 APS(Anti-Pinch Sensor) - 스마트팜용 정…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C24",
+      "기업명": "주식회사 더유엠에스",
+      "eligibility": {
+        "판정": "확인필요",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "투자 유치 이력에 따르면 최신 투자 라운드는 2023년 4월 티인베스트먼트의 Series A 투자이며, Series C 이전 단계임이 명확히 확인됨.",
+          "근거ID": []
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "검색 결과 및 회사 홈페이지에서 IPO나 인수합병으로 인한 Exit 사실이 확인되지 않고, 회사가 독립적으로 운영 중임이 명확히 확인됨.",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "충족",
+          "사유": "메인아이템과 기술분야에서 AI 관련 핵심 기술인 AI 반도체, AI 모델, AI 플랫폼을 개발·제공하는 것이 명확하며, 사업Point와 혁신성에서 AI 기반 벡터 데이터베이스, LLM 디바이스, AI 에이전트 등 AI 기술을 주된 사업으로 하고 있음이 드러남",
+          "근거ID": [
+            "ELG-C24-02"
+          ]
+        },
+        "사유": "G1: OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함 / G2: 투자 유치 이력에 따르면 최신 투자 라운드는 2023년 4월 티인베스트먼트의 Series A 투자이며, Series C 이전 단계임이 명확히 확인됨. / G3: 검색 결과 및 회사 홈페이지에서 IPO나 인수합병으로 인한 Exit 사실이 확인되지 않고, 회사가 독립적으로 운영 중임이 명확히 확인됨. / G4: 메인아이템과 기술분야에서 AI 관련 핵심 기술인 AI 반도체, AI 모델, AI 플랫폼을 개발·제공하는 것이 명확하며, 사업Point와 혁신성에서 AI 기반 벡터 데이터베이스, LLM 디바이스, AI 에이전트 등 AI 기술을 주된 사업으로 하고 있음이 드러남",
+        "근거ID": [
+          "ELG-C24-02"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C24-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 31,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: 2023.04 티인베스트먼트 Series A 1,000,000천원 | 2020.11 기술보증기금 Pre A 500,000천원 | 2018.05 블루포인트파트너스 Seed 100,000천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C24-02",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 31,
+          "확인일": "2026-09-30",
+          "원문발췌": "초소형 레이다 모션 감지 센서 주식회사 더유엠에스 www.theums.co.kr 인류의 미래를 생각하는 기업, 그린(Green) 환경을 꿈꾸는 기업, 사람과 기술이 소통하는 기업, 최고의 기술력으로 시장을 선도합니다. - 글로벌로 유일한 올인원 초소형 레이다 모션감지 센서 - 고유 알고리즘 내장 - SMT (Surface Mount Device)의 패키지 구조 - 센서와 이종기능이 결합된 다양한 복합제품 개발 더유엠에스는 기존 모션 감지 센서의 단점을 극복하고, 새로운 모션 감지 센서의 시장을 열기 위해 신제품들을 출시했고, 현재…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C25",
+      "기업명": "디노티시아",
+      "eligibility": {
+        "판정": "적격",
+        "G1": {
+          "결과": "충족",
+          "사유": "OpenDART 고유번호 목록에서 법인은 일치하고 종목코드는 공란으로 확인되어 비상장으로 판정",
+          "근거ID": [
+            "ELG-C25-DART"
+          ]
+        },
+        "G2": {
+          "결과": "충족",
+          "사유": "디노티시아는 Seed 및 Pre-A 투자 라운드를 완료했으며, 최신 투자 라운드는 2024년 하반기 Pre-A 단계임이 신뢰할 만한 뉴스 기사에서 확인됨.",
+          "근거ID": [
+            "ELG-C25-01"
+          ]
+        },
+        "G3": {
+          "결과": "충족",
+          "사유": "디노티시아는 독립적으로 운영 중인 스타트업이며, IPO나 인수합병으로 지배권 이전된 사실이 검색 결과에서 확인되지 않음.",
+          "근거ID": [
+            "ELG-C25-01"
+          ]
+        },
+        "G4": {
+          "결과": "충족",
+          "사유": "AI 전용 반도체(VDPU)와 AI 소프트웨어(벡터 데이터베이스, LLM 디바이스)를 개발하여 AI 하드웨어/소프트웨어 통합 솔루션을 제공함이 명확함",
+          "근거ID": [
+            "ELG-C25-07"
+          ]
+        },
+        "사유": "G1: OpenDART 고유번호 목록에서 법인은 일치하고 종목코드는 공란으로 확인되어 비상장으로 판정 / G2: 디노티시아는 Seed 및 Pre-A 투자 라운드를 완료했으며, 최신 투자 라운드는 2024년 하반기 Pre-A 단계임이 신뢰할 만한 뉴스 기사에서 확인됨. / G3: 디노티시아는 독립적으로 운영 중인 스타트업이며, IPO나 인수합병으로 지배권 이전된 사실이 검색 결과에서 확인되지 않음. / G4: AI 전용 반도체(VDPU)와 AI 소프트웨어(벡터 데이터베이스, LLM 디바이스)를 개발하여 AI 하드웨어/소프트웨어 통합 솔루션을 제공함이 명확함",
+        "근거ID": [
+          "ELG-C25-DART",
+          "ELG-C25-01",
+          "ELG-C25-01",
+          "ELG-C25-07"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C25-01",
+          "출처명": "[시리즈] 디노티시아, Pre-A 투자 유치로 누적 투자금 '350억' 달성... 개인용 LLM 디바이스 '니모스' 개발 중 < 투자 < 스타트업+ < 기사본문 - 인베스트 | invest",
+          "publisher": "www.investnews.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.investnews.co.kr/news/articleView.html?idxno=3001549",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "## 상단영역 # [인베스트 | invest](https://www.investnews.co.kr) ## 본문영역 이 기사를 공유합니다 ### [시리즈] 디노티시아, Pre-A 투자 유치로 누적 투자금 '350억' 달성... 개인용 LLM 디바이스 '니모스' 개발 중 * 입력 2024.12.30 15:13 ![인포그래픽 = 최미리 기자 (자료출처: 디노티시아)](https://cdn.investnews.co.kr/news/photo/202412/3001549_13866_546.png) 인포그래픽 = 최미리 기자 (자료출처: 디노티시",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C25-DART",
+          "출처명": "금융감독원 OpenDART 고유번호 목록",
+          "publisher": "opendart.fss.or.kr",
+          "pub_year": 2026,
+          "source_type": "공공데이터 API",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "corp_name=디노티시아; stock_code=(공란); corp_code=01961762; modify_date=20251029",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C25-DART",
+          "출처명": "금융감독원 OpenDART 고유번호 목록",
+          "publisher": "opendart.fss.or.kr",
+          "pub_year": 2026,
+          "source_type": "공공데이터 API",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "corp_name=디노티시아; stock_code=(공란); corp_code=01961762; modify_date=20251029",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C25-DART",
+          "출처명": "금융감독원 OpenDART 고유번호 목록",
+          "publisher": "opendart.fss.or.kr",
+          "pub_year": 2026,
+          "source_type": "공공데이터 API",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "corp_name=디노티시아; stock_code=(공란); corp_code=01961762; modify_date=20251029",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C25-DART",
+          "출처명": "금융감독원 OpenDART 고유번호 목록",
+          "publisher": "opendart.fss.or.kr",
+          "pub_year": 2026,
+          "source_type": "공공데이터 API",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "corp_name=디노티시아; stock_code=(공란); corp_code=01961762; modify_date=20251029",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C25-06",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 32,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: Seed 14,000,000천원 | 엘로힘파트너스, 본엔젤스, 퓨처플레이, KDB캐피탈 Pre A 21,000,000천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C25-07",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 32,
+          "확인일": "2026-09-30",
+          "원문발췌": "Seahorse(씨홀스), Mnemos(니모스) 디노티시아 www.dnotitia.com 세계 최초 ‘장기기억 AI 인프라’를 만드는 기술 기업 - AI, 반도체, 데이터베이스 전문 스타트업 - VDPU(V ector Data Processing Unit) 기반 벡터 데이터베이스 ‘Seahorse (씨홀스)’, 개인용 LLM 디바이스 ‘Mnemos(니모스)’ 개발 - 검색증강생성(RAG)을 위한 최적화된 하드웨어와 소프트웨어 통합 솔루션 제공 디노티시아는 AI와 데이터 융합 기술을 바탕으로 고성능·저비용의 LLM 솔루션을 제공합니…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C26",
+      "기업명": "주식회사 디퍼아이",
+      "eligibility": {
+        "판정": "확인필요",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "충족",
+          "사유": "디퍼아이는 2018년부터 Seed 단계 투자 유치 이력이 있으며, 최신 투자 라운드도 Seed 단계임이 PDF 투자 이력과 기사에서 확인됨.",
+          "근거ID": [
+            "ELG-C26-01"
+          ]
+        },
+        "G3": {
+          "결과": "충족",
+          "사유": "디퍼아이는 독립적으로 운영 중이며, IPO나 인수합병으로 지배권 이전된 사실이 검색 결과에서 확인되지 않음.",
+          "근거ID": [
+            "ELG-C26-01"
+          ]
+        },
+        "G4": {
+          "결과": "충족",
+          "사유": "AI 반도체 칩 및 모듈을 개발하며, 독자적인 반도체 설계와 경량 딥러닝 추론 기술 보유, NPU·SoC·AI SW·AI IP 설계부터 최적화까지 End-to-End 플랫폼 제공 등 AI가 핵심 기술임이 명확함",
+          "근거ID": [
+            "ELG-C26-03"
+          ]
+        },
+        "사유": "G1: OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함 / G2: 디퍼아이는 2018년부터 Seed 단계 투자 유치 이력이 있으며, 최신 투자 라운드도 Seed 단계임이 PDF 투자 이력과 기사에서 확인됨. / G3: 디퍼아이는 독립적으로 운영 중이며, IPO나 인수합병으로 지배권 이전된 사실이 검색 결과에서 확인되지 않음. / G4: AI 반도체 칩 및 모듈을 개발하며, 독자적인 반도체 설계와 경량 딥러닝 추론 기술 보유, NPU·SoC·AI SW·AI IP 설계부터 최적화까지 End-to-End 플랫폼 제공 등 AI가 핵심 기술임이 명확함",
+        "근거ID": [
+          "ELG-C26-01",
+          "ELG-C26-01",
+          "ELG-C26-03"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C26-01",
+          "출처명": "[Y인사이트] 디퍼아이, FPGA와 AI칩 결합… 글로벌 시장 진출 시동 < 반도체 < 기사본문 - 디일렉(THE ELEC)",
+          "publisher": "www.thelec.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.thelec.kr/news/articleView.html?idxno=36175",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "UPDATE: 2026-09-30 07:36 (수) [ENGLISH](https://www.thelec.net/) [![디일렉(THE ELEC)](https://cdn.thelec.kr/image/logo/printlogo_20251110103032.png)](https://www.thelec.kr) [Y인사이트] 디퍼아이, FPGA와 AI칩 결합… 글로벌 시장 진출 시동 글자크기 설정 가 기사의 본문 내용은 이 글자크기로 변경됩니다. 스크롤 이동 상태바 # [Y인사이트] 디퍼아이, FPGA와 AI칩 결합… 글로벌 시장 진출 시동 ",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C26-02",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 33,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: 2018 에버그린 Seed 250,000천원 | 2023 스프러스홀딩스 Seed 3,000,000천원 | 2024 비공개 개인투자 Seed 500,000천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C26-03",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 33,
+          "확인일": "2026-09-30",
+          "원문발췌": "AI 반도체 칩 및 반도체 모듈 주식회사 디퍼아이 https://www.deeper-i.ai/ EDGE AI FOUNDRY를 선도하는 기업, Deeper-I - 독자적인 반도체 설계 기술과 경량 딥러닝 추론 기술을 보유한 AI 반도체 스타트업 - 자체 개발 SoC(Tachy-BS402) 기반, 스마트 비전·산업 자동화·자율 시스템에 최적 화된 AI 솔루션 제공 - 칩 간 고속 통신이 가능한 X2X 기술로 엣지 환경에서 실시간 연산 및 모듈 확장 지원 - NPU·SoC·AI SW·AI IP 설계부터 최적화까지 End-to-End 플…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C27",
+      "기업명": "주식회사 램쉽",
+      "eligibility": {
+        "판정": "부적격",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "디렉토리북에 투자 이력이 없고 Tavily 최신 검색도 수행하지 않음",
+          "근거ID": []
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "미충족",
+          "사유": "입력 내용은 고속 인터페이스 회로 및 반도체 IP 설계에 관한 것으로 AI 기술 개발이나 AI 기반 제품·서비스 제공이 명확하지 않음",
+          "근거ID": [
+            "ELG-C27-01"
+          ]
+        },
+        "사유": "G1: DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음 / G2: 디렉토리북에 투자 이력이 없고 Tavily 최신 검색도 수행하지 않음 / G3: Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음 / G4: 입력 내용은 고속 인터페이스 회로 및 반도체 IP 설계에 관한 것으로 AI 기술 개발이나 AI 기반 제품·서비스 제공이 명확하지 않음",
+        "근거ID": [
+          "ELG-C27-01"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C27-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 34,
+          "확인일": "2026-09-30",
+          "원문발췌": "SERDES IP (MIPI A-/C- D-PHY) 등 주식회사 램쉽 http://www.ramschip.com/ 고속 인터페이스 회로 전문 반도체 설계 기업 - ADC기반의 고속 인터페이스 회로 설계 기술 보유 - 차량용 고속 인터페이스 회로 설계 기술 보유 - 아날로그 설계 자동화 및 최적화 설계 기술 보유 - 풍부한 양산 경험을 바탕으로 하는 설계 전문가 집단 램쉽은 고속 인터페이스 IP/IC에 특화된 전문성을 갖고 있는 반도체 설계 기업입 니다. 우리는 선을 타고 흐르는 데이터의 이동이 보다 빠르게, 보다 멀리, 보다 안…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C28",
+      "기업명": "주식회사 레지에나",
+      "eligibility": {
+        "판정": "부적격",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요",
+          "근거ID": [
+            "ELG-C28-01"
+          ]
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "미충족",
+          "사유": "입력 내용에서 AI가 제품, 기술, 사업의 핵심으로 명시되지 않음. 주로 의료뷰티용 초음파 기술과 반도체 기반 부품 개발에 집중되어 있음.",
+          "근거ID": [
+            "ELG-C28-02"
+          ]
+        },
+        "사유": "G1: DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음 / G2: 디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요 / G3: Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음 / G4: 입력 내용에서 AI가 제품, 기술, 사업의 핵심으로 명시되지 않음. 주로 의료뷰티용 초음파 기술과 반도체 기반 부품 개발에 집중되어 있음.",
+        "근거ID": [
+          "ELG-C28-01",
+          "ELG-C28-02"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C28-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 35,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: 2017 퓨처플레이(주) Seed 50,000천원 | 2018 KDBC-FP 투자조합 Seed 100,000천원 | 2020~2023 인터밸류 2~3호 혁신창업 투자조합 Bridge 1,500,000천원 | 2023 콜마홀딩스(주) Series A 500,000천원 | 2024 (재)서울경제진흥원 Series A 200,000천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C28-02",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 35,
+          "확인일": "2026-09-30",
+          "원문발췌": "HIFU, LDM, CMUT 주식회사 레지에나 www.reziena.com 의료기술 기반 홈뷰티 혁신 제품 및 기술 뷰티텍 스타트업. ‘Hide No More’란 슬로건으로 고객가치를 실현 1. 피부과 성형외과에서 검증된 의료장비 기술을 혁신적으로 적용한 홈뷰티 디바이스 개발/제조 - HIFU 기술을 이용한 세계최초 카트리지가 없는 올인원 HIFU 홈뷰티 디바이스 개발 및 런창 2. 혁신 기술을 이용한 ODM Business - 혁신 의료기술을 적용한 뷰티고객사향 전문 기기 개발 및 제조 3. 반도체 CMUT 미세가공 공정 기반…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C29",
+      "기업명": "주식회사 보노다임",
+      "eligibility": {
+        "판정": "부적격",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요",
+          "근거ID": [
+            "ELG-C29-01"
+          ]
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "미충족",
+          "사유": "입력 내용에서 AI가 주된 제품·기술·사업으로 확인되지 않음. MEMS 소자 및 시스템반도체 설계 자동화 플랫폼 개발은 있으나 AI 자체를 개발하거나 제공하는 사업으로 명확히 기술되어 있지 않음.",
+          "근거ID": [
+            "ELG-C29-02"
+          ]
+        },
+        "사유": "G1: DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음 / G2: 디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요 / G3: Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음 / G4: 입력 내용에서 AI가 주된 제품·기술·사업으로 확인되지 않음. MEMS 소자 및 시스템반도체 설계 자동화 플랫폼 개발은 있으나 AI 자체를 개발하거나 제공하는 사업으로 명확히 기술되어 있지 않음.",
+        "근거ID": [
+          "ELG-C29-01",
+          "ELG-C29-02"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C29-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 36,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: 2023 ****** Inc.(미국) Seed 157,365천원 | 2023 ****인베스트먼트 Seed 10,925천원 | 2023 개인 투자자 Seed 40,265천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C29-02",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 36,
+          "확인일": "2026-09-30",
+          "원문발췌": "MEMS 소자 주식회사 보노다임 www.bonodime.com 최첨단 MEMS 솔루션으로 미래를 혁신하다 - 마이크로전자기계시스템(MEMS) 제품 스타트업 - 헬스케어, 자동차, 소비자전자기기, 산업용장비등 다양한 분야에 적용가능한 초소형, 고성능장치를설계 - 끊임없는 기술 혁신을 통해 고객의 진화하는 요구에 대응하며, 성능뿐아니라 비용 효율성을동시에 실현 하는 솔루션을 제공 당사는 MEMS(Micro-Eletro-Mechanical System)기술을 이용하여 반도체 소자를 개발하는 기업입니다. MEMS 기술은 각종기계 및 전자…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C30",
+      "기업명": "서클 주식회사",
+      "eligibility": {
+        "판정": "부적격",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "디렉토리북에 투자 이력이 없고 Tavily 최신 검색도 수행하지 않음",
+          "근거ID": []
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "미충족",
+          "사유": "입력 내용은 주문형 반도체 디자인 서비스 및 ASIC 설계 지원에 관한 것으로 AI 기술 개발이나 AI 제품·서비스 제공이 명확하지 않음",
+          "근거ID": [
+            "ELG-C30-01"
+          ]
+        },
+        "사유": "G1: DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음 / G2: 디렉토리북에 투자 이력이 없고 Tavily 최신 검색도 수행하지 않음 / G3: Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음 / G4: 입력 내용은 주문형 반도체 디자인 서비스 및 ASIC 설계 지원에 관한 것으로 AI 기술 개발이나 AI 제품·서비스 제공이 명확하지 않음",
+        "근거ID": [
+          "ELG-C30-01"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C30-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 37,
+          "확인일": "2026-09-30",
+          "원문발췌": "주문형 반도체 디자인 서비스 및 서클 주식회사 www.circling.co.kr 맞춤형 ASIC 설계의 모든 것, CIRCLE이 함께합니다 CIRCLE Design Solutions는 고객의 요구에 최적화된 ASIC 설계 서비스를 제공하는 전문 기업. 서클은 핵심 디자인 서비스를 통해 반도체 설계의 전 과정을 지원합니다. - ASIC 턴키 서비스: 사양 정의부터 설계, 검증, 패키징, 생산 관리까지 전 과정 지원 - 디자인 서비스: 디지털 및 아날로그/혼합 신호 설계, 물리적 설계, 타이밍 분석 등 종합적인 설계 지원 - 디지털…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C31",
+      "기업명": "세미앤칩스",
+      "eligibility": {
+        "판정": "부적격",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "디렉토리북에 투자 이력이 없고 Tavily 최신 검색도 수행하지 않음",
+          "근거ID": []
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "미충족",
+          "사유": "입력 내용에서 AI가 제품이나 기술의 핵심이거나 주된 사업으로 명확히 나타나지 않음. 메모리 IP 자동 생성 컴파일러 플랫폼은 자동화 기술이나 반도체 설계 기술로 보이나 AI 기술 자체를 개발하거나 제공하는 것으로 확인되지 않음.",
+          "근거ID": [
+            "ELG-C31-01"
+          ]
+        },
+        "사유": "G1: DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음 / G2: 디렉토리북에 투자 이력이 없고 Tavily 최신 검색도 수행하지 않음 / G3: Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음 / G4: 입력 내용에서 AI가 제품이나 기술의 핵심이거나 주된 사업으로 명확히 나타나지 않음. 메모리 IP 자동 생성 컴파일러 플랫폼은 자동화 기술이나 반도체 설계 기술로 보이나 AI 기술 자체를 개발하거나 제공하는 것으로 확인되지 않음.",
+        "근거ID": [
+          "ELG-C31-01"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C31-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 38,
+          "확인일": "2026-09-30",
+          "원문발췌": "Embedded Memory IP Solution 세미앤칩스 www.seminchips.com 지능형 반도체 설계를 가속화하는 세계 최고 수준의 메모리 IP 파트너 - 사용자 맞춤형 메모리 IP를 자동으로 생성할 수 있는 컴파일러 플랫폼을 개발하여, 설계 생산성과 품질을 극대화합니다. - 고성능, 저전력, 고신뢰성을 동시에 만족하는 메모리 IP를 다양한 공정 노드 에서 제공합니다. - 고객 요구에 유연하게 대응하는 기술 지원 체계를 바탕으로, 스타트업부터 글로벌 반도체 기업까지 모든 고객의 성공적인 제품 개발을 지원합니다. - 기…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C32",
+      "기업명": "슈프리스주식회사",
+      "eligibility": {
+        "판정": "부적격",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "디렉토리북에 투자 이력이 없고 Tavily 최신 검색도 수행하지 않음",
+          "근거ID": []
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "미충족",
+          "사유": "입력 내용에서 AI가 제품이나 기술의 핵심이거나 주된 사업으로 확인되지 않음. 주로 반도체 전력 관리용 레귤레이터 개발에 집중하며 AI 관련 기술이나 AI 자체를 개발·제공하는 내용이 없음.",
+          "근거ID": [
+            "ELG-C32-01"
+          ]
+        },
+        "사유": "G1: DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음 / G2: 디렉토리북에 투자 이력이 없고 Tavily 최신 검색도 수행하지 않음 / G3: Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음 / G4: 입력 내용에서 AI가 제품이나 기술의 핵심이거나 주된 사업으로 확인되지 않음. 주로 반도체 전력 관리용 레귤레이터 개발에 집중하며 AI 관련 기술이나 AI 자체를 개발·제공하는 내용이 없음.",
+        "근거ID": [
+          "ELG-C32-01"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C32-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 39,
+          "확인일": "2026-09-30",
+          "원문발췌": "Tracking 레귤레이터 슈프리스주식회사 www.supleas.co.kr 슈프리스 - SUPER PLEASURE, SUPER PRESENT! 최고의 기술로 최고의 만족을 선물하겠습니다. - 고용량, 고속화되는 HBM의 품질과 신뢰성을 향상시키는 Test 기술을 선도 - 폭증하는 HBM 시장 및 Test 수요에 적합한 제품 개발 - 소형화 가능한 패키지 개발을 통한 프로브 카드 시장 진입 Tracking 레귤레이터는 1A ~ 4A의 출력전류와 10mV/A 이하의 Transient deviation 전 압(Vdev) 특성을 보유해야…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C33",
+      "기업명": "실리콘스타",
+      "eligibility": {
+        "판정": "부적격",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "디렉토리북에 투자 이력이 없고 Tavily 최신 검색도 수행하지 않음",
+          "근거ID": []
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "미충족",
+          "사유": "입력 내용에서 AI가 제품, 기술, 사업의 핵심이거나 AI를 개발·제공·운영하는 것으로 확인되지 않음. 전력반도체 설계와 반도체 소자 모델링 통합 솔루션 개발이 주된 내용이며 AI 관련 언급 없음.",
+          "근거ID": [
+            "ELG-C33-01"
+          ]
+        },
+        "사유": "G1: DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음 / G2: 디렉토리북에 투자 이력이 없고 Tavily 최신 검색도 수행하지 않음 / G3: Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음 / G4: 입력 내용에서 AI가 제품, 기술, 사업의 핵심이거나 AI를 개발·제공·운영하는 것으로 확인되지 않음. 전력반도체 설계와 반도체 소자 모델링 통합 솔루션 개발이 주된 내용이며 AI 관련 언급 없음.",
+        "근거ID": [
+          "ELG-C33-01"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C33-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 40,
+          "확인일": "2026-09-30",
+          "원문발췌": "DC/DC Power Converter IC 실리콘스타 www.siliconstar.co.kr Innovating the Future of Integrated Circuit Design - PMIC 전문 전력반도체 설계 전문 스타트업 - Display, Charger , Memory 등 다수의 양산 경험을 토대로 Robust한 Design - 공격적인 기술 개발 투자로 선도적인 기술 확보 Siliconstar는 혁신적인 기술을 바탕으로 전력 반도체 설계를 선도하고 있습니다. Mobile, Display, Memory, Charge…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C34",
+      "기업명": "(주)싸이프",
+      "eligibility": {
+        "판정": "부적격",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요",
+          "근거ID": [
+            "ELG-C34-01"
+          ]
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "미충족",
+          "사유": "입력 내용은 반도체 소자 모델링 통합 솔루션과 반도체 IP 개발에 관한 것으로 AI 기술 개발이나 AI가 핵심인 제품·서비스임이 명확하지 않음",
+          "근거ID": [
+            "ELG-C34-02"
+          ]
+        },
+        "사유": "G1: DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음 / G2: 디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요 / G3: Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음 / G4: 입력 내용은 반도체 소자 모델링 통합 솔루션과 반도체 IP 개발에 관한 것으로 AI 기술 개발이나 AI가 핵심인 제품·서비스임이 명확하지 않음",
+        "근거ID": [
+          "ELG-C34-01",
+          "ELG-C34-02"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C34-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 41,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: (혁신스타트업 성장지원 프로그램 스텝업 보증) Pre Seed 300,000천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C34-02",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 41,
+          "확인일": "2026-09-30",
+          "원문발췌": "반도체 소자 모델링 통합 솔루션 (주)싸이프 https://www.saip-solution.com 반도체 설계의 핵심, 모델링을 혁신하다 EDA 통합 솔루션으로 반도체 설계 자동화를 선도하는 ㈜싸이프 - 반도체 디바이스 모델링의 판을 바꾸는 스타트업 - 국내 최초, 반도체 소자 모델링 전 과정을 통합한 원스톱 플랫폼 ‘SIMLAB’ 개발 - 복잡한 사용자 정의 모델까지 지원 가능한 Sub-Circuit Modeling 탑재 - 수입 의존도가 높은 시장에서 국산화 및 해외 진출 가능성 확보 (주)싸이프는 반도체 설계의 출발점인 ‘소…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C35",
+      "기업명": "주식회사 아크칩스",
+      "eligibility": {
+        "판정": "확인필요",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "주식회사 아크칩스의 최신 투자 라운드 정보가 검색 결과에 존재하지 않아 투자 단계 확인이 불가함.",
+          "근거ID": []
+        },
+        "G3": {
+          "결과": "충족",
+          "사유": "주식회사 아크칩스는 독립적으로 운영 중이며, IPO나 인수합병으로 지배권 이전된 사실이 검색 결과에서 확인되지 않음.",
+          "근거ID": [
+            "ELG-C35-01"
+          ]
+        },
+        "G4": {
+          "결과": "충족",
+          "사유": "AI Secure 기술 보유 및 CNN 기반 침입 탐지 시스템 개발이 AI 핵심 기술임이 명확함",
+          "근거ID": [
+            "ELG-C35-02"
+          ]
+        },
+        "사유": "G1: OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함 / G2: 주식회사 아크칩스의 최신 투자 라운드 정보가 검색 결과에 존재하지 않아 투자 단계 확인이 불가함. / G3: 주식회사 아크칩스는 독립적으로 운영 중이며, IPO나 인수합병으로 지배권 이전된 사실이 검색 결과에서 확인되지 않음. / G4: AI Secure 기술 보유 및 CNN 기반 침입 탐지 시스템 개발이 AI 핵심 기술임이 명확함",
+        "근거ID": [
+          "ELG-C35-01",
+          "ELG-C35-02"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C35-01",
+          "출처명": "한국거래소",
+          "publisher": "www.krx.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.krx.co.kr",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "* [본문 바로가기](#body) * [주 메뉴 바로가기](#topmenu) Korea Value-up 3,332.20 ▲ 15.99 (0.48) KOSPI 7,080.92 ▲ 63.01 (0.90) KOSPI 200 1,126.12 ▲ 12.82 (1.15) KOSDAQ 844.48 ▲ 10.10 (1.21) KOSDAQ 150 1,426.17 ▲ 18.43 (1.31) KRX 300 4,882.87 ▲ 55.77 (1.16) * ![2026 건전증시포럼. 여러분을 초대합니다. 일시 : 2026년 10월 1일(목) 15:00, 장",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C35-02",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 42,
+          "확인일": "2026-09-30",
+          "원문발췌": "Analog/Mixed-Signal/RF 반도체 IP 주식회사 아크칩스 www.arkchips.com 혁신적인 아날로그/Mixed-Signal IP 공급업체인 ARKCHIPS는 당신의 성공을 위한 소중한 파트너가 되겠습니다. ㈜아크칩스는 다양한 반도체 시스템에 필요한 Analog/Mixed-Signal IP를 선행 개 발하여 국내외 팹리스, 디자인하우스에 공급하기 위해 TSMC, GF, SMIC 등 파운드 리의 다양한 Process/Node/Tech의 Analog/Mixed-Signal/RF IP를 개발하고 있으 며, ARKCHI…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C36",
+      "기업명": "(주)에이와이이노베이티브",
+      "eligibility": {
+        "판정": "확인필요",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "검색 결과에 (주)에이와이이노베이티브의 최신 투자 라운드 정보가 신뢰할 만한 출처에서 확인되지 않음.",
+          "근거ID": [
+            "ELG-C36-01"
+          ]
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "검색 결과에 (주)에이와이이노베이티브의 IPO, 인수합병 등 Exit 관련 신뢰할 만한 최신 근거가 없음.",
+          "근거ID": [
+            "ELG-C36-01"
+          ]
+        },
+        "G4": {
+          "결과": "충족",
+          "사유": "AI 기반 차량 보안 반도체를 개발하여 AI가 제품의 핵심 기능임이 명확함",
+          "근거ID": [
+            "ELG-C36-02"
+          ]
+        },
+        "사유": "G1: OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함 / G2: 검색 결과에 (주)에이와이이노베이티브의 최신 투자 라운드 정보가 신뢰할 만한 출처에서 확인되지 않음. / G3: 검색 결과에 (주)에이와이이노베이티브의 IPO, 인수합병 등 Exit 관련 신뢰할 만한 최신 근거가 없음. / G4: AI 기반 차량 보안 반도체를 개발하여 AI가 제품의 핵심 기능임이 명확함",
+        "근거ID": [
+          "ELG-C36-01",
+          "ELG-C36-01",
+          "ELG-C36-02"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C36-01",
+          "출처명": "[반도체 유니콘을 향해]〈16〉에이와이이노베이티브, AI 기반 차량 보안 반도체 개발 - 전자신문",
+          "publisher": "www.etnews.com",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.etnews.com/20250924000038",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[신문보기](https://info.etnews.com/epaper.html) [구독신청](https://info.etnews.com/sub_2_1.html) [로그인](https://member.etnews.com/member/login.html?return_url=https://www.etnews.com)[회원가입](https://member.etnews.com/member/join_index.html) [전자](/news/section.html?id1=06) [가전](/news/section.html?id1=06&id2=063",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C36-02",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 43,
+          "확인일": "2026-09-30",
+          "원문발췌": "AI 기반 차량 보안 반도체 (주)에이와이이노베이티브 www.ayinno.com 차량 CAN BUS 보안 분야의 안철수연구소가 되겠습니다. 차량 CAN Bus 보안, 왜 지금 시급한가? - 취약 구조 : 인증·암호화가 없는 CAN Bus는 해킹에 매우 취약 - 실시간 대응 난제 : 기존 SW-기반 보안은 μs 단위 메시지를 즉시 차단하지 못함 - 규제 압박 : UN WP.29 R155 → 실시간 해킹 감지·차단이 없으면 판매 금지 당사는 세계 최초로 CAN-Bus 해킹을 실시간으로 감지하고 차단하는 AI 보안 반도 체를 개발하여,…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C37",
+      "기업명": "에이코닉",
+      "eligibility": {
+        "판정": "부적격",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "디렉토리북에 투자 이력이 없고 Tavily 최신 검색도 수행하지 않음",
+          "근거ID": []
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "미충족",
+          "사유": "입력 내용에서 AI가 제품이나 기술의 핵심이거나 주된 사업으로 확인되지 않음. OLED향 터치센싱 IC 및 집적회로 설계 중심이며 AI 관련 기술 언급 없음.",
+          "근거ID": [
+            "ELG-C37-01"
+          ]
+        },
+        "사유": "G1: DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음 / G2: 디렉토리북에 투자 이력이 없고 Tavily 최신 검색도 수행하지 않음 / G3: Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음 / G4: 입력 내용에서 AI가 제품이나 기술의 핵심이거나 주된 사업으로 확인되지 않음. OLED향 터치센싱 IC 및 집적회로 설계 중심이며 AI 관련 기술 언급 없음.",
+        "근거ID": [
+          "ELG-C37-01"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C37-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 44,
+          "확인일": "2026-09-30",
+          "원문발췌": "OLED향 터치센싱 IC 에이코닉 https://www.aconicsemi.com/ 성능과 효율, 그 정점에 서기 위해 우리는 회로에 혁신을 담습니다. - 집적회로 설계 스타트업 - 디스플레이 드라이버 IC 및 OLED향 터치 디스플레이 IC 개발 에이코닉은 2016년에 창업한 광주과학기술원 연구실 창업기업으로 집적회로 개 발 및 연구를 주업으로 삼고 있습니다. 에이코닉은 디스플레이 IC 솔루션 개발업체 인 수요기업에 핵심 IP/IC를 공급하는 역할을 하고 있습니다. 또한, 해외기업으로 부터 PMIC의 IP개발을 의뢰받아 진행 중…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C38",
+      "기업명": "(주)와이젯",
+      "eligibility": {
+        "판정": "확인필요",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "투자 유치 이력에 2023년 Series A 투자 라운드가 확인됨.",
+          "근거ID": []
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "검색 결과에 (주)와이젯의 IPO, 인수합병 등 Exit 관련 정보가 없고, 독립적으로 운영 중임을 추정할 수 있음.",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "충족",
+          "사유": "AI 기반 영상처리 기술이 핵심인 8K급 초고화질 영상 처리 AI 반도체 및 무선 통신 칩을 개발·사업화하고 있음",
+          "근거ID": [
+            "ELG-C38-02"
+          ]
+        },
+        "사유": "G1: OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함 / G2: 투자 유치 이력에 2023년 Series A 투자 라운드가 확인됨. / G3: 검색 결과에 (주)와이젯의 IPO, 인수합병 등 Exit 관련 정보가 없고, 독립적으로 운영 중임을 추정할 수 있음. / G4: AI 기반 영상처리 기술이 핵심인 8K급 초고화질 영상 처리 AI 반도체 및 무선 통신 칩을 개발·사업화하고 있음",
+        "근거ID": [
+          "ELG-C38-02"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C38-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 45,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: 2016 KNET Pre A 1,000,000천원 | 2023 L&S Series A 1,000,000천원 | 2023 DVP Series A 1,000,000천원 | 2023 대성창투 외 2 Series A 2,800,000천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C38-02",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 45,
+          "확인일": "2026-09-30",
+          "원문발췌": "60GHz 무선 기반 영상 처리 및 (주)와이젯 www.wise-jet.com 와이젯은 Real world AI 시대를 위한 무지연 고속 전송 무선 기술을 CMOS 칩으로 실현하였습니다. - 8K급 초고화질, 초고용량 영상신호를 무지연 무손실로 무선 통신이 가능한 AI 영상처리 반도체 - 60GHz 기반 초고화질 영상의 무선 통신을 위한 QAM CMOS RF - 60GHz 기반 Multi-lane을 지원하는 근접거리 커넥터 무선 AiP 칩 4차 산업혁명 시대의 초연결, 초고화질, 초고용량 데이터 전송을 위한 기존 유선 커넥터 및…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C39",
+      "기업명": "(주)원세미콘",
+      "eligibility": {
+        "판정": "부적격",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요",
+          "근거ID": [
+            "ELG-C39-01"
+          ]
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "미충족",
+          "사유": "입력 내용은 AI용 저전력 고성능 메모리 인터페이스 칩 개발에 집중되어 있으며, AI 자체를 개발하거나 AI 모델·소프트웨어를 제공하는 내용이 없음. AI는 제품의 핵심 기능으로 명확히 언급되지 않음.",
+          "근거ID": [
+            "ELG-C39-02"
+          ]
+        },
+        "사유": "G1: DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음 / G2: 디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요 / G3: Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음 / G4: 입력 내용은 AI용 저전력 고성능 메모리 인터페이스 칩 개발에 집중되어 있으며, AI 자체를 개발하거나 AI 모델·소프트웨어를 제공하는 내용이 없음. AI는 제품의 핵심 기능으로 명확히 언급되지 않음.",
+        "근거ID": [
+          "ELG-C39-01",
+          "ELG-C39-02"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C39-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 46,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: 2019년~2025년 다수 Series D 비공개",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C39-02",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 46,
+          "확인일": "2026-09-30",
+          "원문발췌": "AI용 저전력, 고성능 서버향과 PC향 (주)원세미콘 http://www.1semicon.com AI용 저전력. 고속의 서버향과 PC향 메모리 반도체 시장을 목표로, 고성능 컴퓨터용 메모리 시스템 구현에 필요한 인터페이스 칩 개발 - 메모리 인터페이스 칩을 전문으로 개발·생산·판매하는 팹리스 기업 - 서버용 DIMM 핵심 부품인 RCD(Registering Clock Driver) 국산화 개발 성공 - 저전력·고속 인터페이스 기술로 메모리 산업의 글로벌 경쟁력 강화 - 삼성전자·SK하이닉스 중심의 글로벌 DRAM 산업 내 국산화…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C40",
+      "기업명": "(주)유엑스팩토리",
+      "eligibility": {
+        "판정": "확인필요",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "검색 결과에 (주)유엑스팩토리의 최신 투자 라운드 정보가 없음",
+          "근거ID": []
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "검색 결과에 (주)유엑스팩토리의 IPO, 인수합병, 또는 독립 운영 여부에 관한 신뢰할 만한 최신 근거가 없음",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "충족",
+          "사유": "AI NPU 설계, End-Device AI 솔루션, Edge AI 반도체 설계 및 AI 가속 솔루션 제공 등 AI가 핵심 기술 및 사업임이 명확함",
+          "근거ID": [
+            "ELG-C40-01"
+          ]
+        },
+        "사유": "G1: OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함 / G2: 검색 결과에 (주)유엑스팩토리의 최신 투자 라운드 정보가 없음 / G3: 검색 결과에 (주)유엑스팩토리의 IPO, 인수합병, 또는 독립 운영 여부에 관한 신뢰할 만한 최신 근거가 없음 / G4: AI NPU 설계, End-Device AI 솔루션, Edge AI 반도체 설계 및 AI 가속 솔루션 제공 등 AI가 핵심 기술 및 사업임이 명확함",
+        "근거ID": [
+          "ELG-C40-01"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C40-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 47,
+          "확인일": "2026-09-30",
+          "원문발췌": "온센서 AI NPU, End-Device AI 솔루션, (주)유엑스팩토리 www.uxf.ai End-device AI 반도체 솔루션으로, 기술의 진정성과 지속가능성을 세상에 더합니다. - E dge AI 반도체와 빅데이터 및 이미지 분석 솔루션을 전문으로 하는 팹리스 기업 - Edge-device용 AI 반도체 설계와 도메인 특화 FPGA/ASIC 솔루션 개발 - 유전체·의료 영상 등 바이오 빅데이터를 위한 멀티모달 분석 플랫폼 보유 - 저전력·고성능 AI 칩, 맞춤형 시스템 통합, 데이터 AI 분석 등 차별화된 기술력 확보 스마…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C41",
+      "기업명": "이엠코어텍(주)",
+      "eligibility": {
+        "판정": "부적격",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요",
+          "근거ID": [
+            "ELG-C41-01"
+          ]
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "미충족",
+          "사유": "능동 EMI 필터 IC 기술은 전자파 저감 솔루션에 관한 것으로 AI 기술 개발이나 AI 기반 제품·서비스 제공과 관련된 내용이 없음",
+          "근거ID": [
+            "ELG-C41-02"
+          ]
+        },
+        "사유": "G1: DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음 / G2: 디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요 / G3: Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음 / G4: 능동 EMI 필터 IC 기술은 전자파 저감 솔루션에 관한 것으로 AI 기술 개발이나 AI 기반 제품·서비스 제공과 관련된 내용이 없음",
+        "근거ID": [
+          "ELG-C41-01",
+          "ELG-C41-02"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C41-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 48,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: 2018 선보엔젤파트너스 Seed 100,004천원 | ㈜이디리서치, 라이트하우스컴바인인베스트㈜ Series A 2,048,670천원 | 2023 ㈜모비딕벤처스 Series A 999,855천원 | 2025 산업은행, 뮤렉스파트너스, 라이트하우스컴바인인베스트㈜ Series B 5,999,997천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C41-02",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 48,
+          "확인일": "2026-09-30",
+          "원문발췌": "능동 EMI 필터 이엠코어텍(주) https://www.emcoretech.com/ The World’s First Active EMI Filter IC Solution - EMI(전자파 저감) 종합 솔루션 연구·개발 스타트업 - 세계 최초로 기존 수동형 EMI 필터를 IC 기반의 능동형 필터로 대체, 가격·면적 등 소비자 에게 고부가가치 제공 - 전도성 노이즈 저감 솔루션뿐 아니라, 누설전류 제거, 전자파 노이즈 관제 솔루션 등으로 사업을 다변화하며, 고객의 다양한 EMI 문제를 종합적으로 해결할 수 있는 역량을 확보 이엠코어텍…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C42",
+      "기업명": "주식회사 지에버",
+      "eligibility": {
+        "판정": "부적격",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요",
+          "근거ID": [
+            "ELG-C42-01"
+          ]
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "미충족",
+          "사유": "입력 내용에서 AI가 제품, 기술, 사업의 핵심으로 명확히 언급되지 않음. 그래핀, 반도체식 센서, 환경 및 바이오 센서 개발이 주된 사업이며 AI 관련 기술이나 AI 모델, AI 플랫폼에 대한 언급이 없음.",
+          "근거ID": [
+            "ELG-C42-02"
+          ]
+        },
+        "사유": "G1: DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음 / G2: 디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요 / G3: Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음 / G4: 입력 내용에서 AI가 제품, 기술, 사업의 핵심으로 명확히 언급되지 않음. 그래핀, 반도체식 센서, 환경 및 바이오 센서 개발이 주된 사업이며 AI 관련 기술이나 AI 모델, AI 플랫폼에 대한 언급이 없음.",
+        "근거ID": [
+          "ELG-C42-01",
+          "ELG-C42-02"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C42-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 49,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: 2018.05 인포뱅크 Seed 15,000천원 | 2024.09 티인베스트먼트 Series A 990,000천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C42-02",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 49,
+          "확인일": "2026-09-30",
+          "원문발췌": "그래핀, 대기·환경·바이오센서, 주식회사 지에버 www.giever.com 저가형 산업용 그래핀 친환경 제조 원천 기술이 적용된 대기·환경·바이오 센서 개발 - 대기 오염의 주요 영향을 주는 요소 중의 하나인 유해가스는 인간의 건강과 생명에 막대한 지장을 초래하고 있어 이를 사전 예측 및 관리가 대단히 중요합 니다. - 신종질병의 출현, 코로나와 같은 감염질병의 유행 및 인구 고령화로 의료산업 시장이 급격히 성장하고 있습니다. 특히 최근 치료에서 진단/예방으로 의료 산업 패러다임이 변화됨에 따라 질병을 조기에 진단하는 기술이 더욱…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C43",
+      "기업명": "케이앤씨아날로그",
+      "eligibility": {
+        "판정": "부적격",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "디렉토리북에 투자 이력이 없고 Tavily 최신 검색도 수행하지 않음",
+          "근거ID": []
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "미충족",
+          "사유": "입력 내용에서 AI가 제품, 기술, 사업의 핵심이거나 AI를 개발·제공·운영하는 것으로 확인되지 않음. 주된 기술은 아날로그 IP(PLL, ADC)와 광 아이솔레이터 칩 기술이며 AI 관련 언급이 없음.",
+          "근거ID": [
+            "ELG-C43-01"
+          ]
+        },
+        "사유": "G1: DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음 / G2: 디렉토리북에 투자 이력이 없고 Tavily 최신 검색도 수행하지 않음 / G3: Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음 / G4: 입력 내용에서 AI가 제품, 기술, 사업의 핵심이거나 AI를 개발·제공·운영하는 것으로 확인되지 않음. 주된 기술은 아날로그 IP(PLL, ADC)와 광 아이솔레이터 칩 기술이며 AI 관련 언급이 없음.",
+        "근거ID": [
+          "ELG-C43-01"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C43-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 50,
+          "확인일": "2026-09-30",
+          "원문발췌": "PLL, ADC IP 케이앤씨아날로그 http://www.kncanalog.com 고객이 원하는 Analog IP 공급 검증된 기술력으로 필요한 솔루션을 제공합니다. - 고성능 혼성신호 Analog IP 스타트업 - 실리콘 검증완료한 PLL, ADC등 필수 Analog IP 보유 - 고객이 원하는 공정과 사양으로 최단기간내 포팅-아날로그-디지털 혼성 신호 IP설계 검증 및 Delivery 최고수준 역량 케이앤씨 아날로그는 고객사가 원하시는 AnalogIP를 최단기간내에 제공해 드립니다. PLL, ADC등 실리콘 검증된 다양한 고성…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C44",
+      "기업명": "(주)포토니솔",
+      "eligibility": {
+        "판정": "부적격",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요",
+          "근거ID": [
+            "ELG-C44-01"
+          ]
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음",
+          "근거ID": []
+        },
+        "G4": {
+          "결과": "미충족",
+          "사유": "기업의 주된 기술과 사업은 실리콘 집적형 광 아이솔레이터 칩 및 광자집적회로 개발로, AI 프로세서나 AI 모델 개발과 직접 관련되지 않음. AI 관련 내용은 정보량 증가와 AI 컴퓨터 기술 부상에 따른 광기술 중요성 언급에 그침.",
+          "근거ID": [
+            "ELG-C44-02"
+          ]
+        },
+        "사유": "G1: DART 조회를 하지 않아 현재 상장 여부를 확인할 수 없음 / G2: 디렉토리북에 투자 행이 있으나 2025년 자료라 현재 최신 라운드는 외부 확인 필요 / G3: Tavily 검색을 하지 않아 인수·합병 또는 Exit 여부를 확인할 수 없음 / G4: 기업의 주된 기술과 사업은 실리콘 집적형 광 아이솔레이터 칩 및 광자집적회로 개발로, AI 프로세서나 AI 모델 개발과 직접 관련되지 않음. AI 관련 내용은 정보량 증가와 AI 컴퓨터 기술 부상에 따른 광기술 중요성 언급에 그침.",
+        "근거ID": [
+          "ELG-C44-01",
+          "ELG-C44-02"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C44-01",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 51,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: 2021 기술보증기금 Seed 300,000천원 | 2022 에이아이엔젤클럽 외 Seed 420,000천원 | 2023 한양대 기술지주사 외 Pre A 700,000천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C44-02",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 51,
+          "확인일": "2026-09-30",
+          "원문발췌": "실리콘 집적형 광 아이솔레이터 칩 (주)포토니솔 https://www.photonisol.com/ 21세기 광자시대를 이끌어 갈 핵심 실리콘 포토닉스 소자 기업 - 세계적으로 실용화하지 못한 광 아이솔레이터 칩을 세계 선두적으로 상용화하는 기업 - 광 아이솔레이터 칩을 기반으로 광자집적회로와 차세대 반도체 산업 선도 추진 ㈜포토니솔은 세계적으로 지난 50년 이상 실용화를 하지 못한 광 아이솔레이터 칩 기술 에 대해 실용성이 높은 자체 특허 기술로 세계 최초로 상용화를 추진하고 있습니다. 근래에 들어와 기하급수적으로 증가하고 있는…",
+          "chunk_id": null
+        }
+      ]
+    },
+    {
+      "company_id": "C45",
+      "기업명": "하이퍼비주얼에이아이",
+      "eligibility": {
+        "판정": "확인필요",
+        "G1": {
+          "결과": "확인불가",
+          "사유": "OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "충족",
+          "사유": "투자 이력에 2025년 케이그라운드 Seed 단계 투자 3억원이 확인되어 최신 투자 라운드가 Seed 단계임이 확인됨.",
+          "근거ID": [
+            "ELG-C45-01"
+          ]
+        },
+        "G3": {
+          "결과": "충족",
+          "사유": "검색 결과에 IPO, 인수합병 등 Exit 관련 정보가 없고, 독립적으로 운영 중임이 확인됨.",
+          "근거ID": [
+            "ELG-C45-01",
+            "ELG-C45-02"
+          ]
+        },
+        "G4": {
+          "결과": "충족",
+          "사유": "메인아이템이 인공지능 프로세서이며, 엣지 디바이스용 하이브리드 AI 프로서 개발과 AI 모델 및 프레임워크 개발을 명확히 기술함",
+          "근거ID": [
+            "ELG-C45-04"
+          ]
+        },
+        "사유": "G1: OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함 / G2: 투자 이력에 2025년 케이그라운드 Seed 단계 투자 3억원이 확인되어 최신 투자 라운드가 Seed 단계임이 확인됨. / G3: 검색 결과에 IPO, 인수합병 등 Exit 관련 정보가 없고, 독립적으로 운영 중임이 확인됨. / G4: 메인아이템이 인공지능 프로세서이며, 엣지 디바이스용 하이브리드 AI 프로서 개발과 AI 모델 및 프레임워크 개발을 명확히 기술함",
+        "근거ID": [
+          "ELG-C45-01",
+          "ELG-C45-01",
+          "ELG-C45-02",
+          "ELG-C45-04"
+        ]
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C45-01",
+          "출처명": "하이퍼비주얼에이아이(AI 반도체) - 기업정보 | 투자, 매출, 기업가치 - THE VC",
+          "publisher": "thevc.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://thevc.kr/hypervisualai",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[![Image 1: The VC logo](https://thevc.kr/images/cis/thevc_logo_white.png)](https://thevc.kr/) [홈](https://thevc.kr/)[통합검색](https://thevc.kr/integrated-search/overview)[플랜/가격](https://thevc.kr/pricing)[리포트](https://thevc.kr/discussions) 스타트업 찾기 [스타트업](https://thevc.kr/browse/startups)[투자/M&A](https:",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C45-02",
+          "출처명": "하이퍼비주얼 AI - HypervisualAI",
+          "publisher": "hypervisualai.com",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://hypervisualai.com",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[Skip to content](#content) [![](https://hypervisualai.com/wp-content/uploads/2024/02/HVAI_logo2.png)](https://hypervisualai.com) * [Home](https://hypervisualai.com/) * [About](https://hypervisualai.com/about/) * [Business](https://hypervisualai.com/business/) * [Technology](https://hypervisualai.co",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C45-03",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 52,
+          "확인일": "2026-09-30",
+          "원문발췌": "투자유치이력: 2025 케이그라운드 Seed 300.000천원",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C45-04",
+          "출처명": "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권",
+          "publisher": null,
+          "pub_year": 2025,
+          "source_type": "기관 보고서",
+          "url": null,
+          "source_page": 52,
+          "확인일": "2026-09-30",
+          "원문발췌": "인공지능 프로세서 하이퍼비주얼에이아이 www.hypervisualai.com 엣지 디바이스용 GPNPU 하이브리드 AI 프로세서로 온디바이스 AI를 선도합니다. - 엣지 디바이스용 고성능 저전력 인공지능 프로세서 GPNPU 개발 - 엣지 디바이스에서 운용 가능한 경량 Vision AI 모델 및 프레임워크 개발 - GPU, NPU 통합 컴파일러 제공 하이퍼비주얼에이아이는 인공지능 프로세서와 해당 프로세서에서 구동 가능한 인 공지능 모델 및 프레임워크를 개발하는 스타트업입니다. 엣지 디바이스용 GPNPU 인공지능 프로세서와 다양한 인…",
+          "chunk_id": null
+        }
+      ]
+    }
+  ]
+}
