@@ -1,0 +1,32 @@
+{
+  "ucie": {
+    "file": "07_UCIe_3.0.pdf",
+    "output_page": 1,
+    "source_page": 1,
+    "text": "UCIe 3.0 addresses this demand by increasing the maximum data \nrate from 32 GT/s to 64 GT/s (as well as adding support for 48GT/s). This enhancement ensures that"
+  },
+  "cxl": {
+    "file": "08_CXL_4.0.pdf",
+    "output_page": 2,
+    "source_page": 2,
+    "text": "Figure 1: Bundled Port Between Host and Type 1/2 Device with CXL 4.0. Assuming a x16 link at 128 GT/s, the figure depicts 768 \nGB/s BW in each direction allowing for a total of 1.536 TB/s total BW between the device and CPU."
+  },
+  "irds": {
+    "file": "02_AI_컴퓨팅.pdf",
+    "output_page": 3,
+    "source_page": 7,
+    "text": "System scaling considers the co-integration of logic, memory and IO solutions bringing the following targets: \n• TOPS (Tera Operations per Second): Throughput  \n• TOPS/W (TOPS per Watt): Energy efficiency  \n• TOPSxTOPS/W/Area is an indicator of  Energy-Area-efficient performance (aka EDP: Energy Delay Product  at \nUnit Area) \n• 2.0-2.4x scaling of TOPSxTOPS/W/Area for node scaling per frame, per inference, per training, and/or per pocket"
+  },
+  "wsts": {
+    "file": "13_WSTS_시장전망.pdf",
+    "output_page": 1,
+    "source_page": 1,
+    "text": "Following exceptionally strong results in late 2025 and early 2026,\nthe global semiconductor market is now projected to grow 90\npercent in 2026, reaching USD 1.51 trillion."
+  },
+  "yield": {
+    "file": "11_수율_검사.pdf",
+    "output_page": 3,
+    "source_page": 29,
+    "text": "Challenge #7  Liquid Chemicals: particles > critical \nsize (#/ml) \nNeed reliable monitoring of particles <10 nm."
+  }
+}
