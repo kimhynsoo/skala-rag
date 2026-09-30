@@ -222,3 +222,17 @@ flowchart LR
 - **C**: `web_search()`는 함수 호출로 도구 생성 (`tools=[web_search(), dart_listing_status]`). DART는 첫 호출 때 회사 목록(약 10만 건)을 내려받아 `.cache/dart/`에 둔다. `.env`에 `TAVILY_API_KEY`, `DART_API_KEY` 필요.
 - **D**: 실측 결과 검색은 맞게 되지만 **어느 표준과 비교할지**에 따라 판정이 갈린다 (64 GT/s는 UCIe 대비 "동등", CXL 대비 "하회"). 프롬프트에 "기업 제품 유형에 맞는 기준 표준을 명시하고 비교하라"는 규칙을 넣을 것. 질의는 한국어+영문 병기.
 - **E**: 투자 판단은 도구 없이 `run_agent(..., InvestmentJudgement)` → `total_score(j.scorecard.scores())` → `decide(...)`. `scorecard.unknown_items()`로 순위 3순위 기준값을 얻는다.
+
+### 실제 코퍼스 점검 결과 (B, `uv run python -m eval.check_corpus`)
+
+| 항목 | 실측 | 비고 |
+|---|---|---|
+| 청크 수 | **790** (+ 기업 레코드 45) | 설계 3-4 추정 627 → 노션 갱신 필요 |
+| 토큰 수 (bge-m3) | 중앙값 114 / p95 178 / 최대 346 | **512 초과 0건** — 잘림 없음 (B3 완료) |
+| 색인 시간 | 최초 10.5초 / 캐시 재로드 14ms | MPS 기준 |
+| 질의 지연 | 약 30ms | 45개사 × 질의 수를 곱해도 부담 없음 |
+
+**조치 필요**
+- **A**: `manifest.json`의 07(UCIe 3.0)·08(CXL 4.0)에 `pub_year`가 없음 → 49개 청크의 REFERENCE 연도가 빠진다.
+- **A**: 50자 미만 청크 46개 (머리말·쪽번호·그림 제목, 예: `02-0002 "MORE MOORE TEAM"`). 버리거나 앞 청크에 합칠 것 — 검색 상위에 끼면 근거 자리를 차지한다.
+- **D**: 한국어만으로 질의하면 교차언어 검색이 약하다. "메모리 확장 캐시 일관성 인터페이스" → UCIe가 1~3위, 같은 질의에 "CXL memory expansion cache coherent"를 붙이면 상위 5개 모두 CXL. **프롬프트에서 질의에 영문 기술 용어를 반드시 병기**하게 할 것.
