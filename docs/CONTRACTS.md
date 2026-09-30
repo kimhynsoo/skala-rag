@@ -274,7 +274,9 @@ RAG 근거ID는 검색 도구가 결과에 `[TEC-02-0007]`처럼 붙여 LLM에 �
 
 ## 4. LLM·도구 사용 패턴 (교재 10-Agent 방식)
 
-모든 LLM 에이전트는 `llm.run_agent()` 하나로 호출한다. `create_agent` + `ToolStrategy(Pydantic 모델)` 조합이라 **LLM이 도구를 스스로 골라 쓰고, 마지막 출력은 스키마 형식으로 강제**된다.
+LLM 모델은 `llm.get_llm()`을 공유한다(60초 timeout, 최대 2회 재시도). 도구를 선택하는 D 에이전트는 `llm.run_agent()`의 `create_agent` + `ProviderStrategy(Pydantic 모델, strict=True)`를 사용하고 내부 반복을 12단계로 제한한다. C/E와 전처리의 직접 구조화 호출은 같은 모델에 `with_structured_output(..., method="json_schema", strict=True)`를 적용한다. 임의 키 dict 대신 `NamedValue`·`CompareRow`처럼 필드를 명시한 모델을 사용한다.
+
+D의 구조화 파싱 실패는 전체 호출을 한 번만 재시도한다. 끝내 실패하거나 미등록 근거를 인용하면 모델 분석을 폐기하고 근거 불충분·미확인정보를 반환해 기존 graph 재검색 분기로 넘긴다. 다른 예외는 오류 경로를 유지한다. E의 항목 채점은 3회 병렬 실행해 성공한 결과의 중앙값으로 집계한다.
 
 ```python
 from llm import load_prompt, run_agent
@@ -294,7 +296,7 @@ def run(state):
 | 에이전트 | 출력 스키마 | 도구 |
 |---|---|---|
 | ① 후보 적재 (A) | `CompanyRecord` | 없음 (페이지 텍스트를 직접 입력) |
-| ② 적격성 (C) | `Eligibility` — `판정`은 자동 계산 | `dart_listing_status`, `web_search()` |
+| ② 적격성 (C) | `Eligibility` — `판정`은 자동 계산 | 사전 실행한 DART·Tavily 결과 JSON (입력 해시·14일 검사) |
 | ③ 기술 요약 (D) | `TechnologyAnalysis` | `search_tech_docs` |
 | ④ 시장성 (D) | `MarketAnalysis` | `search_market_docs` |
 | ⑤ 경쟁사 (C) | `CompetitorAnalysis` | `search_tech_docs`, `search_market_docs`, `web_search()` |
@@ -303,6 +305,8 @@ def run(state):
 - **클래스명은 영문**(OpenAI 함수명 규칙), **필드명은 한글 계약 키**. 새 모델을 추가해도 `tests/test_tools.py`가 규칙 위반을 잡는다.
 - `web_search()`는 함수 호출로 도구를 만든다 (TAVILY_API_KEY가 없어도 import는 되도록).
 - 실측 교훈: 도구 설명(docstring)이 곧 LLM의 사용 설명서다. `sub_domain` 의미를 적기 전에는 LLM이 필터를 잘못 골라 정답 문서를 놓쳤다.
+
+국내 매출(천원)과 해외 매출(USD 등)은 환산 근거 없이 합산하지 않는다. 단위가 달라 합산할 수 없거나 실적·투자금이 미확인인 경우 E2/E3는 확인불가 2점을 사용한다. 실제 없음(N/A)과 구별한다. RAG 재조회는 원래 TEC-/MKT- ID를 보존하며 새 웹 출처만 CMP- ID를 발급한다. 외부 조사 JSON의 저장 위치는 `data/processed/`이고 후보 원천은 `companies.json` 하나다.
 
 ## 5. 가짜 데이터로 먼저 개발하기
 

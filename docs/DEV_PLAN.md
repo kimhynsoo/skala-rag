@@ -4,6 +4,8 @@
 
 마감: 개발 산출물(GitHub + `RAG-Output_울산-4반_{이름}.pdf`) **DAY 3 15:00**
 
+2026-09-30 구현 현황: Chroma+bge-m3 하이브리드 검색, 790개 기술·시장 청크, 45개 후보 입력 통일, strict 구조화 출력·공통 timeout, 외부 캐시 유효성 검사, Markdown/JSON/PDF 출력이 구현되어 있다. 아래 레인 표는 원래 작업 계획이다. 5개사 수동 채점 캘리브레이션·Contributors 역할 확정·발표 자료는 별도 완료 증빙이 필요하다.
+
 ---
 
 ## 0. 공통 규칙
@@ -212,7 +214,7 @@ flowchart LR
 | 벡터 저장소 | FAISS → **Chroma** (`langchain-chroma`). torch와 faiss의 OpenMP 충돌로 macOS에서 프로세스가 죽는 문제 ([TROUBLESHOOTING.md](TROUBLESHOOTING.md)) | `faiss`·`langchain_community.vectorstores.FAISS`를 다시 쓰지 말 것 |
 | 도구 정의 | `tools/retrieval.py`(B): `search_tech_docs`, `search_market_docs` / `tools/web.py`·`tools/dart.py`(C 초안): `web_search()`, `dart_listing_status` | 과제 실습 목표 "목적에 맞는 도구 정의" 충족. LLM이 도구를 스스로 호출 |
 | 출력 스키마 | `schemas.py` — CONTRACTS 3장 전체를 Pydantic 모델로. **클래스명 영문, 필드명 한글** | 에이전트 출력은 `result.model_dump()`로 State에 넣는다 |
-| LLM 호출 | `llm.run_agent(프롬프트, 입력, 스키마, 도구)` 하나로 통일 (교재 10-Agent의 `create_agent` + `ToolStrategy`) | 호출 예시는 [CONTRACTS.md › 4](CONTRACTS.md#4-llm도구-사용-패턴-교재-10-agent-방식) |
+| LLM 호출 | 공통 `get_llm()` + strict 출력. 도구 사용은 `run_agent`의 `ProviderStrategy`, 직접 출력은 `json_schema` | 호출 예시는 [CONTRACTS.md › 4](CONTRACTS.md#4-llm도구-사용-패턴-교재-10-agent-방식) |
 | RAG 근거ID | `{TEC|MKT}-{chunk_id}` (예: `TEC-08-0001`). 검색 도구가 결과에 붙여 LLM이 그대로 인용 | `to_evidence(artifacts)`로 근거 레코드 생성 |
 | 판정 규칙 | 적격성 `판정`과 "확인 불가=2점"은 스키마 검증기가 강제 (LLM 값 무시) | E는 `scorecard.scores()`를 `total_score()`에 넣으면 됨 |
 

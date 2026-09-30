@@ -2,6 +2,13 @@
 
 문제를 해결하면 아래 형식(증상 → 원인 → 해결 → 하지 말 것)으로 추가한다.
 
+### 구조화 출력 400 또는 기술 분석이 반복되며 끝나지 않음
+
+- **증상**: 경쟁사 비교에서 OpenAI 400이 발생하거나 기술 분석이 잘못된 구조를 반복 생성한다.
+- **원인**: strict 출력에서 임의 키 `dict[str, str]`가 허용되지 않고, ToolStrategy는 검증 실패를 모델에 돌려주며 반복할 수 있다.
+- **해결 (적용됨)**: 경쟁사 지표·비교표를 `NamedValue`·`CompareRow`로 명시한다. D는 `ProviderStrategy(strict=True)`와 내부 recursion_limit 12, 직접 구조화 호출은 `json_schema` strict를 사용한다. 모든 호출은 공통 모델의 timeout 60초를 적용한다.
+- **하지 말 것**: 전체 graph의 recursion_limit 1000을 내부 LLM 반복 제한으로 간주하거나 DART에서 법인을 찾지 못한 것을 비상장 증거로 처리하지 않는다.
+
 ### `OMP: Error #15` / 세그폴트(exit 139) / `Fatal Python error: Aborted` — torch와 faiss 동시 사용
 
 - **증상**: 임베딩(bge-m3, torch) 후 벡터 검색(faiss)을 하면 프로세스가 죽는다. import 순서나 실행 타이밍에 따라 될 때도 있어 재현이 불안정하다.
