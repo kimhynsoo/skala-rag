@@ -1,4 +1,4 @@
-"""LLM 공통 호출 (🔒 보호 파일). 교재 langgraph-v1/10-Agent 패턴: init_chat_model + create_agent + ToolStrategy.
+"""LLM 공통 호출: init_chat_model + create_agent + ProviderStrategy(strict=True).
 
     from llm import load_prompt, run_agent
     from schemas import TechnologyAnalysis
@@ -12,7 +12,7 @@
 from functools import lru_cache
 
 from langchain.agents import create_agent
-from langchain.agents.structured_output import ToolStrategy
+from langchain.agents.structured_output import ProviderStrategy, StructuredOutputValidationError
 from langchain.chat_models import init_chat_model
 from pydantic import BaseModel
 
@@ -36,8 +36,15 @@ def run_agent(system_prompt: str, user: str, schema: type[BaseModel], tools=()) 
     tools가 비어 있으면 도구 없이 구조화 출력만 한다 (예: 투자 판단 채점).
     artifact는 content_and_artifact 도구(tools/retrieval.py)가 반환한 검색 청크(Document)다.
     """
-    agent = create_agent(get_llm(), tools=list(tools), response_format=ToolStrategy(schema), system_prompt=system_prompt)
-    out = agent.invoke({"messages": [{"role": "user", "content": user}]})
+    agent = create_agent(get_llm(), tools=list(tools), response_format=ProviderStrategy(schema, strict=True),
+                         system_prompt=system_prompt)
+    for attempt in range(2):
+        try:
+            out = agent.invoke({"messages": [{"role": "user", "content": user}]}, {"recursion_limit": 12})
+            break
+        except StructuredOutputValidationError:
+            if attempt == 1:
+                raise
     artifacts = []
     for m in out["messages"]:
         a = getattr(m, "artifact", None)

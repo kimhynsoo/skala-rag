@@ -157,16 +157,43 @@ def test_empty_search_retries_once_then_continues(monkeypatch, agent, key, next_
 
 
 @pytest.mark.parametrize("inline", [False, True])
-def test_unknown_evidence_is_rejected(monkeypatch, inline):
-    result = tech_output()
+@pytest.mark.parametrize("stage", ["technology", "market"])
+def test_unknown_evidence_is_rejected_and_retried(monkeypatch, inline, stage):
+    from graph import route_retry
+
+    result = tech_output() if stage == "technology" else market_output()
     if inline:
-        result["강점"] = ["허위 근거 [TEC-C99-01]"]
+        result["강점" if stage == "technology" else "성장요인"] = ["허위 근거 [TEC-C99-01]"]
     else:
-        result["성능지표"][0]["근거ID"] = ["DIR-C99-01"]
-    monkeypatch.setattr(rag.retriever, "hybrid_search", lambda *args, **kwargs: [document()])
+        item = result["성능지표"][0] if stage == "technology" else result["시장규모"]
+        item["근거ID"] = ["DIR-C99-01"]
+    monkeypatch.setattr(rag.retriever, "hybrid_search", lambda *args, **kwargs: [document("tech" if stage == "technology" else "market")])
     monkeypatch.setattr(rag, "generate_analysis", lambda *args: result)
-    with pytest.raises(ValueError, match="미등록 근거ID"):
-        technology.run(company_state())
+    agent = technology if stage == "technology" else market
+    state = apply_update(company_state(), agent.run(company_state()))
+    key = f"{stage}_analysis"
+    assert state[key]["근거충분"] is False
+    assert state[key]["근거ID"] == []
+    assert any("미등록 근거ID" in gap for gap in state[key]["미확인정보"])
+    route = route_retry(key, stage, "next")
+    assert route(state) == stage
+    state = apply_update(state, agent.run(state))
+    assert route(state) == "next"
+
+
+def test_malformed_provider_output_discards_analysis(monkeypatch):
+    from langchain.agents.structured_output import StructuredOutputValidationError
+    from langchain_core.messages import AIMessage
+
+    def fail(*args):
+        raise StructuredOutputValidationError("GroundedMarket", ValueError("Extra data"), AIMessage(content="bad"))
+
+    monkeypatch.setattr(rag.retriever, "hybrid_search", lambda *a, **k: [document("market")])
+    monkeypatch.setattr(rag, "generate_analysis", fail)
+    out = market.run(company_state())
+    assert out["market_analysis"]["근거충분"] is False
+    assert out["market_analysis"]["시장규모"]["값"] == "확인 불가"
+    assert any("모델 분석 폐기" in gap for gap in out["market_analysis"]["미확인정보"])
 
 
 @pytest.mark.parametrize("kind", ["uncited", "industry_value", "unknown_conditions"])

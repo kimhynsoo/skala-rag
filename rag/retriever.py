@@ -115,6 +115,7 @@ def hybrid_search(
     sub_domain: str | None = None,
     k: int = TOP_K,
     mode: Literal["hybrid", "dense", "sparse"] = "hybrid",
+    doc_id: str | None = None,
 ) -> list[Document]:
     """메타데이터 필터 → dense(Chroma)·sparse 각각 검색 → RRF → 상위 k. metadata["score"]에 RRF 점수.
 
@@ -125,14 +126,20 @@ def hybrid_search(
 
         build_index(load_corpus(DATA_DIR))
 
-    pool = [cid for cid, d in _docs.items() if _match(d.metadata, doc_type, sub_domain)]
+    pool = [cid for cid, d in _docs.items() if _match(d.metadata, doc_type, sub_domain)
+            and (doc_id is None or d.metadata.get("doc_id") == doc_id)]
     if not pool:
         return []
     q_dense, q_sparse = _encode([query], query=True)
 
     rankings: dict[str, list[str]] = {}
     if mode != "sparse":
-        where = {"doc_type": doc_type} if sub_domain is None else {"$and": [{"doc_type": doc_type}, {"sub_domain": sub_domain}]}
+        filters = [{"doc_type": doc_type}]
+        if sub_domain is not None:
+            filters.append({"sub_domain": sub_domain})
+        if doc_id is not None:
+            filters.append({"doc_id": doc_id})
+        where = filters[0] if len(filters) == 1 else {"$and": filters}
         found = _store.similarity_search_by_vector(q_dense[0].tolist(), k=min(CANDIDATES, len(pool)), filter=where)
         rankings["dense"] = [d.metadata["chunk_id"] for d in found]
     if mode != "dense":

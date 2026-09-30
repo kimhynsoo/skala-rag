@@ -51,6 +51,15 @@ def test_doc_type_and_sub_domain_filter():
     assert retriever.hybrid_search("memory", doc_type="none") == []
 
 
+@pytest.mark.parametrize("mode", ["hybrid", "dense", "sparse"])
+def test_doc_id_filter_applies_before_ranking(mode):
+    docs = [Document(page_content="market memory demand", metadata={"chunk_id": f"{doc_id}-0001",
+            "doc_type": "market", "doc_id": doc_id}) for doc_id in ("13", "15")]
+    retriever.build_index(docs)
+    assert ids(retriever.hybrid_search("market memory", doc_type="market", doc_id="15", mode=mode)) == ["15-0001"]
+    assert retriever.hybrid_search("market", doc_type="market", doc_id="99", mode=mode) == []
+
+
 def test_exact_match_via_sparse():
     # sparse는 "128"·"GT/s"가 모두 일치하는 08을 1위로 둔다
     assert ids(retriever.hybrid_search("128 GT/s", doc_type="tech", mode="sparse"))[0] == "08-0001"

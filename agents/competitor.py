@@ -11,11 +11,13 @@ from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
 from dotenv import load_dotenv
-from langchain_openai import ChatOpenAI
+from langchain_core.documents import Document
 from pydantic import BaseModel, Field
 
-from config import LLM_MODEL
+from llm import get_llm
+from schemas import CompareRow, NamedValue
 from state import State
+from tools.retrieval import evidence_id, to_evidence
 
 ROOT = Path(__file__).resolve().parents[1]
 PROMPT_PATH = ROOT / "prompts" / "competitor.md"
@@ -25,14 +27,14 @@ CACHE_PATH = ROOT / ".cache" / "tavily_search_cache.json"
 class CompetitorProduct(BaseModel):
     기업명: str
     제품: str
-    핵심지표값: dict[str, str] = Field(default_factory=dict)
+    핵심지표값: list[NamedValue] = Field(default_factory=list)
     source_url: str
     source_excerpt: str
 
 
 class CompetitorComparison(BaseModel):
     경쟁제품: list[CompetitorProduct] = Field(default_factory=list)
-    비교표: list[dict[str, str]] = Field(default_factory=list)
+    비교표: list[CompareRow] = Field(default_factory=list)
     우위: list[str] = Field(default_factory=list)
     열위: list[str] = Field(default_factory=list)
     비교조건: str = "공개 자료 기준이며 측정 조건이 다를 수 있음"
@@ -152,10 +154,13 @@ def _retrieve_context(company: dict, technology: dict) -> tuple[list[dict], str]
             sub_domain=company.get("sub_domain"),
             k=5,
         )
+        docs += hybrid_search(query, doc_type="market", doc_id="15", k=5)
         context = []
         for doc in docs:
             metadata = doc.metadata or {}
             context.append({
+                "근거ID": evidence_id(doc),
+                "doc_type": metadata.get("doc_type"),
                 "text": doc.page_content[:1200],
                 "title": metadata.get("title", ""),
                 "url": metadata.get("url"),
@@ -213,7 +218,7 @@ def run(state: State) -> dict:
         }
 
     prompt = PROMPT_PATH.read_text(encoding="utf-8")
-    llm = ChatOpenAI(model=LLM_MODEL, temperature=0).with_structured_output(CompetitorComparison)
+    llm = get_llm().with_structured_output(CompetitorComparison, method="json_schema", strict=True)
     input_payload = {
         "기업": {
             "기업명": company.get("기업명"),
@@ -232,26 +237,11 @@ def run(state: State) -> dict:
 
     source_map = _source_map(sources)
     valid_products = [p for p in comparison.경쟁제품 if p.source_url in source_map]
-    evidence = []
+    existing_ids = {e["근거ID"] for e in state.get("current_evidence") or []}
+    retrieved = [Document(page_content=context["text"], metadata=context) for context in index_context]
+    rag_evidence = to_evidence(retrieved, checked=state.get("as_of_date") or date.today().isoformat())
+    evidence = [e for e in rag_evidence if e["근거ID"] not in existing_ids]
     products = []
-    for context in index_context:
-        metadata = context
-        evidence_id = f"CMP-{company.get('company_id', 'UNKNOWN')}-{len(evidence) + 1:02d}"
-        url = metadata.get("url")
-        publisher = metadata.get("publisher") or (urlparse(url).netloc if url else None)
-        source_type = metadata.get("source_type") or "기관 보고서"
-        evidence.append({
-            "근거ID": evidence_id,
-            "출처명": metadata.get("title") or publisher or "RAG 검색 근거",
-            "publisher": publisher,
-            "pub_year": metadata.get("pub_year"),
-            "source_type": source_type,
-            "url": url,
-            "source_page": metadata.get("source_page"),
-            "확인일": state.get("as_of_date") or date.today().isoformat(),
-            "원문발췌": " ".join((metadata.get("text") or "").split())[:300],
-            "chunk_id": metadata.get("chunk_id"),
-        })
     for product in valid_products:
         source = source_map[product.source_url]
         excerpt = _excerpt_from_source(product, source_map)
@@ -272,18 +262,18 @@ def run(state: State) -> dict:
         products.append({
             "기업명": product.기업명,
             "제품": product.제품,
-            "핵심지표값": product.핵심지표값,
+            "핵심지표값": [value.model_dump() for value in product.핵심지표값],
             "근거ID": [evidence_id],
         })
 
-    ids = [e["근거ID"] for e in evidence]
+    ids = list(dict.fromkeys([e["근거ID"] for e in rag_evidence + evidence]))
     limitations = [x for x in (comparison.비교한계, index_note, search_note) if x]
     if len(products) < 2:
         limitations.append("출처 URL이 확인되는 경쟁 제품이 2개 미만")
     return {
         "competitor_analysis": {
             "경쟁제품": products,
-            "비교표": comparison.비교표,
+            "비교표": [row.model_dump() for row in comparison.비교표],
             "우위": comparison.우위,
             "열위": comparison.열위,
             "비교조건": comparison.비교조건,

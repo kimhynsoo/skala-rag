@@ -12,6 +12,7 @@ from pathlib import Path
 from typing import Literal
 
 from langchain_core.tools import tool
+from langchain.agents.structured_output import StructuredOutputValidationError
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 
 import llm
@@ -24,6 +25,10 @@ from tools import retrieval as retrieval_tools
 
 class OutputModel(BaseModel):
     model_config = ConfigDict(extra="forbid")
+
+
+class UnknownEvidenceError(ValueError):
+    """모델이 이번 분석에 제공되지 않은 근거를 인용했다."""
 
 
 class Maturity(schemas.Maturity, OutputModel):
@@ -387,7 +392,7 @@ def validate_analysis(stage: str, result: dict, evidence: list[dict], cid: str,
     refs = _references(analysis)
     unknown = set(refs) - known
     if unknown:
-        raise ValueError(f"미등록 근거ID: {sorted(unknown)}")
+        raise UnknownEvidenceError(f"미등록 근거ID: {sorted(unknown)}")
     analysis["근거ID"] = list(dict.fromkeys(refs))
     gaps = analysis["미확인정보"]
 
@@ -620,12 +625,17 @@ def run_analysis(state: State, stage: Literal["technology", "market"]) -> dict:
     available = existing + additions
     lane_prefix = "TEC-" if stage == "technology" else "MKT-"
     if any(e["근거ID"].startswith(lane_prefix) for e in available):
-        result = generate_analysis(stage, {
+        payload = {
             "조사기준일": state["as_of_date"], "기업정보": company, "검색질의": query,
             "이전분석": state.get(output_key),
             "기술분석": state.get("technology_analysis") if stage == "market" else None,
             "기존근거": [{**e, "검색원문": evidence_text(e)} for e in existing + directory], "검색근거": retrieved,
-        })
+        }
+        try:
+            result = generate_analysis(stage, payload)
+        except StructuredOutputValidationError:
+            result = _empty_analysis(stage)
+            result["미확인정보"].append("구조화 출력 검증 재시도 후 실패: 모델 분석 폐기, 원문 추가 확인 필요")
         extra_docs = result.pop("_검색문서", [])
         if extra_docs:
             extra, _ = collect_evidence({**state, "current_evidence": available}, extra_docs, stage)
@@ -633,6 +643,10 @@ def run_analysis(state: State, stage: Literal["technology", "market"]) -> dict:
             available += extra
     else:
         result = _empty_analysis(stage)
-    analysis = validate_analysis(stage, result, available, cid, company, state["as_of_date"])
+    try:
+        analysis = validate_analysis(stage, result, available, cid, company, state["as_of_date"])
+    except UnknownEvidenceError as exc:
+        analysis = _empty_analysis(stage)
+        analysis["미확인정보"].append(f"{exc}; 해당 모델 분석을 폐기함")
     return {output_key: _team_output(stage, analysis), "current_evidence": additions,
             "retrieve_count": next_attempt(state, output_key)}
