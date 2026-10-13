@@ -1,0 +1,1848 @@
+{
+  "as_of_date": "2026-09-30",
+  "scope": "G4 통과 시스템반도체 후보의 G1-G3 외부 검증 (G1 OpenDART, G2-G3 Tavily)",
+  "counts": {
+    "G1": {
+      "확인불가": 15,
+      "충족": 4,
+      "미충족": 1
+    },
+    "G2": {
+      "충족": 14,
+      "확인불가": 5,
+      "미충족": 1
+    },
+    "G3": {
+      "충족": 16,
+      "확인불가": 4
+    }
+  },
+  "results": [
+    {
+      "company_id": "C01",
+      "기업명": "디에스 주식회사",
+      "criteria": {
+        "G1": {
+          "결과": "확인불가",
+          "사유": "공식 도메인과 후보 기업의 동일성은 확인했으나, OpenDART 정확 일치 또는 거래소 상장 상태 근거는 찾지 못함",
+          "근거ID": [
+            "ELG-C01-ID-03"
+          ]
+        },
+        "G2": {
+          "결과": "충족",
+          "사유": "디에스 주식회사의 최신 투자 단계는 프리A(Pre-A) 단계로, 이는 Series A 직전 단계에 해당하여 Series C 이전 단계임이 확인됨.",
+          "근거ID": [
+            "ELG-C01-01",
+            "ELG-C01-02"
+          ]
+        },
+        "G3": {
+          "결과": "충족",
+          "사유": "검색 결과에서 디에스 주식회사의 IPO, 인수합병 등 Exit 관련 정보가 없으며, 독립적으로 운영 중임을 확인할 수 있음.",
+          "근거ID": [
+            "ELG-C01-01",
+            "ELG-C01-02"
+          ]
+        }
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C01-01",
+          "출처명": "디에스, AI 기반 반도체 검사 솔루션으로 프리A 투자 유치 - 플래텀",
+          "publisher": "platum.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://platum.kr/archives/274898",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[컨텐츠로 건너뛰기](#content \"컨텐츠로 건너뛰기\") [![플래텀](https://cdn.platum.kr/wp-content/uploads/2024/11/Platum-logo.svg)](https://platum.kr/) # 디에스, AI 기반 반도체 검사 솔루션으로 프리A 투자 유치 ・ [![](https://cdn.platum.kr/wp-content/plugins/pavo-social-sharing/components/social-sharing/assets/icons/set1/facebook.svg)](https://",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C01-02",
+          "출처명": "AI 반도체 검사기업 디에스, 프리 A 투자 유치… 후공정 자동화 경쟁 본격화 < INVESTMENT < 스타트업 < 기사본문 - 스타트업엔(StartupN)",
+          "publisher": "www.startupn.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.startupn.kr/news/articleView.html?idxno=54927",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[![스타트업엔(StartupN)](https://cdn.startupn.kr/image/logo/toplogo_20230609051346.png)](https://www.startupn.kr) [제보하기](https://www.startupn.kr/com/jb.html) # AI 반도체 검사기업 디에스, 프리 A 투자 유치… 후공정 자동화 경쟁 본격화 * 기자명 유인춘 기자 * **입력** 2025.11.14 20:43 * **댓글** 0 이 기사를 공유합니다 ## 신용보증기금·서울경제진흥원·에버그린투자파트너스 참여… 차세대 패키",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C01-ID-03",
+          "출처명": "디에스(딥시어스) | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest)",
+          "publisher": "www.innoforest.co.kr",
+          "pub_year": 2026,
+          "source_type": "웹페이지",
+          "url": "https://www.innoforest.co.kr/company/CP00007464/%EB%94%94%EC%97%90%EC%8A%A4",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "디에스(딥시어스) | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest) 항목 바로가기![arrow](/images/icons/accordion_arrow.png) AI 기본정보 및 요약 데이터 AI 사업개요 기업 추천글 [![혁신의숲 제휴 혜택 - 스타트업 필수 솔루션 무료 혜택 받기](/_next/static/media/benefit-wing-banner.0dd~l2vpej8cz.png)](/benefit) 혁신의숲 기업 데이터를 SNS에 공유해보세요 URL이 클립보드에 복사되었습니다 ! AI ## 기본정보 및 요약 데",
+          "chunk_id": null
+        }
+      ],
+      "query_log": [
+        {
+          "query_type": "G1_G3",
+          "urls": [
+            "https://kr.investing.com/analysis/article-200455519",
+            "https://kr.investing.com/news/stock-market-news/article-1768482",
+            "https://dstocks.kr",
+            "https://kr.investing.com/news/pro/article-432SI-1861921",
+            "https://www.dstp.co.kr/cn/ir/stock-information.php"
+          ]
+        },
+        {
+          "query_type": "G2",
+          "urls": [
+            "https://wowtale.net/2025/11/14/250316",
+            "https://platum.kr/archives/274898",
+            "https://www.startupn.kr/news/articleView.html?idxno=54927",
+            "https://thevc.kr/ds-1",
+            "https://cryptorank.io/ko/funds/huashancap/rounds"
+          ]
+        }
+      ],
+      "search_hash": "e0287cb0170857d04b232e2ff300f46e15bb1fdeaa9fe101049f055e69c2a094",
+      "review_hash": "8b22adc6239b458be7f0d8cb56836a5a15ec12a2634c8999ea0af9617da6c0fb",
+      "completed_at": "2026-09-30T04:50:51.112757+00:00",
+      "method": "Tavily 웹 검색 + OpenDART 기업코드 목록",
+      "company_hash": "92066a451b3bc15f6c1ca2be51feaf345effad94af43ac2689d681a2bf8bd5ac"
+    },
+    {
+      "company_id": "C03",
+      "기업명": "망고부스트코리아 주식회사",
+      "criteria": {
+        "G1": {
+          "결과": "충족",
+          "사유": "OpenDART 고유번호 목록에서 법인은 일치하고 종목코드는 공란으로 확인되어 비상장으로 판정",
+          "근거ID": [
+            "ELG-C03-DART"
+          ]
+        },
+        "G2": {
+          "결과": "충족",
+          "사유": "2023년 9월에 Series A 투자 라운드가 공식 홈페이지 뉴스룸과 혁신의숲에서 확인됨.",
+          "근거ID": [
+            "ELG-C03-01",
+            "ELG-C03-02"
+          ]
+        },
+        "G3": {
+          "결과": "충족",
+          "사유": "검색 결과에 IPO, 인수합병 등 Exit 관련 공식 근거가 없고, 혁신의숲 등에서 현재 독립적으로 운영 중임이 확인됨.",
+          "근거ID": [
+            "ELG-C03-02"
+          ]
+        }
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C03-01",
+          "출처명": "Announcing our closing of Series A funding round and way forward | MangoBoost Newsroom",
+          "publisher": "www.mangoboost.io",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.mangoboost.io/company/newsroom/announcing-our-closing-of-series-a-funding-round-and-way-forward",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[Skip to content](#main-content) [![MangoBoost](https://cdn.sanity.io/images/ys7u7pog/production/098f10436ce72577b06ac290533c69081d8336e2-480x100.svg)](/) [Contact us](/contact) # Announcing our closing of Series A funding round and way forward ![Announcing our closing of Series A funding round and ",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C03-02",
+          "출처명": "망고부스트코리아(MBDPU-1) | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest)",
+          "publisher": "www.innoforest.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.innoforest.co.kr/company/CP00012995/%EB%A7%9D%EA%B3%A0%EB%B6%80%EC%8A%A4%ED%8A%B8%EC%BD%94%EB%A6%AC%EC%95%84",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "망고부스트코리아(MBDPU-1) | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest) 항목 바로가기![arrow](/images/icons/accordion_arrow.png) AI 기본정보 및 요약 데이터 AI 사업개요 기업 추천글 [![혁신의숲 제휴 혜택 - 스타트업 필수 솔루션 무료 혜택 받기](/_next/static/media/benefit-wing-banner.0dd~l2vpej8cz.png)](/benefit) 혁신의숲 기업 데이터를 SNS에 공유해보세요 URL이 클립보드에 복사되었습니다 ! AI ## 기본정",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C03-DART",
+          "출처명": "금융감독원 OpenDART 고유번호 목록",
+          "publisher": "opendart.fss.or.kr",
+          "pub_year": 2026,
+          "source_type": "공공데이터 API",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "corp_name=망고부스트코리아; stock_code=(공란); corp_code=01994016; modify_date=20260423",
+          "chunk_id": null
+        }
+      ],
+      "query_log": [
+        {
+          "query_type": "G1_G3",
+          "urls": [
+            "https://www.innoforest.co.kr/company/CP00012995/%EB%A7%9D%EA%B3%A0%EB%B6%80%EC%8A%A4%ED%8A%B8%EC%BD%94%EB%A6%AC%EC%95%84",
+            "https://m.blog.naver.com/simula/224234558509",
+            "https://www.mangoboost.io/company/newsroom/announcing-our-closing-of-series-a-funding-round-and-way-forward",
+            "https://namu.wiki/w/%EB%A7%9D%EA%B3%A0%EB%B6%80%EC%8A%A4%ED%8A%B8",
+            "https://m.thebell.co.kr/m/newsview.asp?newskey=202512161328388000103168"
+          ]
+        },
+        {
+          "query_type": "G2",
+          "urls": [
+            "https://www.thebell.co.kr/front/newsview.asp?key=202308301118421560104270",
+            "https://www.mangoboost.io/company/newsroom/announcing-our-closing-of-series-a-funding-round-and-way-forward",
+            "https://namu.wiki/w/%EB%A7%9D%EA%B3%A0%EB%B6%80%EC%8A%A4%ED%8A%B8",
+            "https://www.theguru.co.kr/news/article.html?no=106910",
+            "https://www.innoforest.co.kr/company/CP00012995/%EB%A7%9D%EA%B3%A0%EB%B6%80%EC%8A%A4%ED%8A%B8%EC%BD%94%EB%A6%AC%EC%95%84"
+          ]
+        }
+      ],
+      "search_hash": "593a44ac697fa28acc33bc8615bf9fd29ea19a91707882ff0cacbd67fbedfb7f",
+      "review_hash": "45af65d3477fb37cf64178afe48fbfe1723efecd9499c5b279aaaaa344350377",
+      "completed_at": "2026-09-30T04:51:00.340261+00:00",
+      "method": "Tavily 웹 검색 + OpenDART 기업코드 목록",
+      "company_hash": "fa187620b06b7c3a8e5dec8f2d29dd4d788cdb75bfdc6ce284dcf2c7c67ec605"
+    },
+    {
+      "company_id": "C04",
+      "기업명": "블루닷 주식회사",
+      "criteria": {
+        "G1": {
+          "결과": "확인불가",
+          "사유": "공식 도메인과 후보 기업의 동일성은 확인했으나, OpenDART 정확 일치 또는 거래소 상장 상태 근거는 찾지 못함",
+          "근거ID": [
+            "ELG-C04-ID-02"
+          ]
+        },
+        "G2": {
+          "결과": "충족",
+          "사유": "투자 이력에 따르면 최신 투자 단계는 2024년의 Pre B(정규화된 단계는 Series A)로 Series C 이전 단계임이 확인됨.",
+          "근거ID": [
+            "ELG-C04-01"
+          ]
+        },
+        "G3": {
+          "결과": "충족",
+          "사유": "검색 결과에 IPO, 인수합병 등 Exit 관련 공식 정보가 없으며, 혁신의숲 페이지에서 현재 독립적으로 운영 중임이 확인됨.",
+          "근거ID": [
+            "ELG-C04-01"
+          ]
+        }
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C04-01",
+          "출처명": "블루닷 | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest)",
+          "publisher": "www.innoforest.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.innoforest.co.kr/company/CP00000127/%EB%B8%94%EB%A3%A8%EB%8B%B7",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "블루닷 | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest) 항목 바로가기![arrow](/images/icons/accordion_arrow.png) AI 기본정보 및 요약 데이터 AI 사업개요 기업 추천글 [![혁신의숲 제휴 혜택 - 스타트업 필수 솔루션 무료 혜택 받기](/_next/static/media/benefit-wing-banner.0dd~l2vpej8cz.png)](/benefit) 혁신의숲 기업 데이터를 SNS에 공유해보세요 URL이 클립보드에 복사되었습니다 ! AI ## 기본정보 및 요약 데이터 기업소",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C04-ID-02",
+          "출처명": "블루닷 | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest)",
+          "publisher": "www.innoforest.co.kr",
+          "pub_year": 2026,
+          "source_type": "웹페이지",
+          "url": "https://www.innoforest.co.kr/company/CP00000127/%EB%B8%94%EB%A3%A8%EB%8B%B7",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "블루닷 | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest) 항목 바로가기![arrow](/images/icons/accordion_arrow.png) AI 기본정보 및 요약 데이터 AI 사업개요 기업 추천글 [![혁신의숲 제휴 혜택 - 스타트업 필수 솔루션 무료 혜택 받기](/_next/static/media/benefit-wing-banner.0dd~l2vpej8cz.png)](/benefit) 혁신의숲 기업 데이터를 SNS에 공유해보세요 URL이 클립보드에 복사되었습니다 ! AI ## 기본정보 및 요약 데이터 기업소",
+          "chunk_id": null
+        }
+      ],
+      "query_log": [
+        {
+          "query_type": "G1_G3",
+          "urls": [
+            "https://www.innoforest.co.kr/company/CP00000127/%EB%B8%94%EB%A3%A8%EB%8B%B7",
+            "https://www.thebell.co.kr/front/newsview.asp?key=202005071103130760103254",
+            "https://www.blue-dot.io/ko",
+            "https://www.wanted.co.kr/company/10037",
+            "https://kr.linkedin.com/company/bluedot-io"
+          ]
+        },
+        {
+          "query_type": "G2",
+          "urls": [
+            "https://www.innoforest.co.kr/company/CP00000127/%EB%B8%94%EB%A3%A8%EB%8B%B7",
+            "https://thevc.kr/bluedot/fundings",
+            "https://m.blog.naver.com/ceoknu/223729882469",
+            "https://www.news2day.co.kr/article/20210624500011?site_preference=normal",
+            "https://kr.linkedin.com/company/bluedot-io"
+          ]
+        }
+      ],
+      "search_hash": "40124fdb45087ad070855fba6977b14059375d783795d4de85336b7fcdc4e2ab",
+      "review_hash": "0b5dc5bcc3172cee8fbae34c9b7be69b06a5f60272ca3e30e97d041acced896a",
+      "completed_at": "2026-09-30T04:51:07.408797+00:00",
+      "method": "Tavily 웹 검색 + OpenDART 기업코드 목록",
+      "company_hash": "e90cd0f5fa744fc935080bc4db8563e6ec6cdb86f6d910f112d74f3fcdf5cdda"
+    },
+    {
+      "company_id": "C06",
+      "기업명": "(주)아나배틱세미",
+      "criteria": {
+        "G1": {
+          "결과": "확인불가",
+          "사유": "공식 도메인과 후보 기업의 동일성은 확인했으나, OpenDART 정확 일치 또는 거래소 상장 상태 근거는 찾지 못함",
+          "근거ID": [
+            "ELG-C06-ID-04"
+          ]
+        },
+        "G2": {
+          "결과": "충족",
+          "사유": "검색 결과에 따르면 아나배틱세미는 2026년 3월 25일에 150억원 규모의 시리즈B 투자를 유치한 것으로 확인됨. 최신 투자 라운드가 Series B이므로 Series C 이전 단계에 해당하지만, Series B는 Series C 이전 단계로 충족 조건에 부합함. (기준 정정: Series C 또는 이전 단계는 충족)",
+          "근거ID": [
+            "ELG-C06-01",
+            "ELG-C06-02"
+          ]
+        },
+        "G3": {
+          "결과": "충족",
+          "사유": "검색 결과에 상장(IPO) 또는 인수·합병으로 지배권 이전된 사실이 없으며, 혁신의숲(InnoForest)에서 현재 독립적으로 운영 중임을 확인할 수 있음.",
+          "근거ID": [
+            "ELG-C06-03"
+          ]
+        }
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C06-01",
+          "출처명": "'배터리 관리 반도체' 아나배틱세미, 150억 시리즈B 투자유치 - 유니콘팩토리",
+          "publisher": "www.unicornfactory.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.unicornfactory.co.kr/article/2026032511244565572",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[본문영역 바로가기](#container) [![머니투데이](https://menu.mt.co.kr/ucfactory/images/logo_mt2.png?20260914-1)](https://www.mt.co.kr) # [유니콘팩토리](https://www.unicornfactory.co.kr) [DATA LAB](https://www.unicornfactory.co.kr/datalab) 기업 정보 검색은 **데이터랩**에서! [로그인](https://www.unicornfactory.co.kr/login \"로그인\") 하고 기업 정",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C06-02",
+          "출처명": "아나배틱세미 150억 시리즈B 분석: 삼성 엑시노스 개발자가 만든 전기차 배터리 관리 반도체 | 데모데이",
+          "publisher": "demoday.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://demoday.co.kr/funding/insights/84",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "![Demoday Logo](/_next/image?url=%2Fimages%2Fdemoday-logo1.png&w=256&q=75) ![Demoday Logo](/_next/image?url=%2Fimages%2Fdemoday-logo1.png&w=256&q=75) 페이지를 불러오는 중... ![Demoday](/images/demoday-logo1.png) Copyright ©2012 Demoday Inc. All rights reserved. # 아나배틱세미 150억 시리즈B 분석: 삼성 엑시노스 개발자가 만든 전기차 배터리 ",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C06-03",
+          "출처명": "아나배틱세미 | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest)",
+          "publisher": "www.innoforest.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.innoforest.co.kr/company/CP00007387/%EC%95%84%EB%82%98%EB%B0%B0%ED%8B%B1%EC%84%B8%EB%AF%B8",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "아나배틱세미 | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest) 항목 바로가기![arrow](/images/icons/accordion_arrow.png) AI 기본정보 및 요약 데이터 AI 사업개요 기업 추천글 [![혁신의숲 제휴 혜택 - 스타트업 필수 솔루션 무료 혜택 받기](/_next/static/media/benefit-wing-banner.0dd~l2vpej8cz.png)](/benefit) 혁신의숲 기업 데이터를 SNS에 공유해보세요 URL이 클립보드에 복사되었습니다 ! AI ## 기본정보 및 요약 데이터 ",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C06-ID-04",
+          "출처명": "아나배틱세미 | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest)",
+          "publisher": "www.innoforest.co.kr",
+          "pub_year": 2026,
+          "source_type": "웹페이지",
+          "url": "https://www.innoforest.co.kr/company/CP00007387/%EC%95%84%EB%82%98%EB%B0%B0%ED%8B%B1%EC%84%B8%EB%AF%B8",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "아나배틱세미 | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest) 항목 바로가기![arrow](/images/icons/accordion_arrow.png) AI 기본정보 및 요약 데이터 AI 사업개요 기업 추천글 [![혁신의숲 제휴 혜택 - 스타트업 필수 솔루션 무료 혜택 받기](/_next/static/media/benefit-wing-banner.0dd~l2vpej8cz.png)](/benefit) 혁신의숲 기업 데이터를 SNS에 공유해보세요 URL이 클립보드에 복사되었습니다 ! AI ## 기본정보 및 요약 데이터 ",
+          "chunk_id": null
+        }
+      ],
+      "query_log": [
+        {
+          "query_type": "G1_G3",
+          "urls": [
+            "https://www.mt.co.kr/future/2026/03/29/2026032915321551114",
+            "https://www.innoforest.co.kr/company/CP00007387/%EC%95%84%EB%82%98%EB%B0%B0%ED%8B%B1%EC%84%B8%EB%AF%B8",
+            "https://www.mk.co.kr/news/it/11997789",
+            "https://wowtale.net/2026/03/25/256104",
+            "https://www.unicornfactory.co.kr/article/2026032511244565572"
+          ]
+        },
+        {
+          "query_type": "G2",
+          "urls": [
+            "https://www.mt.co.kr/future/2026/03/28/2026032717251563298",
+            "https://www.unicornfactory.co.kr/article/2026032511244565572",
+            "https://anabatic-semi.com/ko/bms-%EB%B0%98%EB%8F%84%EC%B2%B4-%EA%B5%AD%EC%82%B0%ED%99%94-%EC%86%8D%EB%8F%84%EB%82%B8%EB%8B%A4%EC%95%84%EB%82%98%EB%B0%B0%ED%8B%B1%EC%84%B8%EB%AF%B8-150%EC%96%B5-%ED%9B%84%EC%86%8D",
+            "https://marketin.edaily.co.kr/News/Read?newsId=03778566645386928",
+            "https://demoday.co.kr/funding/insights/84"
+          ]
+        }
+      ],
+      "search_hash": "37522e5123cf00de04dde053491c1ca04bb049912fd7fcfbce60a547bea6d72e",
+      "review_hash": "05a72326f174612d963d1a2a035d88e633a3fddf044fedd2cb855d674a211019",
+      "completed_at": "2026-09-30T04:51:15.265402+00:00",
+      "method": "Tavily 웹 검색 + OpenDART 기업코드 목록",
+      "company_hash": "5b56e764a7e754fe141f6491e79298b870cdd0575f32d4a09f4194e5e7ba450c"
+    },
+    {
+      "company_id": "C07",
+      "기업명": "아이디어스투실리콘 주식회사",
+      "criteria": {
+        "G1": {
+          "결과": "충족",
+          "사유": "OpenDART 고유번호 목록에서 법인은 일치하고 종목코드는 공란으로 확인되어 비상장으로 판정",
+          "근거ID": [
+            "ELG-C07-DART"
+          ]
+        },
+        "G2": {
+          "결과": "충족",
+          "사유": "2025년 말 190억원 규모의 시리즈A 투자를 유치했으며, 누적 투자액은 270억원 수준으로 최신 투자 단계가 Series A임이 신뢰할 만한 뉴스에서 확인됨.",
+          "근거ID": [
+            "ELG-C07-01",
+            "ELG-C07-02"
+          ]
+        },
+        "G3": {
+          "결과": "충족",
+          "사유": "비상장 상태이며, IPO 또는 M&A로 인한 지배권 이전 사실이 공식적으로 확인되지 않고 현재 독립적으로 운영 중임이 신뢰할 만한 출처에서 확인됨.",
+          "근거ID": [
+            "ELG-C07-03",
+            "ELG-C07-01"
+          ]
+        }
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C07-01",
+          "출처명": "아이디어스투실리콘, 상반기 매출 263억원 기록 - 조선비즈",
+          "publisher": "biz.chosun.com",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://biz.chosun.com/industry/business_info/2026/07/03/ZX75E54YZJA2FAIUX7ZXVCR6HA",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[산업](/industry/)[업계 소식](/industry/business_info/) [산업](/industry/)[업계 소식](/industry/business_info/) [산업](/industry/)[업계 소식](/industry/business_info/) # 아이디어스투실리콘, 상반기 매출 263억원 기록 2025년 연간 매출 두 배 수준… 글로벌 수주 확대 영향 입력 2026.07.03. 11:05 [조선비즈 구글 검색 먼저 보기](https://www.google.com/preferences/source?q=biz.",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C07-02",
+          "출처명": "아이디어스투실리콘, 상반기 매출 263억원 기록",
+          "publisher": "v.daum.net",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://v.daum.net/v/HrO5m2AijQ?f=p",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "## 경제 ### 아이디어스투실리콘, 상반기 매출 263억원 기록 김두열 기자 2026. 7. 3. 11:07 **자동요약** 기사 제목과 주요 문장을 기반으로 자동요약한 결과입니다. 전체 맥락을 이해하기 위해서는 본문 보기를 권장합니다. 반도체 설계 전문 기업 아이디어스투실리콘(IDEAS2SILICON)은 2026년 상반기 매출이 263억원을 기록했다고 밝혔다. 2023년 12월 설립된 아이디어스투실리콘은 웹 및 클라우드 기반 SoC/IP 통합 설계 플랫폼 '세라핌(Seraphim)'을 자체 개발해 운영하고 있다. 아이디어스투실리",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C07-03",
+          "출처명": "아이디어스투실리콘 | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest)",
+          "publisher": "www.innoforest.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.innoforest.co.kr/company/CP00021828/%EC%95%84%EC%9D%B4%EB%94%94%EC%96%B4%EC%8A%A4%ED%88%AC%EC%8B%A4%EB%A6%AC%EC%BD%98",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "아이디어스투실리콘 | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest) 항목 바로가기![arrow](/images/icons/accordion_arrow.png) AI 기본정보 및 요약 데이터 AI 사업개요 기업 추천글 [![혁신의숲 제휴 혜택 - 스타트업 필수 솔루션 무료 혜택 받기](/_next/static/media/benefit-wing-banner.0dd~l2vpej8cz.png)](/benefit) 혁신의숲 기업 데이터를 SNS에 공유해보세요 URL이 클립보드에 복사되었습니다 ! AI ## 기본정보 및 요약 데",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C07-DART",
+          "출처명": "금융감독원 OpenDART 고유번호 목록",
+          "publisher": "opendart.fss.or.kr",
+          "pub_year": 2026,
+          "source_type": "공공데이터 API",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "corp_name=아이디어스투실리콘; stock_code=(공란); corp_code=01947009; modify_date=20250825",
+          "chunk_id": null
+        }
+      ],
+      "query_log": [
+        {
+          "query_type": "G1_G3",
+          "urls": [
+            "https://www.nextround.kr/startup/detail/3562",
+            "https://www.thebell.co.kr/front/newsview.asp?key=202605071010059000102725",
+            "https://www.innoforest.co.kr/company/CP00021828/%EC%95%84%EC%9D%B4%EB%94%94%EC%96%B4%EC%8A%A4%ED%88%AC%EC%8B%A4%EB%A6%AC%EC%BD%98",
+            "https://www.ideas2silicon.com",
+            "https://biz.chosun.com/industry/business_info/2026/07/03/ZX75E54YZJA2FAIUX7ZXVCR6HA"
+          ]
+        },
+        {
+          "query_type": "G2",
+          "urls": [
+            "https://v.daum.net/v/HrO5m2AijQ?f=p",
+            "https://www.nextround.kr/startup/detail/3562",
+            "https://biz.chosun.com/industry/business_info/2026/07/03/ZX75E54YZJA2FAIUX7ZXVCR6HA",
+            "https://www.innoforest.co.kr/company/CP00021828/%EC%95%84%EC%9D%B4%EB%94%94%EC%96%B4%EC%8A%A4%ED%88%AC%EC%8B%A4%EB%A6%AC%EC%BD%98",
+            "https://www.ideas2silicon.com"
+          ]
+        }
+      ],
+      "search_hash": "81adad574faf2cff377c306ab6fe72286987dff0bf9a0290806d21fbb376959f",
+      "review_hash": "4753f09caa11220e7c63a26f2ecc3d1679b867b45b81ab8f69e34672deed7381",
+      "completed_at": "2026-09-30T04:51:23.472788+00:00",
+      "method": "Tavily 웹 검색 + OpenDART 기업코드 목록",
+      "company_hash": "96499d16a7e3bc823f84b9a3022ea6aeeb67f3bc7b74742d39f24b3ed225132b"
+    },
+    {
+      "company_id": "C10",
+      "기업명": "주식회사 에프에스2",
+      "criteria": {
+        "G1": {
+          "결과": "확인불가",
+          "사유": "OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "충족",
+          "사유": "PDF 투자이력에 따르면 최신 투자 단계는 2024년 10월 Safe 단계로 Seed 단계에 해당함.",
+          "근거ID": [
+            "ELG-C10-01"
+          ]
+        },
+        "G3": {
+          "결과": "충족",
+          "사유": "혁신의숲 페이지에서 2024년 8월 설립 이후 독립적으로 운영 중임을 확인할 수 있으며, IPO나 M&A 관련 공식 정보가 없음.",
+          "근거ID": [
+            "ELG-C10-01"
+          ]
+        }
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C10-01",
+          "출처명": "에프에스2 | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest)",
+          "publisher": "www.innoforest.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.innoforest.co.kr/company/CP00007429/%EC%97%90%ED%94%84%EC%97%90%EC%8A%A42",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "에프에스2 | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest) 항목 바로가기![arrow](/images/icons/accordion_arrow.png) AI 기본정보 및 요약 데이터 AI 사업개요 기업 추천글 [![혁신의숲 제휴 혜택 - 스타트업 필수 솔루션 무료 혜택 받기](/_next/static/media/benefit-wing-banner.0dd~l2vpej8cz.png)](/benefit) 혁신의숲 기업 데이터를 SNS에 공유해보세요 URL이 클립보드에 복사되었습니다 ! AI ## 기본정보 및 요약 데이터 기",
+          "chunk_id": null
+        }
+      ],
+      "query_log": [
+        {
+          "query_type": "G1_G3",
+          "urls": [
+            "https://www.innoforest.co.kr/company/CP00007429/%EC%97%90%ED%94%84%EC%97%90%EC%8A%A42",
+            "https://finance.naver.com/item/main.nhn?code=002020",
+            "https://kr.investing.com/analysis/article-200455519",
+            "https://englishdart.fss.or.kr/dsba001/mainAll.do",
+            "https://kr.investing.com/news/stock-market-news/article-1768482"
+          ]
+        },
+        {
+          "query_type": "G2",
+          "urls": [
+            "https://thevc.kr/sfs/fundings",
+            "https://www.help-me.kr/blog/article/%EA%B0%80%EC%88%98%EA%B8%88%EC%B6%9C%EC%9E%90%EC%A0%84%ED%99%98",
+            "https://happy-jjang-a.tistory.com/434",
+            "https://news.einfomax.co.kr/news/articleView.html?idxno=4309213",
+            "https://blog.naver.com/sangbin1/223944223512"
+          ]
+        }
+      ],
+      "search_hash": "ba03cc38bcea74d1bd535325a4241f119b079292161f6de5f5a09375aaca1694",
+      "review_hash": "06e5fab5de203dd7b4f50b0648a1e3ef34597faeea4a96de012cd0120beb0fc7",
+      "completed_at": "2026-09-30T04:51:31.553570+00:00",
+      "method": "Tavily 웹 검색 + OpenDART 기업코드 목록",
+      "company_hash": "d44257697785bf34cdb5067a1eaf121e6b153d6e4d66d4b8abf269d1c958d724"
+    },
+    {
+      "company_id": "C14",
+      "기업명": "주식회사 터넬",
+      "criteria": {
+        "G1": {
+          "결과": "확인불가",
+          "사유": "공식 도메인과 후보 기업의 동일성은 확인했으나, OpenDART 정확 일치 또는 거래소 상장 상태 근거는 찾지 못함",
+          "근거ID": [
+            "ELG-C14-ID-02"
+          ]
+        },
+        "G2": {
+          "결과": "충족",
+          "사유": "투자 이력에 따르면 최신 투자 단계가 2024년 7월 12일의 Series A 단계임이 확인됨.",
+          "근거ID": [
+            "ELG-C14-01"
+          ]
+        },
+        "G3": {
+          "결과": "충족",
+          "사유": "검색 결과에 IPO, 인수합병 등 Exit 관련 정보가 없고, 혁신의숲 페이지에서 운영중인 독립 기업임이 확인됨.",
+          "근거ID": [
+            "ELG-C14-01"
+          ]
+        }
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C14-01",
+          "출처명": "터넬(TritCell™) | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest)",
+          "publisher": "www.innoforest.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.innoforest.co.kr/company/CP00016965/%ED%84%B0%EB%84%AC",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "터넬(TritCell™) | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest) 항목 바로가기![arrow](/images/icons/accordion_arrow.png) AI 기본정보 및 요약 데이터 AI 사업개요 기업 추천글 [![혁신의숲 제휴 혜택 - 스타트업 필수 솔루션 무료 혜택 받기](/_next/static/media/benefit-wing-banner.0dd~l2vpej8cz.png)](/benefit) 혁신의숲 기업 데이터를 SNS에 공유해보세요 URL이 클립보드에 복사되었습니다 ! AI ## 기본정보 및 ",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C14-ID-02",
+          "출처명": "터넬(TritCell™) | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest)",
+          "publisher": "www.innoforest.co.kr",
+          "pub_year": 2026,
+          "source_type": "웹페이지",
+          "url": "https://www.innoforest.co.kr/company/CP00016965/%ED%84%B0%EB%84%AC",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "터넬(TritCell™) | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest) 항목 바로가기![arrow](/images/icons/accordion_arrow.png) AI 기본정보 및 요약 데이터 AI 사업개요 기업 추천글 [![혁신의숲 제휴 혜택 - 스타트업 필수 솔루션 무료 혜택 받기](/_next/static/media/benefit-wing-banner.0dd~l2vpej8cz.png)](/benefit) 혁신의숲 기업 데이터를 SNS에 공유해보세요 URL이 클립보드에 복사되었습니다 ! AI ## 기본정보 및 ",
+          "chunk_id": null
+        }
+      ],
+      "query_log": [
+        {
+          "query_type": "G1_G3",
+          "urls": [
+            "https://www.innoforest.co.kr/company/CP00016965/%ED%84%B0%EB%84%AC",
+            "https://thevc.kr/ternell",
+            "https://data.krx.co.kr",
+            "https://www.ktb.co.kr/trading/popup/itemPop.jspx",
+            "https://finance.daum.net"
+          ]
+        },
+        {
+          "query_type": "G2",
+          "urls": [
+            "https://papasean.tistory.com/52",
+            "https://impacters.ai/board/insight/2025%EB%85%84-%EA%B8%B0%EC%A4%80-%EC%8A%A4%ED%83%80%ED%8A%B8%EC%97%85-%ED%88%AC%EC%9E%90-%EB%8B%A8%EA%B3%84-%EC%B4%9D%EC%A0%95%EB%A6%AC%2B%ED%88%AC%EC%9E%90-%EC%9C%A0%EC%B9%98-%EB%B0%A9%EB%B2%95-%ED%88%AC%EC%9E%90-%EB%9D%BC%EC%9A%B4%EB%93%9C%EB%B3%84-%EC%A3%BC%EC%9D%98%EC%82%AC%ED%95%AD",
+            "https://www.impacters.ai/board/insight/2025%EB%85%84-%EA%B8%B0%EC%A4%80-%EC%8A%A4%ED%83%80%ED%8A%B8%EC%97%85-%ED%88%AC%EC%9E%90-%EB%8B%A8%EA%B3%84-%EC%B4%9D%EC%A0%95%EB%A6%AC%2B%ED%88%AC%EC%9E%90-%EC%9C%A0%EC%B9%98-%EB%B0%A9%EB%B2%95-%ED%88%AC%EC%9E%90-%EB%9D%BC%EC%9A%B4%EB%93%9C%EB%B3%84-%EC%A3%BC%EC%9D%98%EC%82%AC%ED%95%AD",
+            "https://impacters.ai/board/insight/2025%EB%85%84-%EA%B8%B0%EC%A4%80-%EC%8A%A4%ED%83%80%ED%8A%B8%EC%97%85-%ED%88%AC%EC%9E%90-%EB%8B%A8%EA%B3%84-%EC%B4%9D%EC%A0%95%EB%A6%AC+%ED%88%AC%EC%9E%90-%EC%9C%A0%EC%B9%98-%EB%B0%A9%EB%B2%95-%ED%88%AC%EC%9E%90-%EB%9D%BC%EC%9A%B4%EB%93%9C%EB%B3%84-%EC%A3%BC%EC%9D%98%EC%82%AC%ED%95%AD",
+            "https://impacters.ai/board/insight/2025년-기준-스타트업-투자-단계-총정리+투자-유치-방법-투자-라운드별-주의사항"
+          ]
+        }
+      ],
+      "search_hash": "671676cb3a34cb2852e5a62854e3bfc11ef97125f611207174e367740799d9b6",
+      "review_hash": "28786d1d46964a7b69dfc476ddb869bf872fb490ed7682cafcaebe4e49cb5588",
+      "completed_at": "2026-09-30T04:51:41.328324+00:00",
+      "method": "Tavily 웹 검색 + OpenDART 기업코드 목록",
+      "company_hash": "7a32892caeefca37211e5d3424e4341cfe93e27001c6f90d2dbacf392f82fa65"
+    },
+    {
+      "company_id": "C16",
+      "기업명": "네메시스 주식회사",
+      "criteria": {
+        "G1": {
+          "결과": "확인불가",
+          "사유": "OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "충족",
+          "사유": "네메시스 주식회사의 최신 투자 라운드는 2025년 동문파트너스의 투자로 Sereis A 단계이며, Series C 이전 단계임이 명확함.",
+          "근거ID": [
+            "ELG-C16-01"
+          ]
+        },
+        "G3": {
+          "결과": "충족",
+          "사유": "네메시스 주식회사의 IPO, 인수합병 등 Exit 관련 공식 정보가 검색 결과에 없으며, 독립적으로 운영 중인 것으로 보임.",
+          "근거ID": [
+            "ELG-C16-02"
+          ]
+        }
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C16-01",
+          "출처명": "스타트업 투자 유치 단계 총정리 (feat. 시드, 시리즈 A, B, C) : 네이버 블로그",
+          "publisher": "blog.naver.com",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://blog.naver.com/PostView.naver?blogId=neverstoprunning-&logNo=223247661908",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[NAVER](http://www.naver.com) [블로그](https://blog.naver.com) [**자본주의 성장기, 네버스탑**](https://blog.naver.com/PostList.naver?blogId=neverstoprunning-) * [공감 0](#ratingbutton-like) * [칭찬 0](#ratingbutton-impressive) * [감사 0](#ratingbutton-thanks) * [웃김 0](#ratingbutton-haha) * [놀람 0](#ratingbutton-wow) * [",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C16-02",
+          "출처명": "반도체 랠리 속 코스닥 전체 시총을 코스피 시총 2위 하이닉스가 뛰어넘다 | Investing.com",
+          "publisher": "kr.investing.com",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://kr.investing.com/analysis/article-200455519",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "앱에서 열기 #### 인기 검색어 ##### 다시 검색해주세요 [많이 본 뉴스 더 많은](https://kr.investing.com/news/most-popular-news) * [\"장 마감 후 왜 주문 취소돼요?\"…애프터마켓 투자자 혼선](https://kr.investing.com/news/assorted/article-2097378) * [美 금리 인상에 국채 5%…코스피, 반도체로 버티나](https://kr.investing.com/news/stock-market-news/article-2097380) * [클래리티 법안",
+          "chunk_id": null
+        }
+      ],
+      "query_log": [
+        {
+          "query_type": "G1_G3",
+          "urls": [
+            "https://kr.investing.com/analysis/article-200455519",
+            "https://nemsis.org",
+            "https://etn.krx.co.kr",
+            "https://kr.investing.com/news/stock-market-news/article-938193",
+            "https://kr.investing.com/news/markets/article-1016093"
+          ]
+        },
+        {
+          "query_type": "G2",
+          "urls": [
+            "https://blog.naver.com/PostView.naver?blogId=neverstoprunning-&logNo=223247661908",
+            "https://cryptorank.io/ko/funds/robinhood/rounds",
+            "https://cryptorank.io/ko/funds/huashancap/rounds",
+            "https://cryptorank.io/ko/funds/genblock-capital",
+            "https://cryptorank.io/ko/funds/founders-fund"
+          ]
+        }
+      ],
+      "search_hash": "0c5f8592f7d96fb584d6d5ffb0361e3f91e2243894937bd93e2cd685299c8f95",
+      "review_hash": "202f52677a09b366f553098403403d73d3b787a56df928217d806dfc0d40c36e",
+      "completed_at": "2026-09-30T04:51:47.638481+00:00",
+      "method": "Tavily 웹 검색 + OpenDART 기업코드 목록",
+      "company_hash": "528ca3391b35eb97f994a62bd0cb1abf44a1c1f54e2c8a07bd2a3072e4349da7"
+    },
+    {
+      "company_id": "C18",
+      "기업명": "엑시나 주식회사",
+      "criteria": {
+        "G1": {
+          "결과": "충족",
+          "사유": "OpenDART 고유번호 목록에서 법인은 일치하고 종목코드는 공란으로 확인되어 비상장으로 판정",
+          "근거ID": [
+            "ELG-C18-DART"
+          ]
+        },
+        "G2": {
+          "결과": "충족",
+          "사유": "검색 결과 및 제공된 투자 이력에 따르면 엑시나는 2024년 6월경 2,000억 원 규모 시리즈 B 투자 유치를 완료한 것으로 확인됨. 따라서 최신 투자 라운드는 Series B로 Series C 이전 단계에 해당하여 충족 조건에 부합함. (기준 정정: Series C 또는 이전 단계는 충족)",
+          "근거ID": [
+            "ELG-C18-01"
+          ]
+        },
+        "G3": {
+          "결과": "충족",
+          "사유": "검색 결과에 엑시나의 IPO, 상장, 인수합병 등 Exit 관련 공식 정보가 없으며, 독립적으로 운영 중임을 나타내는 최신 기사와 공식 홈페이지 내용이 존재함.",
+          "근거ID": [
+            "ELG-C18-02",
+            "ELG-C18-03"
+          ]
+        }
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C18-01",
+          "출처명": "차세대 메모리 솔루션 선두주자 '엑시나', 2,000억 원 규모 시리즈 B 투자 유치 - 전자신문",
+          "publisher": "www.etnews.com",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.etnews.com/20260601000245",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[신문보기](https://info.etnews.com/epaper.html) [구독신청](https://info.etnews.com/sub_2_1.html) [로그인](https://member.etnews.com/member/login.html?return_url=https://www.etnews.com)[회원가입](https://member.etnews.com/member/join_index.html) [반도체](/news/section.html?id1=10) [소부장](/news/section.html?id1=10&id2=0",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C18-02",
+          "출처명": "[Y인사이트] 700억 투자로 주목받는 엑시나, 메모리 가치를 새롭게 정의하는 방법 < 반도체 < 기사본문 - 디일렉(THE ELEC)",
+          "publisher": "www.thelec.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.thelec.kr/news/articleView.html?idxno=31722",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "UPDATE: 2026-09-29 20:06 (화) [ENGLISH](https://www.thelec.net/) [![디일렉(THE ELEC)](https://cdn.thelec.kr/image/logo/printlogo_20251110103032.png)](https://www.thelec.kr) [Y인사이트] 700억 투자로 주목받는 엑시나, 메모리 가치를 새롭게 정의하는 방법 글자크기 설정 가 기사의 본문 내용은 이 글자크기로 변경됩니다. 스크롤 이동 상태바 # [Y인사이트] 700억 투자로 주목받는 엑시나, 메모리 가치를 ",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C18-03",
+          "출처명": "엑시나, KISTI와 차세대 슈퍼컴퓨팅 기술 국산화 도전 : XCENA - Newsroom",
+          "publisher": "xcena.com",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://xcena.com/newsroom?bmode=view&idx=170962754",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "Notifications [Back](javascript:;) Notification settings [Back](javascript:;) [Post notifications](javascript:;) [Post reactions Be notified when someone leaves a comment or a reply to your post or comment.](javascript:;) [Updates and news Stay ahead of important updates and news from the site.](jav",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C18-DART",
+          "출처명": "금융감독원 OpenDART 고유번호 목록",
+          "publisher": "opendart.fss.or.kr",
+          "pub_year": 2026,
+          "source_type": "공공데이터 API",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "corp_name=엑시나(XCENAInc.); stock_code=(공란); corp_code=01907834; modify_date=20260225",
+          "chunk_id": null
+        }
+      ],
+      "query_log": [
+        {
+          "query_type": "G1_G3",
+          "urls": [
+            "https://kr.linkedin.com/company/xcena",
+            "https://dealsite.co.kr/articles/167429",
+            "https://www.thelec.kr/news/articleView.html?idxno=31722",
+            "https://www.etnews.com/20260601000245",
+            "https://xcena.com/newsroom?bmode=view&idx=170962754"
+          ]
+        },
+        {
+          "query_type": "G2",
+          "urls": [
+            "https://papasean.tistory.com/52",
+            "https://impacters.ai/board/insight/2025%EB%85%84-%EA%B8%B0%EC%A4%80-%EC%8A%A4%ED%83%80%ED%8A%B8%EC%97%85-%ED%88%AC%EC%9E%90-%EB%8B%A8%EA%B3%84-%EC%B4%9D%EC%A0%95%EB%A6%AC%2B%ED%88%AC%EC%9E%90-%EC%9C%A0%EC%B9%98-%EB%B0%A9%EB%B2%95-%ED%88%AC%EC%9E%90-%EB%9D%BC%EC%9A%B4%EB%93%9C%EB%B3%84-%EC%A3%BC%EC%9D%98%EC%82%AC%ED%95%AD",
+            "https://www.impacters.ai/board/insight/2025%EB%85%84-%EA%B8%B0%EC%A4%80-%EC%8A%A4%ED%83%80%ED%8A%B8%EC%97%85-%ED%88%AC%EC%9E%90-%EB%8B%A8%EA%B3%84-%EC%B4%9D%EC%A0%95%EB%A6%AC%2B%ED%88%AC%EC%9E%90-%EC%9C%A0%EC%B9%98-%EB%B0%A9%EB%B2%95-%ED%88%AC%EC%9E%90-%EB%9D%BC%EC%9A%B4%EB%93%9C%EB%B3%84-%EC%A3%BC%EC%9D%98%EC%82%AC%ED%95%AD",
+            "https://impacters.ai/board/insight/2025%EB%85%84-%EA%B8%B0%EC%A4%80-%EC%8A%A4%ED%83%80%ED%8A%B8%EC%97%85-%ED%88%AC%EC%9E%90-%EB%8B%A8%EA%B3%84-%EC%B4%9D%EC%A0%95%EB%A6%AC+%ED%88%AC%EC%9E%90-%EC%9C%A0%EC%B9%98-%EB%B0%A9%EB%B2%95-%ED%88%AC%EC%9E%90-%EB%9D%BC%EC%9A%B4%EB%93%9C%EB%B3%84-%EC%A3%BC%EC%9D%98%EC%82%AC%ED%95%AD",
+            "https://impacters.ai/board/insight/2025년-기준-스타트업-투자-단계-총정리+투자-유치-방법-투자-라운드별-주의사항"
+          ]
+        }
+      ],
+      "search_hash": "051f3b13cbb3167932e11fe701e9a383684d433d8962675c18f59fb16e926172",
+      "review_hash": "5be6f83f3e0fe3e0298a2653b78b09a17e09a18891f6853be5605005d9434439",
+      "completed_at": "2026-09-30T04:51:59.213131+00:00",
+      "method": "Tavily 웹 검색 + OpenDART 기업코드 목록",
+      "company_hash": "ade155d25fbb68f097f838c0e13edb8c20674cd7e67c1bce52d1d8272985dc40"
+    },
+    {
+      "company_id": "C19",
+      "기업명": "가산기술",
+      "criteria": {
+        "G1": {
+          "결과": "확인불가",
+          "사유": "OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "가산기술의 최신 투자 라운드 정보가 검색 결과에 나타나지 않아 투자 단계 판단 불가.",
+          "근거ID": []
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "가산기술의 IPO, 인수합병 등 Exit 관련 정보가 검색 결과에 없음.",
+          "근거ID": []
+        }
+      },
+      "current_evidence": [],
+      "query_log": [
+        {
+          "query_type": "G1_G3",
+          "urls": [
+            "https://consensus.hankyung.com/analysis/list",
+            "https://infostock.co.kr",
+            "https://www.morningstar.com/stocks/xcnq/kas/quote",
+            "https://kr.investing.com/news/sec-filings/article-93CH-1534827",
+            "https://www.skinnovation.com/ir/stock_01"
+          ]
+        },
+        {
+          "query_type": "G2",
+          "urls": [
+            "https://biz.chosun.com/it-science/ict/2026/07/30/GNFB2UVZ5BF5HKAP6YQPAQHG2M",
+            "https://www.innoforest.co.kr/report/411/2025%EB%85%84-11%EC%9B%94-%EC%8A%A4%ED%83%80%ED%8A%B8%EC%97%85-%ED%88%AC%EC%9E%90%EA%B2%B0%EC%82%B0-IPO-%EB%9F%AC%EC%89%AC%EC%99%80-AI%EB%B0%98%EB%8F%84%EC%B2%B4%EB%A1%9C%EB%B4%87-%EB%B6%84%EC%95%BC-%EC%A3%BC%EB%AA%A9",
+            "https://impacters.ai/board/insight/2025%EB%85%84-%EA%B8%B0%EC%A4%80-%EC%8A%A4%ED%83%80%ED%8A%B8%EC%97%85-%ED%88%AC%EC%9E%90-%EB%8B%A8%EA%B3%84-%EC%B4%9D%EC%A0%95%EB%A6%AC+%ED%88%AC%EC%9E%90-%EC%9C%A0%EC%B9%98-%EB%B0%A9%EB%B2%95-%ED%88%AC%EC%9E%90-%EB%9D%BC%EC%9A%B4%EB%93%9C%EB%B3%84-%EC%A3%BC%EC%9D%98%EC%82%AC%ED%95%AD",
+            "https://www.newspim.com/news/view/20260415001058",
+            "https://www.unicornfactory.co.kr/article/2026070514472622754"
+          ]
+        }
+      ],
+      "search_hash": "174ef0ba4fe765487a4e58ab5261736900161594bd8cd8ad36298aa4a3359be2",
+      "review_hash": "3ace54326651256eeb1ad16d482d8fbddbaf59855e0c7b3e95e59f79835dd980",
+      "completed_at": "2026-09-30T04:52:07.817059+00:00",
+      "method": "Tavily 웹 검색 + OpenDART 기업코드 목록",
+      "company_hash": "864fabc748f4b205b51396e5ae0e0421485ad3cc6fa3c3d797b6fafb7ea5de55"
+    },
+    {
+      "company_id": "C20",
+      "기업명": "관악아날로그(주)",
+      "criteria": {
+        "G1": {
+          "결과": "확인불가",
+          "사유": "공식 도메인과 후보 기업의 동일성은 확인했으나, OpenDART 정확 일치 또는 거래소 상장 상태 근거는 찾지 못함",
+          "근거ID": [
+            "ELG-C20-ID-05"
+          ]
+        },
+        "G2": {
+          "결과": "충족",
+          "사유": "최신 투자 라운드는 2024년의 Series B 투자로 확인됨.",
+          "근거ID": [
+            "ELG-C20-01",
+            "ELG-C20-02",
+            "ELG-C20-03"
+          ]
+        },
+        "G3": {
+          "결과": "충족",
+          "사유": "검색 결과에서 IPO나 인수합병에 의한 Exit 사실이 확인되지 않고, 비상장 상태가 명확히 확인되어 현재 독립적으로 운영 중인 것으로 판단됨.",
+          "근거ID": [
+            "ELG-C20-04"
+          ]
+        }
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C20-01",
+          "출처명": "서울대 팹리스 관악아날로그, 3000억 가치에 투자유치 - 딜사이트",
+          "publisher": "dealsite.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://dealsite.co.kr/articles/167282",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[산업](/categories/068000)[대체투자](/categories/075000)[인수합병](/categories/080000)[금융](/categories/083000)[증권](/categories/089000)[블록체인](/categories/094000)[오피니언](/categories/098000) [포럼영상](/forums/) [머니네버슬립![](/images/contents/s_icon_black.png)](https://www.moneyneversleeps.co.kr/) [딜사이트경제TV](https://dea",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C20-02",
+          "출처명": "관악아날로그, 70억 규모 시리즈A 투자 유치 - 전자신문",
+          "publisher": "www.etnews.com",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.etnews.com/20230306000169",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[신문보기](https://info.etnews.com/epaper.html) [구독신청](https://info.etnews.com/sub_2_1.html) [로그인](https://member.etnews.com/member/login.html?return_url=https://www.etnews.com)[회원가입](https://member.etnews.com/member/join_index.html) [반도체](/news/section.html?id1=10) [소부장](/news/section.html?id1=10&id2=0",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C20-03",
+          "출처명": "관악아날로그, 70억 규모의 시리즈 A 투자 유치 - 매일경제",
+          "publisher": "www.mk.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.mk.co.kr/news/it/10670475",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[뉴스 바로가기](#container) [# 매일경제 60](https://www.mk.co.kr/) ## [Maeil Business News Korea [매일경제 60](https://www.mk.co.kr/)](https://www.mk.co.kr/) [나만의 AI 비서 MAI](https://mai.mk.co.kr/) * [##### 뉴스](#) * [##### M 유튜브](https://www.mk.co.kr/youtube) * [##### 콘텐츠 Hub](#) * [##### 아카이브](#) * [##### 독자서비스](",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C20-04",
+          "출처명": "관악아날로그 | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest)",
+          "publisher": "www.innoforest.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.innoforest.co.kr/company/CP00013529/%EA%B4%80%EC%95%85%EC%95%84%EB%82%A0%EB%A1%9C%EA%B7%B8",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "관악아날로그 | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest) 항목 바로가기![arrow](/images/icons/accordion_arrow.png) AI 기본정보 및 요약 데이터 AI 사업개요 기업 추천글 [![혁신의숲 제휴 혜택 - 스타트업 필수 솔루션 무료 혜택 받기](/_next/static/media/benefit-wing-banner.0dd~l2vpej8cz.png)](/benefit) 혁신의숲 기업 데이터를 SNS에 공유해보세요 URL이 클립보드에 복사되었습니다 ! AI ## 기본정보 및 요약 데이터 ",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C20-ID-05",
+          "출처명": "관악아날로그 | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest)",
+          "publisher": "www.innoforest.co.kr",
+          "pub_year": 2026,
+          "source_type": "웹페이지",
+          "url": "https://www.innoforest.co.kr/company/CP00013529/%EA%B4%80%EC%95%85%EC%95%84%EB%82%A0%EB%A1%9C%EA%B7%B8",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "관악아날로그 | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest) 항목 바로가기![arrow](/images/icons/accordion_arrow.png) AI 기본정보 및 요약 데이터 AI 사업개요 기업 추천글 [![혁신의숲 제휴 혜택 - 스타트업 필수 솔루션 무료 혜택 받기](/_next/static/media/benefit-wing-banner.0dd~l2vpej8cz.png)](/benefit) 혁신의숲 기업 데이터를 SNS에 공유해보세요 URL이 클립보드에 복사되었습니다 ! AI ## 기본정보 및 요약 데이터 ",
+          "chunk_id": null
+        }
+      ],
+      "query_log": [
+        {
+          "query_type": "G1_G3",
+          "urls": [
+            "https://data.krx.co.kr",
+            "https://data.krx.co.kr/contents/MDC/MAIN/main/index.cmd",
+            "https://kr.investing.com/news/markets",
+            "https://kr.investing.com/news/markets/article-1101657",
+            "https://kr.investing.com/analysis/article-200455519"
+          ]
+        },
+        {
+          "query_type": "G2",
+          "urls": [
+            "https://m.blog.naver.com/dealsite/224387774142",
+            "https://www.mk.co.kr/news/it/10670475",
+            "https://www.etnews.com/20230306000169",
+            "https://dealsite.co.kr/articles/167282",
+            "https://www.innoforest.co.kr/company/CP00013529/%EA%B4%80%EC%95%85%EC%95%84%EB%82%A0%EB%A1%9C%EA%B7%B8"
+          ]
+        }
+      ],
+      "search_hash": "f7c9512c951e4692340dbab3508a779287dca0c68da03dc602f8d5cc31643a4e",
+      "review_hash": "7c8a581806a8128d24bd3b63e912b51aa512772c19b3b666d988c941fdbc8873",
+      "completed_at": "2026-09-30T04:52:15.599347+00:00",
+      "method": "Tavily 웹 검색 + OpenDART 기업코드 목록",
+      "company_hash": "6fb9fd7dce2f60dcf57f37dab9438c7d5bf2734a38c99d0e8e20654fa9b55953"
+    },
+    {
+      "company_id": "C22",
+      "기업명": "뉴로리얼리티비전",
+      "criteria": {
+        "G1": {
+          "결과": "확인불가",
+          "사유": "OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "검색 결과에서 뉴로리얼리티비전의 최신 투자 라운드 정보가 명확히 확인되지 않음.",
+          "근거ID": [
+            "ELG-C22-01"
+          ]
+        },
+        "G3": {
+          "결과": "충족",
+          "사유": "뉴로리얼리티비전이 독립적으로 운영 중이라는 최신 인터뷰 및 회사 홈페이지 정보가 있으나, IPO나 인수합병으로 인한 Exit 사실은 확인되지 않음.",
+          "근거ID": [
+            "ELG-C22-01",
+            "ELG-C22-02"
+          ]
+        }
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C22-01",
+          "출처명": "[Y인사이트] 뉴로리얼리티비전 \"인간 동체 시력 같은 센서 개발\" < Y인사이트 < 기사본문 - 디일렉(THE ELEC)",
+          "publisher": "www.thelec.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.thelec.kr/news/articleView.html?idxno=44785",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "UPDATE: 2026-09-30 11:00 (수) [ENGLISH](https://www.thelec.net/) [![디일렉(THE ELEC)](https://cdn.thelec.kr/image/logo/printlogo_20251110103032.png)](https://www.thelec.kr) [Y인사이트] 뉴로리얼리티비전 \"인간 동체 시력 같은 센서 개발\" 글자크기 설정 가 기사의 본문 내용은 이 글자크기로 변경됩니다. 스크롤 이동 상태바 # [Y인사이트] 뉴로리얼리티비전 \"인간 동체 시력 같은 센서 개발\" ## 류현석 뉴",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C22-02",
+          "출처명": "NRV — Dynamic vision sensors",
+          "publisher": "nrv.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://nrv.kr",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[![NRV](/images/nrv-logo.png)](/) [Contact](/contact) Event-based dynamic vision # Vision at 2,000+ fps. NRV develops event-based dynamic vision sensors for machine vision. Each pixel responds independently to changes in light, resolving fast motion with sub-millisecond latency — without the blur or",
+          "chunk_id": null
+        }
+      ],
+      "query_log": [
+        {
+          "query_type": "G1_G3",
+          "urls": [
+            "https://data.krx.co.kr",
+            "https://data.krx.co.kr/contents/MDC/MAIN/main/index.cmd",
+            "http://nrv1.iceserver.co.kr",
+            "https://kr.investing.com/news/stock-market-news/article-1746006",
+            "https://kr.investing.com/news/sec-filings/article-93CH-1552966"
+          ]
+        },
+        {
+          "query_type": "G2",
+          "urls": [
+            "https://www.thelec.kr/news/articleView.html?idxno=44785",
+            "https://nrv.kr",
+            "https://cryptorank.io/ko/funds/love-ventures/rounds",
+            "https://cryptorank.io/ko/funds/joffre-capital/rounds",
+            "https://cryptorank.io/ko/funds/tawasal/rounds"
+          ]
+        }
+      ],
+      "search_hash": "7fc88a060d0348fe08ddda73f70a608a997b403634069debd8196fc5464ed235",
+      "review_hash": "e9ea6cf64e8280b00a65b4dd3ad33e3a61df92b2ab7e6e1364a87d3d4834c345",
+      "completed_at": "2026-09-30T04:52:24.065676+00:00",
+      "method": "Tavily 웹 검색 + OpenDART 기업코드 목록",
+      "company_hash": "da8aea19f4650f7c24243da67f068bfdc5c79e3e38e301c7749f93c6341ed73f"
+    },
+    {
+      "company_id": "C23",
+      "기업명": "(주)다모아텍",
+      "criteria": {
+        "G1": {
+          "결과": "확인불가",
+          "사유": "공식 도메인과 후보 기업의 동일성은 확인했으나, OpenDART 정확 일치 또는 거래소 상장 상태 근거는 찾지 못함",
+          "근거ID": [
+            "ELG-C23-ID-03"
+          ]
+        },
+        "G2": {
+          "결과": "충족",
+          "사유": "(주)다모아텍의 투자 이력에 따르면 최신 투자 단계가 2021년 Seed 단계로 확인되어 Series C 이전 단계임.",
+          "근거ID": [
+            "ELG-C23-01"
+          ]
+        },
+        "G3": {
+          "결과": "충족",
+          "사유": "검색 결과에서 (주)다모아텍의 IPO, 상장, 인수합병 등 Exit 관련 정보가 확인되지 않고, 독립적으로 운영 중임을 추정할 수 있음.",
+          "근거ID": [
+            "ELG-C23-02",
+            "ELG-C23-01"
+          ]
+        }
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C23-01",
+          "출처명": "IPO 훈풍 덕?…12월 넷째주, 스타트업 중후기 벤처투자 지속 - 유니콘팩토리",
+          "publisher": "www.unicornfactory.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.unicornfactory.co.kr/article/2025122815250957574",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[본문영역 바로가기](#container) [![머니투데이](https://menu.mt.co.kr/ucfactory/images/logo_mt2.png?20260819-2)](https://www.mt.co.kr) # [유니콘팩토리](https://www.unicornfactory.co.kr) [DATA LAB](https://www.unicornfactory.co.kr/datalab) 기업 정보 검색은 **데이터랩**에서! [로그인](https://www.unicornfactory.co.kr/login \"로그인\") 하고 기업 정",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C23-02",
+          "출처명": "KRX | KRX Data Marketplace",
+          "publisher": "data.krx.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://data.krx.co.kr",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[본문내용 바로가기](#container) # 종목검색 : * 통합검색 * 종목검색 * 화면검색 * 용어검색 * [지수](javascript:void(0);) * [주식](javascript:void(0);) * [채권](javascript:void(0);) * [증권상품](javascript:void(0);) * [파생상품](javascript:void(0);) * [일반상품](javascript:void(0);) * [최근검색](javascript:void(0);) [![](/templets/mdc/img/btn_header_r",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C23-ID-03",
+          "출처명": "다모아텍(인덕티브 센서) - 기업정보 | 투자, 매출, 기업가치 - THE VC",
+          "publisher": "thevc.kr",
+          "pub_year": 2026,
+          "source_type": "웹페이지",
+          "url": "https://thevc.kr/damoatech",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[![The VC logo](/images/cis/thevc_logo_white.png)](/) [홈](/)[통합검색](/integrated-search/overview)[플랜/가격](/pricing)[리포트](/discussions)[지원사업](/grants) 스타트업 찾기 [스타트업](/browse/startups)[투자/M&A](/browse/investments)[IR](/browse/ir)[국가 R&D](/rnd)[피어그룹 비교](/compare?recommendation=true) 투자자 찾기 [투자자](/browse/i",
+          "chunk_id": null
+        }
+      ],
+      "query_log": [
+        {
+          "query_type": "G1_G3",
+          "urls": [
+            "https://data.krx.co.kr",
+            "https://data.krx.co.kr/contents/MDC/MAIN/main/index.cmd",
+            "https://finance.naver.com/item/main.naver?code=278470&stockExchangeType=KRX",
+            "https://kr.investing.com/news/stock-market-news/article-727618",
+            "https://finance.daum.net"
+          ]
+        },
+        {
+          "query_type": "G2",
+          "urls": [
+            "https://www.unicornfactory.co.kr/article/2025122815250957574",
+            "https://start.zuzu.network/resource/guide/investment-round",
+            "https://finance.naver.com/item/main.nhn?code=610027",
+            "https://cryptorank.io/ko/funds/joffre-capital/rounds",
+            "https://cryptorank.io/ko/funds/tawasal/rounds"
+          ]
+        }
+      ],
+      "search_hash": "a8c9ddd2119adcd1c2ebdfdd816dfb2e501488c9ac947a97a890dde07ae68668",
+      "review_hash": "3113e32fdd8f1d56843bcec56d93afa1d33253ac62a510defce9f231d3aa2611",
+      "completed_at": "2026-09-30T04:52:32.391069+00:00",
+      "method": "Tavily 웹 검색 + OpenDART 기업코드 목록",
+      "company_hash": "9a4deecdaf7db997914534832be5e3738bc656a2ba7b4a9889f5c510a0205010"
+    },
+    {
+      "company_id": "C25",
+      "기업명": "디노티시아",
+      "criteria": {
+        "G1": {
+          "결과": "충족",
+          "사유": "OpenDART 고유번호 목록에서 법인은 일치하고 종목코드는 공란으로 확인되어 비상장으로 판정",
+          "근거ID": [
+            "ELG-C25-DART"
+          ]
+        },
+        "G2": {
+          "결과": "충족",
+          "사유": "디노티시아의 최신 투자 라운드는 2024년 하반기 Pre-A 단계로 확인되며, Pre-A는 Series A 직전 단계로 간주되어 충족 조건에 부합함.",
+          "근거ID": [
+            "ELG-C25-01",
+            "ELG-C25-02"
+          ]
+        },
+        "G3": {
+          "결과": "충족",
+          "사유": "디노티시아는 독립적으로 운영 중이며, IPO나 인수합병으로 지배권 이전된 사실이 검색 결과에서 확인되지 않음. 최신 기사에서도 독립적 사업 확장과 투자 유치가 확인됨.",
+          "근거ID": [
+            "ELG-C25-01",
+            "ELG-C25-02"
+          ]
+        }
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C25-01",
+          "출처명": "비즈니스리포트",
+          "publisher": "www.businessreport.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "http://www.businessreport.kr/news/articleView.html?idxno=48269",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "**UPDATE.** 2026-09-30 (수) * [로그인](/member/login.html) * [회원가입](/member/index.html) * [모바일웹](http://www.businessreport.kr/news/articleView.html?idxno=48269) [![비즈니스리포트](/image/logo/toplogo_20180226034228.png)](http://www.businessreport.kr) [![비즈니스리포트](/image/logo/printlogo_20170919032542.gif)](http:",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C25-02",
+          "출처명": "[시리즈] 디노티시아, Pre-A 투자 유치로 누적 투자금 '350억' 달성... 개인용 LLM 디바이스 '니모스' 개발 중 < 투자 < 스타트업+ < 기사본문 - 인베스트 | invest",
+          "publisher": "www.investnews.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.investnews.co.kr/news/articleView.html?idxno=3001549",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "## 상단영역 # [인베스트 | invest](https://www.investnews.co.kr) ## 본문영역 이 기사를 공유합니다 ### [시리즈] 디노티시아, Pre-A 투자 유치로 누적 투자금 '350억' 달성... 개인용 LLM 디바이스 '니모스' 개발 중 * 입력 2024.12.30 15:13 ![인포그래픽 = 최미리 기자 (자료출처: 디노티시아)](https://cdn.investnews.co.kr/news/photo/202412/3001549_13866_546.png) 인포그래픽 = 최미리 기자 (자료출처: 디노티시",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C25-DART",
+          "출처명": "금융감독원 OpenDART 고유번호 목록",
+          "publisher": "opendart.fss.or.kr",
+          "pub_year": 2026,
+          "source_type": "공공데이터 API",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "corp_name=디노티시아; stock_code=(공란); corp_code=01961762; modify_date=20251029",
+          "chunk_id": null
+        }
+      ],
+      "query_log": [
+        {
+          "query_type": "G1_G3",
+          "urls": [
+            "http://www.businessreport.kr/news/articleView.html?idxno=48269",
+            "https://thevc.kr/dnotitia",
+            "https://www.ktb.co.kr/trading/popup/itemPop.jspx",
+            "https://data.krx.co.kr/contents/MDC/MAIN/main/index.cmd",
+            "https://kind.krx.co.kr/external/dst/reference/11499/(공지)25년코스닥시장공시상장관리해설서.pdf"
+          ]
+        },
+        {
+          "query_type": "G2",
+          "urls": [
+            "https://www.investnews.co.kr/news/articleView.html?idxno=3001549",
+            "https://it.chosun.com/news/articleView.html?idxno=2023092160687",
+            "https://www.koit.co.kr/news/articleView.html?idxno=206840",
+            "https://wowtale.net/2026/04/21/257433",
+            "https://www.thebell.co.kr/front/newsview.asp?key=202509220759195520107058"
+          ]
+        }
+      ],
+      "search_hash": "7e5fa4cd5246d378d5ae30c0bfe845bec57b779a27694c61067795b81cab30c2",
+      "review_hash": "ea94565e59602d815e9284ba7285116482d3088d138951d2c12fae0db9e4f038",
+      "completed_at": "2026-09-30T04:52:41.616181+00:00",
+      "method": "Tavily 웹 검색 + OpenDART 기업코드 목록",
+      "company_hash": "61b221bc1e292382679123e68b2072fefda6dfa8fafc41e97caa09551ba4fd3b"
+    },
+    {
+      "company_id": "C26",
+      "기업명": "주식회사 디퍼아이",
+      "criteria": {
+        "G1": {
+          "결과": "확인불가",
+          "사유": "OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "충족",
+          "사유": "디퍼아이는 2018년부터 2024년까지 Seed 단계 투자 유치 기록이 있으며, 최신 투자 단계가 Seed로 Series C 이전 단계에 해당함.",
+          "근거ID": [
+            "ELG-C26-01"
+          ]
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "디퍼아이의 IPO, 인수합병 등 Exit 관련 신뢰할 만한 최신 근거가 검색 결과에 없음.",
+          "근거ID": []
+        }
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C26-01",
+          "출처명": "디퍼아이(AI 비전 인식 모듈) - 투자자 2개사 - THE VC",
+          "publisher": "thevc.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://thevc.kr/deeper-i/fundings",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[![The VC logo](/images/cis/thevc_logo_white.png)](/) [홈](/)[통합검색](/integrated-search/overview)[플랜/가격](/pricing)[리포트](/discussions)[지원사업](/grants) 스타트업 찾기 [스타트업](/browse/startups)[투자/M&A](/browse/investments)[IR](/browse/ir)[국가 R&D](/rnd)[피어그룹 비교](/compare?recommendation=true) 투자자 찾기 [투자자](/browse/i",
+          "chunk_id": null
+        }
+      ],
+      "query_log": [
+        {
+          "query_type": "G1_G3",
+          "urls": [
+            "https://www.thelec.kr/news/articleView.html?idxno=36175",
+            "https://thevc.kr/deepx",
+            "https://ko.wikipedia.org/wiki/%EB%94%A5%EC%97%91%EC%8A%A4",
+            "https://kr.investing.com/news/stock-market-news/article-1768482",
+            "https://momensinsight.kr/posts/news/10528"
+          ]
+        },
+        {
+          "query_type": "G2",
+          "urls": [
+            "https://thevc.kr/deeper-i/fundings",
+            "https://www.thelec.kr/news/articleView.html?idxno=36175",
+            "https://m.thebell.co.kr/m/newsview.asp?svccode=&newskey=202105180912325400104083",
+            "https://www.theguru.co.kr/news/article.html?no=105296",
+            "https://marketin.edaily.co.kr/News/Read?newsId=01882726645549944"
+          ]
+        }
+      ],
+      "search_hash": "ffa19534aee9c6a65be45cf30709e8282529ff11a3fe26aefc16b4e19f7ab8a1",
+      "review_hash": "23be530e493339806cb31d494b07874f458d1f886643416a3ab965c69d1aac66",
+      "completed_at": "2026-09-30T04:52:49.499637+00:00",
+      "method": "Tavily 웹 검색 + OpenDART 기업코드 목록",
+      "company_hash": "f406fe531cc0c3720c97138c872e85e6ef47953c1215c202f27a38f44cbf94f7"
+    },
+    {
+      "company_id": "C30",
+      "기업명": "서클 주식회사",
+      "criteria": {
+        "G1": {
+          "결과": "확인불가",
+          "사유": "OpenDART 기업코드 목록에서 정확히 일치하는 단일 법인을 찾지 못함",
+          "근거ID": []
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "서클 주식회사의 최신 투자 라운드 정보가 검색 결과에 명확히 나타나지 않아 투자 단계 판단 불가.",
+          "근거ID": [
+            "ELG-C30-01"
+          ]
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "서클 주식회사의 IPO, 인수합병 등 Exit 관련 신뢰할 만한 최신 근거가 검색 결과에 없음.",
+          "근거ID": [
+            "ELG-C30-01"
+          ]
+        }
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C30-01",
+          "출처명": "CIRCLE Design Solution",
+          "publisher": "www.circling.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.circling.co.kr",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[![CIRCLE_CI_Black.png](https://lh3.googleusercontent.com/0zQhyUp0GLinUsxZkMtBlovPAGjC1KBWporb-NF1o5QEaCNdMDbR-gZRSV47gJXAdgexS3jvtllLwL8IsxBaT8FfkGw244MjNicMIL4FzoJjthsUYU2gpJg) CIRCLE](javascript:;) * [SoC Solutions](#SoC-Solutions) + [ASIC Service](@17882521) + [Design Service](@17882532) + [IP H",
+          "chunk_id": null
+        }
+      ],
+      "query_log": [
+        {
+          "query_type": "G1_G3",
+          "urls": [
+            "https://www.circling.co.kr",
+            "https://www.choicestock.co.kr/search/summary/CRCL",
+            "https://kr.investing.com/news/stock-market-news/article-1768482",
+            "https://investor.circle.com/news/news-details/2025/Circle-Announces-Pricing-of-Upsized-Initial-Public-Offering/default.aspx",
+            "https://finance.naver.com/item/main.nhn?code=038340"
+          ]
+        },
+        {
+          "query_type": "G2",
+          "urls": [
+            "https://kr.investing.com/news/economy/article-735099",
+            "https://fliphtml5.com/qzdm/resy/2016_%EC%A0%84%EB%B6%81%EC%9A%B0%EC%88%98%EA%B8%B0%EC%97%85%EC%86%8C%EA%B0%9C%EC%B1%85%EC%9E%90",
+            "https://cryptorank.io/ko/funds/robinhood/rounds",
+            "https://cryptorank.io/ko/funds/huashancap/rounds",
+            "https://cryptorank.io/ko/funds/elies-campo/rounds"
+          ]
+        }
+      ],
+      "search_hash": "13cd47a04f1835eee7fea0449ba3a4675a2b90a593dae9bd5464fd9dd2f8ea81",
+      "review_hash": "04895acf46af65694e44fa896ea3a6c5525b765d350787f56f4d3684419b9ae9",
+      "completed_at": "2026-09-30T04:52:57.787376+00:00",
+      "method": "Tavily 웹 검색 + OpenDART 기업코드 목록",
+      "company_hash": "53cc7702092285b7dc2b1a0e5914d58467aaeb631a64a272c70265a8be6fce2f"
+    },
+    {
+      "company_id": "C36",
+      "기업명": "(주)에이와이이노베이티브",
+      "criteria": {
+        "G1": {
+          "결과": "미충족",
+          "사유": "기업 공식 웹사이트가 상장사임을 명시함",
+          "근거ID": [
+            "ELG-C36-WEB-G1"
+          ]
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "검색 결과에 에이와이이노베이티브의 투자 라운드 정보가 없으며, 최신 투자 단계가 명확히 확인되지 않음.",
+          "근거ID": [
+            "ELG-C36-01",
+            "ELG-C36-02",
+            "ELG-C36-03"
+          ]
+        },
+        "G3": {
+          "결과": "충족",
+          "사유": "검색 결과에 IPO, 인수합병 등 Exit 관련 정보가 없고, 회사가 독립적으로 운영 중임을 나타내는 최신 기사와 공식 홈페이지 정보가 있음.",
+          "근거ID": [
+            "ELG-C36-01",
+            "ELG-C36-02",
+            "ELG-C36-03"
+          ]
+        }
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C36-01",
+          "출처명": "[반도체 유니콘을 향해]〈16〉에이와이이노베이티브, AI 기반 차량 보안 반도체 개발 - 전자신문",
+          "publisher": "www.etnews.com",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.etnews.com/20250924000038",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[신문보기](https://info.etnews.com/epaper.html) [구독신청](https://info.etnews.com/sub_2_1.html) [로그인](https://member.etnews.com/member/login.html?return_url=https://www.etnews.com)[회원가입](https://member.etnews.com/member/join_index.html) [전자](/news/section.html?id1=06) [가전](/news/section.html?id1=06&id2=063",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C36-02",
+          "출처명": "AY INNOVATIVE",
+          "publisher": "ayinno.com",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://ayinno.com",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[![logo](./images/logo_header.png)](https://ayinno.com/) 1. HOME 2. BUSINESS 3. TEAM 4. PARTNERS 5. CONTACT US 6. English FRONTIER OF AI-INSPIRED SYSTEM-ON-CHIPS FRONTIER OF AI-INSPIRED SYSTEM-ON-CHIPS AI를 장착하여 디지털 세상 속 수 많은 정보를 지켜드립니다. AI를 장착하여 디지털 세상 속 수 많은 정보를 지켜드립니다. * ![ai secure image](./image",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C36-03",
+          "출처명": "[반도체 유니콘을 향해]〈16〉에이와이이노베이티브, AI 기반 차량 보안 반도체 개발",
+          "publisher": "v.daum.net",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://v.daum.net/v/xxpx8JdzE7",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "## IT/과학 ### [반도체 유니콘을 향해]〈16〉에이와이이노베이티브, AI 기반 차량 보안 반도체 개발 권동준 2025. 9. 24. 11:32 **자동요약** 기사 제목과 주요 문장을 기반으로 자동요약한 결과입니다. 전체 맥락을 이해하기 위해서는 본문 보기를 권장합니다. 에이와이이노베이티브는 차량용 인공지능(AI) 반도체를 개발하는 팹리스다. 자동차 내 해킹을 감지하고 차단하는 반도체가 주력이다. 에이와이이노베이티브는 이같은 한계를 극복하기 위해 업계 처음으로 해킹 감지·차단 AI 반도체 'AI 시큐어(Secure)'를 개발",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C36-WEB-G1",
+          "출처명": "AY INNOVATIVE",
+          "publisher": "ayinno.com",
+          "pub_year": 2026,
+          "source_type": "기업 공식 웹사이트",
+          "url": "https://ayinno.com",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[![logo](./images/logo_header.png)](https://ayinno.com/) 1. HOME 2. BUSINESS 3. TEAM 4. PARTNERS 5. CONTACT US 6. English FRONTIER OF AI-INSPIRED SYSTEM-ON-CHIPS FRONTIER OF AI-INSPIRED SYSTEM-ON-CHIPS AI를 장착하여 디지털 세상 속 수 많은 정보를 지켜드립니다. AI를 장착하여 디지털 세상 속 수 많은 정보를 지켜드립니다. * ![ai secure image](./image",
+          "chunk_id": null
+        }
+      ],
+      "query_log": [
+        {
+          "query_type": "G1_G3",
+          "urls": [
+            "https://www.etnews.com/20250924000038",
+            "https://ayinno.com",
+            "https://www.stockplus.com/m/stocks/KOREA-A038880",
+            "https://kr.investing.com/news/markets/article-1016093",
+            "https://kr.investing.com/news/stock-market-news/article-1768482"
+          ]
+        },
+        {
+          "query_type": "G2",
+          "urls": [
+            "https://www.etnews.com/20250924000038",
+            "https://v.daum.net/v/xxpx8JdzE7",
+            "https://www.boannews.com/news/articleView.html?idxno=142974",
+            "https://www.unicornfactory.co.kr/article/2025030916230630139",
+            "https://marketin.edaily.co.kr/News/Read?newsId=01574406645412840"
+          ]
+        }
+      ],
+      "search_hash": "5c803717db4b3e7132bf15299eba11149566a70a8b59da0cd3ceca7d8ccbd748",
+      "review_hash": "27794254b3428f1a7ef6184f123d8e6235d083e1b8793460139bff5bd6d00dad",
+      "completed_at": "2026-09-30T04:53:04.841741+00:00",
+      "method": "Tavily 웹 검색 + OpenDART 기업코드 목록",
+      "company_hash": "21ffef239e56858763c171bde0dcfbec5ddf6774c895dba9b013de2bb4706254"
+    },
+    {
+      "company_id": "C38",
+      "기업명": "(주)와이젯",
+      "criteria": {
+        "G1": {
+          "결과": "확인불가",
+          "사유": "공식 도메인과 후보 기업의 동일성은 확인했으나, OpenDART 정확 일치 또는 거래소 상장 상태 근거는 찾지 못함",
+          "근거ID": [
+            "ELG-C38-ID-04"
+          ]
+        },
+        "G2": {
+          "결과": "미충족",
+          "사유": "검색 결과에 2026년 6월에 Series B 투자 유치가 확인되어 최신 투자 단계가 Series D 이상임이 확인됨.",
+          "근거ID": [
+            "ELG-C38-01"
+          ]
+        },
+        "G3": {
+          "결과": "충족",
+          "사유": "검색 결과에 IPO, 상장, 인수합병 등 Exit 관련 정보가 없고, 현재 독립적으로 운영 중임이 공식 출처에서 확인됨.",
+          "근거ID": [
+            "ELG-C38-02",
+            "ELG-C38-03"
+          ]
+        }
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C38-01",
+          "출처명": "와이젯(무선 VR HMD) - 투자자 9개사 - THE VC",
+          "publisher": "thevc.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://thevc.kr/wisejet/fundings",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[![The VC logo](/images/cis/thevc_logo_white.png)](/) [홈](/)[통합검색](/integrated-search/overview)[플랜/가격](/pricing)[리포트](/discussions)[지원사업](/grants) 스타트업 찾기 [스타트업](/browse/startups)[투자/M&A](/browse/investments)[IR](/browse/ir)[국가 R&D](/rnd)[피어그룹 비교](/compare?recommendation=true) 투자자 찾기 [투자자](/browse/i",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C38-02",
+          "출처명": "와이젯(V-JETn) | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest)",
+          "publisher": "www.innoforest.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.innoforest.co.kr/company/CP00018044/%EC%99%80%EC%9D%B4%EC%A0%AF",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "와이젯(V-JETn) | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest) 항목 바로가기![arrow](/images/icons/accordion_arrow.png) AI 기본정보 및 요약 데이터 AI 사업개요 기업 추천글 [![혁신의숲 제휴 혜택 - 스타트업 필수 솔루션 무료 혜택 받기](/_next/static/media/benefit-wing-banner.0dd~l2vpej8cz.png)](/benefit) 혁신의숲 기업 데이터를 SNS에 공유해보세요 URL이 클립보드에 복사되었습니다 ! AI ## 기본정보 및 요약",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C38-03",
+          "출처명": "투자기업 | 카이트창업가재단",
+          "publisher": "www.kiteef.or.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.kiteef.or.kr/invest-company/view/id/69",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[본문 바로가기](#contents) --- ## 전체메뉴 [사이트맵 닫기](#none) * [재단소개](/sub01) + [설립목적](/about) + [연혁](/history) + [구성원](/organization) + [오시는길](/map) * [재단활동](/sub02) + [투자재원](/investment) + [인큐베이팅](/incubating) + [팁스](/tips) * [포트폴리오](/sub03) + [투자기업](/invest-company) + [EXIT](/gradu-company) * [투자문의](/sub04)",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C38-ID-04",
+          "출처명": "와이젯(V-JETn) | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest)",
+          "publisher": "www.innoforest.co.kr",
+          "pub_year": 2026,
+          "source_type": "웹페이지",
+          "url": "https://www.innoforest.co.kr/company/CP00018044/%EC%99%80%EC%9D%B4%EC%A0%AF",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "와이젯(V-JETn) | 기업정보(매출·투자·고용) - 혁신의숲(InnoForest) 항목 바로가기![arrow](/images/icons/accordion_arrow.png) AI 기본정보 및 요약 데이터 AI 사업개요 기업 추천글 [![혁신의숲 제휴 혜택 - 스타트업 필수 솔루션 무료 혜택 받기](/_next/static/media/benefit-wing-banner.0dd~l2vpej8cz.png)](/benefit) 혁신의숲 기업 데이터를 SNS에 공유해보세요 URL이 클립보드에 복사되었습니다 ! AI ## 기본정보 및 요약",
+          "chunk_id": null
+        }
+      ],
+      "query_log": [
+        {
+          "query_type": "G1_G3",
+          "urls": [
+            "https://www.kiteef.or.kr/invest-company/view/id/69",
+            "https://www.thebell.co.kr/front/newsview.asp?key=202606111445384440105065",
+            "https://www.etnews.com/20220830000191",
+            "https://www.innoforest.co.kr/company/CP00018044/%EC%99%80%EC%9D%B4%EC%A0%AF",
+            "https://www.jobkorea.co.kr/recruit/co_read/c/wisejet1"
+          ]
+        },
+        {
+          "query_type": "G2",
+          "urls": [
+            "https://kr.aving.net/news/articleView.html?idxno=1811949",
+            "https://www.thebell.co.kr/front/newsview.asp?key=202606111445384440105065",
+            "https://thevc.kr/wisejet/fundings",
+            "https://www.etnews.com/20220830000191",
+            "https://www.kiteef.or.kr/invest-company/view/id/69"
+          ]
+        }
+      ],
+      "search_hash": "855b417a57903016b097b8ef195db141f56960cd5ea50adf4c03553ae5692bbc",
+      "review_hash": "0d11d70f03a3758531edd55edf427b11603e37397b72aa27cc9d3cc9045f5ee3",
+      "completed_at": "2026-09-30T04:53:11.814358+00:00",
+      "method": "Tavily 웹 검색 + OpenDART 기업코드 목록",
+      "company_hash": "2c8d3c5229701c7bf5d06032eabf0d7a7daf0230361ccff998ecb89fd25f8dac"
+    },
+    {
+      "company_id": "C40",
+      "기업명": "(주)유엑스팩토리",
+      "criteria": {
+        "G1": {
+          "결과": "확인불가",
+          "사유": "공식 도메인과 후보 기업의 동일성은 확인했으나, OpenDART 정확 일치 또는 거래소 상장 상태 근거는 찾지 못함",
+          "근거ID": [
+            "ELG-C40-ID-05"
+          ]
+        },
+        "G2": {
+          "결과": "확인불가",
+          "사유": "검색 결과에 (주)유엑스팩토리의 최신 투자 라운드 단계 및 날짜에 대한 신뢰할 만한 출처 정보가 없음.",
+          "근거ID": [
+            "ELG-C40-01",
+            "ELG-C40-02",
+            "ELG-C40-03",
+            "ELG-C40-04"
+          ]
+        },
+        "G3": {
+          "결과": "확인불가",
+          "사유": "검색 결과에 (주)유엑스팩토리의 IPO, 인수합병 등 Exit 관련 신뢰할 만한 최신 근거가 없음.",
+          "근거ID": [
+            "ELG-C40-01",
+            "ELG-C40-02",
+            "ELG-C40-03",
+            "ELG-C40-04"
+          ]
+        }
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C40-01",
+          "출처명": "(주)유엑스팩토리 2026년 기업정보 | 직원수, 근무환경, 복리후생 등 - 사람인",
+          "publisher": "www.saramin.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.saramin.co.kr/zf_user/company-info/view/csn/Q3BvbnNnN3dtZFpzRmpFUmpPM3ljZz09/company_nm/(%EC%A3%BC)%EC%9C%A0%EC%97%91%EC%8A%A4%ED%8C%A9%ED%86%A0%EB%A6%AC",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[본문 바로가기](#sri_section) [로그인](/zf_user/auth?url=%2Fzf_user%2Fcompany-info%2Fview%2Fcsn%2FQ3BvbnNnN3dtZFpzRmpFUmpPM3ljZz09%2Fcompany_nm%2F%28%25EC%25A3%25BC%29%25EC%259C%25A0%25EC%2597%2591%25EC%258A%25A4%25ED%258C%25A9%25ED%2586%25A0%25EB%25A6%25AC) --- [회원가입](/zf_user/member/registration/join) * [로",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C40-02",
+          "출처명": "유엑스팩토리 - 현장형 AI 반도체로 산업 AI 시장 공략 < Eyes < 기사본문 - 포브스코리아(Forbes Korea)",
+          "publisher": "www.forbeskorea.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.forbeskorea.co.kr/news/articleView.html?idxno=402236",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "* [![](https://cdn.forbeskorea.co.kr/image/open-book-w.svg) 구독신청](https://www.forbeskorea.co.kr/com/kd.html) * [지면보기](https://www.forbeskorea.co.kr/news/serial.html) * [로그인](https://www.forbeskorea.co.kr/member/login.html) * [회원가입](https://www.forbeskorea.co.kr/member/index.html) [![포브스코리아(Forbes Ko",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C40-03",
+          "출처명": "[내일은유니콘] 초저전력 인지센서 개발 유엑스팩토리 \"위챗페이부터 IoT전반에 활용될 것\" < 반도체 < KIPOST 프리미엄 < 기사본문 - KIPOST(키포스트)",
+          "publisher": "www.kipost.net",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.kipost.net/news/articleView.html?idxno=207145",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "## 상단영역 [**“프리미엄 콘텐츠는 언제 업로드 되나요?”** 카카오톡 채널 추가시 알람을 드립니다.](https://www.kipost.net/event/event5.html) [유료콘텐츠 샘플요청](https://forms.gle/8KfxbUg31iQk6dvo7) UPDATED. 2026-09-30 11:09 (수) ## 본문영역 [![KIPOST(키포스트)](https://cdn.kipost.net/image/logo/printlogo_20220216095138.png)](https://www.kipost.net) [내일은",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C40-04",
+          "출처명": "[인터뷰] 유엑스팩토리 박준영 대표 “ AI 반도체 개발, 투자받기도 힘들지만 제 갈 길 갑니다”",
+          "publisher": "elec4.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://elec4.co.kr/contents/article_detail?article_idx=22503",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "![](http://ssl.logger.co.kr/tracker_ad.tsp?u=37061&mode=I&adCode=83116) # [서비스명 로고](/) Since 1959 2026.09.30 (수) [로그인](/member/member_intro) [회원가입](/member/) 2026.09.30 (수) [로그인](/member/member_intro) [회원가입](/member/) * [종합](/contents) * [반도체](/contents?s_cate=31) * [인공지능](/contents?s_cate=27) * [로봇",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C40-ID-05",
+          "출처명": "UX Factory, Inc. — Engineering Intelligence for the Real World",
+          "publisher": "uxf.ai",
+          "pub_year": 2026,
+          "source_type": "웹페이지",
+          "url": "https://uxf.ai",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[Skip to content](#main) [![UX Factory, Inc.](/logo/logo_uxf_wh.png)](/) UX Factory · Est. 2015 · Seongnam + Daejeon, KR # Engineering Intelligence for the Real World We go beyond general-purpose AI by engineering domain-specific intelligence — custom AI chips, optimized models, and system-level des",
+          "chunk_id": null
+        }
+      ],
+      "query_log": [
+        {
+          "query_type": "G1_G3",
+          "urls": [
+            "https://www.saramin.co.kr/zf_user/company-info/view/csn/Q3BvbnNnN3dtZFpzRmpFUmpPM3ljZz09/company_nm/(%EC%A3%BC)%EC%9C%A0%EC%97%91%EC%8A%A4%ED%8C%A9%ED%86%A0%EB%A6%AC",
+            "https://www.forbeskorea.co.kr/news/articleView.html?idxno=402236",
+            "https://www.kipost.net/news/articleView.html?idxno=207145",
+            "https://kr.investing.com/news/stock-market-news/article-1768482",
+            "https://finance.naver.com/item/main.naver?code=269420"
+          ]
+        },
+        {
+          "query_type": "G2",
+          "urls": [
+            "https://www.forbeskorea.co.kr/news/articleView.html?idxno=402236",
+            "https://elec4.co.kr/contents/article_detail?article_idx=22503",
+            "https://www.sisajournal-e.com/news/articleView.html?idxno=404477",
+            "https://www.unicornfactory.co.kr/article/2026070514472622754",
+            "https://m.thebell.co.kr/m/newsview.asp?svccode=&newskey=202105180912325400104083"
+          ]
+        }
+      ],
+      "search_hash": "fab86bc4c1462ca8148b23a3a12ddaeead75a5ceb84e72bacdacd7a2bab2aa9c",
+      "review_hash": "959baf42921e0f7425a9470f86ff257b1dc02d5f97e158d283604ee4a0f1a191",
+      "completed_at": "2026-09-30T04:53:22.722964+00:00",
+      "method": "Tavily 웹 검색 + OpenDART 기업코드 목록",
+      "company_hash": "537d22fe6a1dcec986c1beab41171e12fe49ac4bc3d120c2a5bfabdd0b5cb134"
+    },
+    {
+      "company_id": "C45",
+      "기업명": "하이퍼비주얼에이아이",
+      "criteria": {
+        "G1": {
+          "결과": "확인불가",
+          "사유": "공식 도메인과 후보 기업의 동일성은 확인했으나, OpenDART 정확 일치 또는 거래소 상장 상태 근거는 찾지 못함",
+          "근거ID": [
+            "ELG-C45-ID-05"
+          ]
+        },
+        "G2": {
+          "결과": "충족",
+          "사유": "최신 투자 라운드는 2025년 시드(Seed) 투자로 확인됨.",
+          "근거ID": [
+            "ELG-C45-01",
+            "ELG-C45-02",
+            "ELG-C45-03",
+            "ELG-C45-04"
+          ]
+        },
+        "G3": {
+          "결과": "충족",
+          "사유": "검색 결과에 IPO, 인수합병 등 Exit 관련 공식 근거가 없고, 독립적으로 운영 중임을 나타내는 최신 투자 및 사업 진행 정보가 있음.",
+          "근거ID": [
+            "ELG-C45-01",
+            "ELG-C45-02",
+            "ELG-C45-03"
+          ]
+        }
+      },
+      "current_evidence": [
+        {
+          "근거ID": "ELG-C45-01",
+          "출처명": "하이퍼비주얼에이아이(AI 반도체) - 기업정보 | 투자, 매출, 기업가치 - THE VC",
+          "publisher": "thevc.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://thevc.kr/hypervisualai",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[![Image 1: The VC logo](https://thevc.kr/images/cis/thevc_logo_white.png)](https://thevc.kr/) [홈](https://thevc.kr/)[통합검색](https://thevc.kr/integrated-search/overview)[플랜/가격](https://thevc.kr/pricing)[리포트](https://thevc.kr/discussions) 스타트업 찾기 [스타트업](https://thevc.kr/browse/startups)[투자/M&A](https:",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C45-02",
+          "출처명": "하이퍼비주얼AI, 케이그라운드벤처스로부터 투자 유치 : 네이버 블로그",
+          "publisher": "m.blog.naver.com",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://m.blog.naver.com/venturesquare_/223882990749",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[본문 바로가기](#ct) # [블로그](/Recommendation.naver) ## [카테고리 이동](#) [VentureSquare](/PostList.naver?blogId=venturesquare_) [검색](/PostSearchList.naver?blogId=venturesquare_) ![](https://mblogthumb-phinf.pstatic.net/MjAyNTA1MzBfODYg/MDAxNzQ4NTc5NTcxNDQ1.jbd1VXTrmmWBQqLDRi_bJBn85UPAUwrRMjyotYVlzVIg.VD1xd1tAZ",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C45-03",
+          "출처명": "\"하이브리드 AI칩 GPNPU\"…하이퍼비주얼AI, 시드투자 유치",
+          "publisher": "v.daum.net",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://v.daum.net/v/QhuaWMUZXL?f=p",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "## 경제 ### \"하이브리드 AI칩 GPNPU\"…하이퍼비주얼AI, 시드투자 유치 고석용 기자 2026. 9. 7. 19:31 **자동요약** 기사 제목과 주요 문장을 기반으로 자동요약한 결과입니다. 전체 맥락을 이해하기 위해서는 본문 보기를 권장합니다. 2023년 설립된 하이퍼비주얼AI는 GPGPU(범용 그래픽처리장치)와 NPU(신경망처리장치)를 하나의 프로세서 구조로 통합한 하이브리드 AI 반도체인 '플린트 GPNPU'를 개발하고 있다. 하이퍼비주얼AI는 현재 ADAS(첨단운전자보조시스템) 칩 제조사, CCTV(폐쇄회로 텔레비전",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C45-04",
+          "출처명": "\"하이브리드 AI칩 GPNPU\"…하이퍼비주얼AI, 시드투자 유치 - 머니투데이",
+          "publisher": "www.mt.co.kr",
+          "pub_year": "2026-09-30",
+          "source_type": "웹페이지",
+          "url": "https://www.mt.co.kr/future/2026/09/07/2026090715210625442",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "## [머니투데이 머니투데이 로고](/) * [MT리포트](https://www.mt.co.kr/mtreport) * [증권](https://www.mt.co.kr/stock) * [the300](https://www.mt.co.kr/politics) * [theL](https://www.mt.co.kr/law) * [the바이오](https://www.mt.co.kr/thebio) * [유니콘팩토리](https://www.unicornfactory.co.kr) ![globe_icon](https://menu.mt.co.kr/mt2",
+          "chunk_id": null
+        },
+        {
+          "근거ID": "ELG-C45-ID-05",
+          "출처명": "하이퍼비주얼에이아이(AI 반도체) - 기업정보 | 투자, 매출, 기업가치 - THE VC",
+          "publisher": "thevc.kr",
+          "pub_year": 2026,
+          "source_type": "웹페이지",
+          "url": "https://thevc.kr/hypervisualai",
+          "source_page": null,
+          "확인일": "2026-09-30",
+          "원문발췌": "[![Image 1: The VC logo](https://thevc.kr/images/cis/thevc_logo_white.png)](https://thevc.kr/) [홈](https://thevc.kr/)[통합검색](https://thevc.kr/integrated-search/overview)[플랜/가격](https://thevc.kr/pricing)[리포트](https://thevc.kr/discussions) 스타트업 찾기 [스타트업](https://thevc.kr/browse/startups)[투자/M&A](https:",
+          "chunk_id": null
+        }
+      ],
+      "query_log": [
+        {
+          "query_type": "G1_G3",
+          "urls": [
+            "https://thevc.kr/hypervisualai",
+            "https://hypervisualai.com",
+            "https://signal.sedaily.com/article/20070432",
+            "https://www.youtube.com/watch?v=axY2RzzBhkw",
+            "https://kr.investing.com/news/sec-filings/article-93CH-1534827"
+          ]
+        },
+        {
+          "query_type": "G2",
+          "urls": [
+            "https://m.blog.naver.com/venturesquare_/223882990749",
+            "https://thevc.kr/hypervisualai",
+            "https://www.joongang.co.kr/article/25340184",
+            "https://v.daum.net/v/QhuaWMUZXL?f=p",
+            "https://www.mt.co.kr/future/2026/09/07/2026090715210625442"
+          ]
+        }
+      ],
+      "search_hash": "d8fe404c3efb0828346fa131f9fd02167a1c2b321febdf95ce3648489b37afac",
+      "review_hash": "97920581c725f77d3728438cd8d47ce9f536f04c127df82ba779f8fc8f655037",
+      "completed_at": "2026-09-30T04:53:29.904088+00:00",
+      "method": "Tavily 웹 검색 + OpenDART 기업코드 목록",
+      "company_hash": "e85f5613c71cd53b1fce8d1af22ef96cee5818589413ab5f3fe3470e3deeda24"
+    }
+  ]
+}

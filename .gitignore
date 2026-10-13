@@ -36,9 +36,7 @@ dist/
 /outputs/logs/*
 !/outputs/logs/24e889d7ecf2.jsonl
 
-# 실행으로 생성되는 외부 조사·평가 결과 (원천 companies.json은 추적)
-/data/processed/g4_screening_results.json
-/data/processed/external_eligibility_results.json
+# 실행으로 생성되는 외부 조사·평가 결과 (원천 companies.json과 적격성 판정 입력 g4·external 결과는 재현을 위해 추적)
 /data/processed/offline_eligibility_results.json
 /data/processed/c5_competitor_research.json
 /data/processed/system_semiconductor_companies.json

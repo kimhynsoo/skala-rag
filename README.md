@@ -151,14 +151,19 @@ graph TD;
 
 
 ## Usage
+준비물: [uv](https://docs.astral.sh/uv/), Google Chrome(PDF 변환), OpenAI·Tavily API 키
+
 ```bash
-uv sync && cp .env.example .env    # OPENAI_API_KEY, TAVILY_API_KEY, LANGSMITH_* 입력
-uv run python app.py --pdf          # 45개사 전체 평가 + PDF 보고서
-uv run python app.py --only C03     # 지정 기업만 평가 (트레이스 확인용)
-uv run python app.py --graph        # 그래프 mermaid 출력
-uv run pytest -q                    # 테스트
+git clone https://github.com/kimhynsoo/skala-rag.git && cd skala-rag
+uv sync && cp .env.example .env                   # OPENAI_API_KEY, TAVILY_API_KEY, LANGSMITH_* 입력
+uv run python app.py --as-of 2026-10-13 --pdf     # 제출 실행 재현: 45개사 평가 + outputs/report.pdf
+uv run python app.py --as-of 2026-10-13 --only C03  # 지정 기업만 (트레이스 확인용)
+uv run python app.py --graph                      # 그래프 mermaid 출력
+uv run pytest -q                                  # 테스트
 ```
-실행하면 `trace_id`가 출력되고, 끝에 라우팅·재작업 수 요약(`dynamic summary`)이 나온다. 제출 결과는 trace `24e889d7ecf2`(LangSmith 프로젝트 `skala-rag`, `tracing-*.png`)로 고정되어 있으므로 재실행 결과는 커밋하지 않는다.
+- `--as-of 2026-10-13` : 적격성 판정의 외부 조사 결과(`data/processed/external_eligibility_results.json`, 2026-09-30 수집)는 기준일로부터 14일만 유효하다. 기준일 없이 2026-10-15 이후에 실행하면 모든 기업이 "확인 필요"로 보류된다. 최신 기준으로 다시 하려면 `uv run python -m tools.run_tavily_eligibility`로 외부 조사부터 갱신한다
+- 첫 실행은 임베딩 모델(bge-m3) 다운로드와 검색 색인 생성으로 수 분이 더 걸린다
+- 실행하면 `trace_id`가 출력되고, 끝에 라우팅·재작업 수 요약(`dynamic summary`)이 나온다. LLM 채점 변동으로 점수가 조금씩 다를 수 있으며, 제출 결과는 trace `24e889d7ecf2`(LangSmith 프로젝트 `skala-rag`, `tracing-*.png`)로 고정되어 있으므로 재실행 결과는 커밋하지 않는다
 
 
 ## Results
