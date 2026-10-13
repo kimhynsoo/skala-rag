@@ -80,6 +80,12 @@ def _prose(mode: str, payload: dict, evidence: list[dict]) -> tuple[ReportProse,
     return ReportProse(**cleaned), removed
 
 
+def _feedback(state: State) -> list[str] | None:
+    """직전 품질 평가 미달 사유 (evaluator → report 재생성 루프). 첫 생성이거나 통과면 None."""
+    ev = state.get("eval_result") or {}
+    return None if ev.get("passed", True) else ev.get("issues")
+
+
 def _or_unknown(text: str) -> str:
     return text.strip() or "확인 불가"
 
@@ -91,6 +97,7 @@ def _selected_report(state: State, records: list[dict], by_id: dict[str, dict]) 
     strengths = pick_strengths(rec)
     kinds = {st.kind for st in strengths}
     payload = {
+        "품질평가피드백": _feedback(state),
         "기업": company, "적격성": rec.get("eligibility"), "기술분석": rec.get("technology_analysis"),
         "시장분석": rec.get("market_analysis"), "경쟁분석": rec.get("competitor_analysis"),
         "체크리스트": rec.get("checklist"), "스코어카드": sc, "판정": rec["decision"],
@@ -158,7 +165,7 @@ def _no_selection_report(state: State, records: list[dict], by_id: dict[str, dic
     top = near_miss_candidates(records)
     evidence = _all_evidence(records)
     payload = _nomatch_payload(records, top)
-    user = json.dumps({"mode": "no_selection", **payload,
+    user = json.dumps({"mode": "no_selection", **payload, "품질평가피드백": _feedback(state),
                        "사용 가능한 근거ID": [e["근거ID"] for e in evidence if e.get("근거ID")]}, ensure_ascii=False, default=str)
     prose = structured_call(NoMatchProse, load_prompt("report"), user)
     valid = {e["근거ID"] for e in evidence if e.get("근거ID")}
