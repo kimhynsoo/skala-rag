@@ -18,6 +18,15 @@ CHUNK_SIZE = 700
 CHUNK_OVERLAP = 100
 TOP_K = 5
 N_RETRIEVE_RETRY = 1
+
+# Supervisor·품질 평가 (Agent 과제: 종료 보장·재작업 상한)
+MAX_REWORK = 1  # 에이전트별 재작업 상한 (최대 실행 = 1 + MAX_REWORK)
+MIN_EVIDENCE = 2  # 관점별 최소 근거ID 수
+MAX_SUPERVISOR_STEPS = 6  # 기업별 Supervisor 방문 상한 (정상 경로 최대 5회 + 여유 1)
+MAX_REPORT_REVISIONS = 2  # 품질 미달 시 보고서 재생성 상한
+MIN_PUBLISHERS = 3  # 편향 통제: 본문 인용 출처 기관 최소 수
+MAX_SOURCE_SHARE = 0.5  # 편향 통제: 단일 기관 인용 비중 상한
+MAX_CONCURRENCY = 4  # 병렬 노드 동시 실행 상한 (외부 API rate limit)
 RRF_WEIGHTS = {"dense": 0.5, "sparse": 0.5}
 EXCLUDED_PAGES = {"01_기업정보": [16, 20]}  # 텍스트 0자 이미지 전용 페이지
 
