@@ -17,8 +17,6 @@ EMBEDDING_MODEL = "BAAI/bge-m3"
 CHUNK_SIZE = 700
 CHUNK_OVERLAP = 100
 TOP_K = 5
-N_RETRIEVE_RETRY = 1
-
 # Supervisor·품질 평가 (Agent 과제: 종료 보장·재작업 상한)
 MAX_REWORK = 1  # 에이전트별 재작업 상한 (최대 실행 = 1 + MAX_REWORK)
 MIN_EVIDENCE = 2  # 관점별 최소 근거ID 수

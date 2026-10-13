@@ -1,15 +1,19 @@
-"""LangGraph 흐름 (설계: 그래프 설계 › 2. Graph 흐름 설계).
+"""LangGraph 흐름 — 외부 루프(45개사) + 기업별 Supervisor 서브루프.
 
-에이전트 노드(agents/*)는 guarded()로 감싸 예외를 errors에 기록하고 handle_error로 분기한다.
+eligibility(적격) → supervisor ⇄ {technology, market, competitor} → investment.
+하위 에이전트는 guarded_worker로 감싸 실행 횟수·상태를 기록하고 항상 supervisor로 돌아온다.
 흐름 제어 노드(select, exclude, hold, handle_error, save, next_index, rank)는 이 파일에 둔다.
 루프는 후보 소진 시에만 종료하고, rank가 투자 적격 기업 중 1위를 selected_company_id로 고른다.
 """
 
+import time
+
 from langgraph.graph import END, START, StateGraph
 
-from agents import competitor, eligibility, investment, loader, market, report, technology
+from agents import competitor, eligibility, investment, loader, market, report, supervisor, technology
 from agents.investment import rank_key
-from config import N_RETRIEVE_RETRY
+from config import MAX_SUPERVISOR_STEPS
+from obs import log_decision
 from state import State
 
 # 후보 전환 시 리셋하는 ③ 작업 산출물
@@ -24,7 +28,13 @@ _RESET = {
     "decision": None,
     "decision_details": None,
     "route_reason": "",
-    "retrieve_count": 0,
+    "next": [],
+    "step_count": 0,
+    "max_steps": MAX_SUPERVISOR_STEPS,
+    "rework_reason": {},
+    "node_status": None,  # merge_dict 리듀서가 None을 리셋으로 처리
+    "agent_attempts": None,
+    "last_error": None,
 }
 
 
@@ -38,6 +48,23 @@ def guarded(stage: str, fn):
             return fn(state)
         except Exception as e:  # 한 기업의 실패가 전체 루프를 멈추지 않도록
             return {"errors": [{"company_id": _company_id(state), "stage": stage, "error": repr(e)}]}
+
+    return node
+
+
+def guarded_worker(stage: str, fn):
+    """Supervisor 하위 에이전트용. 실행 횟수·상태를 여기서 일괄 기록 → worker는 자기 산출물만 반환한다."""
+
+    def node(state: State) -> dict:
+        n = (state.get("agent_attempts") or {}).get(stage, 0) + 1
+        try:
+            out, status = fn(state), "SUCCESS"
+        except Exception as e:  # 실패해도 supervisor가 재시도/진행/보류를 정한다
+            out = {"errors": [{"company_id": _company_id(state), "stage": stage, "type": type(e).__name__,
+                               "error": repr(e), "ts": time.time()}]}
+            status = "FAILED"
+        log_decision(state, stage, status, f"attempt {n}" + (f": {out['errors'][0]['error'][:200]}" if status == "FAILED" else ""))
+        return {**out, "agent_attempts": {stage: n}, "node_status": {stage: status}}
 
     return node
 
@@ -96,33 +123,22 @@ def route_exists(state: State) -> str:
 def route_eligibility(state: State) -> str:
     if _failed(state):
         return "handle_error"
-    return {"적격": "technology", "부적격": "exclude"}.get(state["eligibility"]["판정"], "hold")
-
-
-def route_retry(output_key: str, retry_node: str, next_node: str):
-    def route(state: State) -> str:
-        if _failed(state):
-            return "handle_error"
-        enough = (state.get(output_key) or {}).get("근거충분", False)
-        if enough or state.get("retrieve_count", 0) > N_RETRIEVE_RETRY:
-            return next_node
-        return retry_node  # 질의 재작성 후 재검색
-
-    return route
+    return {"적격": "supervisor", "부적격": "exclude"}.get(state["eligibility"]["판정"], "hold")
 
 
 def route_ok(next_node: str):
     return lambda state: "handle_error" if _failed(state) else next_node
 
 
-def build_graph():
+def build_graph(checkpointer=None):
     g = StateGraph(State)
     g.add_node("load", loader.run)
     g.add_node("select", select)
     g.add_node("eligibility", guarded("eligibility", eligibility.run))
-    g.add_node("technology", guarded("technology", technology.run))
-    g.add_node("market", guarded("market", market.run))
-    g.add_node("competitor", guarded("competitor", competitor.run))
+    g.add_node("supervisor", supervisor.run)
+    g.add_node("technology", guarded_worker("technology", technology.run))
+    g.add_node("market", guarded_worker("market", market.run))
+    g.add_node("competitor", guarded_worker("competitor", competitor.run))
     g.add_node("investment", guarded("investment", investment.run))
     g.add_node("exclude", exclude)
     g.add_node("hold", hold)
@@ -135,12 +151,11 @@ def build_graph():
     g.add_edge(START, "load")
     g.add_conditional_edges("load", route_exists, ["select", "rank"])
     g.add_edge("select", "eligibility")
-    g.add_conditional_edges("eligibility", route_eligibility, ["technology", "exclude", "hold", "handle_error"])
-    g.add_conditional_edges("technology", route_retry("technology_analysis", "technology", "market"),
-                            ["technology", "market", "handle_error"])
-    g.add_conditional_edges("market", route_retry("market_analysis", "market", "competitor"),
-                            ["market", "competitor", "handle_error"])
-    g.add_conditional_edges("competitor", route_ok("investment"), ["investment", "handle_error"])
+    g.add_conditional_edges("eligibility", route_eligibility, ["supervisor", "exclude", "hold", "handle_error"])
+    g.add_conditional_edges("supervisor", supervisor.route,
+                            ["technology", "market", "competitor", "investment", "handle_error"])
+    for w in ("technology", "market", "competitor"):
+        g.add_edge(w, "supervisor")  # 하위 에이전트는 supervisor와만 통신
     g.add_conditional_edges("investment", route_ok("save"), ["save", "handle_error"])
     for n in ("exclude", "hold", "handle_error"):
         g.add_edge(n, "save")
@@ -148,4 +163,4 @@ def build_graph():
     g.add_conditional_edges("next_index", route_exists, ["select", "rank"])
     g.add_edge("rank", "report")
     g.add_edge("report", END)
-    return g.compile()
+    return g.compile(checkpointer=checkpointer)
