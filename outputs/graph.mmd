@@ -1,0 +1,59 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	load(load)
+	select(select)
+	eligibility(eligibility)
+	supervisor(supervisor)
+	technology(technology)
+	market(market)
+	competitor(competitor)
+	investment(investment)
+	exclude(exclude)
+	hold(hold)
+	handle_error(handle_error)
+	save(save)
+	next_index(next_index)
+	rank(rank)
+	report(report)
+	evaluator(evaluator)
+	end_with_warning(end_with_warning)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> load;
+	competitor --> supervisor;
+	eligibility -.-> exclude;
+	eligibility -.-> handle_error;
+	eligibility -.-> hold;
+	eligibility -.-> supervisor;
+	evaluator -.-> __end__;
+	evaluator -.-> end_with_warning;
+	evaluator -.-> report;
+	exclude --> save;
+	handle_error --> save;
+	hold --> save;
+	investment -.-> handle_error;
+	investment -.-> save;
+	load -.-> rank;
+	load -.-> select;
+	market --> supervisor;
+	next_index -.-> rank;
+	next_index -.-> select;
+	rank --> report;
+	report --> evaluator;
+	save --> next_index;
+	select --> eligibility;
+	supervisor -.-> competitor;
+	supervisor -.-> handle_error;
+	supervisor -.-> investment;
+	supervisor -.-> market;
+	supervisor -.-> technology;
+	technology --> supervisor;
+	end_with_warning --> __end__;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc
+
