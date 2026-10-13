@@ -75,6 +75,13 @@ def _all_evidence(records: list[dict]) -> list[dict]:
     return list(seen.values())
 
 
+def _log_state(state: State) -> dict:
+    """결정 로그의 company_id는 보고서 대상(selected_company_id)이어야 한다. State의 current_company는 마지막 순회 기업이다."""
+    selected = state.get("selected_company_id")
+    rec = next((r for r in state.get("evaluation_results") or [] if r.get("company_id") == selected), {})
+    return {**state, "current_company": rec.get("current_company") or ({"company_id": selected} if selected else {})}
+
+
 def run(state: State) -> dict:
     report = state.get("final_report") or ""
     evidence = _all_evidence(state.get("evaluation_results") or [])
@@ -86,14 +93,18 @@ def run(state: State) -> dict:
                     for e in evidence if e["근거ID"] in cited][:40],
         "룰검사": {k: v.model_dump() for k, v in rules.items()},
     }, ensure_ascii=False)
-    judge = structured_call(EvaluationResult, build_judge_prompt(), user)
+    try:
+        judge = structured_call(EvaluationResult, build_judge_prompt(), user)
+    except Exception as e:  # Judge 호출 실패가 전체 실행을 죽이지 않게: 미달 처리 → 재생성/end_with_warning 경로로 종료
+        judge = EvaluationResult(groundedness=False, neutrality=False, bias_control=False,
+                                 issues=[f"Judge 호출 실패({type(e).__name__}) → 미달 처리"])
     result = {k: {"passed": rules[k].passed and getattr(judge, k), "rule": rules[k].reason,
                   "judge": getattr(judge, k)} for k in CRITERIA}
     score = sum(v["passed"] for v in result.values()) / len(CRITERIA)
     passed = score == 1.0
     issues = [f"{k}: {v['rule']}" for k, v in result.items() if not v["passed"]] + judge.issues
     attempts = state.get("report_attempts", 0) + 1
-    log_decision(state, "evaluator", "pass" if passed else "fail", "; ".join(issues) or "3개 항목 충족")
+    log_decision(_log_state(state), "evaluator", "pass" if passed else "fail", "; ".join(issues) or "3개 항목 충족")
     return {"eval_result": {"passed": passed, "score": score, **result, "issues": issues},
             "report_attempts": attempts}
 
@@ -110,5 +121,5 @@ def end_with_warning(state: State) -> dict:
     """재생성 상한 초과 시 명시적 종료. 미달 상태를 기록하고 보고서는 그대로 둔다."""
     ev = state.get("eval_result") or {}
     reason = f"재생성 상한 {MAX_REPORT_REVISIONS}회 초과, 점수 {ev.get('score', 0):.2f}, 미달: {ev.get('issues', [])}"
-    log_decision(state, "end_with_warning", "stop", reason)
+    log_decision(_log_state(state), "end_with_warning", "stop", reason)
     return {"route_reason": f"[경고] {reason}"}

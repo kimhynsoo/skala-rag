@@ -93,3 +93,29 @@ def test_report_receives_feedback_on_regeneration(monkeypatch, tmp_path):
     report.run(report_state(eval_result={"passed": False, "issues": ["neutrality: 금지 표현 ['완벽한']"]}))
     report.run(report_state(eval_result={"passed": True, "issues": []}))
     assert seen == [None, ["neutrality: 금지 표현 ['완벽한']"], None]
+
+
+def test_judge_failure_is_treated_as_fail_and_terminates(monkeypatch):
+    def boom(*a):
+        raise TimeoutError("timeout")
+
+    monkeypatch.setattr(evaluator, "structured_call", boom)
+    out = evaluator.run(_state(GOOD))  # 예외가 전파되지 않아야 한다
+    ev = out["eval_result"]
+    assert not ev["passed"] and any("Judge 호출 실패(TimeoutError)" in i for i in ev["issues"])
+    assert evaluator.route({**out, "report_attempts": 1}) == "report"
+    assert evaluator.route({**out, "report_attempts": 3}) == "end_with_warning"
+
+
+def test_decision_log_uses_selected_company_not_last_iterated(monkeypatch):
+    import json
+
+    import obs
+
+    monkeypatch.setattr(evaluator, "structured_call", lambda *a: _judge(True))
+    state = {**_state(GOOD), "trace_id": "t-sel", "selected_company_id": "C03",
+             "current_company": {"company_id": "C45"}}  # 마지막 순회 기업
+    evaluator.run(state)
+    evaluator.end_with_warning({**state, "eval_result": {"score": 0.0, "issues": []}})
+    recs = [json.loads(line) for line in (obs.LOG_DIR / "t-sel.jsonl").read_text(encoding="utf-8").splitlines()]
+    assert [(r["node"], r["company_id"]) for r in recs] == [("evaluator", "C03"), ("end_with_warning", "C03")]
