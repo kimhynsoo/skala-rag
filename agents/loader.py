@@ -23,10 +23,12 @@ def load_companies(source: Path, refresh: bool = False) -> list[dict]:
 
 def run(state: State) -> dict:
     """
-    입력: source_document
+    입력: source_document, company_filter(선택: 지정한 company_id만 평가)
     처리: rag.parser.parse_company_pages() (bbox 컬럼 복원 → LLM 구조화 추출), 결과는 data/processed/companies.json 캐시
     출력: {"candidate_companies": [ {company_id, 기업명, 홈페이지, 설립일, ..., source_page}, ... ], "current_index": 0}
     """
     source = Path(state.get("source_document") or DATA_DIR / "raw" / "01_기업정보.pdf")
     companies = [c for c in load_companies(source) if not c.get("추출오류")]
+    if only := set(state.get("company_filter") or []):
+        companies = [c for c in companies if c["company_id"] in only]
     return {"candidate_companies": companies, "current_index": 0}
