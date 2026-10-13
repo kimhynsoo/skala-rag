@@ -1,6 +1,7 @@
 """② 적격성 검증 에이전트 — 오프라인 근거로 판정하고 외부 확인 불가를 보존한다."""
 
 import json
+import os
 from datetime import date
 from pathlib import Path
 
@@ -8,6 +9,7 @@ from state import State
 from tools.eligibility_cache import cache_is_current, company_hash
 
 ROOT = Path(__file__).resolve().parents[1]
+COMPANIES_PATH = ROOT / "data" / "processed" / "companies.json"
 G4_RESULTS_PATH = ROOT / "data" / "processed" / "g4_screening_results.json"
 EXTERNAL_RESULTS_PATH = ROOT / "data" / "processed" / "external_eligibility_results.json"
 SOURCE_TITLE = "2025 초격차 스타트업 1000+ 프로젝트 디렉토리북 1권"
@@ -176,3 +178,34 @@ def load_external_eligibility_results() -> dict[str, dict]:
         return {}
     payload = json.loads(EXTERNAL_RESULTS_PATH.read_text(encoding="utf-8"))
     return {row["company_id"]: row for row in payload.get("results", [])}
+
+
+def ensure_external_inputs(as_of_date: str) -> None:
+    """그래프 실행 전 적격성 판정 입력(G4 스크리닝·G1~G3 외부 조사)을 준비한다.
+
+    캐시가 기준일 대비 유효하면 그대로 쓰고(같은 기준일이면 같은 판정 → 재현성),
+    기업 입력이 바뀌었거나 결과가 없거나 14일 유효기간이 지난 경우에만 다시 조사한다.
+    """
+    from tools import g4_screening, run_tavily_eligibility
+
+    companies = json.loads(COMPANIES_PATH.read_text(encoding="utf-8"))
+    g4 = load_g4_results()
+    if any(g4.get(_company_id(c), {}).get("company_hash") != company_hash(c) for c in companies):
+        print("[eligibility] G4 스크리닝 결과가 없거나 기업 입력과 달라 다시 실행합니다", flush=True)
+        g4_screening.screen()
+        g4 = load_g4_results()
+    by_id = {_company_id(c): c for c in companies}
+    external = load_external_eligibility_results()
+    stale = [cid for cid, row in g4.items() if row.get("판정") == "통과" and cid in by_id and (
+        cid not in external
+        or external[cid].get("company_hash") != company_hash(by_id[cid])
+        or not cache_is_current(external[cid].get("completed_at", ""), as_of_date))]
+    if not stale:
+        return
+    if not os.getenv("TAVILY_API_KEY"):
+        print(f"[eligibility] 외부 조사 결과가 없거나 만료된 기업 {len(stale)}곳이 있지만 TAVILY_API_KEY가 없어 "
+              "확인 필요(보류)로 진행합니다", flush=True)
+        return
+    print(f"[eligibility] 외부 조사 결과가 없거나 기준일({as_of_date}) 대비 만료된 기업 {len(stale)}곳 → 외부 조사 실행",
+          flush=True)
+    run_tavily_eligibility.refresh(as_of_date)

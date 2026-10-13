@@ -11,7 +11,7 @@ import re
 import time
 import zipfile
 from collections import Counter
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
@@ -25,7 +25,7 @@ sys.path.insert(0, str(ROOT))
 from agents.competitor import _load_cache, _tavily_search  # noqa: E402
 from config import LLM_MODEL  # noqa: E402
 from llm import get_llm
-from tools.eligibility_cache import company_hash
+from tools.eligibility_cache import cache_is_current, company_hash
 
 COMPANIES_PATH = ROOT / "data" / "processed" / "companies.json"
 G4_PATH = ROOT / "data" / "processed" / "g4_screening_results.json"
@@ -309,11 +309,18 @@ def _validate_criterion(code: str, item: CriterionResult, source_map: dict[str, 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--refresh", action="store_true", help="Reuse cached Tavily searches but rerun LLM assessment")
+    parser.add_argument("--as-of", default=date.today().isoformat(), help="유효기간(14일) 판단 기준일")
     args = parser.parse_args()
-    load_dotenv(ROOT / ".env")
     # LangSmith tracing is optional; avoid remote trace attempts when its key is absent/invalid.
     os.environ["LANGSMITH_TRACING"] = "false"
     os.environ["LANGCHAIN_TRACING_V2"] = "false"
+    refresh(args.as_of, force=args.refresh)
+
+
+def refresh(as_of_date: str, force: bool = False) -> None:
+    """G4 통과 기업의 G1~G3 외부 조사. 기준일 대비 14일 이내 결과는 재사용하고 나머지만 다시 검색·판정한다."""
+    load_dotenv(ROOT / ".env")
+
     tavily_key = os.getenv("TAVILY_API_KEY")
     if not tavily_key:
         raise RuntimeError("TAVILY_API_KEY가 없습니다. .env를 확인하세요.")
@@ -336,17 +343,9 @@ def main() -> None:
         review_hash = _review_hash(company)
         previous = old_results.get(cid)
         completed_at = previous.get("completed_at") if previous else None
-        still_fresh = False
-        if completed_at:
-            try:
-                finished = datetime.fromisoformat(completed_at)
-                if finished.tzinfo is None:
-                    finished = finished.replace(tzinfo=timezone.utc)
-                still_fresh = finished > datetime.now(timezone.utc) - timedelta(days=14)
-            except ValueError:
-                pass
+        still_fresh = bool(completed_at) and cache_is_current(completed_at, as_of_date)
         if (
-            not args.refresh
+            not force
             and previous
             and previous.get("review_hash") == review_hash
             and still_fresh
@@ -365,7 +364,7 @@ def main() -> None:
 
         search = _collect_sources(company, tavily_key)
         search_hash = _digest(search)
-        if not args.refresh and still_fresh and previous and previous.get("search_hash") == search_hash and previous.get("review_hash") == review_hash:
+        if not force and still_fresh and previous and previous.get("search_hash") == search_hash and previous.get("review_hash") == review_hash:
             row = previous
         elif not search["sources"]:
             evidence = []

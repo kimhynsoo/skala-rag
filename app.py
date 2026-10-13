@@ -15,6 +15,7 @@ from config import DATA_DIR, EVALUATION_CRITERIA, MAX_CONCURRENCY, OUTPUT_DIR  #
 from graph import build_graph  # noqa: E402
 from obs import summarize  # noqa: E402
 from agents._report_pdf import export_pdf, report_meta  # noqa: E402
+from agents.eligibility import ensure_external_inputs  # noqa: E402
 
 
 def main():
@@ -30,6 +31,7 @@ def main():
         print(app.get_graph().draw_mermaid())
         return
 
+    ensure_external_inputs(args.as_of)  # 적격성 입력이 없거나 기준일 대비 만료됐을 때만 외부 조사 실행
     trace_id = uuid.uuid4().hex[:12]
     print(f"trace_id: {trace_id}  (결정 로그: outputs/logs/{trace_id}.jsonl)", flush=True)
     config = {
