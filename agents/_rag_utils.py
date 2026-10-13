@@ -19,7 +19,7 @@ import llm
 import schemas
 from config import CACHE_DIR, TOP_K
 from rag import retriever
-from state import State, next_attempt
+from state import State
 from tools import retrieval as retrieval_tools
 
 
@@ -213,8 +213,9 @@ def build_query(state: State, stage: str) -> str:
     previous = state.get(f"{stage}_analysis")
     if previous is not None:
         gaps = previous.get("미확인정보") or ["원문 수치 단위 기준연도 측정조건 출처"]
-        # 최초 질의 전체를 반복하지 않고 미확인 항목과 제품명을 중심으로 재작성한다.
-        return f"{company.get('메인아이템', '')} 추가 확인 {' '.join(gaps)} {focus}"
+        reason = (state.get("rework_reason") or {}).get(stage, "")
+        # Supervisor 재작업 사유 + 미확인 항목과 제품명을 중심으로 재작성한다 (최초 질의 반복 금지).
+        return f"{company.get('메인아이템', '')} 추가 확인 {reason} {' '.join(gaps)} {focus}"
     return f"{subject.strip()} {focus}"
 
 
@@ -628,6 +629,7 @@ def run_analysis(state: State, stage: Literal["technology", "market"]) -> dict:
         payload = {
             "조사기준일": state["as_of_date"], "기업정보": company, "검색질의": query,
             "이전분석": state.get(output_key),
+            "재작업사유": (state.get("rework_reason") or {}).get(stage),
             "기술분석": state.get("technology_analysis") if stage == "market" else None,
             "기존근거": [{**e, "검색원문": evidence_text(e)} for e in existing + directory], "검색근거": retrieved,
         }
@@ -648,5 +650,4 @@ def run_analysis(state: State, stage: Literal["technology", "market"]) -> dict:
     except UnknownEvidenceError as exc:
         analysis = _empty_analysis(stage)
         analysis["미확인정보"].append(f"{exc}; 해당 모델 분석을 폐기함")
-    return {output_key: _team_output(stage, analysis), "current_evidence": additions,
-            "retrieve_count": next_attempt(state, output_key)}
+    return {output_key: _team_output(stage, analysis), "current_evidence": additions}
