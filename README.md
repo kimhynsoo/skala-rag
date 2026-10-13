@@ -161,7 +161,8 @@ uv run python app.py --as-of 2026-10-13 --only C03  # 지정 기업만 (트레�
 uv run python app.py --graph                      # 그래프 mermaid 출력
 uv run pytest -q                                  # 테스트
 ```
-- `--as-of 2026-10-13` : 적격성 판정의 외부 조사 결과(`data/processed/external_eligibility_results.json`, 2026-09-30 수집)는 기준일로부터 14일만 유효하다. 기준일 없이 2026-10-15 이후에 실행하면 모든 기업이 "확인 필요"로 보류된다. 최신 기준으로 다시 하려면 `uv run python -m tools.run_tavily_eligibility`로 외부 조사부터 갱신한다
+- 적격성 외부 조사(비상장·투자 단계·Exit, Tavily·OpenDART)는 실행 시 자동으로 준비된다. 저장된 결과(`data/processed/external_eligibility_results.json`)가 기준일로부터 14일 이내면 그대로 쓰고, 없거나 만료된 기업만 다시 조사한다
+- `--as-of 2026-10-13` : 제출 실행과 같은 기준일. 저장된 2026-09-30 조사 결과를 그대로 써서 같은 적격성 판정이 나온다. 기준일을 빼면 오늘 날짜 기준이라, 2026-10-15 이후에는 외부 조사를 새로 해서 판정이 달라질 수 있다(Tavily 키 필요, 수 분 추가)
 - 첫 실행은 임베딩 모델(bge-m3) 다운로드와 검색 색인 생성으로 수 분이 더 걸린다
 - 실행하면 `trace_id`가 출력되고, 끝에 라우팅·재작업 수 요약(`dynamic summary`)이 나온다. LLM 채점 변동으로 점수가 조금씩 다를 수 있으며, 제출 결과는 trace `24e889d7ecf2`(LangSmith 프로젝트 `skala-rag`, `tracing-*.png`)로 고정되어 있으므로 재실행 결과는 커밋하지 않는다
 
