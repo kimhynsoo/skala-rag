@@ -16,7 +16,7 @@ PASS_AVG = INVEST_THRESHOLD / 100 * 5  # 70점 = 전 항목 평균 3.5점
 # ── 계산 ──────────────────────────────────────────────────────────────────
 
 def _passes(total: float, tech: float) -> bool:
-    return total >= INVEST_THRESHOLD and tech >= TECH_MIN
+    return total >= INVEST_THRESHOLD and round(tech, 2) >= TECH_MIN
 
 
 def _meets_criteria(rec: dict) -> bool:
@@ -63,7 +63,7 @@ def shortfall(rec: dict) -> dict:
         scenarios.append(scenario("위 두 가지를 모두 반영", unknown + low, "both"))
 
     total_gap = round(INVEST_THRESHOLD - total, 1) if total < INVEST_THRESHOLD else 0.0
-    tech_gap = round(TECH_MIN - tech, 2) if tech < TECH_MIN else 0.0
+    tech_gap = round(TECH_MIN - tech, 2) if round(tech, 2) < TECH_MIN else 0.0
     if not total_gap and not tech_gap:
         cause = "기준 충족 (분류 재확인 필요)"  # decide()와 어긋난 데이터에 대한 방어
     elif unknown and scenarios[0]["pass"]:

@@ -25,7 +25,7 @@ def decide(verdict: str, total: float, tech_avg: float) -> str:
         return "제외"
     if verdict != "적격":
         return "보류"
-    if total >= INVEST_THRESHOLD and tech_avg >= TECH_MIN:
+    if total >= INVEST_THRESHOLD and round(tech_avg, 2) >= TECH_MIN:
         return "투자 적격"
     return "보류"
 

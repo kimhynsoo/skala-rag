@@ -20,7 +20,9 @@ def test_decide():
     assert decide("부적격", 90, 5) == "제외"
     assert decide("확인필요", 90, 5) == "보류"
     assert decide("적격", 70, 3.0) == "투자 적격"
-    assert decide("적격", 90, 2.9) == "보류"  # 기술 최소 조건
+    assert decide("적격", 90, 2.6) == "보류"  # 기술 최소 조건
+    assert decide("적격", 70, (3 + 3 + 2) / 3) == "투자 적격"  # 기본점 2개 + 확인 불가 1개 허용
+    assert decide("적격", 90, (3 + 2 + 2) / 3) == "보류"  # 확인 불가 2개는 불허
     assert decide("적격", 69.9, 5) == "보류"
 
 
