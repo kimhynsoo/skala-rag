@@ -32,7 +32,6 @@ class State(TypedDict, total=False):
     trace_id: str  # 상관 키: outputs/logs/{trace_id}.jsonl·LangSmith metadata·checkpointer thread_id
     current_index: int
     route_reason: str  # 마지막 분기 사유 1줄 (전체 이력은 외부 로그)
-    retrieve_count: int  # 구 구조용, Task 2a에서 삭제
     next: list[str]  # Supervisor가 고른 다음 노드 (conditional edge가 읽음)
     step_count: int  # 기업별 Supervisor 방문 수 (Supervisor만 씀)
     max_steps: int  # 종료 가드 상한 (config.MAX_SUPERVISOR_STEPS)
@@ -62,8 +61,3 @@ class State(TypedDict, total=False):
     final_report: str
     eval_result: dict | None  # 품질 평가 verdict (EvaluationResult + score)
     report_attempts: int  # 품질 평가 횟수, MAX_REPORT_REVISIONS 상한
-
-
-def next_attempt(state: State, output_key: str) -> int:
-    """RAG 에이전트의 retrieve_count 갱신값. 해당 에이전트 첫 진입(산출물 None)이면 1부터 센다."""
-    return 1 if state.get(output_key) is None else state.get("retrieve_count", 0) + 1
