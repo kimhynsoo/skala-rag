@@ -10,7 +10,7 @@ import time
 
 from langgraph.graph import END, START, StateGraph
 
-from agents import competitor, eligibility, investment, loader, market, report, supervisor, technology
+from agents import competitor, eligibility, evaluator, investment, loader, market, report, supervisor, technology
 from agents.investment import rank_key
 from config import MAX_SUPERVISOR_STEPS
 from obs import log_decision
@@ -147,6 +147,8 @@ def build_graph(checkpointer=None):
     g.add_node("next_index", next_index)
     g.add_node("rank", rank)
     g.add_node("report", report.run)
+    g.add_node("evaluator", evaluator.run)
+    g.add_node("end_with_warning", evaluator.end_with_warning)
 
     g.add_edge(START, "load")
     g.add_conditional_edges("load", route_exists, ["select", "rank"])
@@ -162,5 +164,8 @@ def build_graph(checkpointer=None):
     g.add_edge("save", "next_index")
     g.add_conditional_edges("next_index", route_exists, ["select", "rank"])
     g.add_edge("rank", "report")
-    g.add_edge("report", END)
+    g.add_edge("report", "evaluator")
+    g.add_conditional_edges("evaluator", evaluator.route, {"__end__": END, "report": "report",
+                                                           "end_with_warning": "end_with_warning"})
+    g.add_edge("end_with_warning", END)
     return g.compile(checkpointer=checkpointer)

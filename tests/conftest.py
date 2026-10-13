@@ -6,7 +6,10 @@ import pytest
 @pytest.fixture(autouse=True)
 def _no_llm(monkeypatch, tmp_path):
     import obs
-    from agents import supervisor
+    from agents import evaluator, supervisor
+    from agents.evaluator import EvaluationResult
 
     monkeypatch.setattr(obs, "LOG_DIR", tmp_path / "logs")
     monkeypatch.setattr(supervisor, "_ask_llm", lambda state, candidates: None)  # → 규칙 정책
+    monkeypatch.setattr(evaluator, "structured_call", lambda *a: EvaluationResult(  # Judge 통과 (룰 검사는 실제 수행)
+        groundedness=True, neutrality=True, bias_control=True, issues=[]))
