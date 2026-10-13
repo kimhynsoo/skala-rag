@@ -9,6 +9,7 @@ FAISS는 torch와 OpenMP 충돌로 쓰지 않는다 (docs/TROUBLESHOOTING.md).
 
 import hashlib
 import json
+import threading
 from functools import lru_cache
 from pathlib import Path
 from typing import Literal
@@ -25,6 +26,7 @@ CANDIDATES = 20  # RRF 전 dense·sparse 각각에서 뽑는 후보 수
 COLLECTION = "corpus"
 
 _store: Chroma | None = None
+_LOCK = threading.Lock()  # 병렬 노드(technology·market)의 동시 검색 직렬화: 색인·모델 중복 적재와 torch 스레드 경합 방지
 _docs: dict[str, Document] = {}  # chunk_id → 원본 청크
 _sparse: dict[str, dict[str, float]] = {}  # chunk_id → {토큰ID: 가중치}
 
@@ -121,6 +123,12 @@ def hybrid_search(
 
     mode는 임베딩 비교 실험(설계 3-6 비교군 1·2)용. 에이전트는 기본값 hybrid만 쓴다.
     """
+    with _LOCK:
+        return _hybrid_search(query, doc_type, sub_domain, k, mode, doc_id)
+
+
+def _hybrid_search(query: str, doc_type: str, sub_domain: str | None, k: int, mode: str,
+                   doc_id: str | None) -> list[Document]:
     if _store is None:
         from rag.parser import load_corpus
 

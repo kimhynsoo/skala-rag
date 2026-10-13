@@ -11,7 +11,6 @@ def run(state: State) -> dict:
     출력: {
         "market_analysis": {목표고객, 시장규모{값, 출처, 기준연도}, 성장률, 사업모델, 글로벌확장성, 성장요인, 위험, 미확인정보, 근거ID, "근거충분": bool},
         "current_evidence": [...],
-        "retrieve_count": next_attempt(state, "market_analysis"),
     }
     """
     return run_analysis(state, "market")

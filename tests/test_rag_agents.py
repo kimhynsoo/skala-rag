@@ -17,7 +17,7 @@ def company_state(cid="C01", domain="ai_computing", item="가상 엣지 NPU"):
         "current_company": {"company_id": cid, "기업명": "가상기업", "메인아이템": item,
                             "기술분야": domain, "sub_domain": domain, "TRL": 6,
                             "개발진척도": "시제품", "사업Point": "기업용 반도체 판매"},
-        "as_of_date": "2026-09-30", "retrieve_count": 0,
+        "as_of_date": "2026-09-30",
         "current_evidence": [{"근거ID": f"DIR-{cid}-01", "원문발췌": DIR_TEXT}],
     }
 
@@ -91,14 +91,12 @@ def test_three_company_contracts(monkeypatch, cid):
     monkeypatch.setattr(rag.retriever, "hybrid_search", search)
     monkeypatch.setattr(rag, "generate_analysis", generate)
     tech = technology.run(state)
-    assert set(tech) == {"technology_analysis", "current_evidence", "retrieve_count"}
-    assert tech["retrieve_count"] == 1 and tech["technology_analysis"]["근거충분"] is True
+    assert set(tech) == {"technology_analysis", "current_evidence"}  # 실행 횟수는 graph.guarded_worker가 센다
+    assert tech["technology_analysis"]["근거충분"] is True
     state = apply_update(state, tech)
-    # 기술 단계 카운터와 관계없이 시장 단계 첫 진입은 1부터 시작한다.
-    state["retrieve_count"] = 2
     out = market.run(state)
-    assert set(out) == {"market_analysis", "current_evidence", "retrieve_count"}
-    assert out["retrieve_count"] == 1 and out["market_analysis"]["근거충분"] is True
+    assert set(out) == {"market_analysis", "current_evidence"}
+    assert out["market_analysis"]["근거충분"] is True
     assert calls[0][1] == {"doc_type": "tech", "sub_domain": domain, "k": 5}
     assert calls[1][1] == {"doc_type": "market", "sub_domain": None, "k": 5}
     assert item in calls[0][0]
@@ -129,7 +127,6 @@ def test_retry_rewrites_query_and_deduplicates_evidence(monkeypatch, stage, agen
     monkeypatch.setattr(rag, "generate_analysis", generate)
     initial = agent.run(state)
     retry = agent.run(apply_update(state, initial))
-    assert initial["retrieve_count"] == 1 and retry["retrieve_count"] == 2
     assert queries[0] != queries[1] and "실측 조건과 세부 시장 규모" in queries[1]
     assert len(retry["current_evidence"]) == 1
     prefix = "TEC" if stage == "technology" else "MKT"
@@ -143,24 +140,19 @@ def test_retry_rewrites_query_and_deduplicates_evidence(monkeypatch, stage, agen
     (technology, "technology_analysis", "market"), (market, "market_analysis", "competitor"),
 ])
 def test_empty_search_retries_once_then_continues(monkeypatch, agent, key, next_node):
-    from graph import route_retry
-
+    # 재작업 여부·상한은 Supervisor가 판단한다 (tests/test_supervisor.py). 여기서는 빈 검색 결과 처리만 본다.
     monkeypatch.setattr(rag.retriever, "hybrid_search", lambda *args, **kwargs: [])
     monkeypatch.setattr(rag, "generate_analysis", lambda *args: pytest.fail("빈 근거로 LLM 호출"))
     state = apply_update(company_state(), agent.run(company_state()))
-    route = route_retry(key, key.split("_")[0], next_node)
-    assert route(state) == key.split("_")[0]
+    assert state[key]["근거충분"] is False
     state = apply_update(state, agent.run(state))
     assert state[key]["근거충분"] is False
     assert state[key]["미확인정보"]
-    assert route(state) == next_node and state["retrieve_count"] == 2
 
 
 @pytest.mark.parametrize("inline", [False, True])
 @pytest.mark.parametrize("stage", ["technology", "market"])
 def test_unknown_evidence_is_rejected_and_retried(monkeypatch, inline, stage):
-    from graph import route_retry
-
     result = tech_output() if stage == "technology" else market_output()
     if inline:
         result["강점" if stage == "technology" else "성장요인"] = ["허위 근거 [TEC-C99-01]"]
@@ -175,10 +167,6 @@ def test_unknown_evidence_is_rejected_and_retried(monkeypatch, inline, stage):
     assert state[key]["근거충분"] is False
     assert state[key]["근거ID"] == []
     assert any("미등록 근거ID" in gap for gap in state[key]["미확인정보"])
-    route = route_retry(key, stage, "next")
-    assert route(state) == stage
-    state = apply_update(state, agent.run(state))
-    assert route(state) == "next"
 
 
 def test_malformed_provider_output_discards_analysis(monkeypatch):
@@ -239,17 +227,6 @@ def test_wrong_search_scope_is_rejected(monkeypatch):
         technology.run(company_state())
 
 
-def test_failure_is_recorded_by_graph(monkeypatch):
-    from graph import guarded, route_retry
-
-    def failing_search(*args, **kwargs):
-        raise RuntimeError("검색기 오류")
-
-    monkeypatch.setattr(rag.retriever, "hybrid_search", failing_search)
-    state = company_state()
-    update = guarded("technology", technology.run)(state)
-    assert update["errors"][0]["company_id"] == "C01"
-    assert route_retry("technology_analysis", "technology", "market")({**state, **update}) == "handle_error"
 
 
 def test_generate_uses_structured_schema_and_separates_data(monkeypatch):
@@ -270,40 +247,15 @@ def test_generate_uses_structured_schema_and_separates_data(monkeypatch):
     assert calls["tools"][0].name == "search_tech_docs"
 
 
-def test_real_d_nodes_in_graph_retry_and_reset_between_companies(monkeypatch):
-    from collections import Counter
 
-    from agents import competitor, eligibility, investment, loader, report
-    from graph import build_graph
 
-    companies = [company_state(cid)["current_company"] for cid in ("C01", "C02")]
-    calls = Counter()
-    monkeypatch.setattr(loader, "run", lambda state: {"candidate_companies": companies})
-    monkeypatch.setattr(eligibility, "run", lambda state: {
-        "eligibility": {"판정": "적격"},
-        "current_evidence": company_state(state["current_company"]["company_id"])["current_evidence"],
-    })
-    monkeypatch.setattr(rag.retriever, "hybrid_search", lambda query, **filters: [document(filters["doc_type"])])
+def test_rework_reason_drives_query_rewrite():
+    state = {**company_state(), "technology_analysis": {"미확인정보": ["TRL"]},
+             "rework_reason": {"technology": "근거ID 1개 < 2 (성능 벤치마크)"}}
+    q = rag.build_query(state, "technology")
+    assert "성능 벤치마크" in q and "TRL" in q
 
-    def generate(stage, payload):
-        cid = payload["기업정보"]["company_id"]
-        calls[(cid, stage)] += 1
-        assert all(not e["근거ID"].startswith("DIR-") or f"-{cid}-" in e["근거ID"]
-                   for e in payload["기존근거"] + payload["검색근거"])
-        # 기술은 재검색으로 충분해지고, 시장은 상한 이후에도 부족한 상태로 다음 단계에 전달된다.
-        return tech_output(cid, enough=calls[(cid, stage)] == 2) if stage == "technology" else market_output(cid, enough=False)
 
-    monkeypatch.setattr(rag, "generate_analysis", generate)
-    monkeypatch.setattr(competitor, "run", lambda state: {"competitor_analysis": {}})
-    monkeypatch.setattr(investment, "run", lambda state: {"decision": "보류"})
-    monkeypatch.setattr(report, "run", lambda state: {"final_report": "가상 보고서"})
-    result = build_graph().invoke({"as_of_date": "2026-09-30"}, {"recursion_limit": 100})
-    assert len(result["evaluation_results"]) == 2
-    assert all(calls[(cid, stage)] == 2 for cid in ("C01", "C02") for stage in ("technology", "market"))
-    for record in result["evaluation_results"]:
-        ids = [e["근거ID"] for e in record["current_evidence"]]
-        cid = record["company_id"]
-        assert ids == [f"DIR-{cid}-01", "TEC-02-0001", "MKT-13-0001"]
-        assert record["technology_analysis"]["근거충분"] is True
-        assert record["market_analysis"]["근거충분"] is False
-    assert not result.get("errors")
+def test_market_query_without_technology_analysis():
+    q = rag.build_query(company_state(), "market")  # 병렬 첫 라운드: 기술 결과 없음
+    assert "가상 엣지 NPU" in q

@@ -11,7 +11,6 @@ def run(state: State) -> dict:
     출력: {
         "technology_analysis": {핵심기술, 제품성숙도, 성능지표, 기준대조, 강점, 한계, 미확인정보, 근거ID, "근거충분": bool},
         "current_evidence": [...],
-        "retrieve_count": next_attempt(state, "technology_analysis"),
     }
     """
     return run_analysis(state, "technology")
