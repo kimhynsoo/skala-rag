@@ -27,6 +27,14 @@ dist/
 .cache/
 /outputs/*
 !/outputs/.gitkeep
+# Agent 과제 최종 제출 실행(trace 24e889d7ecf2) 산출물만 추적 — 재실행 결과는 커밋하지 않는다
+!/outputs/report.md
+!/outputs/report.pdf
+!/outputs/evaluation_results.json
+!/outputs/graph.mmd
+!/outputs/logs/
+/outputs/logs/*
+!/outputs/logs/24e889d7ecf2.jsonl
 
 # 실행으로 생성되는 외부 조사·평가 결과 (원천 companies.json은 추적)
 /data/processed/g4_screening_results.json

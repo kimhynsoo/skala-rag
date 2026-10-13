@@ -1,0 +1,39 @@
+{"trace_id": "24e889d7ecf2", "company_id": "C03", "node": "supervisor", "decision": ["technology", "market"], "reason": "필수 실행: technology=미수행; market=미수행", "ts": 1791869516.517406}
+{"trace_id": "24e889d7ecf2", "company_id": "C03", "node": "technology", "decision": "SUCCESS", "reason": "attempt 1", "ts": 1791869533.2252119}
+{"trace_id": "24e889d7ecf2", "company_id": "C03", "node": "market", "decision": "SUCCESS", "reason": "attempt 1", "ts": 1791869537.9685278}
+{"trace_id": "24e889d7ecf2", "company_id": "C03", "node": "supervisor", "decision": ["competitor"], "reason": "기술·시장 확보 → 경쟁 비교 (미수행)", "ts": 1791869537.9709492}
+{"trace_id": "24e889d7ecf2", "company_id": "C03", "node": "competitor", "decision": "SUCCESS", "reason": "attempt 1", "ts": 1791869551.5082319}
+{"trace_id": "24e889d7ecf2", "company_id": "C03", "node": "supervisor", "decision": ["market"], "reason": "LLM 판단: 기술 관점은 이미 1회 재작업을 수행해 추가 보완 가능성이 낮으나, 시장 관점은 구체적 시장 규모와 성장률 등 핵심 정보가 부족하여 재작업으로 보완 가능성이 높다.", "ts": 1791869552.460212}
+{"trace_id": "24e889d7ecf2", "company_id": "C03", "node": "market", "decision": "SUCCESS", "reason": "attempt 2", "ts": 1791869563.474762}
+{"trace_id": "24e889d7ecf2", "company_id": "C03", "node": "supervisor", "decision": ["technology"], "reason": "LLM 판단: 기술 관점에서 구체적 성능 수치와 측정 환경 등 미확인 정보가 많아 재작업으로 보완 가능성이 높음.", "ts": 1791869564.354051}
+{"trace_id": "24e889d7ecf2", "company_id": "C03", "node": "technology", "decision": "SUCCESS", "reason": "attempt 2", "ts": 1791869574.15874}
+{"trace_id": "24e889d7ecf2", "company_id": "C03", "node": "supervisor", "decision": ["investment"], "reason": "모든 관점 근거 충분 또는 재작업 상한 도달 → 투자 판단", "ts": 1791869574.163573}
+{"trace_id": "24e889d7ecf2", "company_id": "C07", "node": "supervisor", "decision": ["technology", "market"], "reason": "필수 실행: technology=미수행; market=미수행", "ts": 1791869585.942215}
+{"trace_id": "24e889d7ecf2", "company_id": "C07", "node": "technology", "decision": "SUCCESS", "reason": "attempt 1", "ts": 1791869593.217112}
+{"trace_id": "24e889d7ecf2", "company_id": "C07", "node": "market", "decision": "SUCCESS", "reason": "attempt 1", "ts": 1791869596.0834272}
+{"trace_id": "24e889d7ecf2", "company_id": "C07", "node": "supervisor", "decision": ["competitor"], "reason": "기술·시장 확보 → 경쟁 비교 (미수행)", "ts": 1791869596.085461}
+{"trace_id": "24e889d7ecf2", "company_id": "C07", "node": "competitor", "decision": "SUCCESS", "reason": "attempt 1", "ts": 1791869603.55366}
+{"trace_id": "24e889d7ecf2", "company_id": "C07", "node": "supervisor", "decision": ["technology", "market"], "reason": "LLM 판단: 기술과 시장 관점 모두 구체적 성능 수치와 시장 규모, 성장률 등 핵심 정보가 부족하여 재작업으로 보완 가능성이 높다.", "ts": 1791869604.393787}
+{"trace_id": "24e889d7ecf2", "company_id": "C07", "node": "technology", "decision": "SUCCESS", "reason": "attempt 2", "ts": 1791869612.591865}
+{"trace_id": "24e889d7ecf2", "company_id": "C07", "node": "market", "decision": "SUCCESS", "reason": "attempt 2", "ts": 1791869616.80532}
+{"trace_id": "24e889d7ecf2", "company_id": "C07", "node": "supervisor", "decision": ["investment"], "reason": "모든 관점 근거 충분 또는 재작업 상한 도달 → 투자 판단", "ts": 1791869616.808814}
+{"trace_id": "24e889d7ecf2", "company_id": "C18", "node": "supervisor", "decision": ["technology", "market"], "reason": "필수 실행: technology=미수행; market=미수행", "ts": 1791869629.6657631}
+{"trace_id": "24e889d7ecf2", "company_id": "C18", "node": "market", "decision": "SUCCESS", "reason": "attempt 1", "ts": 1791869637.993648}
+{"trace_id": "24e889d7ecf2", "company_id": "C18", "node": "technology", "decision": "SUCCESS", "reason": "attempt 1", "ts": 1791869640.843482}
+{"trace_id": "24e889d7ecf2", "company_id": "C18", "node": "supervisor", "decision": ["competitor"], "reason": "기술·시장 확보 → 경쟁 비교 (미수행)", "ts": 1791869640.847025}
+{"trace_id": "24e889d7ecf2", "company_id": "C18", "node": "competitor", "decision": "SUCCESS", "reason": "attempt 1", "ts": 1791869654.197567}
+{"trace_id": "24e889d7ecf2", "company_id": "C18", "node": "supervisor", "decision": ["technology", "market"], "reason": "LLM 판단: 기술과 시장 관점 모두 근거가 부족하여 재작업으로 보완 가능성이 높다. 경쟁사 관점은 정보 부족으로 재작업 불필요하다.", "ts": 1791869655.219135}
+{"trace_id": "24e889d7ecf2", "company_id": "C18", "node": "market", "decision": "SUCCESS", "reason": "attempt 2", "ts": 1791869665.938407}
+{"trace_id": "24e889d7ecf2", "company_id": "C18", "node": "technology", "decision": "SUCCESS", "reason": "attempt 2", "ts": 1791869668.858064}
+{"trace_id": "24e889d7ecf2", "company_id": "C18", "node": "supervisor", "decision": ["investment"], "reason": "모든 관점 근거 충분 또는 재작업 상한 도달 → 투자 판단", "ts": 1791869668.860949}
+{"trace_id": "24e889d7ecf2", "company_id": "C25", "node": "supervisor", "decision": ["technology", "market"], "reason": "필수 실행: technology=미수행; market=미수행", "ts": 1791869679.6045592}
+{"trace_id": "24e889d7ecf2", "company_id": "C25", "node": "technology", "decision": "SUCCESS", "reason": "attempt 1", "ts": 1791869688.3275368}
+{"trace_id": "24e889d7ecf2", "company_id": "C25", "node": "market", "decision": "SUCCESS", "reason": "attempt 1", "ts": 1791869688.935624}
+{"trace_id": "24e889d7ecf2", "company_id": "C25", "node": "supervisor", "decision": ["competitor"], "reason": "기술·시장 확보 → 경쟁 비교 (미수행)", "ts": 1791869688.939142}
+{"trace_id": "24e889d7ecf2", "company_id": "C25", "node": "competitor", "decision": "SUCCESS", "reason": "attempt 1", "ts": 1791869701.685184}
+{"trace_id": "24e889d7ecf2", "company_id": "C25", "node": "supervisor", "decision": ["technology", "market"], "reason": "LLM 판단: 기술력과 시장성 관점 모두 근거가 부족하여 재작업으로 보완 가능성이 높다. 경쟁사 관점은 추가 정보가 없어 재작업 후보에서 제외한다.", "ts": 1791869702.6560378}
+{"trace_id": "24e889d7ecf2", "company_id": "C25", "node": "technology", "decision": "SUCCESS", "reason": "attempt 2", "ts": 1791869712.2915268}
+{"trace_id": "24e889d7ecf2", "company_id": "C25", "node": "market", "decision": "SUCCESS", "reason": "attempt 2", "ts": 1791869712.9175942}
+{"trace_id": "24e889d7ecf2", "company_id": "C25", "node": "supervisor", "decision": ["investment"], "reason": "모든 관점 근거 충분 또는 재작업 상한 도달 → 투자 판단", "ts": 1791869712.9211268}
+{"trace_id": "24e889d7ecf2", "company_id": "C45", "node": "evaluator", "decision": "fail", "reason": "neutrality: 금지 표현 ['유일한']; 보고서에서 '망고부스트코리아는 국내에서 유일하게 DPU(Data Processing Unit)를 개발하며'라는 표현이 있어 특정 기업을 독점적 위치로 단정하는 추천성 표현이 포함되어 중립성 기준에 부합하지 않음.", "ts": 1791869735.006027}
+{"trace_id": "24e889d7ecf2", "company_id": "C45", "node": "evaluator", "decision": "pass", "reason": "3개 항목 충족", "ts": 1791869746.999294}
