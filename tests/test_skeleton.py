@@ -30,7 +30,7 @@ def test_rrf_prefers_agreement():
 
 def test_graph_compiles():
     nodes = build_graph().get_graph().nodes
-    assert {"load", "eligibility", "supervisor", "technology", "market", "competitor", "investment", "report"} <= set(nodes)
+    assert {"load", "eligibility", "supervisor", "technology", "market", "competitor", "investment", "report", "evaluator", "end_with_warning"} <= set(nodes)
 
 
 def test_rank_key_tiebreak():
@@ -88,4 +88,6 @@ def test_loop_flow_with_supervisor(monkeypatch):
     assert out["ranking"] == ["c4", "c3"] and out["selected_company_id"] == "c4"
     assert records["c3"]["current_evidence"] == [{"id": "c3-t"}, {"id": "c3-t"}]
     assert out["errors"][0]["stage"] == "technology"
+    assert out["report_attempts"] == 3  # "ok"는 인용이 없어 룰 미달 → 재생성 2회 후 end_with_warning
+    assert out["route_reason"].startswith("[경고]")
     assert obs.summarize("t")["reworks"] == 5  # c2 기술 재시도 1 + c3·c4 각각 (기술 1 + 경쟁 1)
