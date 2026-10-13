@@ -23,3 +23,11 @@ def test_log_decision_and_summarize(tmp_path, monkeypatch):
     assert rec["reason"] == "미수행" and "ts" in rec
     assert obs.summarize("t1") == {"supervisor_routes": 1, "agent_runs": {"technology": 2, "market": 1},
                                    "reworks": 1, "evaluations": ["fail"]}
+
+
+def test_loader_applies_company_filter(monkeypatch):
+    from agents import loader
+    monkeypatch.setattr(loader, "load_companies", lambda *a, **k: [{"company_id": c} for c in ("C01", "C03", "C11")])
+    out = loader.run({"company_filter": ["C03", "C11"]})
+    assert [c["company_id"] for c in out["candidate_companies"]] == ["C03", "C11"]
+    assert len(loader.run({})["candidate_companies"]) == 3
